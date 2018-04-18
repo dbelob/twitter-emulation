@@ -27,6 +27,7 @@
 
 # Declare files that will always have LF line endings on checkout.
 *.sh            text eol=lf
+*.violet        text eol=lf
 
 # These files are binary and should be left untouched
 # (binary is a macro for -text -diff)
