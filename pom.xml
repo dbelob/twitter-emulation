@@ -28,6 +28,7 @@
     </properties>
 
     <modules>
+        <module>twitter-emulation-spring-mvc-xml</module>
         <module>twitter-emulation-spring-mvc-java</module>
     </modules>
 
