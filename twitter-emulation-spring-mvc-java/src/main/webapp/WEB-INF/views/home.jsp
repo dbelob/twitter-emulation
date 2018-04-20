@@ -9,5 +9,6 @@
 </head>
 <body>
 <h1>Hello, world!</h1>
+<p>Spring MVC, Java Configuration</p>
 </body>
 </html>
