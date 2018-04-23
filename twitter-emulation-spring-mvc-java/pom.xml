@@ -60,6 +60,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Validation -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+
         <!-- Templating -->
         <dependency>
             <groupId>javax.servlet</groupId>

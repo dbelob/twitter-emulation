@@ -21,6 +21,7 @@
         <servlet.api.version>4.0.0</servlet.api.version>
         <jsp.api.version>2.3.1</jsp.api.version>
         <jsp.el.version>2.2.5</jsp.el.version>
+        <hibernate.validator.version>6.0.9.Final</hibernate.validator.version>
         <jstl.version>1.2</jstl.version>
         <junit.version>4.12</junit.version>
         <mockito.version>2.18.0</mockito.version>
@@ -99,6 +100,13 @@
                 <artifactId>javax.el-api</artifactId>
                 <version>${jsp.el.version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <!-- Validation -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate.validator.version}</version>
             </dependency>
 
             <!-- Templating -->
