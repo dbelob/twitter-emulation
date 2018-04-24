@@ -1,6 +1,7 @@
 package acme.twitter.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,9 +16,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 @RequestMapping("/")
 public class AccountController {
+    @RequestMapping(value = {"/login"}, method = GET)
+    public String home(Model model) {
+        return "loginForm";
+    }
+
     @RequestMapping(value = "/register", method = GET)
     public String showRegistrationForm() {
-        return "registration";
+        return "registrationForm";
     }
 
     @RequestMapping(value = "/register", method = POST)
@@ -25,7 +31,7 @@ public class AccountController {
             @Valid RegistrationForm registrationForm,
             Errors errors) {
         if (errors.hasErrors()) {
-            return "registration";
+            return "registrationForm";
         }
 
         //TODO: save account

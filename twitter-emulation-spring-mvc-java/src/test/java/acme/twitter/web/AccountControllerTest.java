@@ -7,10 +7,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-public class HomeControllerTest {
+public class AccountControllerTest {
     @Test
     public void testHomePage() throws Exception {
-        HomeController controller = new HomeController();
+        AccountController controller = new AccountController();
         MockMvc mockMvc = standaloneSetup(controller).build();
         mockMvc.perform(get("/"))
                 .andExpect(view().name("login"));
