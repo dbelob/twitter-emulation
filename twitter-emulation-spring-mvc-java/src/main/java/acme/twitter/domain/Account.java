@@ -1,18 +1,15 @@
-package acme.twitter.web;
+package acme.twitter.domain;
 
-import javax.validation.constraints.NotNull;
-
-/**
- * Registration form.
- */
-public class RegistrationForm {
-    @NotNull
+public class Account {
     private String username;
-    @NotNull
     private String password;
-    @NotNull
-    private String passwordConfirmation;
     private String description;
+
+    public Account(String username, String password, String description) {
+        this.username = username;
+        this.password = password;
+        this.description = description;
+    }
 
     public String getUsername() {
         return username;
@@ -28,14 +25,6 @@ public class RegistrationForm {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPasswordConfirmation() {
-        return passwordConfirmation;
-    }
-
-    public void setPasswordConfirmation(String passwordConfirmation) {
-        this.passwordConfirmation = passwordConfirmation;
     }
 
     public String getDescription() {

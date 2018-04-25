@@ -1,5 +1,7 @@
 package acme.twitter.web;
 
+import acme.twitter.data.AccountRepository;
+import acme.twitter.data.JdbcAccountRepository;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -10,7 +12,9 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 public class AccountControllerTest {
     @Test
     public void testHomePage() throws Exception {
-        AccountController controller = new AccountController();
+        //TODO: change repository to mock
+        AccountRepository accountRepository = new JdbcAccountRepository();
+        AccountController controller = new AccountController(accountRepository);
         MockMvc mockMvc = standaloneSetup(controller).build();
         mockMvc.perform(get("/"))
                 .andExpect(view().name("login"));
