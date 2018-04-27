@@ -2,6 +2,27 @@ body {
 	font-family: sans-serif;
 }
 
+table .mainTable tr td {
+    vertical-align: top;
+}
+
+table .accountTable {
+    background-color: lightgray;
+    width: 200;
+}
+
+table .twitterTable {
+    width: 300;
+}
+
+table .twitterTable tr td {
+    background-color: lightgray;
+}
+
+table .companyTable {
+    background-color: lightgray;
+}
+
 .spittleList h1 {
 	font-size: 16pt;
 }

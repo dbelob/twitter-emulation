@@ -20,7 +20,7 @@
         </tr>
     </table>
     <p>
-        <a href="<c:url value="/register" />">Register</a>
+        <a href="<c:url value="/account/register" />">Register</a>
         <input type="submit" value="Log in"/>
     </p>
 </form>
