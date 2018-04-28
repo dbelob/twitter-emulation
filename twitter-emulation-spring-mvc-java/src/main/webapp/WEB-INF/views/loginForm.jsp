@@ -21,6 +21,7 @@
     </table>
     <p>
         <a href="<c:url value="/account/register" />">Register</a>
+        &nbsp;
         <input type="submit" value="Log in"/>
     </p>
 </form>
