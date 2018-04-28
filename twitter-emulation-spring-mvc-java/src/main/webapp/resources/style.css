@@ -2,25 +2,33 @@ body {
 	font-family: sans-serif;
 }
 
-table .mainTable tr td {
+table.mainTable tr td {
     vertical-align: top;
 }
 
-table .accountTable {
+table.accountTable {
+    background-color: lightgray;
+    width: 250px;
+    border: 5px solid lightgray;
+}
+
+table.twitterTable {
+    width: 500px;
+}
+
+table.twitterTable tr td {
+    background-color: lightgray;
+    border: 5px solid lightgray;
+}
+
+table.companyTable {
     background-color: lightgray;
     width: 200px;
+    border: 5px solid lightgray;
 }
 
-table .twitterTable {
-    width: 300px;
-}
-
-table .twitterTable tr td {
-    background-color: lightgray;
-}
-
-table .companyTable {
-    background-color: lightgray;
+span.description {
+    font-weight: bold;
 }
 
 .spittleList h1 {

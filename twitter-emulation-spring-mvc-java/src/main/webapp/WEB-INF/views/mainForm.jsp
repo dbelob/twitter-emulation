@@ -21,7 +21,7 @@
             <table class="accountTable">
                 <tr>
                     <td>
-                        ${account.description}
+                        <span class="description">${account.description}</span>
                     </td>
                 </tr>
                 <tr>
@@ -34,22 +34,100 @@
         <td>
             <table class="twitterTable">
                 <tr>
-                    <td>First</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="description">Description</span>&nbsp;@user&nbsp;29.04.2018 00:42
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Second</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="description">Description</span>&nbsp;@user&nbsp;29.04.2018 00:42
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Third</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="description">Description</span>&nbsp;@user&nbsp;29.04.2018 00:42
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Fourth</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="description">Description</span>&nbsp;@user&nbsp;29.04.2018 00:42
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Fifth</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="description">Description</span>&nbsp;@user&nbsp;29.04.2018 00:42
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Sixth</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="description">Description</span>&nbsp;@user&nbsp;29.04.2018 00:42
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             </table>
         </td>

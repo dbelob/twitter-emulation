@@ -11,6 +11,12 @@ public class JdbcAccountRepository implements AccountRepository {
     //TODO: delete
     private Map<String, Account> accounts = new HashMap<>();
 
+    public JdbcAccountRepository() {
+        Account account = new Account("jsmith", "password", "John Smith");
+
+        accounts.put(account.getUsername(), account);
+    }
+
     @Override
     public Account save(Account account) {
         //TODO: implement

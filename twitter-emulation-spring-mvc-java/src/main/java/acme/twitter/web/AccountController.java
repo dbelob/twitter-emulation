@@ -32,6 +32,19 @@ public class AccountController {
         return "loginForm";
     }
 
+    @RequestMapping(value = "/login", method = POST)
+    public String processLogin(
+            @Valid LoginForm loginForm,
+            Errors errors) {
+        if (errors.hasErrors()) {
+            return "loginForm";
+        }
+
+        Account account = accountRepository.findByUsername(loginForm.getUsername());
+
+        return "redirect:/account/" + account.getUsername();
+    }
+
     @RequestMapping(value = "/register", method = GET)
     public String showRegistrationForm() {
         return "registrationForm";
