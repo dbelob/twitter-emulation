@@ -1,6 +1,7 @@
 package acme.twitter.web;
 
 import acme.twitter.data.AccountRepository;
+import acme.twitter.data.TweetRepository;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -13,7 +14,8 @@ public class AccountControllerTest {
     @Test
     public void testLoginPage() throws Exception {
         AccountRepository accountRepository = mock(AccountRepository.class);
-        AccountController controller = new AccountController(accountRepository);
+        TweetRepository tweetRepository = mock(TweetRepository.class);
+        AccountController controller = new AccountController(accountRepository, tweetRepository);
         MockMvc mockMvc = standaloneSetup(controller).build();
 
         mockMvc.perform(get("/account/login"))
