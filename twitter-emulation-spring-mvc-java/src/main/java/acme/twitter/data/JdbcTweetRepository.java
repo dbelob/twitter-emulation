@@ -31,6 +31,8 @@ public class JdbcTweetRepository implements TweetRepository {
     @Override
     public List<Tweet> findAllByUsername(Account account) {
         //TODO: implement
-        return accountTweets.get(account);
+        List<Tweet> tweets = accountTweets.get(account);
+
+        return (tweets == null) ? Collections.emptyList() : tweets;
     }
 }
