@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * JDBC implementation of account repository.
+ */
 @Repository
 public class JdbcAccountRepository implements AccountRepository {
     //TODO: delete

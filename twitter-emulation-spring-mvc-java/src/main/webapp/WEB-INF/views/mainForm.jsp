@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -33,102 +34,24 @@
         </td>
         <td>
             <table class="twitterTable">
-                <tr>
-                    <td>
-                        <table>
-                            <tr>
-                                <td>
-                                    <span class="description">Description</span>&nbsp;@user&nbsp;29.04.2018 00:42
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table>
-                            <tr>
-                                <td>
-                                    <span class="description">Description</span>&nbsp;@user&nbsp;29.04.2018 00:42
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table>
-                            <tr>
-                                <td>
-                                    <span class="description">Description</span>&nbsp;@user&nbsp;29.04.2018 00:42
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table>
-                            <tr>
-                                <td>
-                                    <span class="description">Description</span>&nbsp;@user&nbsp;29.04.2018 00:42
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table>
-                            <tr>
-                                <td>
-                                    <span class="description">Description</span>&nbsp;@user&nbsp;29.04.2018 00:42
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table>
-                            <tr>
-                                <td>
-                                    <span class="description">Description</span>&nbsp;@user&nbsp;29.04.2018 00:42
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
+                <c:forEach items="${tweetList}" var="tweet">
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <span class="description">${tweet.account.description}</span>&nbsp;@${tweet.account.username}&nbsp;<fmt:formatDate value="${tweet.date}" pattern="dd.MM.yyyy HH:mm:ss" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ${tweet.text}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </c:forEach>
             </table>
         </td>
         <td>

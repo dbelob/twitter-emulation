@@ -1,7 +1,9 @@
 package acme.twitter.web;
 
 import acme.twitter.data.AccountRepository;
+import acme.twitter.data.TweetRepository;
 import acme.twitter.domain.Account;
+import acme.twitter.domain.Tweet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -21,10 +24,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequestMapping("/account")
 public class AccountController {
     private AccountRepository accountRepository;
+    private TweetRepository tweetRepository;
 
     @Autowired
-    public AccountController(AccountRepository accountRepository) {
+    public AccountController(AccountRepository accountRepository, TweetRepository tweetRepository) {
         this.accountRepository = accountRepository;
+        this.tweetRepository = tweetRepository;
     }
 
     @RequestMapping(value = {"/login"}, method = GET)
@@ -67,7 +72,9 @@ public class AccountController {
     @RequestMapping(value = "/{username}", method = GET)
     public String showMainForm(@PathVariable String username, Model model) {
         Account account = accountRepository.findByUsername(username);
+        List<Tweet> tweets = tweetRepository.findAllByUsername(account);
         model.addAttribute(account);
+        model.addAttribute(tweets);
 
         return "mainForm";
     }
