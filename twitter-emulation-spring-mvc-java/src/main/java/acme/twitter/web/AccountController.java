@@ -33,7 +33,8 @@ public class AccountController {
     }
 
     @RequestMapping(value = {"/login"}, method = GET)
-    public String home(Model model) {
+    public String showLoginForm(Model model) {
+        model.addAttribute(new LoginForm());
         return "loginForm";
     }
 

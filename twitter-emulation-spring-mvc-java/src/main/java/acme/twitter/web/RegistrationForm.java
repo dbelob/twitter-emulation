@@ -8,18 +8,18 @@ import javax.validation.constraints.Size;
  */
 public class RegistrationForm {
     @NotNull
-    @Size(min = 1, max = 16, message = "{username.size}")
+    @Size(min = 1, max = 16, message = "{registration.username.size}")
     private String username;
 
     @NotNull
-    @Size(min = 5, max = 25, message = "{password.size}")
+    @Size(min = 5, max = 25, message = "{registration.password.size}")
     private String password;
 
     @NotNull
-    @Size(min = 5, max = 25, message = "{passwordConfirmation.size}")
+    @Size(min = 5, max = 25, message = "{registration.passwordConfirmation.size}")
     private String passwordConfirmation;
 
-    @Size(min = 2, max = 30, message = "{description.size}")
+    @Size(min = 2, max = 30, message = "{registration.description.size}")
     private String description;
 
     public String getUsername() {
