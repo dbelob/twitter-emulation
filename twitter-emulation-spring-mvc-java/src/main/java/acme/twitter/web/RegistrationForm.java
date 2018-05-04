@@ -1,25 +1,28 @@
 package acme.twitter.web;
 
+import acme.twitter.web.validation.PasswordsMatch;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  * Registration form.
  */
+@PasswordsMatch(message = "{password.difference}")
 public class RegistrationForm {
     @NotNull
-    @Size(min = 1, max = 16, message = "{registration.username.size}")
+    @Size(min = 1, max = 16, message = "{username.size}")
     private String username;
 
     @NotNull
-    @Size(min = 5, max = 25, message = "{registration.password.size}")
+    @Size(min = 5, max = 25, message = "{password.size}")
     private String password;
 
     @NotNull
-    @Size(min = 5, max = 25, message = "{registration.passwordConfirmation.size}")
+    @Size(min = 5, max = 25, message = "{passwordConfirmation.size}")
     private String passwordConfirmation;
 
-    @Size(min = 2, max = 30, message = "{registration.description.size}")
+    @Size(min = 2, max = 30, message = "{description.size}")
     private String description;
 
     public String getUsername() {

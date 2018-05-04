@@ -32,12 +32,25 @@ public class AccountController {
         this.tweetRepository = tweetRepository;
     }
 
+    /**
+     * Shows login form
+     *
+     * @param model model
+     * @return view name
+     */
     @RequestMapping(value = {"/login"}, method = GET)
     public String showLoginForm(Model model) {
         model.addAttribute(new LoginForm());
         return "loginForm";
     }
 
+    /**
+     * Processes login
+     *
+     * @param loginForm login form
+     * @param errors    errors
+     * @return view name
+     */
     @RequestMapping(value = "/login", method = POST)
     public String processLogin(
             @Valid LoginForm loginForm,
@@ -51,12 +64,25 @@ public class AccountController {
         return "redirect:/account/" + account.getUsername();
     }
 
+    /**
+     * Shows registration form
+     *
+     * @param model model
+     * @return view name
+     */
     @RequestMapping(value = "/register", method = GET)
     public String showRegistrationForm(Model model) {
         model.addAttribute(new RegistrationForm());
         return "registrationForm";
     }
 
+    /**
+     * Processes registration
+     *
+     * @param registrationForm registration form
+     * @param errors           errors
+     * @return view name
+     */
     @RequestMapping(value = "/register", method = POST)
     public String processRegistration(
             @Valid RegistrationForm registrationForm,
@@ -71,6 +97,13 @@ public class AccountController {
         return "redirect:/account/" + account.getUsername();
     }
 
+    /**
+     * Shows main form
+     *
+     * @param username username
+     * @param model    model
+     * @return view name
+     */
     @RequestMapping(value = "/{username}", method = GET)
     public String showMainForm(@PathVariable String username, Model model) {
         Account account = accountRepository.findByUsername(username);
