@@ -37,7 +37,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/").setViewName("redirect:/account/login");
     }
 
-    @Bean(name = "messageSource")
+    @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 
@@ -46,7 +46,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return messageSource;
     }
 
-    @Bean(name = "messageSourceAccessor")
+    @Bean
     public MessageSourceAccessor messageSourceAccessor() {
         return new MessageSourceAccessor(messageSource());
     }
