@@ -63,6 +63,12 @@ public class AccountController {
             return "loginForm";
         }
 
+        if (!accountRepository.isAccountExists(loginForm.getUsername())) {
+            errors.reject("account.notexist", messageSourceAccessor.getMessage("account.notexist"));
+
+            return "loginForm";
+        }
+
         Account account = accountRepository.findByUsername(loginForm.getUsername());
 
         return "redirect:/account/" + account.getUsername();
