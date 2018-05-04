@@ -1,17 +1,25 @@
 package acme.twitter.web;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Registration form.
  */
 public class RegistrationForm {
     @NotNull
+    @Size(min = 1, max = 16, message = "{username.size}")
     private String username;
+
     @NotNull
+    @Size(min = 5, max = 25, message = "{password.size}")
     private String password;
+
     @NotNull
+    @Size(min = 5, max = 25, message = "{passwordConfirmation.size}")
     private String passwordConfirmation;
+
+    @Size(min = 2, max = 30, message = "{description.size}")
     private String description;
 
     public String getUsername() {
