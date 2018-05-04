@@ -33,4 +33,10 @@ public class JdbcAccountRepository implements AccountRepository {
         //TODO: implement
         return accounts.get(username);
     }
+
+    @Override
+    public boolean isAccountExists(String username) {
+        //TODO: implement
+        return accounts.containsKey(username);
+    }
 }

@@ -5,6 +5,8 @@ import acme.twitter.data.TweetRepository;
 import acme.twitter.domain.Account;
 import acme.twitter.domain.Tweet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -25,6 +27,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class AccountController {
     private AccountRepository accountRepository;
     private TweetRepository tweetRepository;
+
+    @Autowired
+    @Qualifier("messageSourceAccessor")
+    private MessageSourceAccessor messageSourceAccessor;
 
     @Autowired
     public AccountController(AccountRepository accountRepository, TweetRepository tweetRepository) {
@@ -88,6 +94,12 @@ public class AccountController {
             @Valid RegistrationForm registrationForm,
             Errors errors) {
         if (errors.hasErrors()) {
+            return "registrationForm";
+        }
+
+        if (accountRepository.isAccountExists(registrationForm.getUsername())) {
+            errors.reject("account.exists", messageSourceAccessor.getMessage("account.exists"));
+
             return "registrationForm";
         }
 
