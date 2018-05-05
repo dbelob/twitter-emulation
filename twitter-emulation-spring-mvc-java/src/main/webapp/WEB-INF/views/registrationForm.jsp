@@ -18,11 +18,11 @@
         </tr>
         <tr>
             <td><sf:label path="password" cssErrorClass="error">Password</sf:label>:</td>
-            <td><sf:input path="password" cssErrorClass="error"/></td>
+            <td><sf:password path="password" cssErrorClass="error"/></td>
         </tr>
         <tr>
             <td><sf:label path="passwordConfirmation" cssErrorClass="error">Confirmation</sf:label>:</td>
-            <td><sf:input path="passwordConfirmation" cssErrorClass="error"/></td>
+            <td><sf:password path="passwordConfirmation" cssErrorClass="error"/></td>
         </tr>
         <tr>
             <td><sf:label path="description" cssErrorClass="error">Description</sf:label>:</td>

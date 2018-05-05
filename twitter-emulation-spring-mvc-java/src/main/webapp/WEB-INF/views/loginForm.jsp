@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <td><sf:label path="password" cssErrorClass="error">Password</sf:label>:</td>
-            <td><sf:input path="password" cssErrorClass="error"/></td>
+            <td><sf:password path="password" cssErrorClass="error"/></td>
         </tr>
     </table>
     <p>
