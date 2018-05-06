@@ -9,6 +9,4 @@ public interface AccountRepository {
     Account save(Account account);
 
     Account findByUsername(String username);
-
-    boolean isAccountExists(String username);
 }

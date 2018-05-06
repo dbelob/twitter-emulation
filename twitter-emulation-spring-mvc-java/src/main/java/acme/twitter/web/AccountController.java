@@ -63,13 +63,13 @@ public class AccountController {
             return "loginForm";
         }
 
-        if (!accountRepository.isAccountExists(loginForm.getUsername())) {
+        Account account = accountRepository.findByUsername(loginForm.getUsername());
+
+        if (account == null) {
             errors.reject("account.notexist", messageSourceAccessor.getMessage("account.notexist"));
 
             return "loginForm";
         }
-
-        Account account = accountRepository.findByUsername(loginForm.getUsername());
 
         return "redirect:/account/" + account.getUsername();
     }
@@ -101,13 +101,15 @@ public class AccountController {
             return "registrationForm";
         }
 
-        if (accountRepository.isAccountExists(registrationForm.getUsername())) {
+        Account account = accountRepository.findByUsername(registrationForm.getUsername());
+
+        if (account != null) {
             errors.reject("account.exists", messageSourceAccessor.getMessage("account.exists"));
 
             return "registrationForm";
         }
 
-        Account account = new Account(registrationForm.getUsername(), registrationForm.getPassword(), registrationForm.getDescription());
+        account = new Account(registrationForm.getUsername(), registrationForm.getPassword(), registrationForm.getDescription());
         accountRepository.save(account);
 
         return "redirect:/account/" + account.getUsername();
