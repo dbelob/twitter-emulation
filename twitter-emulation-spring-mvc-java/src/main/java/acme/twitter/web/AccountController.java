@@ -2,6 +2,9 @@ package acme.twitter.web;
 
 import acme.twitter.data.AccountRepository;
 import acme.twitter.data.TweetRepository;
+import acme.twitter.data.exception.AccountExistsException;
+import acme.twitter.data.exception.AccountNotExistException;
+import acme.twitter.data.exception.WrongPasswordException;
 import acme.twitter.domain.Account;
 import acme.twitter.domain.Tweet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,15 +66,19 @@ public class AccountController {
             return "loginForm";
         }
 
-        Account account = accountRepository.findByUsername(loginForm.getUsername());
+        try {
+            Account account = accountRepository.login(loginForm.getUsername(), loginForm.getPassword());
 
-        if (account == null) {
+            return "redirect:/account/" + account.getUsername();
+        } catch (AccountNotExistException e) {
             errors.reject("account.notexist", messageSourceAccessor.getMessage("account.notexist"));
 
             return "loginForm";
-        }
+        } catch (WrongPasswordException e) {
+            errors.reject("account.wrongpassword", messageSourceAccessor.getMessage("account.wrongpassword"));
 
-        return "redirect:/account/" + account.getUsername();
+            return "loginForm";
+        }
     }
 
     /**
@@ -101,18 +108,16 @@ public class AccountController {
             return "registrationForm";
         }
 
-        Account account = accountRepository.findByUsername(registrationForm.getUsername());
+        try {
+            Account account = new Account(registrationForm.getUsername(), registrationForm.getPassword(), registrationForm.getDescription());
+            account = accountRepository.save(account);
 
-        if (account != null) {
+            return "redirect:/account/" + account.getUsername();
+        } catch (AccountExistsException e) {
             errors.reject("account.exists", messageSourceAccessor.getMessage("account.exists"));
 
             return "registrationForm";
         }
-
-        account = new Account(registrationForm.getUsername(), registrationForm.getPassword(), registrationForm.getDescription());
-        accountRepository.save(account);
-
-        return "redirect:/account/" + account.getUsername();
     }
 
     /**
