@@ -11,7 +11,7 @@ import acme.twitter.domain.Account;
 public interface AccountRepository {
     Account login(String username, String password) throws AccountNotExistException, WrongPasswordException;
 
-    Account save(Account account) throws AccountExistsException;
+    void save(String username, String password, String description) throws AccountExistsException;
 
     Account findByUsername(String username);
 }

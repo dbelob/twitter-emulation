@@ -109,10 +109,9 @@ public class AccountController {
         }
 
         try {
-            Account account = new Account(registrationForm.getUsername(), registrationForm.getPassword(), registrationForm.getDescription());
-            account = accountRepository.save(account);
+            accountRepository.save(registrationForm.getUsername(), registrationForm.getPassword(), registrationForm.getDescription());
 
-            return "redirect:/account/" + account.getUsername();
+            return "redirect:/account/" + registrationForm.getUsername();
         } catch (AccountExistsException e) {
             errors.reject("account.exists", messageSourceAccessor.getMessage("account.exists"));
 
@@ -130,7 +129,7 @@ public class AccountController {
     @RequestMapping(value = "/{username}", method = GET)
     public String showMainForm(@PathVariable String username, Model model) {
         Account account = accountRepository.findByUsername(username);
-        List<Tweet> tweets = tweetRepository.findAllByUsername(account);
+        List<Tweet> tweets = tweetRepository.findAllByUsername(username);
         model.addAttribute(account);
         model.addAttribute(tweets);
 

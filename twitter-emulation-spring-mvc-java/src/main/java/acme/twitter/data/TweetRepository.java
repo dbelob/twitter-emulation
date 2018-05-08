@@ -9,5 +9,5 @@ import java.util.List;
  * Tweet repository.
  */
 public interface TweetRepository {
-    List<Tweet> findAllByUsername(Account account);
+    List<Tweet> findAllByUsername(String username);
 }

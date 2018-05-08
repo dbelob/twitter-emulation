@@ -4,12 +4,12 @@ import acme.twitter.data.exception.AccountExistsException;
 import acme.twitter.data.exception.AccountNotExistException;
 import acme.twitter.data.exception.WrongPasswordException;
 import acme.twitter.domain.Account;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -19,15 +19,9 @@ import java.util.Objects;
 public class JdbcAccountRepository implements AccountRepository {
     private JdbcTemplate jdbcTemplate;
 
-    //TODO: delete
-    private Map<String, Account> accounts = new HashMap<>();
-
+    @Autowired
     public JdbcAccountRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-
-        Account account = new Account("jsmith", "password", "John Smith");
-
-        accounts.put(account.getUsername(), account);
     }
 
     @Override
@@ -49,15 +43,15 @@ public class JdbcAccountRepository implements AccountRepository {
     }
 
     @Override
-    public Account save(Account account) throws AccountExistsException {
-        //TODO: implement
-        if (accounts.containsKey(account.getUsername())) {
+    public void save(String username, String password, String description) throws AccountExistsException {
+        try {
+            jdbcTemplate.update(
+                    "insert into account (username, password, description)" +
+                            " values (?, ?, ?)",
+                    username, password, description);
+        } catch (DuplicateKeyException e) {
             throw new AccountExistsException();
         }
-
-        accounts.put(account.getUsername(), account);
-
-        return account;
     }
 
     @Override
