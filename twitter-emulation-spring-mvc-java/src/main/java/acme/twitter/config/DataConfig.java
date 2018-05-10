@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 @Configuration
 public class DataConfig {
+    // jdbc:h2:mem:testdb
     @Bean
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
