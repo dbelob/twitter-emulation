@@ -7,14 +7,14 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css" />">
 </head>
 <body>
-<h1>Registration</h1>
+<h1>Profile</h1>
 
 <sf:form method="POST" modelAttribute="accountForm">
     <sf:errors path="*" element="div" cssClass="errors"/>
     <table>
         <tr>
             <td><sf:label path="username" cssErrorClass="error">Username</sf:label>:</td>
-            <td><sf:input path="username" cssErrorClass="error"/></td>
+            <td><sf:input path="username" disabled="true" cssErrorClass="error"/></td>
         </tr>
         <tr>
             <td><sf:label path="password" cssErrorClass="error">Password</sf:label>:</td>
@@ -30,9 +30,10 @@
         </tr>
     </table>
     <p>
-        <a href="<c:url value="/account/login" />">Log in</a>
+        <a href="<c:url value="/account/delete" />">Delete</a>
         &nbsp;
-        <input type="submit" value="Register"/>
+        <input type="submit" value="Cancel"/>
+        <input type="submit" value="Save"/>
     </p>
 </sf:form>
 </body>

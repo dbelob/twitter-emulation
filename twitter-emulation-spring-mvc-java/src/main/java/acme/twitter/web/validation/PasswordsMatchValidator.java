@@ -1,13 +1,13 @@
 package acme.twitter.web.validation;
 
-import acme.twitter.web.RegistrationForm;
+import acme.twitter.web.AccountForm;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class PasswordsMatchValidator implements ConstraintValidator<PasswordsMatch, RegistrationForm> {
+public class PasswordsMatchValidator implements ConstraintValidator<PasswordsMatch, AccountForm> {
     @Override
-    public boolean isValid(RegistrationForm value, ConstraintValidatorContext context) {
+    public boolean isValid(AccountForm value, ConstraintValidatorContext context) {
         if (value == null) {
             return true;
         } else {

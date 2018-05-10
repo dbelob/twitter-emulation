@@ -6,10 +6,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Registration form.
+ * Account form.
  */
 @PasswordsMatch(message = "{password.difference}")
-public class RegistrationForm {
+public class AccountForm {
     @NotNull
     @Size(min = 1, max = 16, message = "{username.size}")
     private String username;

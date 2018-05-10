@@ -14,6 +14,8 @@
         </td>
         <td></td>
         <td>
+            <a href="<c:url value="/account/profile" />">Profile</a>
+            &nbsp;
             <a href="<c:url value="/account/login" />">Log out</a>
         </td>
     </tr>

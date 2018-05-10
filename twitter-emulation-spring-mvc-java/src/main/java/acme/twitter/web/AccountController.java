@@ -27,15 +27,15 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 @RequestMapping("/account")
 public class AccountController {
-    private AccountDao accountRepository;
-    private TweetDao tweetRepository;
+    private AccountDao accountDao;
+    private TweetDao tweetDao;
     private MessageSourceAccessor messageSourceAccessor;
 
     @Autowired
-    public AccountController(AccountDao accountRepository, TweetDao tweetRepository,
+    public AccountController(AccountDao accountDao, TweetDao tweetDao,
                              MessageSourceAccessor messageSourceAccessor) {
-        this.accountRepository = accountRepository;
-        this.tweetRepository = tweetRepository;
+        this.accountDao = accountDao;
+        this.tweetDao = tweetDao;
         this.messageSourceAccessor = messageSourceAccessor;
     }
 
@@ -67,7 +67,7 @@ public class AccountController {
         }
 
         try {
-            Account account = accountRepository.login(loginForm.getUsername(), loginForm.getPassword());
+            Account account = accountDao.login(loginForm.getUsername(), loginForm.getPassword());
 
             return "redirect:/account/" + account.getUsername();
         } catch (AccountNotExistException e) {
@@ -89,34 +89,49 @@ public class AccountController {
      */
     @RequestMapping(value = "/register", method = GET)
     public String showRegistrationForm(Model model) {
-        model.addAttribute(new RegistrationForm());
+        model.addAttribute(new AccountForm());
         return "registrationForm";
     }
 
     /**
      * Processes registration
      *
-     * @param registrationForm registration form
-     * @param errors           errors
+     * @param accountForm account form
+     * @param errors      errors
      * @return view name
      */
     @RequestMapping(value = "/register", method = POST)
     public String processRegistration(
-            @Valid RegistrationForm registrationForm,
+            @Valid AccountForm accountForm,
             Errors errors) {
         if (errors.hasErrors()) {
             return "registrationForm";
         }
 
         try {
-            accountRepository.save(registrationForm.getUsername(), registrationForm.getPassword(), registrationForm.getDescription());
+            accountDao.save(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
-            return "redirect:/account/" + registrationForm.getUsername();
+            return "redirect:/account/" + accountForm.getUsername();
         } catch (AccountExistsException e) {
             errors.reject("account.exists", messageSourceAccessor.getMessage("account.exists"));
 
             return "registrationForm";
         }
+    }
+
+    /**
+     * Shows profile form
+     *
+     * @param model model
+     * @return view name
+     */
+    @RequestMapping(value = "/profile", method = GET)
+    public String showProfileForm(Model model) {
+        //TODO: use username
+//        Account account = accountDao.findByUsername(username);
+//        model.addAttribute(account);
+        model.addAttribute(new AccountForm());
+        return "profileForm";
     }
 
     /**
@@ -128,8 +143,8 @@ public class AccountController {
      */
     @RequestMapping(value = "/{username}", method = GET)
     public String showMainForm(@PathVariable String username, Model model) {
-        Account account = accountRepository.findByUsername(username);
-        List<Tweet> tweets = tweetRepository.findAllByUsername(username);
+        Account account = accountDao.findByUsername(username);
+        List<Tweet> tweets = tweetDao.findAllByUsername(username);
         model.addAttribute(account);
         model.addAttribute(tweets);
 
