@@ -1,4 +1,4 @@
-package acme.twitter.data;
+package acme.twitter.dao;
 
 import acme.twitter.domain.Account;
 import acme.twitter.domain.Tweet;

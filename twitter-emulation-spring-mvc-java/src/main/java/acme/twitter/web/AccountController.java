@@ -1,10 +1,10 @@
 package acme.twitter.web;
 
-import acme.twitter.data.AccountRepository;
-import acme.twitter.data.TweetRepository;
-import acme.twitter.data.exception.AccountExistsException;
-import acme.twitter.data.exception.AccountNotExistException;
-import acme.twitter.data.exception.WrongPasswordException;
+import acme.twitter.dao.AccountDao;
+import acme.twitter.dao.TweetDao;
+import acme.twitter.dao.exception.AccountExistsException;
+import acme.twitter.dao.exception.AccountNotExistException;
+import acme.twitter.dao.exception.WrongPasswordException;
 import acme.twitter.domain.Account;
 import acme.twitter.domain.Tweet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +27,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 @RequestMapping("/account")
 public class AccountController {
-    private AccountRepository accountRepository;
-    private TweetRepository tweetRepository;
+    private AccountDao accountRepository;
+    private TweetDao tweetRepository;
     private MessageSourceAccessor messageSourceAccessor;
 
     @Autowired
-    public AccountController(AccountRepository accountRepository, TweetRepository tweetRepository,
+    public AccountController(AccountDao accountRepository, TweetDao tweetRepository,
                              MessageSourceAccessor messageSourceAccessor) {
         this.accountRepository = accountRepository;
         this.tweetRepository = tweetRepository;

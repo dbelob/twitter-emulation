@@ -1,14 +1,14 @@
-package acme.twitter.data;
+package acme.twitter.dao;
 
-import acme.twitter.data.exception.AccountExistsException;
-import acme.twitter.data.exception.AccountNotExistException;
-import acme.twitter.data.exception.WrongPasswordException;
+import acme.twitter.dao.exception.AccountExistsException;
+import acme.twitter.dao.exception.AccountNotExistException;
+import acme.twitter.dao.exception.WrongPasswordException;
 import acme.twitter.domain.Account;
 
 /**
- * Account repository.
+ * Account DAO.
  */
-public interface AccountRepository {
+public interface AccountDao {
     Account login(String username, String password) throws AccountNotExistException, WrongPasswordException;
 
     void save(String username, String password, String description) throws AccountExistsException;

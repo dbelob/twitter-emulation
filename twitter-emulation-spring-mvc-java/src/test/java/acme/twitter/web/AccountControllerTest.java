@@ -1,7 +1,7 @@
 package acme.twitter.web;
 
-import acme.twitter.data.AccountRepository;
-import acme.twitter.data.TweetRepository;
+import acme.twitter.dao.AccountDao;
+import acme.twitter.dao.TweetDao;
 import org.junit.Test;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.test.web.servlet.MockMvc;
@@ -14,8 +14,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 public class AccountControllerTest {
     @Test
     public void testLoginPage() throws Exception {
-        AccountRepository accountRepository = mock(AccountRepository.class);
-        TweetRepository tweetRepository = mock(TweetRepository.class);
+        AccountDao accountRepository = mock(AccountDao.class);
+        TweetDao tweetRepository = mock(TweetDao.class);
         MessageSourceAccessor messageSourceAccessor = mock(MessageSourceAccessor.class);
         AccountController controller = new AccountController(accountRepository, tweetRepository, messageSourceAccessor);
         MockMvc mockMvc = standaloneSetup(controller).build();

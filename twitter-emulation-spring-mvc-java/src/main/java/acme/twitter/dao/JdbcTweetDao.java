@@ -1,4 +1,4 @@
-package acme.twitter.data;
+package acme.twitter.dao;
 
 import acme.twitter.domain.Tweet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,14 +8,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * JDBC implementation of tweet repository.
+ * JDBC implementation of tweet DAO.
  */
 @Repository
-public class JdbcTweetRepository implements TweetRepository {
+public class JdbcTweetDao implements TweetDao {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public JdbcTweetRepository(JdbcTemplate jdbcTemplate) {
+    public JdbcTweetDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

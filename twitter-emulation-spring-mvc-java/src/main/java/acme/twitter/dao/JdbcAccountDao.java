@@ -1,8 +1,8 @@
-package acme.twitter.data;
+package acme.twitter.dao;
 
-import acme.twitter.data.exception.AccountExistsException;
-import acme.twitter.data.exception.AccountNotExistException;
-import acme.twitter.data.exception.WrongPasswordException;
+import acme.twitter.dao.exception.AccountExistsException;
+import acme.twitter.dao.exception.AccountNotExistException;
+import acme.twitter.dao.exception.WrongPasswordException;
 import acme.twitter.domain.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -13,14 +13,14 @@ import org.springframework.stereotype.Repository;
 import java.util.Objects;
 
 /**
- * JDBC implementation of account repository.
+ * JDBC implementation of account DAO.
  */
 @Repository
-public class JdbcAccountRepository implements AccountRepository {
+public class JdbcAccountDao implements AccountDao {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public JdbcAccountRepository(JdbcTemplate jdbcTemplate) {
+    public JdbcAccountDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
