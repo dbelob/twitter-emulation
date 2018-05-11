@@ -63,6 +63,13 @@ public class JdbcAccountDao implements AccountDao {
     }
 
     @Override
+    public void delete(String username) {
+        jdbcTemplate.update(
+                "delete account where username = ?",
+                username);
+    }
+
+    @Override
     public Account findByUsername(String username) {
         return jdbcTemplate.queryForObject(
                 "select username, password, description from account where username = ?",

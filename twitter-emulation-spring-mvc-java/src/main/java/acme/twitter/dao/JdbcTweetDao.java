@@ -30,4 +30,11 @@ public class JdbcTweetDao implements TweetDao {
                 new TweetRowMapper(account),
                 account.getUsername());
     }
+
+    @Override
+    public void deleteAll(String username) {
+        jdbcTemplate.update(
+                "delete tweet where account_id = (select account_id from account where username = ?)",
+                username);
+    }
 }

@@ -133,11 +133,24 @@ public class AccountController {
         return "profileForm";
     }
 
+    /**
+     * Processes profile to cancel
+     *
+     * @param username username
+     * @return view name
+     */
     @RequestMapping(value = "/profile/{username}", method = POST, params = "cancel")
     public String cancelProfile(@PathVariable String username) {
         return "redirect:/account/" + username;
     }
 
+    /**
+     * Processes profile to save
+     *
+     * @param accountForm account form
+     * @param errors      errors
+     * @return view name
+     */
     @RequestMapping(value = "/profile/{username}", method = POST, params = "save")
     public String processProfile(
             @Valid AccountForm accountForm,
@@ -149,6 +162,41 @@ public class AccountController {
         accountDao.update(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
         return "redirect:/account/" + accountForm.getUsername();
+    }
+
+    /**
+     * Deletes account
+     *
+     * @return view name
+     */
+    @RequestMapping(value = "/delete/{username}", method = GET)
+    public String showDeleteForm() {
+        return "deleteForm";
+    }
+
+    /**
+     * Processes deletion to cancel
+     *
+     * @param username username
+     * @return view name
+     */
+    @RequestMapping(value = "/delete/{username}", method = POST, params = "cancel")
+    public String cancelDelete(@PathVariable String username) {
+        return "redirect:/account/profile/" + username;
+    }
+
+    /**
+     * Processes deletion to delete
+     *
+     * @param username username
+     * @return view name
+     */
+    @RequestMapping(value = "/delete/{username}", method = POST, params = "delete")
+    public String processDelete(@PathVariable String username) {
+        tweetDao.deleteAll(username);
+        accountDao.delete(username);
+
+        return "redirect:/account/login";
     }
 
     /**

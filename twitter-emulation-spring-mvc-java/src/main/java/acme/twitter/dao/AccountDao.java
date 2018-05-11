@@ -15,5 +15,7 @@ public interface AccountDao {
 
     void update(String username, String password, String description);
 
+    void delete(String username);
+
     Account findByUsername(String username);
 }
