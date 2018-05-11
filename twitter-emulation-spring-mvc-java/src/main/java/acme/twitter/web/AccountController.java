@@ -133,7 +133,12 @@ public class AccountController {
         return "profileForm";
     }
 
-    @RequestMapping(value = "/profile/{username}", method = POST)
+    @RequestMapping(value = "/profile/{username}", method = POST, params = "cancel")
+    public String cancelProfile(@PathVariable String username) {
+        return "redirect:/account/" + username;
+    }
+
+    @RequestMapping(value = "/profile/{username}", method = POST, params = "save")
     public String processProfile(
             @Valid AccountForm accountForm,
             Errors errors) {
