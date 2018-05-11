@@ -109,7 +109,7 @@ public class AccountController {
         }
 
         try {
-            accountDao.save(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
+            accountDao.add(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
             return "redirect:/account/" + accountForm.getUsername();
         } catch (AccountExistsException e) {
@@ -122,16 +122,28 @@ public class AccountController {
     /**
      * Shows profile form
      *
-     * @param model model
+     * @param username username
+     * @param model    model
      * @return view name
      */
-    @RequestMapping(value = "/profile", method = GET)
-    public String showProfileForm(Model model) {
-        //TODO: use username
-//        Account account = accountDao.findByUsername(username);
-//        model.addAttribute(account);
-        model.addAttribute(new AccountForm());
+    @RequestMapping(value = "/profile/{username}", method = GET)
+    public String showProfileForm(@PathVariable String username, Model model) {
+        Account account = accountDao.findByUsername(username);
+        model.addAttribute(new AccountForm(account.getUsername(), account.getDescription()));
         return "profileForm";
+    }
+
+    @RequestMapping(value = "/profile/{username}", method = POST)
+    public String processProfile(
+            @Valid AccountForm accountForm,
+            Errors errors) {
+        if (errors.hasErrors()) {
+            return "profileForm";
+        }
+
+        accountDao.update(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
+
+        return "redirect:/account/" + accountForm.getUsername();
     }
 
     /**
@@ -144,7 +156,7 @@ public class AccountController {
     @RequestMapping(value = "/{username}", method = GET)
     public String showMainForm(@PathVariable String username, Model model) {
         Account account = accountDao.findByUsername(username);
-        List<Tweet> tweets = tweetDao.findAllByUsername(username);
+        List<Tweet> tweets = tweetDao.findAllByUsername(account);
         model.addAttribute(account);
         model.addAttribute(tweets);
 

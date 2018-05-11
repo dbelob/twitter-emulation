@@ -43,7 +43,7 @@ public class JdbcAccountDao implements AccountDao {
     }
 
     @Override
-    public void save(String username, String password, String description) throws AccountExistsException {
+    public void add(String username, String password, String description) throws AccountExistsException {
         try {
             jdbcTemplate.update(
                     "insert into account (username, password, description)" +
@@ -52,6 +52,14 @@ public class JdbcAccountDao implements AccountDao {
         } catch (DuplicateKeyException e) {
             throw new AccountExistsException();
         }
+    }
+
+    @Override
+    public void update(String username, String password, String description) {
+        jdbcTemplate.update(
+                "update account set password = ?, description = ? " +
+                        " where username = ?",
+                password, description, username);
     }
 
     @Override

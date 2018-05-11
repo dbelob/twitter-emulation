@@ -25,6 +25,14 @@ public class AccountForm {
     @Size(min = 2, max = 30, message = "{description.size}")
     private String description;
 
+    public AccountForm() {
+    }
+
+    public AccountForm(String username, String description) {
+        this.username = username;
+        this.description = description;
+    }
+
     public String getUsername() {
         return username;
     }

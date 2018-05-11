@@ -30,7 +30,7 @@
         </tr>
     </table>
     <p>
-        <a href="<c:url value="/account/delete" />">Delete</a>
+        <a href="<c:url value="/account/delete/${accountForm.username}" />">Delete</a>
         &nbsp;
         <input type="submit" value="Cancel"/>
         <input type="submit" value="Save"/>

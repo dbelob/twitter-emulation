@@ -11,7 +11,9 @@ import acme.twitter.domain.Account;
 public interface AccountDao {
     Account login(String username, String password) throws AccountNotExistException, WrongPasswordException;
 
-    void save(String username, String password, String description) throws AccountExistsException;
+    void add(String username, String password, String description) throws AccountExistsException;
+
+    void update(String username, String password, String description);
 
     Account findByUsername(String username);
 }
