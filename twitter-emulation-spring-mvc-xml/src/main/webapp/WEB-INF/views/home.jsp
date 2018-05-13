@@ -9,6 +9,6 @@
 </head>
 <body>
 <h1>Hello, world!</h1>
-<p>Spring MVC (XML Configuration)</p>
+<p>Spring MVC (XML configuration)</p>
 </body>
 </html>

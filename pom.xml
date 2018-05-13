@@ -32,6 +32,8 @@
     <modules>
         <module>twitter-emulation-servlet-xml</module>
         <module>twitter-emulation-servlet-annotation</module>
+        <module>twitter-emulation-servlet-java-jar</module>
+        <module>twitter-emulation-servlet-java-war</module>
         <module>twitter-emulation-spring-mvc-xml</module>
         <module>twitter-emulation-spring-mvc-java</module>
     </modules>
@@ -72,6 +74,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>acme</groupId>
+                <artifactId>twitter-emulation-servlet-java-jar</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <!-- Spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
