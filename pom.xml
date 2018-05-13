@@ -30,7 +30,7 @@
     </properties>
 
     <modules>
-        <module>twitter-emulation-servlet</module>
+        <module>twitter-emulation-servlet-xml</module>
         <module>twitter-emulation-spring-mvc-xml</module>
         <module>twitter-emulation-spring-mvc-java</module>
     </modules>

@@ -8,9 +8,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>twitter-emulation-servlet</artifactId>
+    <artifactId>twitter-emulation-servlet-xml</artifactId>
     <packaging>war</packaging>
-    <name>acme:twitter-emulation-servlet</name>
+    <name>acme:twitter-emulation-servlet-xml</name>
 
     <build>
         <plugins>
