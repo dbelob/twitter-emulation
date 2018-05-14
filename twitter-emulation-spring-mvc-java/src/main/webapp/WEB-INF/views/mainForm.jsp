@@ -13,7 +13,13 @@
         <td>
             <a href="<c:url value="/account/${account.username}" />">Main</a>
         </td>
-        <td></td>
+        <td>
+            <sf:form action="${pageContext.request.contextPath}/account/search/${account.username}" method="GET" modelAttribute="searchForm">
+                <sf:input path="username"/>
+                &nbsp;
+                <input type="submit" value="Search"/>
+            </sf:form>
+        </td>
         <td>
             <sf:form action="${pageContext.request.contextPath}/tweet/${account.username}" method="GET">
                 <input type="submit" value="Tweet"/>

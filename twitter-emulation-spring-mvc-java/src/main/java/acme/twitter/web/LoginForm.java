@@ -3,6 +3,9 @@ package acme.twitter.web;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Login form.
+ */
 public class LoginForm {
     @NotNull
     @NotEmpty(message = "{username.empty}")

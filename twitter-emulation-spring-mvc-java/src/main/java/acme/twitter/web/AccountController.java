@@ -212,6 +212,7 @@ public class AccountController {
         List<Tweet> tweets = tweetDao.findAllByUsername(account);
         model.addAttribute(account);
         model.addAttribute(tweets);
+        model.addAttribute(new SearchForm());
 
         return "mainForm";
     }
