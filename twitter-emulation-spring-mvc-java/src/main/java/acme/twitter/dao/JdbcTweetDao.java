@@ -26,9 +26,20 @@ public class JdbcTweetDao implements TweetDao {
                 "select a.username, a.password, a.description, t.text, t.time " +
                         "from account a, tweet t " +
                         "where a.account_id = t.account_id " +
-                        "and a.username = ?",
+                        "  and a.username = ? " +
+                        "order by t.time desc",
                 new TweetRowMapper(account),
                 account.getUsername());
+    }
+
+    @Override
+    public void add(String username, String text) {
+        jdbcTemplate.update(
+                "insert into tweet (account_id, text, time)" +
+                        "select account_id, ?, sysdate " +
+                        "from account " +
+                        "where username = ?",
+                text, username);
     }
 
     @Override

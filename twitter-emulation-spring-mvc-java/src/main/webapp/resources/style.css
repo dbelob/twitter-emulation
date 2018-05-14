@@ -23,8 +23,13 @@ table.twitterTable tr td {
 
 table.companyTable {
     background-color: lightgray;
-    width: 200px;
+    width: 225px;
     border: 5px solid lightgray;
+}
+
+textarea.tweetTextarea {
+    width: 400px;
+    height: 100px;
 }
 
 span.description {

@@ -46,8 +46,8 @@ public class JdbcAccountDao implements AccountDao {
     public void add(String username, String password, String description) throws AccountExistsException {
         try {
             jdbcTemplate.update(
-                    "insert into account (username, password, description)" +
-                            " values (?, ?, ?)",
+                    "insert into account (username, password, description) " +
+                            "values (?, ?, ?)",
                     username, password, description);
         } catch (DuplicateKeyException e) {
             throw new AccountExistsException();
@@ -58,7 +58,7 @@ public class JdbcAccountDao implements AccountDao {
     public void update(String username, String password, String description) {
         jdbcTemplate.update(
                 "update account set password = ?, description = ? " +
-                        " where username = ?",
+                        "where username = ?",
                 password, description, username);
     }
 
