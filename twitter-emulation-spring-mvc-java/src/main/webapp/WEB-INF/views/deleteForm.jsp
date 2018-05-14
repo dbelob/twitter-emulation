@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
-<%@ page session="false" %>
+<%@ page session="false" contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
     <title>Twitter</title>
