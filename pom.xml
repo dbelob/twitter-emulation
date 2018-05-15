@@ -35,6 +35,7 @@
         <module>helloworld-web-servlet-java-jar</module>
         <module>helloworld-web-servlet-java-war</module>
         <module>helloworld-web-spring-mvc-xml</module>
+        <module>helloworld-web-spring-mvc-java</module>
         <module>twitter-emulation-spring-mvc-java</module>
     </modules>
 
