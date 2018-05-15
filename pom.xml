@@ -30,11 +30,11 @@
     </properties>
 
     <modules>
-        <module>twitter-emulation-servlet-xml</module>
-        <module>twitter-emulation-servlet-annotation</module>
-        <module>twitter-emulation-servlet-java-jar</module>
-        <module>twitter-emulation-servlet-java-war</module>
-        <module>twitter-emulation-spring-mvc-xml</module>
+        <module>helloworld-web-servlet-xml</module>
+        <module>helloworld-web-servlet-annotation</module>
+        <module>helloworld-web-servlet-java-jar</module>
+        <module>helloworld-web-servlet-java-war</module>
+        <module>helloworld-web-spring-mvc-xml</module>
         <module>twitter-emulation-spring-mvc-java</module>
     </modules>
 
@@ -76,7 +76,7 @@
         <dependencies>
             <dependency>
                 <groupId>acme</groupId>
-                <artifactId>twitter-emulation-servlet-java-jar</artifactId>
+                <artifactId>helloworld-web-servlet-java-jar</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
