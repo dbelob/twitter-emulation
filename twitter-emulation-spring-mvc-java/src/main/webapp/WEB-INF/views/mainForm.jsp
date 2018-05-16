@@ -15,18 +15,33 @@
         </td>
         <td>
             <sf:form action="${pageContext.request.contextPath}/account/search/${account.username}" method="GET" modelAttribute="searchForm">
-                <sf:input path="username"/>
-                &nbsp;
-                <input type="submit" value="Search"/>
+                <table>
+                    <tr>
+                        <td>
+                            <sf:input path="username"/>
+                        </td>
+                        <td>
+                            <input type="submit" value="Search"/>
+                        </td>
+                    </tr>
+                </table>
             </sf:form>
         </td>
         <td>
             <sf:form action="${pageContext.request.contextPath}/tweet/${account.username}" method="GET">
-                <input type="submit" value="Tweet"/>
-                &nbsp;
-                <a href="<c:url value="/account/profile/${account.username}" />">Profile</a>
-                &nbsp;
-                <a href="<c:url value="/account/login" />">Log out</a>
+                <table class="tweetButtonTable">
+                    <tr>
+                        <td>
+                            <input type="submit" value="Tweet"/>
+                        </td>
+                        <td>
+                            <a href="<c:url value="/account/profile/${account.username}" />">Profile</a>
+                        </td>
+                        <td>
+                            <a href="<c:url value="/account/login" />">Log out</a>
+                        </td>
+                    </tr>
+                </table>
             </sf:form>
         </td>
     </tr>
@@ -46,7 +61,7 @@
             </table>
         </td>
         <td>
-            <table class="twitterTable">
+            <table class="tweetTable">
                 <c:forEach items="${tweetList}" var="tweet">
                     <tr>
                         <td>

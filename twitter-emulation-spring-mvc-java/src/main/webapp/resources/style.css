@@ -6,24 +6,25 @@ table.mainTable tr td {
     vertical-align: top;
 }
 
-table.accountTable {
-    background-color: lightgray;
-    width: 250px;
-    border: 5px solid lightgray;
+table.tweetButtonTable tr td {
+    padding: 2px;
 }
 
-table.twitterTable {
+table.accountTable {
+    width: 250px;
+    border-spacing: 0;
+}
+
+table.tweetTable {
     width: 500px;
 }
 
-table.twitterTable tr td {
-    background-color: lightgray;
-    border: 5px solid lightgray;
+table.companyTable {
+    width: 225px;
 }
 
-table.companyTable {
+table.tweetTable tr td, table.accountTable tr td, table.companyTable tr td {
     background-color: lightgray;
-    width: 225px;
     border: 5px solid lightgray;
 }
 
