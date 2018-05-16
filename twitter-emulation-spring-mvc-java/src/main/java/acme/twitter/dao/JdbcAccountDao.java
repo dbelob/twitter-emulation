@@ -10,6 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -73,6 +74,17 @@ public class JdbcAccountDao implements AccountDao {
     public Account findByUsername(String username) {
         return jdbcTemplate.queryForObject(
                 "select username, password, description from account where username = ?",
+                new AccountRowMapper(),
+                username);
+    }
+
+    @Override
+    public List<Account> listByUsername(String username) {
+        return jdbcTemplate.query(
+                "select username, password, description " +
+                        "from account a " +
+                        "where username like '%' || ? || '%' " +
+                        "order by username",
                 new AccountRowMapper(),
                 username);
     }

@@ -14,7 +14,7 @@
             <a href="<c:url value="/account/${account.username}" />">Main</a>
         </td>
         <td>
-            <sf:form action="${pageContext.request.contextPath}/account/search/${account.username}" method="GET" modelAttribute="searchForm">
+            <sf:form action="${pageContext.request.contextPath}/account/search/${account.username}" method="POST" modelAttribute="searchForm">
                 <table class="searchTable">
                     <tr>
                         <td>

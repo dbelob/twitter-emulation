@@ -5,6 +5,8 @@ import acme.twitter.dao.exception.AccountNotExistException;
 import acme.twitter.dao.exception.WrongPasswordException;
 import acme.twitter.domain.Account;
 
+import java.util.List;
+
 /**
  * Account DAO.
  */
@@ -18,4 +20,6 @@ public interface AccountDao {
     void delete(String username);
 
     Account findByUsername(String username);
+
+    List<Account> listByUsername(String username);
 }

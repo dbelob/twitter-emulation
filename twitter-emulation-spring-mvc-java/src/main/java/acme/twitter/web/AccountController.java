@@ -216,4 +216,22 @@ public class AccountController {
 
         return "mainForm";
     }
+
+    /**
+     * Processes search.
+     *
+     * @param username   username
+     * @param searchForm search form
+     * @return view name
+     */
+    @RequestMapping(value = "/search/{username}", method = POST)
+    public String processSearch(
+            @PathVariable String username,
+            SearchForm searchForm) {
+        //TODO: implement
+
+        List<Account> accounts = accountDao.listByUsername(searchForm.getUsername());
+
+        return "searchForm";
+    }
 }
