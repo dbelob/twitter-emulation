@@ -15,7 +15,7 @@
         </td>
         <td>
             <sf:form action="${pageContext.request.contextPath}/account/search/${account.username}" method="GET" modelAttribute="searchForm">
-                <table>
+                <table class="searchTable">
                     <tr>
                         <td>
                             <sf:input path="username"/>

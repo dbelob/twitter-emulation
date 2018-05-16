@@ -6,8 +6,17 @@ table.mainTable tr td {
     vertical-align: top;
 }
 
+table.searchTable tr td {
+    padding: 0 2px;
+    width: 100%;
+}
+
+table.searchTable tr td:first-child input {
+    width: 100%;
+}
+
 table.tweetButtonTable tr td {
-    padding: 2px;
+    padding: 0 2px;
 }
 
 table.accountTable {
