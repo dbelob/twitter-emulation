@@ -9,13 +9,13 @@ import javax.validation.constraints.NotNull;
 public class SearchForm {
     @NotNull
     @NotEmpty
-    private String username;
+    private String usernamePart;
 
-    public String getUsername() {
-        return username;
+    public String getUsernamePart() {
+        return usernamePart;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsernamePart(String username) {
+        this.usernamePart = username;
     }
 }

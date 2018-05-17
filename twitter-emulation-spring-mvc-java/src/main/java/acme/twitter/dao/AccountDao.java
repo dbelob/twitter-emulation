@@ -21,5 +21,5 @@ public interface AccountDao {
 
     Account findByUsername(String username);
 
-    List<Account> listByUsername(String username);
+    List<Account> findByUsernamePart(String usernamePart);
 }

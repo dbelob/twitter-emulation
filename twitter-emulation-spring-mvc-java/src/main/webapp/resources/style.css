@@ -24,7 +24,7 @@ table.accountTable {
     border-spacing: 0;
 }
 
-table.tweetTable {
+table.tweetTable, table.searchResultTable {
     width: 500px;
 }
 

@@ -227,10 +227,17 @@ public class AccountController {
     @RequestMapping(value = "/search/{username}", method = POST)
     public String processSearch(
             @PathVariable String username,
-            SearchForm searchForm) {
-        //TODO: implement
+            @Valid SearchForm searchForm,
+            Errors errors,
+            Model model) {
+        if (errors.hasErrors()) {
+            return "redirect:/account/" + username;
+        }
 
-        List<Account> accounts = accountDao.listByUsername(searchForm.getUsername());
+        Account account = accountDao.findByUsername(username);
+        List<Account> accounts = accountDao.findByUsernamePart(searchForm.getUsernamePart());
+        model.addAttribute(account);
+        model.addAttribute("searchAccountList", accounts);
 
         return "searchForm";
     }

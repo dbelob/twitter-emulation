@@ -79,13 +79,13 @@ public class JdbcAccountDao implements AccountDao {
     }
 
     @Override
-    public List<Account> listByUsername(String username) {
+    public List<Account> findByUsernamePart(String usernamePart) {
         return jdbcTemplate.query(
                 "select username, password, description " +
                         "from account a " +
                         "where username like '%' || ? || '%' " +
                         "order by username",
                 new AccountRowMapper(),
-                username);
+                usernamePart);
     }
 }
