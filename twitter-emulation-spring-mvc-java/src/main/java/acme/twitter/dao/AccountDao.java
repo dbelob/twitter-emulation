@@ -19,7 +19,7 @@ public interface AccountDao {
 
     void delete(String username);
 
-    Account findByUsername(String username);
+    Account findByUsername(String username) throws AccountNotExistException;
 
     List<Account> findByUsernamePart(String usernamePart);
 }

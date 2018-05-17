@@ -1,4 +1,6 @@
 INSERT INTO account (username, password, description) VALUES ('jsmith', 'password', 'John Smith');
+INSERT INTO account (username, password, description) VALUES ('jdoe', 'password', 'John Doe');
+INSERT INTO account (username, password, description) VALUES ('rroe', 'password', 'Richard Roe');
 
 INSERT INTO tweet (account_id, text, time)
     SELECT account_id, 'Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.',
@@ -35,3 +37,21 @@ INSERT INTO tweet (account_id, text, time)
             DATEADD(DAY, -6, DATEADD(HOUR, -16, DATEADD(MINUTE, -54, DATEADD(SECOND, -56, SYSDATE))))
         FROM account
         WHERE username = 'jsmith';
+
+INSERT INTO tweet (account_id, text, time)
+    SELECT account_id, 'Some people care too much. I think it''s called love.',
+            SYSDATE
+        FROM account
+        WHERE username = 'jdoe';
+
+INSERT INTO tweet (account_id, text, time)
+    SELECT account_id, 'You can''t stay in your corner of the Forest waiting for others to come to you. You have to go to them sometimes.',
+            DATEADD(HOUR, -1, DATEADD(MINUTE, -30, DATEADD(SECOND, -34, SYSDATE)))
+        FROM account
+        WHERE username = 'jdoe';
+
+INSERT INTO tweet (account_id, text, time)
+    SELECT account_id, 'It is more fun to talk with someone who doesn''t use long, difficult words but rather short, easy words like "What about lunch?”',
+            DATEADD(HOUR, -5, DATEADD(MINUTE, -27, DATEADD(SECOND, -12, SYSDATE)))
+        FROM account
+        WHERE username = 'jdoe';

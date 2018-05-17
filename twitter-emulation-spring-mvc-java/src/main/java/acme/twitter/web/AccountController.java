@@ -127,7 +127,7 @@ public class AccountController {
      * @return view name
      */
     @RequestMapping(value = "/profile/{username}", method = GET)
-    public String showProfileForm(@PathVariable String username, Model model) {
+    public String showProfileForm(@PathVariable String username, Model model) throws AccountNotExistException {
         Account account = accountDao.findByUsername(username);
         model.addAttribute(new AccountForm(account.getUsername(), account.getDescription()));
         return "profileForm";
@@ -207,7 +207,7 @@ public class AccountController {
      * @return view name
      */
     @RequestMapping(value = "/{username}", method = GET)
-    public String showMainForm(@PathVariable String username, Model model) {
+    public String showMainForm(@PathVariable String username, Model model) throws AccountNotExistException {
         Account account = accountDao.findByUsername(username);
         List<Tweet> tweets = tweetDao.findAllByUsername(account);
         model.addAttribute(account);
@@ -229,7 +229,7 @@ public class AccountController {
             @PathVariable String username,
             @Valid SearchForm searchForm,
             Errors errors,
-            Model model) {
+            Model model) throws AccountNotExistException {
         if (errors.hasErrors()) {
             return "redirect:/account/" + username;
         }

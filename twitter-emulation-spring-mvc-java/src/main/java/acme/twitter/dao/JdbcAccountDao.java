@@ -71,11 +71,16 @@ public class JdbcAccountDao implements AccountDao {
     }
 
     @Override
-    public Account findByUsername(String username) {
-        return jdbcTemplate.queryForObject(
-                "select username, password, description from account where username = ?",
-                new AccountRowMapper(),
-                username);
+    public Account findByUsername(String username) throws AccountNotExistException {
+        try {
+            return jdbcTemplate.queryForObject(
+                    "select username, password, description from account where username = ?",
+                    new AccountRowMapper(),
+                    username);
+        } catch (EmptyResultDataAccessException e) {
+            throw new AccountNotExistException();
+        }
+
     }
 
     @Override
