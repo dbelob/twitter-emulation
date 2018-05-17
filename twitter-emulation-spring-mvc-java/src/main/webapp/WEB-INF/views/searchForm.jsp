@@ -7,23 +7,25 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css" />">
 </head>
 <body>
-<table class="mainTable">
-    <jsp:include page="topBar.jsp" />
-    <tr>
-        <jsp:include page="accountTable.jsp" />
-        <td>
-            <table class="searchResultTable">
-                <c:forEach items="${searchAccountList}" var="searchAccount">
-                    <tr>
-                        <td>
-                            <span class="description">${searchAccount.description}</span>&nbsp;@${searchAccount.username}
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </td>
-        <jsp:include page="companyTable.jsp" />
-    </tr>
-</table>
+<div class="webPage">
+    <table class="mainTable">
+        <jsp:include page="topBar.jsp" />
+        <tr>
+            <jsp:include page="accountTable.jsp" />
+            <td>
+                <table class="searchResultTable">
+                    <c:forEach items="${searchAccountList}" var="searchAccount">
+                        <tr>
+                            <td>
+                                <span class="description">${searchAccount.description}</span>&nbsp;@${searchAccount.username}
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </td>
+            <jsp:include page="companyTable.jsp" />
+        </tr>
+    </table>
+</div>
 </body>
 </html>

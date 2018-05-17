@@ -2,6 +2,11 @@ body {
 	font-family: sans-serif;
 }
 
+div.webPage {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
 table.mainTable tr td {
     vertical-align: top;
 }

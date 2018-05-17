@@ -7,34 +7,36 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css" />">
 </head>
 <body>
-<table class="mainTable">
-    <jsp:include page="topBar.jsp" />
-    <tr>
-        <jsp:include page="accountTable.jsp" />
-        <td>
-            <table class="tweetTable">
-                <c:forEach items="${tweetList}" var="tweet">
-                    <tr>
-                        <td>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <span class="description">${tweet.account.description}</span>&nbsp;@${tweet.account.username}&nbsp;<fmt:formatDate value="${tweet.date}" pattern="dd.MM.yyyy HH:mm:ss" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        ${tweet.text}
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </td>
-        <jsp:include page="companyTable.jsp" />
-    </tr>
-</table>
+<div class="webPage">
+    <table class="mainTable">
+        <jsp:include page="topBar.jsp" />
+        <tr>
+            <jsp:include page="accountTable.jsp" />
+            <td>
+                <table class="tweetTable">
+                    <c:forEach items="${tweetList}" var="tweet">
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <span class="description">${tweet.account.description}</span>&nbsp;@${tweet.account.username}&nbsp;<fmt:formatDate value="${tweet.date}" pattern="dd.MM.yyyy HH:mm:ss" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ${tweet.text}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </td>
+            <jsp:include page="companyTable.jsp" />
+        </tr>
+    </table>
+</div>
 </body>
 </html>
