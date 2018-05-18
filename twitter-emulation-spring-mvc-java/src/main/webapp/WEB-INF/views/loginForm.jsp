@@ -13,7 +13,7 @@
 
         <sf:form method="POST" modelAttribute="loginForm">
             <sf:errors path="*" element="div" cssClass="errors"/>
-            <table>
+            <table class="centered">
                 <tr>
                     <td><sf:label path="username" cssErrorClass="error">Username</sf:label>:</td>
                     <td><sf:input path="username" cssErrorClass="error"/></td>

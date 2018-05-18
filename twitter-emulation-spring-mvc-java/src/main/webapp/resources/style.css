@@ -7,13 +7,11 @@ div.webPage {
     margin: 0 auto;
 }
 
-div.centered
-{
+div.centered {
     text-align: center;
 }
 
-div.centered table
-{
+table.centered {
     margin: 0 auto;
     text-align: left;
 }

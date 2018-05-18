@@ -9,7 +9,7 @@
 <body>
 <div class="webPage">
     <div class="centered">
-        <table class="mainTable">
+        <table class="mainTable centered">
             <jsp:include page="topBar.jsp"/>
             <tr>
                 <jsp:include page="accountTable.jsp"/>
