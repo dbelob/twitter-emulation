@@ -9,7 +9,7 @@
             <table class="searchTable">
                 <tr>
                     <td>
-                        <sf:input path="usernamePart"/>
+                        <sf:input type="search" placeholder="Search accounts..." path="usernamePart"/>
                     </td>
                     <td>
                         <input type="submit" value="Search"/>
