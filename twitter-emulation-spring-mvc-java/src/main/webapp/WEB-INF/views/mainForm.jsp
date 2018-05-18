@@ -20,7 +20,11 @@
                                 <table>
                                     <tr>
                                         <td>
-                                            <span class="description">${tweet.account.description}</span>&nbsp;@${tweet.account.username}&nbsp;<fmt:formatDate value="${tweet.date}" pattern="dd.MM.yyyy HH:mm:ss" />
+                                            <a class="description" href="<c:url value="/account/${tweet.account.username}" />">${tweet.account.description}</a>
+                                            &nbsp;
+                                            @${tweet.account.username}
+                                            &nbsp;
+                                            <fmt:formatDate value="${tweet.date}" pattern="dd.MM.yyyy HH:mm:ss" />
                                         </td>
                                     </tr>
                                     <tr>

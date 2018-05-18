@@ -47,8 +47,16 @@ textarea.tweetTextarea {
     height: 100px;
 }
 
-span.description {
+a.description {
     font-weight: bold;
+}
+
+a.description:link, a.description:visited {
+    text-decoration: none;
+}
+
+a.description:hover, a.description:active {
+    text-decoration: underline;
 }
 
 label.error {

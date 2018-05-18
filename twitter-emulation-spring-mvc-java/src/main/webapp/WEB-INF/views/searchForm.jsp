@@ -17,7 +17,9 @@
                     <c:forEach items="${searchAccountList}" var="searchAccount">
                         <tr>
                             <td>
-                                <span class="description">${searchAccount.description}</span>&nbsp;@${searchAccount.username}
+                                <a class="description" href="<c:url value="/account/${searchAccount.username}" />">${searchAccount.description}</a>
+                                &nbsp;
+                                @${searchAccount.username}
                             </td>
                         </tr>
                     </c:forEach>
