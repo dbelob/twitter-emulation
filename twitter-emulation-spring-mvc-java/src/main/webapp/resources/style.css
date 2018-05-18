@@ -7,6 +7,17 @@ div.webPage {
     margin: 0 auto;
 }
 
+div.centered
+{
+    text-align: center;
+}
+
+div.centered table
+{
+    margin: 0 auto;
+    text-align: left;
+}
+
 table.mainTable tr td {
     vertical-align: top;
 }

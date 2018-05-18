@@ -8,39 +8,41 @@
 </head>
 <body>
 <div class="webPage">
-    <table class="mainTable">
-        <jsp:include page="topBar.jsp" />
-        <tr>
-            <jsp:include page="accountTable.jsp" />
-            <td>
-                <table class="tweetTable">
-                    <c:forEach items="${tweetList}" var="tweet">
-                        <tr>
-                            <td>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <a class="description" href="<c:url value="/account/${tweet.account.username}" />">${tweet.account.description}</a>
-                                            &nbsp;
-                                            @${tweet.account.username}
-                                            &nbsp;
-                                            <fmt:formatDate value="${tweet.date}" pattern="dd.MM.yyyy HH:mm:ss" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            ${tweet.text}
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </td>
-            <jsp:include page="companyTable.jsp" />
-        </tr>
-    </table>
+    <div class="centered">
+        <table class="mainTable">
+            <jsp:include page="topBar.jsp"/>
+            <tr>
+                <jsp:include page="accountTable.jsp"/>
+                <td>
+                    <table class="tweetTable">
+                        <c:forEach items="${tweetList}" var="tweet">
+                            <tr>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <a class="description" href="<c:url value="/account/${tweet.account.username}" />">${tweet.account.description}</a>
+                                                &nbsp;
+                                                @${tweet.account.username}
+                                                &nbsp;
+                                                <fmt:formatDate value="${tweet.date}" pattern="dd.MM.yyyy HH:mm:ss"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                ${tweet.text}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </td>
+                <jsp:include page="companyTable.jsp"/>
+            </tr>
+        </table>
+    </div>
 </div>
 </body>
 </html>
