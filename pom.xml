@@ -17,12 +17,12 @@
         <war.plugin.version>3.2.0</war.plugin.version>
         <jetty.maven.version>9.4.9.v20180320</jetty.maven.version>
 
-        <spring.version>5.0.5.RELEASE</spring.version>
+        <spring.version>5.0.6.RELEASE</spring.version>
         <servlet.api.version>4.0.0</servlet.api.version>
         <jsp.api.version>2.3.1</jsp.api.version>
         <jsp.el.version>2.2.5</jsp.el.version>
         <h2.version>1.4.197</h2.version>
-        <hibernate.validator.version>6.0.9.Final</hibernate.validator.version>
+        <hibernate.validator.version>6.0.10.Final</hibernate.validator.version>
         <jstl.version>1.2</jstl.version>
         <junit.version>4.12</junit.version>
         <mockito.version>2.18.0</mockito.version>
@@ -122,7 +122,7 @@
 
             <!-- Validation -->
             <dependency>
-                <groupId>org.hibernate</groupId>
+                <groupId>org.hibernate.validator</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate.validator.version}</version>
             </dependency>
