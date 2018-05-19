@@ -55,11 +55,10 @@
             <artifactId>javax.el-api</artifactId>
             <scope>provided</scope>
         </dependency>
-
-        <!-- Templating -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Testing -->
