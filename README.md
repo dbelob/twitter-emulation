@@ -4,7 +4,7 @@ In progress...
 
 ## Requirements
 
-* [JDK 9+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+* [JDK 10+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Apache Maven 3.5.0+](https://maven.apache.org/download.cgi)
 
 ## Tools
