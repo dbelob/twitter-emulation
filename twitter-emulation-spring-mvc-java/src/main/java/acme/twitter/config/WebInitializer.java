@@ -3,7 +3,10 @@ package acme.twitter.config;
 import acme.twitter.web.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class TwitterWebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+/**
+ * Spring MVC web initializer.
+ */
+public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{RootConfig.class};

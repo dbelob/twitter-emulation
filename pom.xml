@@ -18,6 +18,7 @@
         <jetty.maven.version>9.4.10.v20180503</jetty.maven.version>
 
         <spring.version>5.0.6.RELEASE</spring.version>
+        <spring.security.version>5.0.5.RELEASE</spring.security.version>
         <servlet.api.version>4.0.1</servlet.api.version>
         <jsp.api.version>2.3.1</jsp.api.version>
         <jsp.el.version>3.0.0</jsp.el.version>
@@ -85,6 +86,16 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-config</artifactId>
+                <version>${spring.security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-web</artifactId>
+                <version>${spring.security.version}</version>
             </dependency>
 
             <!-- JEE -->
