@@ -200,21 +200,21 @@ public class AccountController {
     }
 
     /**
-     * Shows main form
+     * Shows account form
      *
      * @param username username
      * @param model    model
      * @return view name
      */
     @RequestMapping(value = "/{username}", method = GET)
-    public String showMainForm(@PathVariable String username, Model model) throws AccountNotExistException {
+    public String showAccountForm(@PathVariable String username, Model model) throws AccountNotExistException {
         Account account = accountDao.findByUsername(username);
         List<Tweet> tweets = tweetDao.findAllByUsername(account);
         model.addAttribute(account);
         model.addAttribute(tweets);
         model.addAttribute(new SearchForm());
 
-        return "mainForm";
+        return "accountForm";
     }
 
     /**
