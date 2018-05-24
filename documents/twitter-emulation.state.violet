@@ -86,7 +86,7 @@
    <object class="com.horstmann.violet.StateNode" id="StateNode2">
     <void property="name">
      <void property="text">
-      <string>Main page</string>
+      <string>Account page</string>
      </void>
     </void>
    </object>
@@ -211,48 +211,19 @@
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double7"/>
-      <double>834.0</double>
+      <double>115.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double7"/>
-      <double>828.0</double>
+      <double>806.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>834.0</double>
-     <double>828.0</double>
-    </void>
-   </object>
-  </void>
-  <void method="addNode">
-   <object class="com.horstmann.violet.StateNode" id="StateNode7">
-    <void property="name">
-     <void property="text">
-      <string>Account page</string>
-     </void>
-    </void>
-   </object>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double8">
-    <void class="java.awt.geom.Point2D$Double" method="getField">
-     <string>x</string>
-     <void method="set">
-      <object idref="Point2D$Double8"/>
-      <double>47.0</double>
-     </void>
-    </void>
-    <void class="java.awt.geom.Point2D$Double" method="getField">
-     <string>y</string>
-     <void method="set">
-      <object idref="Point2D$Double8"/>
-      <double>830.0</double>
-     </void>
-    </void>
-    <void method="setLocation">
-     <double>47.0</double>
-     <double>830.0</double>
+     <double>115.0</double>
+     <double>806.0</double>
     </void>
    </object>
   </void>
@@ -318,7 +289,7 @@
   <void method="connect">
    <object class="com.horstmann.violet.StateTransitionEdge">
     <void property="label">
-     <string>&quot;Cancel&quot; button</string>
+     <string>&quot;Tweet&quot;, &quot;Cancel&quot; button</string>
     </void>
    </object>
    <object idref="StateNode3"/>
@@ -381,47 +352,11 @@
   <void method="connect">
    <object class="com.horstmann.violet.StateTransitionEdge">
     <void property="label">
-     <string>&quot;Main&quot; link</string>
+     <string>&quot;Main&quot;, &quot;Description&quot; links</string>
     </void>
    </object>
    <object idref="StateNode6"/>
    <object idref="StateNode2"/>
-  </void>
-  <void method="connect">
-   <object class="com.horstmann.violet.StateTransitionEdge">
-    <void property="label">
-     <string>&quot;Description&quot; link</string>
-    </void>
-   </object>
-   <object idref="StateNode6"/>
-   <object idref="StateNode7"/>
-  </void>
-  <void method="connect">
-   <object class="com.horstmann.violet.StateTransitionEdge">
-    <void property="label">
-     <string>&quot;Description&quot; link</string>
-    </void>
-   </object>
-   <object idref="StateNode2"/>
-   <object idref="StateNode7"/>
-  </void>
-  <void method="connect">
-   <object class="com.horstmann.violet.StateTransitionEdge">
-    <void property="label">
-     <string>&quot;Main&quot; link</string>
-    </void>
-   </object>
-   <object idref="StateNode7"/>
-   <object idref="StateNode2"/>
-  </void>
-  <void method="connect">
-   <object class="com.horstmann.violet.StateTransitionEdge">
-    <void property="label">
-     <string>&quot;Follow&quot;, &quot;Unfollow&quot; buttons</string>
-    </void>
-   </object>
-   <object idref="StateNode7"/>
-   <object idref="StateNode7"/>
   </void>
  </object>
 </java>
