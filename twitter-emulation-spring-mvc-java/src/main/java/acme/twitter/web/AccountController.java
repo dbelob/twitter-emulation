@@ -69,7 +69,7 @@ public class AccountController {
         try {
             Account account = accountDao.login(loginForm.getUsername(), loginForm.getPassword());
 
-            return "redirect:/account/" + account.getUsername();
+            return "redirect:/account/show/" + account.getUsername();
         } catch (AccountNotExistException e) {
             errors.reject("account.notexist", messageSourceAccessor.getMessage("account.notexist"));
 
@@ -111,7 +111,7 @@ public class AccountController {
         try {
             accountDao.add(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
-            return "redirect:/account/" + accountForm.getUsername();
+            return "redirect:/account/show/" + accountForm.getUsername();
         } catch (AccountExistsException e) {
             errors.reject("account.exists", messageSourceAccessor.getMessage("account.exists"));
 
@@ -141,7 +141,7 @@ public class AccountController {
      */
     @RequestMapping(value = "/profile/{username}", method = POST, params = "cancel")
     public String cancelProfile(@PathVariable String username) {
-        return "redirect:/account/" + username;
+        return "redirect:/account/show/" + username;
     }
 
     /**
@@ -161,7 +161,7 @@ public class AccountController {
 
         accountDao.update(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
-        return "redirect:/account/" + accountForm.getUsername();
+        return "redirect:/account/show/" + accountForm.getUsername();
     }
 
     /**
@@ -206,7 +206,7 @@ public class AccountController {
      * @param model    model
      * @return view name
      */
-    @RequestMapping(value = "/{username}", method = GET)
+    @RequestMapping(value = "/show/{username}", method = GET)
     public String showAccountForm(@PathVariable String username, Model model) throws AccountNotExistException {
         Account account = accountDao.findByUsername(username);
         List<Tweet> tweets = tweetDao.findAllByUsername(account);
@@ -231,7 +231,7 @@ public class AccountController {
             Errors errors,
             Model model) throws AccountNotExistException {
         if (errors.hasErrors()) {
-            return "redirect:/account/" + username;
+            return "redirect:/account/show/" + username;
         }
 
         Account account = accountDao.findByUsername(username);

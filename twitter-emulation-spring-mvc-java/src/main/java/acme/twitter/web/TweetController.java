@@ -46,7 +46,7 @@ public class TweetController {
      */
     @RequestMapping(value = "/{username}", method = POST, params = "cancel")
     public String cancelNewTweet(@PathVariable String username) {
-        return "redirect:/account/" + username;
+        return "redirect:/account/show/" + username;
     }
 
     /**
@@ -67,6 +67,6 @@ public class TweetController {
 
         tweetDao.add(username, tweetForm.getText());
 
-        return "redirect:/account/" + username;
+        return "redirect:/account/show/" + username;
     }
 }
