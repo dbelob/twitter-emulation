@@ -34,7 +34,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("redirect:/account/login");
+        //TODO: change redirect URL
+        registry.addViewController("/").setViewName("redirect:/account/show/jsmith");
     }
 
     @Bean
