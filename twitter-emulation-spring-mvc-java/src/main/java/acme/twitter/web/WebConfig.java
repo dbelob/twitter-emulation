@@ -28,14 +28,15 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // TODO Auto-generated method stub
+        // Auto-generated method stub
         super.addResourceHandlers(registry);
     }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        //TODO: change redirect URL
-        registry.addViewController("/").setViewName("redirect:/account/show/jsmith");
+        registry.addViewController("/").setViewName("redirect:/account/show");
+        //TODO: change
+//        registry.addViewController("/account/login").setViewName("loginForm");
     }
 
     @Bean

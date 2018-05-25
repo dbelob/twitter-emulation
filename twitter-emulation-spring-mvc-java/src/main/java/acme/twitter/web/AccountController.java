@@ -4,7 +4,6 @@ import acme.twitter.dao.AccountDao;
 import acme.twitter.dao.TweetDao;
 import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotExistException;
-import acme.twitter.dao.exception.WrongPasswordException;
 import acme.twitter.domain.Account;
 import acme.twitter.domain.Tweet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -45,11 +45,11 @@ public class AccountController {
      * @param model model
      * @return view name
      */
-    @RequestMapping(value = {"/login"}, method = GET)
-    public String showLoginForm(Model model) {
-        model.addAttribute(new LoginForm());
-        return "loginForm";
-    }
+//    @RequestMapping(value = {"/login"}, method = GET)
+//    public String showLoginForm(Model model) {
+//        model.addAttribute(new LoginForm());
+//        return "loginForm";
+//    }
 
     /**
      * Processes login
@@ -197,6 +197,17 @@ public class AccountController {
         accountDao.delete(username);
 
         return "redirect:/account/login";
+    }
+
+    /**
+     * Shows account form for current authenticated account
+     *
+     * @param principal principal
+     * @return view name
+     */
+    @RequestMapping(value = "/show", method = GET)
+    public String showAccountForm(Principal principal) {
+        return "redirect:/account/show/" + principal.getName();
     }
 
     /**

@@ -29,7 +29,7 @@
                         <a href="<c:url value="/account/profile/${account.username}" />">Profile</a>
                     </td>
                     <td>
-                        <a href="<c:url value="/account/login" />">Log out</a>
+                        <a href="<c:url value="/logout" />">Log out</a>
                     </td>
                 </tr>
             </table>
