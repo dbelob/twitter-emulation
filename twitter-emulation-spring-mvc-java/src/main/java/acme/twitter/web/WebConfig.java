@@ -35,8 +35,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("redirect:/account/show");
-        //TODO: change
-//        registry.addViewController("/account/login").setViewName("loginForm");
+        registry.addViewController("/login").setViewName("loginForm");
     }
 
     @Bean
