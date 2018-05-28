@@ -6,12 +6,12 @@
     <title>Twitter</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css" />">
 </head>
-<body>
+<body onload="document.accountForm.password.focus();">
 <div class="webPage">
     <div class="centered">
         <h1>Profile</h1>
 
-        <sf:form method="POST" modelAttribute="accountForm">
+        <sf:form name="accountForm" method="POST" modelAttribute="accountForm">
             <sf:errors path="*" element="div" cssClass="errors"/>
             <table class="centered">
                 <tr>

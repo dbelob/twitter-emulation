@@ -29,7 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Support GET for logout with CSRF
-                .logoutSuccessUrl("/")
             .and()
             .httpBasic()
             .and()

@@ -6,12 +6,12 @@
     <title>Twitter</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css" />">
 </head>
-<body>
+<body onload="document.tweetForm.text.focus();">
 <div class="webPage">
     <div class="centered">
         <h1>New tweet</h1>
 
-        <sf:form method="POST" modelAttribute="tweetForm">
+        <sf:form name="tweetForm" method="POST" modelAttribute="tweetForm">
             <sf:errors path="*" element="div" cssClass="errors"/>
             <sf:textarea path="text" cssClass="tweetTextarea"/>
             <p>

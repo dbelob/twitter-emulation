@@ -6,12 +6,12 @@
     <title>Twitter</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css" />">
 </head>
-<body>
+<body onload="document.loginForm.username.focus();">
 <div class="webPage">
     <div class="centered">
         <h1>Log in</h1>
 
-        <form action="<c:url value="/login" />" method="POST">
+        <form name="loginForm" action="<c:url value="/login" />" method="POST">
             <!-- use param.error assuming FormLoginConfigurer#failureUrl contains the query parameter error -->
             <c:if test="${param.error != null}">
                 <div class="errors">
