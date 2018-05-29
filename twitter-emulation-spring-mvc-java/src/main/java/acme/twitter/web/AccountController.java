@@ -40,48 +40,6 @@ public class AccountController {
     }
 
     /**
-     * Shows login form
-     *
-     * @param model model
-     * @return view name
-     */
-//    @RequestMapping(value = {"/login"}, method = GET)
-//    public String showLoginForm(Model model) {
-//        model.addAttribute(new LoginForm());
-//        return "loginForm";
-//    }
-
-    /**
-     * Processes login
-     *
-     * @param loginForm login form
-     * @param errors    errors
-     * @return view name
-     */
-//    @RequestMapping(value = "/login", method = POST)
-//    public String processLogin(
-//            @Valid LoginForm loginForm,
-//            Errors errors) {
-//        if (errors.hasErrors()) {
-//            return "loginForm";
-//        }
-//
-//        try {
-//            Account account = accountDao.login(loginForm.getUsername(), loginForm.getPassword());
-//
-//            return "redirect:/account/show/" + account.getUsername();
-//        } catch (AccountNotExistException e) {
-//            errors.reject("account.notexist", messageSourceAccessor.getMessage("account.notexist"));
-//
-//            return "loginForm";
-//        } catch (WrongPasswordException e) {
-//            errors.reject("account.wrongpassword", messageSourceAccessor.getMessage("account.wrongpassword"));
-//
-//            return "loginForm";
-//        }
-//    }
-
-    /**
      * Shows registration form
      *
      * @param model model
