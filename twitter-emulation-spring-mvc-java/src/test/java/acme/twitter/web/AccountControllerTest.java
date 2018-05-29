@@ -20,7 +20,7 @@ public class AccountControllerTest {
         AccountController controller = new AccountController(accountRepository, tweetRepository, messageSourceAccessor);
         MockMvc mockMvc = standaloneSetup(controller).build();
 
-        mockMvc.perform(get("/account/login"))
-                .andExpect(view().name("loginForm"));
+        mockMvc.perform(get("/account/register"))
+                .andExpect(view().name("registrationForm"));
     }
 }
