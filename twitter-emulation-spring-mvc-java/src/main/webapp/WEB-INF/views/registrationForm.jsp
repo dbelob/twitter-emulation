@@ -32,7 +32,7 @@
                 </tr>
             </table>
             <p>
-                <a href="<c:url value="/account/login" />">Log in</a>
+                <a href="<c:url value="/login" />">Log in</a>
                 &nbsp;
                 <input type="submit" value="Register"/>
             </p>

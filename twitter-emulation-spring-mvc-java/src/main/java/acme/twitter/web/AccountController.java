@@ -73,7 +73,7 @@ public class AccountController {
         try {
             accountDao.add(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
-            return "redirect:/account/show/" + accountForm.getUsername();
+            return "redirect:/login";
         } catch (AccountExistsException e) {
             errors.reject("account.exists", messageSourceAccessor.getMessage("account.exists"));
 
@@ -158,7 +158,7 @@ public class AccountController {
         tweetDao.deleteAll(username);
         accountDao.delete(username);
 
-        return "redirect:/account/login";
+        return "redirect:/logout";
     }
 
     /**
@@ -169,7 +169,7 @@ public class AccountController {
      */
     @RequestMapping(value = "/show", method = GET)
     public String showAccountForm(Principal principal) {
-        return (principal != null) ? "redirect:/account/show/" + principal.getName() : "redirect:/";
+        return "redirect:/account/show/" + principal.getName();
     }
 
     /**

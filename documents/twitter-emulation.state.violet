@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.7.0_80" class="java.beans.XMLDecoder">
+<java version="1.8.0_144" class="java.beans.XMLDecoder">
  <object class="com.horstmann.violet.StateDiagramGraph">
   <void method="addNode">
    <object class="com.horstmann.violet.CircularStateNode" id="CircularInitialStateNode0"/>
@@ -244,7 +244,7 @@
   <void method="connect">
    <object class="com.horstmann.violet.StateTransitionEdge">
     <void property="label">
-     <string>&quot;Log in&quot; link</string>
+     <string>&quot;Log in&quot;, &quot;Register&quot; links</string>
     </void>
    </object>
    <object idref="StateNode1"/>
@@ -267,15 +267,6 @@
    </object>
    <object idref="StateNode2"/>
    <object idref="StateNode0"/>
-  </void>
-  <void method="connect">
-   <object class="com.horstmann.violet.StateTransitionEdge">
-    <void property="label">
-     <string>&quot;Register&quot; button</string>
-    </void>
-   </object>
-   <object idref="StateNode1"/>
-   <object idref="StateNode2"/>
   </void>
   <void method="connect">
    <object class="com.horstmann.violet.StateTransitionEdge">
