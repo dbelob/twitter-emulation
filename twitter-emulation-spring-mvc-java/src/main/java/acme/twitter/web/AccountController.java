@@ -6,6 +6,8 @@ import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotExistException;
 import acme.twitter.domain.Account;
 import acme.twitter.domain.Tweet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 @RequestMapping("/account")
 public class AccountController {
+    private static final Logger log = LoggerFactory.getLogger(AccountController.class);
+
     private AccountDao accountDao;
     private TweetDao tweetDao;
     private MessageSourceAccessor messageSourceAccessor;
@@ -165,20 +169,33 @@ public class AccountController {
      */
     @RequestMapping(value = "/show", method = GET)
     public String showAccountForm(Principal principal) {
-        return "redirect:/account/show/" + principal.getName();
+        return (principal != null) ? "redirect:/account/show/" + principal.getName() : "redirect:/";
     }
 
     /**
      * Shows account form
      *
-     * @param username username
-     * @param model    model
+     * @param username  username
+     * @param model     model
+     * @param principal principal
      * @return view name
      */
     @RequestMapping(value = "/show/{username}", method = GET)
-    public String showAccountForm(@PathVariable String username, Model model) throws AccountNotExistException {
+    public String showAccountForm(@PathVariable String username, Model model, Principal principal) throws AccountNotExistException {
+        if (principal != null) {
+            String authenticatedUsername = principal.getName();
+            log.debug("authenticatedUsername: {}, username: {}", authenticatedUsername, username);
+
+            Account authenticatedAccount = accountDao.findByUsername(authenticatedUsername);
+
+            model.addAttribute("authenticatedAccount", authenticatedAccount);
+        } else {
+            log.debug("username: {}", username);
+        }
+
         Account account = accountDao.findByUsername(username);
         List<Tweet> tweets = tweetDao.findAllByUsername(account);
+
         model.addAttribute(account);
         model.addAttribute(tweets);
         model.addAttribute(new SearchForm());
@@ -205,6 +222,8 @@ public class AccountController {
 
         Account account = accountDao.findByUsername(username);
         List<Account> accounts = accountDao.findByUsernamePart(searchForm.getUsernamePart());
+
+        model.addAttribute("authenticatedAccount", account);
         model.addAttribute(account);
         model.addAttribute("searchAccountList", accounts);
 

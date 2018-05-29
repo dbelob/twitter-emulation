@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page session="false" contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
@@ -10,7 +12,12 @@
 <div class="webPage">
     <div class="centered">
         <table class="mainTable centered">
-            <jsp:include page="topBar.jsp"/>
+            <sec:authorize access="isAuthenticated()">
+                <jsp:include page="authenticatedTopBar.jsp"/>
+            </sec:authorize>
+            <sec:authorize access="!isAuthenticated()">
+                <jsp:include page="notAuthenticatedTopBar.jsp"/>
+            </sec:authorize>
             <tr>
                 <jsp:include page="accountTable.jsp"/>
                 <td>
@@ -21,7 +28,7 @@
                                     <table>
                                         <tr>
                                             <td>
-                                                <a class="description" href="<c:url value="/account/${tweet.account.username}" />">${tweet.account.description}</a>
+                                                <a class="description" href="<c:url value="/account/show/${tweet.account.username}" />">${tweet.account.description}</a>
                                                 &nbsp;
                                                 @${tweet.account.username}
                                                 &nbsp;
@@ -39,7 +46,12 @@
                         </c:forEach>
                     </table>
                 </td>
-                <jsp:include page="companyTable.jsp"/>
+                <sec:authorize access="!isAuthenticated() or principal.username == '${account.username}'">
+                    <jsp:include page="companyTable.jsp"/>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated() and principal.username != '${account.username}'">
+                    <jsp:include page="followTable.jsp"/>
+                </sec:authorize>
             </tr>
         </table>
     </div>

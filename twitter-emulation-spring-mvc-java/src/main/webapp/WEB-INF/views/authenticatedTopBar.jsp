@@ -2,10 +2,10 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
 <tr>
     <td>
-        <a href="<c:url value="/account/${account.username}" />">Main</a>
+        <a href="<c:url value="/account/${authenticatedAccount.username}" />">Main</a>
     </td>
     <td>
-        <sf:form action="${pageContext.request.contextPath}/account/search/${account.username}" method="POST" modelAttribute="searchForm">
+        <sf:form action="${pageContext.request.contextPath}/account/search/${authenticatedAccount.username}" method="POST" modelAttribute="searchForm">
             <table class="searchTable">
                 <tr>
                     <td>
@@ -19,14 +19,14 @@
         </sf:form>
     </td>
     <td>
-        <sf:form action="${pageContext.request.contextPath}/tweet/${account.username}" method="GET">
+        <sf:form action="${pageContext.request.contextPath}/tweet/${authenticatedAccount.username}" method="GET">
             <table class="tweetButtonTable">
                 <tr>
                     <td>
                         <input type="submit" value="Tweet"/>
                     </td>
                     <td>
-                        <a href="<c:url value="/account/profile/${account.username}" />">Profile</a>
+                        <a href="<c:url value="/account/profile/${authenticatedAccount.username}" />">Profile</a>
                     </td>
                     <td>
                         <a href="<c:url value="/logout" />">Log out</a>

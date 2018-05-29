@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page session="false" contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
@@ -10,15 +11,21 @@
 <div class="webPage">
     <div class="centered">
         <table class="mainTable centered">
-            <jsp:include page="topBar.jsp"/>
+            <sec:authorize access="isAuthenticated()">
+                <jsp:include page="authenticatedTopBar.jsp"/>
+            </sec:authorize>
+            <sec:authorize access="!isAuthenticated()">
+                <jsp:include page="notAuthenticatedTopBar.jsp"/>
+            </sec:authorize>
             <tr>
                 <jsp:include page="accountTable.jsp"/>
                 <td>
+                    <h3>Search Result</h3>
                     <table class="searchResultTable">
                         <c:forEach items="${searchAccountList}" var="searchAccount">
                             <tr>
                                 <td>
-                                    <a class="description" href="<c:url value="/account/${searchAccount.username}" />">${searchAccount.description}</a>
+                                    <a class="description" href="<c:url value="/account/show/${searchAccount.username}" />">${searchAccount.description}</a>
                                     &nbsp;
                                     @${searchAccount.username}
                                 </td>

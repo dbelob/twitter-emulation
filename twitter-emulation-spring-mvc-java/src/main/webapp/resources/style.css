@@ -42,7 +42,7 @@ table.tweetTable, table.searchResultTable {
     width: 500px;
 }
 
-table.companyTable {
+table.companyTable, table.followTable {
     width: 225px;
 }
 

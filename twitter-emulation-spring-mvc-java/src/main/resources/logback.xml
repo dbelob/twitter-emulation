@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <property name="logFolder" value="logs"/>
+    <property name="application.name" value="twitter-emulation"/>
+    <property name="targetFilePattern" value="${logFolder}/${application.name}-${user.name}"/>
+    <timestamp key="timestamp" datePattern="yyyyMMdd-HHmmss"/>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${targetFilePattern}-${timestamp}.log</file>
+        <encoder>
+            <pattern>%d{ISO8601} %5p %-30(%c{0}.%M:%L) - %m%n</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${targetFilePattern}-%d{yyyyMMdd}.log</fileNamePattern>
+            <!-- keep 7 days' worth of history -->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <pattern>%d{ISO8601} %5p %-30(%c{0}.%M:%L) - %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </root>
+
+    <logger name="org.apache.commons.configuration" level="warn">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </logger>
+
+    <logger name="org.springframework" level="warn">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </logger>
+</configuration>
