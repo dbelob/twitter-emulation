@@ -23,7 +23,7 @@
             </c:if>
             <!-- the configured LogoutConfigurer#logoutSuccessUrl is /login?logout and contains the query param logout -->
             <c:if test="${param.logout != null}">
-                <div>
+                <div class="logout">
                     You have been logged out.
                 </div>
             </c:if>

@@ -80,3 +80,8 @@ div.errors {
     background-color: #ffcccc;
     border: 2px solid red;
 }
+
+div.logout {
+    background-color: #ccffcc;
+    border: 2px solid green;
+}
