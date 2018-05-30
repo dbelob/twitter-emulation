@@ -98,12 +98,11 @@ public class AccountController {
     /**
      * Processes profile to cancel
      *
-     * @param principal principal
      * @return view name
      */
     @RequestMapping(value = "/profile", method = POST, params = "cancel")
-    public String cancelProfile(Principal principal) {
-        return "redirect:/account/show/" + principal.getName();
+    public String cancelProfile() {
+        return "redirect:/account/show";
     }
 
     /**
@@ -123,7 +122,7 @@ public class AccountController {
 
         accountDao.update(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
-        return "redirect:/account/show/" + accountForm.getUsername();
+        return "redirect:/account/show";
     }
 
     /**
@@ -174,23 +173,13 @@ public class AccountController {
     /**
      * Shows account form
      *
-     * @param username  username
-     * @param model     model
-     * @param principal principal
+     * @param username username
+     * @param model    model
      * @return view name
      */
     @RequestMapping(value = "/show/{username}", method = GET)
-    public String showAccountForm(@PathVariable String username, Model model, Principal principal) throws AccountNotExistException {
-        if (principal != null) {
-            String authenticatedUsername = principal.getName();
-            log.debug("authenticatedUsername: {}, username: {}", authenticatedUsername, username);
-
-            Account authenticatedAccount = accountDao.findByUsername(authenticatedUsername);
-
-            model.addAttribute("authenticatedAccount", authenticatedAccount);
-        } else {
-            log.debug("username: {}", username);
-        }
+    public String showAccountForm(@PathVariable String username, Model model) throws AccountNotExistException {
+        log.debug("username: {}", username);
 
         Account account = accountDao.findByUsername(username);
         List<Tweet> tweets = tweetDao.findAllByUsername(account);
@@ -219,13 +208,12 @@ public class AccountController {
             Model model,
             Principal principal) throws AccountNotExistException {
         if (errors.hasErrors()) {
-            return "redirect:/account/show/" + principal.getName();
+            return "redirect:/account/show";
         }
 
         Account account = accountDao.findByUsername(principal.getName());
         List<Account> accounts = accountDao.findByUsernamePart(searchForm.getUsernamePart());
 
-        model.addAttribute("authenticatedAccount", account);
         model.addAttribute(account);
         model.addAttribute("searchAccountList", accounts);
 

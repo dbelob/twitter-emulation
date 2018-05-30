@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
 <tr>
     <td>
-        <a href="<c:url value="/account/show/${authenticatedAccount.username}" />">Main</a>
+        <a href="<c:url value="/account/show" />">Main</a>
     </td>
     <td>
         <sf:form action="${pageContext.request.contextPath}/account/search" method="POST" modelAttribute="searchForm">
