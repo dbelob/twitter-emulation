@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -32,7 +32,7 @@ public class TweetController {
      * @param model model
      * @return view name
      */
-    @RequestMapping(value = "/{username}", method = GET)
+    @RequestMapping(method = GET)
     public String showNewTweetForm(Model model) {
         model.addAttribute(new TweetForm());
         return "newTweetForm";
@@ -41,12 +41,12 @@ public class TweetController {
     /**
      * Processes tweet creation to cancel
      *
-     * @param username username
+     * @param principal principal
      * @return view name
      */
-    @RequestMapping(value = "/{username}", method = POST, params = "cancel")
-    public String cancelNewTweet(@PathVariable String username) {
-        return "redirect:/account/show/" + username;
+    @RequestMapping(method = POST, params = "cancel")
+    public String cancelNewTweet(Principal principal) {
+        return "redirect:/account/show/" + principal.getName();
     }
 
     /**
@@ -54,19 +54,20 @@ public class TweetController {
      *
      * @param tweetForm tweet form
      * @param errors    errors
+     * @param principal principal
      * @return view name
      */
-    @RequestMapping(value = "/{username}", method = POST, params = "tweet")
+    @RequestMapping(method = POST, params = "tweet")
     public String processNewTweet(
-            @PathVariable String username,
             @Valid TweetForm tweetForm,
-            Errors errors) {
+            Errors errors,
+            Principal principal) {
         if (errors.hasErrors()) {
             return "newTweetForm";
         }
 
-        tweetDao.add(username, tweetForm.getText());
+        tweetDao.add(principal.getName(), tweetForm.getText());
 
-        return "redirect:/account/show/" + username;
+        return "redirect:/account/show/" + principal.getName();
     }
 }

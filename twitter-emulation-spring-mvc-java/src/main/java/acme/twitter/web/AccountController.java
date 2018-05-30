@@ -84,13 +84,13 @@ public class AccountController {
     /**
      * Shows profile form
      *
-     * @param username username
-     * @param model    model
+     * @param model     model
+     * @param principal principal
      * @return view name
      */
-    @RequestMapping(value = "/profile/{username}", method = GET)
-    public String showProfileForm(@PathVariable String username, Model model) throws AccountNotExistException {
-        Account account = accountDao.findByUsername(username);
+    @RequestMapping(value = "/profile", method = GET)
+    public String showProfileForm(Model model, Principal principal) throws AccountNotExistException {
+        Account account = accountDao.findByUsername(principal.getName());
         model.addAttribute(new AccountForm(account.getUsername(), account.getDescription()));
         return "profileForm";
     }
@@ -98,12 +98,12 @@ public class AccountController {
     /**
      * Processes profile to cancel
      *
-     * @param username username
+     * @param principal principal
      * @return view name
      */
-    @RequestMapping(value = "/profile/{username}", method = POST, params = "cancel")
-    public String cancelProfile(@PathVariable String username) {
-        return "redirect:/account/show/" + username;
+    @RequestMapping(value = "/profile", method = POST, params = "cancel")
+    public String cancelProfile(Principal principal) {
+        return "redirect:/account/show/" + principal.getName();
     }
 
     /**
@@ -113,7 +113,7 @@ public class AccountController {
      * @param errors      errors
      * @return view name
      */
-    @RequestMapping(value = "/profile/{username}", method = POST, params = "save")
+    @RequestMapping(value = "/profile", method = POST, params = "save")
     public String processProfile(
             @Valid AccountForm accountForm,
             Errors errors) {
@@ -131,7 +131,7 @@ public class AccountController {
      *
      * @return view name
      */
-    @RequestMapping(value = "/delete/{username}", method = GET)
+    @RequestMapping(value = "/delete", method = GET)
     public String showDeleteForm() {
         return "deleteForm";
     }
@@ -139,24 +139,23 @@ public class AccountController {
     /**
      * Processes deletion to cancel
      *
-     * @param username username
      * @return view name
      */
-    @RequestMapping(value = "/delete/{username}", method = POST, params = "cancel")
-    public String cancelDelete(@PathVariable String username) {
-        return "redirect:/account/profile/" + username;
+    @RequestMapping(value = "/delete", method = POST, params = "cancel")
+    public String cancelDelete() {
+        return "redirect:/account/profile";
     }
 
     /**
      * Processes deletion to delete
      *
-     * @param username username
+     * @param principal principal
      * @return view name
      */
-    @RequestMapping(value = "/delete/{username}", method = POST, params = "delete")
-    public String processDelete(@PathVariable String username) {
-        tweetDao.deleteAll(username);
-        accountDao.delete(username);
+    @RequestMapping(value = "/delete", method = POST, params = "delete")
+    public String processDelete(Principal principal) {
+        tweetDao.deleteAll(principal.getName());
+        accountDao.delete(principal.getName());
 
         return "redirect:/logout";
     }
@@ -206,21 +205,24 @@ public class AccountController {
     /**
      * Processes search.
      *
-     * @param username   username
      * @param searchForm search form
+     * @param errors     errors
+     * @param model      model
+     * @param principal  principal
      * @return view name
+     * @throws AccountNotExistException if account does not not exist
      */
-    @RequestMapping(value = "/search/{username}", method = POST)
+    @RequestMapping(value = "/search", method = POST)
     public String processSearch(
-            @PathVariable String username,
             @Valid SearchForm searchForm,
             Errors errors,
-            Model model) throws AccountNotExistException {
+            Model model,
+            Principal principal) throws AccountNotExistException {
         if (errors.hasErrors()) {
-            return "redirect:/account/show/" + username;
+            return "redirect:/account/show/" + principal.getName();
         }
 
-        Account account = accountDao.findByUsername(username);
+        Account account = accountDao.findByUsername(principal.getName());
         List<Account> accounts = accountDao.findByUsernamePart(searchForm.getUsernamePart());
 
         model.addAttribute("authenticatedAccount", account);
