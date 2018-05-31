@@ -14,4 +14,6 @@ public interface TweetDao {
     void add(String username, String text);
 
     void deleteAll(String username);
+
+    int countByUsername(String username);
 }

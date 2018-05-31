@@ -48,4 +48,15 @@ public class JdbcTweetDao implements TweetDao {
                 "delete tweet where account_id = (select account_id from account where username = ?)",
                 username);
     }
+
+    @Override
+    public int countByUsername(String username) {
+        return jdbcTemplate.queryForObject(
+                "select count(*) " +
+                        "from account a, tweet t " +
+                        "where a.account_id = t.account_id " +
+                        "  and a.username = ?",
+                new Object[]{username},
+                Integer.class);
+    }
 }

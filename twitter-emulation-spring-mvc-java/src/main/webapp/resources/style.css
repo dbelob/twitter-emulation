@@ -68,6 +68,10 @@ a.description:hover, a.description:active {
     text-decoration: underline;
 }
 
+td.small {
+    font-size: 80%;
+}
+
 label.error {
     color: red;
 }

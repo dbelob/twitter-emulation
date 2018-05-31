@@ -1,10 +1,12 @@
 package acme.twitter.web;
 
 import acme.twitter.dao.AccountDao;
+import acme.twitter.dao.FollowerDao;
 import acme.twitter.dao.TweetDao;
 import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotExistException;
 import acme.twitter.domain.Account;
+import acme.twitter.domain.AccountStatistics;
 import acme.twitter.domain.Tweet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,13 +35,15 @@ public class AccountController {
 
     private AccountDao accountDao;
     private TweetDao tweetDao;
+    private FollowerDao followerDao;
     private MessageSourceAccessor messageSourceAccessor;
 
     @Autowired
-    public AccountController(AccountDao accountDao, TweetDao tweetDao,
+    public AccountController(AccountDao accountDao, TweetDao tweetDao, FollowerDao followerDao,
                              MessageSourceAccessor messageSourceAccessor) {
         this.accountDao = accountDao;
         this.tweetDao = tweetDao;
+        this.followerDao = followerDao;
         this.messageSourceAccessor = messageSourceAccessor;
     }
 
@@ -182,9 +186,13 @@ public class AccountController {
         log.debug("username: {}", username);
 
         Account account = accountDao.findByUsername(username);
+        int tweetsCount = tweetDao.countByUsername(username);
+        int followingCount = followerDao.countFollowingByUsername(username);
+        int followersCount = followerDao.countFollowersByUsername(username);
         List<Tweet> tweets = tweetDao.findAllByUsername(account);
 
         model.addAttribute(account);
+        model.addAttribute(new AccountStatistics(tweetsCount, followingCount, followersCount));
         model.addAttribute(tweets);
         model.addAttribute(new SearchForm());
 
