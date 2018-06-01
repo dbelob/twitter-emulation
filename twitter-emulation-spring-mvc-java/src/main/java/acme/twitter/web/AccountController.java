@@ -177,22 +177,26 @@ public class AccountController {
     /**
      * Shows account form
      *
-     * @param username username
-     * @param model    model
+     * @param username  username
+     * @param model     model
+     * @param principal principal
      * @return view name
      */
     @RequestMapping(value = "/show/{username}", method = GET)
-    public String showAccountForm(@PathVariable String username, Model model) throws AccountNotExistException {
+    public String showAccountForm(
+            @PathVariable String username,
+            Model model,
+            Principal principal) throws AccountNotExistException {
         log.debug("username: {}", username);
 
         Account account = accountDao.findByUsername(username);
-        int tweetsCount = tweetDao.countByUsername(username);
-        int followingCount = followerDao.countFollowingByUsername(username);
-        int followersCount = followerDao.countFollowersByUsername(username);
+        AccountStatistics accountStatistics = getAccountStatistics(
+                (principal != null) ? principal.getName() : username,
+                username);
         List<Tweet> tweets = tweetDao.findAllByUsername(account);
 
         model.addAttribute(account);
-        model.addAttribute(new AccountStatistics(tweetsCount, followingCount, followersCount));
+        model.addAttribute(accountStatistics);
         model.addAttribute(tweets);
         model.addAttribute(new SearchForm());
 
@@ -220,15 +224,22 @@ public class AccountController {
         }
 
         Account account = accountDao.findByUsername(principal.getName());
-        int tweetsCount = tweetDao.countByUsername(principal.getName());
-        int followingCount = followerDao.countFollowingByUsername(principal.getName());
-        int followersCount = followerDao.countFollowersByUsername(principal.getName());
+        AccountStatistics accountStatistics = getAccountStatistics(principal.getName(), principal.getName());
         List<Account> accounts = accountDao.findByUsernamePart(searchForm.getUsernamePart());
 
         model.addAttribute(account);
-        model.addAttribute(new AccountStatistics(tweetsCount, followingCount, followersCount));
+        model.addAttribute(accountStatistics);
         model.addAttribute("searchAccountList", accounts);
 
         return "searchForm";
+    }
+
+    private AccountStatistics getAccountStatistics(String whoUsername, String whomUsername) {
+        int tweetsCount = tweetDao.countByUsername(whoUsername);
+        int followingCount = followerDao.countFollowingByUsername(whoUsername);
+        int followersCount = followerDao.countFollowersByUsername(whoUsername);
+        boolean isFollow = followerDao.isFollow(whoUsername, whomUsername);
+
+        return new AccountStatistics(tweetsCount, followingCount, followersCount, isFollow);
     }
 }

@@ -37,4 +37,19 @@ public class JdbcFollowerDao implements FollowerDao {
                 new Object[]{username},
                 Integer.class);
     }
+
+    @Override
+    public boolean isFollow(String whoUsername, String whomUsername) {
+        int count = jdbcTemplate.queryForObject(
+                "select count(*) " +
+                        "from account a1, account a2, follower f " +
+                        "where a1.account_id = f.who_account_id " +
+                        "  and a2.account_id = f.whom_account_id " +
+                        "  and a1.username = ? " +
+                        "  and a2.username = ?",
+                new Object[]{whoUsername, whomUsername},
+                Integer.class);
+
+        return (count > 0);
+    }
 }
