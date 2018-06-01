@@ -220,9 +220,13 @@ public class AccountController {
         }
 
         Account account = accountDao.findByUsername(principal.getName());
+        int tweetsCount = tweetDao.countByUsername(principal.getName());
+        int followingCount = followerDao.countFollowingByUsername(principal.getName());
+        int followersCount = followerDao.countFollowersByUsername(principal.getName());
         List<Account> accounts = accountDao.findByUsernamePart(searchForm.getUsernamePart());
 
         model.addAttribute(account);
+        model.addAttribute(new AccountStatistics(tweetsCount, followingCount, followersCount));
         model.addAttribute("searchAccountList", accounts);
 
         return "searchForm";
