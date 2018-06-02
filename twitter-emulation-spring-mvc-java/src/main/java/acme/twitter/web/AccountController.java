@@ -235,9 +235,9 @@ public class AccountController {
     }
 
     private AccountStatistics getAccountStatistics(String whoUsername, String whomUsername) {
-        int tweetsCount = tweetDao.countByUsername(whoUsername);
-        int followingCount = followerDao.countFollowingByUsername(whoUsername);
-        int followersCount = followerDao.countFollowersByUsername(whoUsername);
+        int tweetsCount = tweetDao.countByUsername(whomUsername);
+        int followingCount = followerDao.countFollowingByUsername(whomUsername);
+        int followersCount = followerDao.countFollowersByUsername(whomUsername);
         boolean isFollow = followerDao.isFollow(whoUsername, whomUsername);
 
         return new AccountStatistics(tweetsCount, followingCount, followersCount, isFollow);
