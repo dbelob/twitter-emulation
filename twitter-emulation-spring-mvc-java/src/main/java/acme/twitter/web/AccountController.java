@@ -242,4 +242,42 @@ public class AccountController {
 
         return new AccountStatistics(tweetsCount, followingCount, followersCount, isFollow);
     }
+
+    /**
+     * Follows account
+     *
+     * @param username  username
+     * @param principal principal
+     * @return view name
+     */
+    @RequestMapping(value = "/follow/{username}", method = POST)
+    public String follow(
+            @PathVariable String username,
+            Principal principal) throws AccountNotExistException {
+        Account whoAccount = accountDao.findByUsername(principal.getName());
+        Account whomAccount = accountDao.findByUsername(username);
+
+        followerDao.follow(whoAccount, whomAccount);
+
+        return "redirect:/account/show/" + username;
+    }
+
+    /**
+     * Unfollows account
+     *
+     * @param username  username
+     * @param principal principal
+     * @return view name
+     */
+    @RequestMapping(value = "/unfollow/{username}", method = POST)
+    public String unfollow(
+            @PathVariable String username,
+            Principal principal) throws AccountNotExistException {
+        Account whoAccount = accountDao.findByUsername(principal.getName());
+        Account whomAccount = accountDao.findByUsername(username);
+
+        followerDao.unfollow(whoAccount, whomAccount);
+
+        return "redirect:/account/show/" + username;
+    }
 }

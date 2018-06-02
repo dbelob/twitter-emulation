@@ -6,14 +6,24 @@ import java.util.Objects;
  * Account.
  */
 public class Account {
+    private long id;
     private String username;
     private String password;
     private String description;
 
-    public Account(String username, String password, String description) {
+    public Account(long id, String username, String password, String description) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.description = description;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUsername() {

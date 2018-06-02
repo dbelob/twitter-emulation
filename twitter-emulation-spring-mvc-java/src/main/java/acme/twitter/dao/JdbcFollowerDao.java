@@ -1,5 +1,6 @@
 package acme.twitter.dao;
 
+import acme.twitter.domain.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -51,5 +52,27 @@ public class JdbcFollowerDao implements FollowerDao {
                 Integer.class);
 
         return (count > 0);
+    }
+
+    @Override
+    public void follow(Account whoAccount, Account whomAccount) {
+        jdbcTemplate.update(
+                "insert into follower (who_account_id, whom_account_id) " +
+                        "select ?, ? " +
+                        "where not exists ( " +
+                        "   select * from follower " +
+                        "      where who_account_id = ? " +
+                        "        and whom_account_id = ?)",
+                whoAccount.getId(), whomAccount.getId(),
+                whoAccount.getId(), whomAccount.getId());
+    }
+
+    @Override
+    public void unfollow(Account whoAccount, Account whomAccount) {
+        jdbcTemplate.update(
+                "delete from follower " +
+                        "where who_account_id = ? " +
+                        "  and whom_account_id = ?",
+                whoAccount.getId(), whomAccount.getId());
     }
 }

@@ -54,7 +54,7 @@ public class JdbcAccountDao implements AccountDao {
     public Account findByUsername(String username) throws AccountNotExistException {
         try {
             return jdbcTemplate.queryForObject(
-                    "select username, password, description from account where username = ?",
+                    "select account_id, username, password, description from account where username = ?",
                     new AccountRowMapper(),
                     username);
         } catch (EmptyResultDataAccessException e) {
@@ -66,7 +66,7 @@ public class JdbcAccountDao implements AccountDao {
     @Override
     public List<Account> findByUsernamePart(String usernamePart) {
         return jdbcTemplate.query(
-                "select username, password, description " +
+                "select account_id, username, password, description " +
                         "from account a " +
                         "where username like '%' || ? || '%' " +
                         "order by username",
