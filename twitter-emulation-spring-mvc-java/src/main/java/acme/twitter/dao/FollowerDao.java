@@ -2,6 +2,8 @@ package acme.twitter.dao;
 
 import acme.twitter.domain.Account;
 
+import java.util.List;
+
 /**
  * Follower DAO.
  */
@@ -10,9 +12,13 @@ public interface FollowerDao {
 
     int countFollowersByUsername(String username);
 
-    boolean isFollow(String whoUsername, String whomUsername);
+    boolean isExist(String whoUsername, String whomUsername);
 
-    void follow(Account whoAccount, Account whomAccount);
+    void add(Account whoAccount, Account whomAccount);
 
-    void unfollow(Account whoAccount, Account whomAccount);
+    void delete(Account whoAccount, Account whomAccount);
+
+    List<Account> findFollowingByUsername(String username);
+
+    List<Account> findFollowersByUsername(String username);
 }

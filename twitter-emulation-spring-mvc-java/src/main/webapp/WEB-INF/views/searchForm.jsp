@@ -20,7 +20,7 @@
             <tr>
                 <jsp:include page="accountTable.jsp"/>
                 <td>
-                    <h3>Search Result</h3>
+                    <h3>${searchTitle}</h3>
                     <table class="searchResultTable">
                         <c:forEach items="${searchAccountList}" var="searchAccount">
                             <tr>
@@ -33,7 +33,12 @@
                         </c:forEach>
                     </table>
                 </td>
-                <jsp:include page="companyTable.jsp"/>
+                <sec:authorize access="!isAuthenticated() or principal.username == '${account.username}'">
+                    <jsp:include page="companyTable.jsp"/>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated() and principal.username != '${account.username}'">
+                    <jsp:include page="followTable.jsp"/>
+                </sec:authorize>
             </tr>
         </table>
     </div>

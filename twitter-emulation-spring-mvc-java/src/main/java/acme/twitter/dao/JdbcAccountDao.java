@@ -67,7 +67,7 @@ public class JdbcAccountDao implements AccountDao {
     public List<Account> findByUsernamePart(String usernamePart) {
         return jdbcTemplate.query(
                 "select account_id, username, password, description " +
-                        "from account a " +
+                        "from account " +
                         "where username like '%' || ? || '%' " +
                         "order by username",
                 new AccountRowMapper(),

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <td>
     <table class="accountTable">
         <tr>
@@ -11,14 +12,14 @@
             </td>
         </tr>
         <tr>
-            <td class="small">Tweets</td>
-            <td class="small">Following</td>
-            <td class="small">Followers</td>
+            <td class="small"><a class="description" href="<c:url value="/account/tweets/${account.username}" />">Tweets</a></td>
+            <td class="small"><a class="description" href="<c:url value="/account/following/${account.username}" />">Following</a></td>
+            <td class="small"><a class="description" href="<c:url value="/account/followers/${account.username}" />">Followers</a></td>
         </tr>
         <tr>
-            <td class="small">${accountStatistics.tweetsCount}</td>
-            <td class="small">${accountStatistics.followingCount}</td>
-            <td class="small">${accountStatistics.followersCount}</td>
+            <td class="small"><a class="description" href="<c:url value="/account/tweets/${account.username}" />">${accountStatistics.tweetsCount}</a></td>
+            <td class="small"><a class="description" href="<c:url value="/account/following/${account.username}" />">${accountStatistics.followingCount}</a></td>
+            <td class="small"><a class="description" href="<c:url value="/account/followers/${account.username}" />">${accountStatistics.followersCount}</a></td>
         </tr>
     </table>
 </td>

@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * JDBC implementation of follower DAO.
  */
@@ -40,7 +42,7 @@ public class JdbcFollowerDao implements FollowerDao {
     }
 
     @Override
-    public boolean isFollow(String whoUsername, String whomUsername) {
+    public boolean isExist(String whoUsername, String whomUsername) {
         int count = jdbcTemplate.queryForObject(
                 "select count(*) " +
                         "from account a1, account a2, follower f " +
@@ -55,7 +57,7 @@ public class JdbcFollowerDao implements FollowerDao {
     }
 
     @Override
-    public void follow(Account whoAccount, Account whomAccount) {
+    public void add(Account whoAccount, Account whomAccount) {
         jdbcTemplate.update(
                 "insert into follower (who_account_id, whom_account_id) " +
                         "select ?, ? " +
@@ -68,11 +70,37 @@ public class JdbcFollowerDao implements FollowerDao {
     }
 
     @Override
-    public void unfollow(Account whoAccount, Account whomAccount) {
+    public void delete(Account whoAccount, Account whomAccount) {
         jdbcTemplate.update(
                 "delete from follower " +
                         "where who_account_id = ? " +
                         "  and whom_account_id = ?",
                 whoAccount.getId(), whomAccount.getId());
+    }
+
+    @Override
+    public List<Account> findFollowingByUsername(String username) {
+        return jdbcTemplate.query(
+                "select a2.account_id, a2.username, a2.password, a2.description " +
+                        "from account a1, account a2, follower f " +
+                        "where a1.account_id = f.who_account_id " +
+                        "  and a2.account_id = f.whom_account_id " +
+                        "  and a1.username = ? " +
+                        "order by a2.username",
+                new AccountRowMapper(),
+                username);
+    }
+
+    @Override
+    public List<Account> findFollowersByUsername(String username) {
+        return jdbcTemplate.query(
+                "select a2.account_id, a2.username, a2.password, a2.description " +
+                        "from account a1, account a2, follower f " +
+                        "where a1.account_id = f.whom_account_id " +
+                        "  and a2.account_id = f.who_account_id " +
+                        "  and a1.username = ? " +
+                        "order by a2.username",
+                new AccountRowMapper(),
+                username);
     }
 }

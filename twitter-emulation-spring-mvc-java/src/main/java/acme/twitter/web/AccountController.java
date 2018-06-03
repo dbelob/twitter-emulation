@@ -229,7 +229,48 @@ public class AccountController {
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
+        model.addAttribute("searchTitle", "Search Result");
         model.addAttribute("searchAccountList", accounts);
+
+        return "searchForm";
+    }
+
+    @RequestMapping(value = "/following/{username}", method = GET)
+    public String processFollowing(
+            @PathVariable String username,
+            Model model,
+            Principal principal) throws AccountNotExistException {
+        Account account = accountDao.findByUsername(username);
+        AccountStatistics accountStatistics = getAccountStatistics(
+                (principal != null) ? principal.getName() : username,
+                username);
+        List<Account> accounts = followerDao.findFollowingByUsername(username);
+
+        model.addAttribute(account);
+        model.addAttribute(accountStatistics);
+        model.addAttribute("searchTitle", "Following");
+        model.addAttribute("searchAccountList", accounts);
+        model.addAttribute(new SearchForm());
+
+        return "searchForm";
+    }
+
+    @RequestMapping(value = "/followers/{username}", method = GET)
+    public String processFollowers(
+            @PathVariable String username,
+            Model model,
+            Principal principal) throws AccountNotExistException {
+        Account account = accountDao.findByUsername(username);
+        AccountStatistics accountStatistics = getAccountStatistics(
+                (principal != null) ? principal.getName() : username,
+                username);
+        List<Account> accounts = followerDao.findFollowersByUsername(username);
+
+        model.addAttribute(account);
+        model.addAttribute(accountStatistics);
+        model.addAttribute("searchTitle", "Followers");
+        model.addAttribute("searchAccountList", accounts);
+        model.addAttribute(new SearchForm());
 
         return "searchForm";
     }
@@ -238,7 +279,7 @@ public class AccountController {
         int tweetsCount = tweetDao.countByUsername(whomUsername);
         int followingCount = followerDao.countFollowingByUsername(whomUsername);
         int followersCount = followerDao.countFollowersByUsername(whomUsername);
-        boolean isFollow = followerDao.isFollow(whoUsername, whomUsername);
+        boolean isFollow = followerDao.isExist(whoUsername, whomUsername);
 
         return new AccountStatistics(tweetsCount, followingCount, followersCount, isFollow);
     }
@@ -251,13 +292,13 @@ public class AccountController {
      * @return view name
      */
     @RequestMapping(value = "/follow/{username}", method = POST)
-    public String follow(
+    public String processFollow(
             @PathVariable String username,
             Principal principal) throws AccountNotExistException {
         Account whoAccount = accountDao.findByUsername(principal.getName());
         Account whomAccount = accountDao.findByUsername(username);
 
-        followerDao.follow(whoAccount, whomAccount);
+        followerDao.add(whoAccount, whomAccount);
 
         return "redirect:/account/show/" + username;
     }
@@ -270,13 +311,13 @@ public class AccountController {
      * @return view name
      */
     @RequestMapping(value = "/unfollow/{username}", method = POST)
-    public String unfollow(
+    public String processUnfollow(
             @PathVariable String username,
             Principal principal) throws AccountNotExistException {
         Account whoAccount = accountDao.findByUsername(principal.getName());
         Account whomAccount = accountDao.findByUsername(username);
 
-        followerDao.unfollow(whoAccount, whomAccount);
+        followerDao.delete(whoAccount, whomAccount);
 
         return "redirect:/account/show/" + username;
     }
