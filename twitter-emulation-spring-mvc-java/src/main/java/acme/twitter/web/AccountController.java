@@ -187,7 +187,15 @@ public class AccountController {
             @PathVariable String username,
             Model model,
             Principal principal) throws AccountNotExistException {
-        log.debug("username: {}", username);
+        if (principal != null) {
+            log.debug("username: {}, principal.name: {}", username, principal.getName());
+        } else {
+            log.debug("username: {}", username);
+        }
+
+        if ((principal == null) || !username.equals(principal.getName())) {
+            return "forward:/account/tweets/" + username;
+        }
 
         Account account = accountDao.findByUsername(username);
         AccountStatistics accountStatistics = getAccountStatistics(
@@ -229,7 +237,7 @@ public class AccountController {
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
-        model.addAttribute("searchTitle", "Search Result");
+        model.addAttribute("title", "Search Result");
         model.addAttribute("searchAccountList", accounts);
 
         return "searchForm";
@@ -239,9 +247,21 @@ public class AccountController {
     public String processTweets(
             @PathVariable String username,
             Model model,
-            Principal principal) {
-        //TODO: implement
-        return null;
+            Principal principal) throws AccountNotExistException {
+
+        Account account = accountDao.findByUsername(username);
+        AccountStatistics accountStatistics = getAccountStatistics(
+                (principal != null) ? principal.getName() : username,
+                username);
+        List<Tweet> tweets = tweetDao.findByUsername(account);
+
+        model.addAttribute(account);
+        model.addAttribute(accountStatistics);
+        model.addAttribute("title", "Tweets");
+        model.addAttribute(tweets);
+        model.addAttribute(new SearchForm());
+
+        return "accountForm";
     }
 
     @RequestMapping(value = "/following/{username}", method = GET)
@@ -257,7 +277,7 @@ public class AccountController {
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
-        model.addAttribute("searchTitle", "Following");
+        model.addAttribute("title", "Following");
         model.addAttribute("searchAccountList", accounts);
         model.addAttribute(new SearchForm());
 
@@ -277,7 +297,7 @@ public class AccountController {
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
-        model.addAttribute("searchTitle", "Followers");
+        model.addAttribute("title", "Followers");
         model.addAttribute("searchAccountList", accounts);
         model.addAttribute(new SearchForm());
 

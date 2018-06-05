@@ -21,6 +21,9 @@
             <tr>
                 <jsp:include page="accountTable.jsp"/>
                 <td>
+                    <c:if test="${title != null}">
+                        <h3>${title}</h3>
+                    </c:if>
                     <table class="tweetTable">
                         <c:forEach items="${tweetList}" var="tweet">
                             <tr>

@@ -20,7 +20,7 @@
             <tr>
                 <jsp:include page="accountTable.jsp"/>
                 <td>
-                    <h3>${searchTitle}</h3>
+                    <h3>${title}</h3>
                     <table class="searchResultTable">
                         <c:forEach items="${searchAccountList}" var="searchAccount">
                             <tr>

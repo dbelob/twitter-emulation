@@ -37,6 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/account/register").permitAll()
                 .antMatchers("/account/show").authenticated()
                 .antMatchers("/account/show/**").permitAll()
+                .antMatchers("/account/tweets/**").permitAll()
+                .antMatchers("/account/following/**").permitAll()
+                .antMatchers("/account/followers/**").permitAll()
                 .antMatchers("/resources/**").permitAll()
                 .anyRequest().authenticated();
     }
