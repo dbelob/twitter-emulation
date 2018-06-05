@@ -21,14 +21,35 @@ public class JdbcTweetDao implements TweetDao {
     }
 
     @Override
-    public List<Tweet> findAllByUsername(Account account) {
+    public List<Tweet> findByUsername(Account account) {
         return jdbcTemplate.query(
-                "select a.username, a.password, a.description, t.text, t.time " +
-                        "from account a, tweet t " +
+                "select t.text, t.time " +
+                        "from tweet t, account a " +
                         "where a.account_id = t.account_id " +
                         "  and a.username = ? " +
                         "order by t.time desc",
                 new TweetRowMapper(account),
+                account.getUsername());
+    }
+
+    @Override
+    public List<Tweet> findAllByUsername(Account account) {
+        return jdbcTemplate.query(
+                "select a.account_id, a.username, a.password, a.description, t.text, t.time " +
+                        "from tweet t, ( " +
+                        "      select account_id, username, password, description " +
+                        "         from account " +
+                        "         where username = ? " +
+                        "      union " +
+                        "      select a2.account_id, a2.username, a2.password, a2.description " +
+                        "         from account a1, account a2, follower f " +
+                        "         where a1.username = ? " +
+                        "           and f.who_account_id = a1.account_id " +
+                        "           and f.whom_account_id = a2.account_id) a " +
+                        "where a.account_id = t.account_id " +
+                        "order by t.time desc, a.description",
+                new TweetRowMapper(),
+                account.getUsername(),
                 account.getUsername());
     }
 

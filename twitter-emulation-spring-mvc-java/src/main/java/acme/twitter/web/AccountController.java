@@ -235,6 +235,15 @@ public class AccountController {
         return "searchForm";
     }
 
+    @RequestMapping(value = "/tweets/{username}", method = GET)
+    public String processTweets(
+            @PathVariable String username,
+            Model model,
+            Principal principal) {
+        //TODO: implement
+        return null;
+    }
+
     @RequestMapping(value = "/following/{username}", method = GET)
     public String processFollowing(
             @PathVariable String username,

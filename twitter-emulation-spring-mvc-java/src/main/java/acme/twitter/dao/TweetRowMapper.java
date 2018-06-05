@@ -10,13 +10,24 @@ import java.sql.SQLException;
 public class TweetRowMapper implements RowMapper<Tweet> {
     private Account account;
 
+    public TweetRowMapper() {
+    }
+
     public TweetRowMapper(Account account) {
         this.account = account;
     }
 
     @Override
     public Tweet mapRow(ResultSet resultSet, int i) throws SQLException {
-        return new Tweet(account,
+        Account tweetAccount = (account != null) ?
+                account :
+                new Account(
+                        resultSet.getLong("account_id"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"),
+                        resultSet.getString("description"));
+
+        return new Tweet(tweetAccount,
                 resultSet.getString("text"),
                 resultSet.getTimestamp("time"));
     }
