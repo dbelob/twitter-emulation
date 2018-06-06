@@ -56,15 +56,17 @@ textarea.tweetTextarea {
     height: 100px;
 }
 
-a.description {
+a.description, a.statistics {
     font-weight: bold;
 }
 
-a.description:link, a.description:visited {
+a.description:link, a.description:visited,
+a.statistics:link, a.statistics:visited {
     text-decoration: none;
 }
 
-a.description:hover, a.description:active {
+a.description:hover, a.description:active,
+a.statistics:hover, a.statistics:active {
     text-decoration: underline;
 }
 

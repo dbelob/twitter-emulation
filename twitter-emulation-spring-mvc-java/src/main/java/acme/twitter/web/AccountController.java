@@ -15,6 +15,7 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -56,6 +57,7 @@ public class AccountController {
     @RequestMapping(value = "/register", method = GET)
     public String showRegistrationForm(Model model) {
         model.addAttribute(new AccountForm());
+
         return "registrationForm";
     }
 
@@ -91,11 +93,13 @@ public class AccountController {
      * @param model     model
      * @param principal principal
      * @return view name
+     * @throws AccountNotExistException if account does not not exist
      */
     @RequestMapping(value = "/profile", method = GET)
     public String showProfileForm(Model model, Principal principal) throws AccountNotExistException {
         Account account = accountDao.findByUsername(principal.getName());
         model.addAttribute(new AccountForm(account.getUsername(), account.getDescription()));
+
         return "profileForm";
     }
 
@@ -181,6 +185,7 @@ public class AccountController {
      * @param model     model
      * @param principal principal
      * @return view name
+     * @throws AccountNotExistException if account does not not exist
      */
     @RequestMapping(value = "/show/{username}", method = GET)
     public String showAccountForm(
@@ -193,14 +198,13 @@ public class AccountController {
             log.debug("username: {}", username);
         }
 
+        // Forward for unauthorized or other account
         if ((principal == null) || !username.equals(principal.getName())) {
             return "forward:/account/tweets/" + username;
         }
 
         Account account = accountDao.findByUsername(username);
-        AccountStatistics accountStatistics = getAccountStatistics(
-                (principal != null) ? principal.getName() : username,
-                username);
+        AccountStatistics accountStatistics = getAccountStatistics(principal.getName(), username);
         List<Tweet> tweets = tweetDao.findAllByUsername(account);
 
         model.addAttribute(account);
@@ -243,12 +247,20 @@ public class AccountController {
         return "searchForm";
     }
 
+    /**
+     * Processes tweets.
+     *
+     * @param username  username
+     * @param model     model
+     * @param principal principal
+     * @return view name
+     * @throws AccountNotExistException if account does not not exist
+     */
     @RequestMapping(value = "/tweets/{username}", method = GET)
     public String processTweets(
             @PathVariable String username,
             Model model,
             Principal principal) throws AccountNotExistException {
-
         Account account = accountDao.findByUsername(username);
         AccountStatistics accountStatistics = getAccountStatistics(
                 (principal != null) ? principal.getName() : username,
@@ -264,6 +276,15 @@ public class AccountController {
         return "accountForm";
     }
 
+    /**
+     * Processes following.
+     *
+     * @param username  username
+     * @param model     model
+     * @param principal principal
+     * @return view name
+     * @throws AccountNotExistException if account does not not exist
+     */
     @RequestMapping(value = "/following/{username}", method = GET)
     public String processFollowing(
             @PathVariable String username,
@@ -284,6 +305,15 @@ public class AccountController {
         return "searchForm";
     }
 
+    /**
+     * Processes followers.
+     *
+     * @param username  username
+     * @param model     model
+     * @param principal principal
+     * @return view name
+     * @throws AccountNotExistException if account does not not exist
+     */
     @RequestMapping(value = "/followers/{username}", method = GET)
     public String processFollowers(
             @PathVariable String username,
@@ -319,6 +349,7 @@ public class AccountController {
      * @param username  username
      * @param principal principal
      * @return view name
+     * @throws AccountNotExistException if account does not not exist
      */
     @RequestMapping(value = "/follow/{username}", method = POST)
     public String processFollow(
@@ -338,6 +369,7 @@ public class AccountController {
      * @param username  username
      * @param principal principal
      * @return view name
+     * @throws AccountNotExistException if account does not not exist
      */
     @RequestMapping(value = "/unfollow/{username}", method = POST)
     public String processUnfollow(
@@ -349,5 +381,10 @@ public class AccountController {
         followerDao.delete(whoAccount, whomAccount);
 
         return "redirect:/account/show/" + username;
+    }
+
+    @ExceptionHandler(AccountNotExistException.class)
+    public String handleAccountNotExistException() {
+        return "redirect:/account/show";
     }
 }

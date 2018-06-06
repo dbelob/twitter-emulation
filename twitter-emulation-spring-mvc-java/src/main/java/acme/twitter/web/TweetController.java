@@ -35,6 +35,7 @@ public class TweetController {
     @RequestMapping(method = GET)
     public String showNewTweetForm(Model model) {
         model.addAttribute(new TweetForm());
+
         return "newTweetForm";
     }
 

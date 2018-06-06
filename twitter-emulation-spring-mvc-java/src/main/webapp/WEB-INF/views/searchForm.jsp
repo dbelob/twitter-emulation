@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page session="false" contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
@@ -11,12 +10,7 @@
 <div class="webPage">
     <div class="centered">
         <table class="mainTable centered">
-            <sec:authorize access="isAuthenticated()">
-                <jsp:include page="authenticatedTopBar.jsp"/>
-            </sec:authorize>
-            <sec:authorize access="!isAuthenticated()">
-                <jsp:include page="notAuthenticatedTopBar.jsp"/>
-            </sec:authorize>
+            <jsp:include page="topBar.jsp"/>
             <tr>
                 <jsp:include page="accountTable.jsp"/>
                 <td>
@@ -33,12 +27,7 @@
                         </c:forEach>
                     </table>
                 </td>
-                <sec:authorize access="!isAuthenticated() or principal.username == '${account.username}'">
-                    <jsp:include page="companyTable.jsp"/>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated() and principal.username != '${account.username}'">
-                    <jsp:include page="followTable.jsp"/>
-                </sec:authorize>
+                <jsp:include page="rightTable.jsp"/>
             </tr>
         </table>
     </div>
