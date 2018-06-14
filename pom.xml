@@ -34,6 +34,7 @@
 
     <modules>
         <module>twitter-emulation-spring-mvc-java</module>
+        <module>twitter-emulation-spring-boot</module>
     </modules>
 
     <build>
