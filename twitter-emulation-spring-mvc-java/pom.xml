@@ -33,6 +33,11 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>acme</groupId>
+            <artifactId>twitter-emulation-common</artifactId>
+        </dependency>
+
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
