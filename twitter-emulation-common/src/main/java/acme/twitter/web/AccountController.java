@@ -18,6 +18,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -173,7 +174,7 @@ public class AccountController {
      * @param principal principal
      * @return view name
      */
-    @RequestMapping(value = "/show", method = GET)
+    @RequestMapping(value = "/show", method = RequestMethod.GET)
     public String showAccountForm(Principal principal) {
         return "redirect:/account/show/" + principal.getName();
     }
@@ -187,7 +188,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistException if account does not not exist
      */
-    @RequestMapping(value = "/show/{username}", method = GET)
+    @RequestMapping(value = "/show/{username}", method = RequestMethod.GET)
     public String showAccountForm(
             @PathVariable String username,
             Model model,
