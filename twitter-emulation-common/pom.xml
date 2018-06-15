@@ -11,4 +11,12 @@
     <artifactId>twitter-emulation-common</artifactId>
     <packaging>jar</packaging>
     <name>acme:twitter-emulation-common</name>
+
+    <dependencies>
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+    </dependencies>
 </project>
