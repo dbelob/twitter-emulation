@@ -16,7 +16,7 @@
             <table class="centered">
                 <tr>
                     <td><sf:label path="username" cssErrorClass="error">Username</sf:label>:</td>
-                    <td><sf:input path="username" disabled="true" cssErrorClass="error"/></td>
+                    <td><sf:input path="username" readonly="true" cssErrorClass="error"/></td>
                 </tr>
                 <tr>
                     <td><sf:label path="password" cssErrorClass="error">Password</sf:label>:</td>
