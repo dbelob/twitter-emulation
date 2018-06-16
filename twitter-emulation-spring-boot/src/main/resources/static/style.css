@@ -1,3 +1,93 @@
 body {
 	font-family: sans-serif;
 }
+
+div.webPage {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+div.centered {
+    text-align: center;
+}
+
+table.centered {
+    margin: 0 auto;
+    text-align: left;
+}
+
+table.mainTable tr td {
+    vertical-align: top;
+}
+
+table.searchTable tr td {
+    padding: 0 2px;
+    width: 100%;
+}
+
+table.searchTable tr td:first-child input {
+    width: 100%;
+}
+
+table.tweetButtonTable tr td {
+    padding: 0 2px;
+}
+
+table.accountTable {
+    width: 250px;
+    border-spacing: 0;
+}
+
+table.tweetTable, table.searchResultTable {
+    width: 500px;
+}
+
+table.companyTable, table.followTable {
+    width: 225px;
+}
+
+table.tweetTable tr td, table.accountTable tr td, table.companyTable tr td {
+    background-color: lightgray;
+    border: 5px solid lightgray;
+}
+
+textarea.tweetTextarea {
+    width: 400px;
+    height: 100px;
+}
+
+a.description, a.statistics {
+    font-weight: bold;
+}
+
+a.description:link, a.description:visited,
+a.statistics:link, a.statistics:visited {
+    text-decoration: none;
+}
+
+a.description:hover, a.description:active,
+a.statistics:hover, a.statistics:active {
+    text-decoration: underline;
+}
+
+td.small {
+    font-size: 80%;
+}
+
+label.error {
+    color: red;
+}
+
+input.error {
+    background-color: #ffcccc;
+}
+
+div.errors {
+    background-color: #ffcccc;
+    border: 2px solid red;
+}
+
+div.logout {
+    background-color: #ccffcc;
+    border: 2px solid green;
+}
