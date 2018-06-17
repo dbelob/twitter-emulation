@@ -15,20 +15,6 @@ public class App extends SpringBootServletInitializer {
         return application.sources(App.class);
     }
 
-    @Bean
-    public ResourceBundleMessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-
-        messageSource.setBasenames("ValidationMessages");
-
-        return messageSource;
-    }
-
-    @Bean
-    public MessageSourceAccessor messageSourceAccessor() {
-        return new MessageSourceAccessor(messageSource());
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
