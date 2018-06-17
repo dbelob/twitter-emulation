@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/account/tweets/**").permitAll()
                 .antMatchers("/account/following/**").permitAll()
                 .antMatchers("/account/followers/**").permitAll()
-                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/css/**").permitAll()
                 .anyRequest().authenticated();
     }
 
