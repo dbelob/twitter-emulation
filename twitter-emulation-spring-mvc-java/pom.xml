@@ -20,7 +20,7 @@
                 <version>${jetty.maven.version}</version>
                 <configuration>
                     <webApp>
-                        <contextPath>/twitter</contextPath>
+                        <contextPath>/</contextPath>
                     </webApp>
                     <httpConnector>
                         <port>8080</port>
