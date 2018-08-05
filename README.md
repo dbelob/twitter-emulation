@@ -1,11 +1,31 @@
 # Twitter emulation on Java
 
-In progress...
+The application emulates the main features of Twitter in several ways:
+
+1. Spring MVC (*Java* configuration)
+1. Spring Boot
 
 ## Requirements
 
-* [JDK 10+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+* [JDK 8+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Apache Maven 3.5.0+](https://maven.apache.org/download.cgi)
+
+## Running
+
+1. Change directory:
+    `cd <maven module directory>`
+
+1. From the command line with Maven:
+
+    `mvn jetty:run`
+
+    (for *twitter-emulation-spring-mvc-java* module)
+
+    `mvn spring-boot:run`
+
+    (for *twitter-emulation-spring-boot* module)
+
+1. Access the deployed web application at: http://localhost:8080
 
 ## Tools
 
