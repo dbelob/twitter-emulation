@@ -9,10 +9,15 @@ import org.testcontainers.containers.OracleContainer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Locale;
 
 import static junit.framework.TestCase.assertEquals;
 
 public class OracleContainerTest {
+    static {
+        Locale.setDefault(Locale.ENGLISH);
+    }
+
     @Rule
     public OracleContainer oracle = new OracleContainer();
 
