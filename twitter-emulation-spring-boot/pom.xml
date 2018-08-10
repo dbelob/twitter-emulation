@@ -10,7 +10,7 @@
 
     <artifactId>twitter-emulation-spring-boot</artifactId>
     <packaging>war</packaging>
-    <name>acme:twitter-emulation-spring-boot</name>
+    <name>TwitterEmulation Spring Boot</name>
 
     <build>
         <plugins>

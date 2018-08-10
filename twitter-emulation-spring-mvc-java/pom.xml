@@ -10,7 +10,7 @@
 
     <artifactId>twitter-emulation-spring-mvc-java</artifactId>
     <packaging>war</packaging>
-    <name>acme:twitter-emulation-spring-mvc-java</name>
+    <name>TwitterEmulation Spring MVC (Java configuration)</name>
 
     <build>
         <plugins>

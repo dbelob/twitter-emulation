@@ -10,7 +10,7 @@
 
     <artifactId>twitter-emulation-common</artifactId>
     <packaging>jar</packaging>
-    <name>acme:twitter-emulation-common</name>
+    <name>TwitterEmulation Common</name>
 
     <dependencies>
         <!-- Spring -->
