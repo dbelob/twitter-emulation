@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>acme</groupId>
+        <groupId>acme.twitter-emulation</groupId>
         <artifactId>twitter-emulation-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -23,7 +23,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>acme</groupId>
+            <groupId>acme.twitter-emulation</groupId>
             <artifactId>twitter-emulation-common</artifactId>
         </dependency>
 
