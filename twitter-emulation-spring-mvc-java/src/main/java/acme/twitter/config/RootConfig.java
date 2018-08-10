@@ -10,7 +10,7 @@ import org.springframework.core.type.filter.RegexPatternTypeFilter;
 import java.util.regex.Pattern;
 
 @Configuration
-@Import(DataConfig.class)
+@Import({DevelopmentDataConfig.class, ProductionDataConfig.class})
 @ComponentScan(basePackages = {"acme.twitter"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.CUSTOM, value = WebPackage.class)

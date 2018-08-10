@@ -3,6 +3,7 @@ package acme.twitter.config;
 import org.h2.tools.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -11,7 +12,8 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
-public class DataConfig {
+@Profile("development")
+public class DevelopmentDataConfig {
     // jdbc:h2:mem:testdb
     @Bean
     public DataSource dataSource() {
