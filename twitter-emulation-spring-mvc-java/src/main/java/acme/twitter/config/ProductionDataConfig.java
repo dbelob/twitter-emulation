@@ -1,24 +1,26 @@
 package acme.twitter.config;
 
+import oracle.jdbc.pool.OracleDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 
 @Configuration
 @Profile("production")
 public class ProductionDataConfig {
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource() throws SQLException {
         //TODO: change
-        return new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2)
-                .addDefaultScripts()
-                .build();
+        OracleDataSource dataSource = new OracleDataSource();
+        dataSource.setUser("te");
+        dataSource.setPassword("password");
+        dataSource.setURL("jdbc:oracle:thin:@acme.com:1521:sid");
+
+        return dataSource;
     }
 
     @Bean
