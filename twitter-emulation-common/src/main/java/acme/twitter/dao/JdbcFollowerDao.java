@@ -61,6 +61,7 @@ public class JdbcFollowerDao implements FollowerDao {
         jdbcTemplate.update(
                 "insert into follower (who_account_id, whom_account_id) " +
                         "select ?, ? " +
+                        "from dual " +
                         "where not exists ( " +
                         "   select * from follower " +
                         "      where who_account_id = ? " +
