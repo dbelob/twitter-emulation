@@ -27,6 +27,12 @@
                     </httpConnector>
                     <stopKey>foo</stopKey>
                     <stopPort>9999</stopPort>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>spring.profiles.active</name>
+                            <value>${spring.profiles.active}</value>
+                        </systemProperty>
+                    </systemProperties>
                 </configuration>
             </plugin>
         </plugins>
@@ -126,4 +132,23 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring.profiles.active>development</spring.profiles.active>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>production</id>
+            <properties>
+                <spring.profiles.active>production</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
 </project>
