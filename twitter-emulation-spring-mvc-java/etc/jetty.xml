@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
+
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+    <New id="teDataSource" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/TeDataSource</Arg>
+        <Arg>
+            <New class="oracle.jdbc.pool.OracleDataSource">
+                <Set name="driverType">thin</Set>
+                <Set name="URL">jdbc:oracle:thin:@acme.com:1521/sid</Set>
+                <Set name="user">te</Set>
+                <Set name="password">password</Set>
+            </New>
+        </Arg>
+    </New>
+</Configure>

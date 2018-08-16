@@ -18,6 +18,13 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.maven.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.oracle</groupId>
+                        <artifactId>ojdbc6</artifactId>
+                        <version>${ojdbc6.version}</version>
+                    </dependency>
+                </dependencies>
                 <configuration>
                     <webApp>
                         <contextPath>/</contextPath>
@@ -33,6 +40,7 @@
                             <value>${spring.profiles.active}</value>
                         </systemProperty>
                     </systemProperties>
+                    <jettyXml>etc/jetty.xml</jettyXml>
                 </configuration>
             </plugin>
         </plugins>
