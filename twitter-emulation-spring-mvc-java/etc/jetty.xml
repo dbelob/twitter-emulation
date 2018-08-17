@@ -7,7 +7,7 @@
         <Arg>
             <New class="oracle.jdbc.pool.OracleDataSource">
                 <Set name="driverType">thin</Set>
-                <Set name="URL">jdbc:oracle:thin:@acme.com:1521/sid</Set>
+                <Set name="URL">jdbc:oracle:thin:@acme.com:1521:sid</Set>
                 <Set name="user">te</Set>
                 <Set name="password">password</Set>
             </New>
