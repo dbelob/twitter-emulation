@@ -33,7 +33,7 @@ public class AccountDaoTest {
     public void tearDown() throws Exception {
     }
 
-    @Test
+//    @Test
     public void testSimple() throws SQLException {
         //TODO: implement
         HikariConfig hikariConfig = new HikariConfig();
@@ -43,31 +43,31 @@ public class AccountDaoTest {
 
         HikariDataSource ds = new HikariDataSource(hikariConfig);
         Statement statement = ds.getConnection().createStatement();
-        statement.execute("SELECT 1 FROM dual");
+        statement.execute("SELECT 42 FROM dual");
         ResultSet resultSet = statement.getResultSet();
 
         resultSet.next();
         int resultSetInt = resultSet.getInt(1);
-        assertEquals("A basic SELECT query succeeds", 1, resultSetInt);
+        assertEquals("A basic SELECT query succeeds", 42, resultSetInt);
     }
 
     @Test
     public void add() {
     }
 
-    @Test
+//    @Test
     public void update() {
     }
 
-    @Test
+//    @Test
     public void delete() {
     }
 
-    @Test
+//    @Test
     public void findByUsername() {
     }
 
-    @Test
+//    @Test
     public void findByUsernamePart() {
     }
 }
