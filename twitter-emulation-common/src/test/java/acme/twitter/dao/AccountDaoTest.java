@@ -1,9 +1,12 @@
-package acme.twitter;
+package acme.twitter.dao;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.containers.OracleContainer;
 
 import java.sql.ResultSet;
@@ -13,13 +16,22 @@ import java.util.Locale;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class OracleContainerTest {
+@ActiveProfiles(profiles = "production")
+public class AccountDaoTest {
     static {
         Locale.setDefault(Locale.ENGLISH);
     }
 
     @Rule
     public OracleContainer oracle = new OracleContainer();
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
 
     @Test
     public void testSimple() throws SQLException {
@@ -37,5 +49,25 @@ public class OracleContainerTest {
         resultSet.next();
         int resultSetInt = resultSet.getInt(1);
         assertEquals("A basic SELECT query succeeds", 1, resultSetInt);
+    }
+
+    @Test
+    public void add() {
+    }
+
+    @Test
+    public void update() {
+    }
+
+    @Test
+    public void delete() {
+    }
+
+    @Test
+    public void findByUsername() {
+    }
+
+    @Test
+    public void findByUsernamePart() {
     }
 }
