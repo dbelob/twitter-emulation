@@ -38,6 +38,7 @@
         <logback.version>1.2.3</logback.version>
         <sl4j.version>1.7.25</sl4j.version>
         <testcontainers.version>1.8.3</testcontainers.version>
+        <ibatis.version>3.0</ibatis.version>
     </properties>
 
     <modules>
@@ -211,6 +212,12 @@
                 <groupId>org.testcontainers</groupId>
                 <artifactId>oracle-xe</artifactId>
                 <version>${testcontainers.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.ibatis</groupId>
+                <artifactId>ibatis-core</artifactId>
+                <version>${ibatis.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
