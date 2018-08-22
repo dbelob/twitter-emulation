@@ -40,16 +40,21 @@ public class OracleDatabaseAccountDaoTest extends AccountDaoTest {
         accountDao = new JdbcAccountDao(jdbcTemplate);
 
         // Create tables and fill data
-        runScript(oracleContainer.getJdbcUrl(), oracleContainer.getUsername(), oracleContainer.getPassword(), "/schema-oracledb.sql");
+        runScript(oracleContainer.getJdbcUrl(), oracleContainer.getUsername(), oracleContainer.getPassword(), "/schema-oracledb.sql", "/");
         runScript(oracleContainer.getJdbcUrl(), oracleContainer.getUsername(), oracleContainer.getPassword(), "/data-oracledb.sql");
     }
 
-    private void runScript(String jdbcUrl, String username, String password, String fileName) throws Exception {
+    private void runScript(String jdbcUrl, String username, String password, String fileName, String delimiter) throws Exception {
         Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
         ScriptRunner scriptRunner = new ScriptRunner(connection);
         InputStream inputStream = getClass().getResourceAsStream(fileName);
         Reader reader = new BufferedReader(new InputStreamReader(inputStream));
 
+        scriptRunner.setDelimiter(delimiter);
         scriptRunner.runScript(reader);
+    }
+
+    private void runScript(String jdbcUrl, String username, String password, String fileName) throws Exception {
+        runScript(jdbcUrl, username, password, fileName, ";");
     }
 }
