@@ -17,7 +17,7 @@ public class H2AccountDaoTest extends AccountDaoTest {
     public void setUp() {
         embeddedDatabase = new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
-                .addDefaultScripts()
+                .addScripts("schema-h2.sql", "data-h2.sql")
                 .build();
         JdbcTemplate jdbcTemplate = new JdbcTemplate(embeddedDatabase);
 

@@ -19,7 +19,7 @@ public class DevelopmentDataConfig {
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
-                .addDefaultScripts()
+                .addScripts("schema-h2.sql", "data-h2.sql")
                 .build();
     }
 
