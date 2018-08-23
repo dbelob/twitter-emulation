@@ -64,10 +64,5 @@
             <artifactId>ojdbc6</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.ibatis</groupId>
-            <artifactId>ibatis-core</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 </project>

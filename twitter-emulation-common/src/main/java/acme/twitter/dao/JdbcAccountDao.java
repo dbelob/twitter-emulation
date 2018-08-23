@@ -60,7 +60,6 @@ public class JdbcAccountDao implements AccountDao {
         } catch (EmptyResultDataAccessException e) {
             throw new AccountNotExistException();
         }
-
     }
 
     @Override

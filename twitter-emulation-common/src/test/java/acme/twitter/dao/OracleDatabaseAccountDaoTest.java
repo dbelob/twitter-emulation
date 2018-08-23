@@ -2,18 +2,15 @@ package acme.twitter.dao;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.apache.ibatis.jdbc.ScriptRunner;
 import org.junit.Before;
 import org.junit.Rule;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.support.EncodedResource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.testcontainers.containers.OracleContainer;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.Locale;
 
 /**
@@ -40,21 +37,19 @@ public class OracleDatabaseAccountDaoTest extends AccountDaoTest {
         accountDao = new JdbcAccountDao(jdbcTemplate);
 
         // Create tables and fill data
-        runScript(oracleContainer.getJdbcUrl(), oracleContainer.getUsername(), oracleContainer.getPassword(), "/schema-oracledb.sql", "/");
-        runScript(oracleContainer.getJdbcUrl(), oracleContainer.getUsername(), oracleContainer.getPassword(), "/data-oracledb.sql");
+        executeSqlScript(dataSource.getConnection(), "/schema-oracledb.sql", "/");
+        executeSqlScript(dataSource.getConnection(), "/data-oracledb.sql");
     }
 
-    private void runScript(String jdbcUrl, String username, String password, String fileName, String delimiter) throws Exception {
-        Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
-        ScriptRunner scriptRunner = new ScriptRunner(connection);
-        InputStream inputStream = getClass().getResourceAsStream(fileName);
-        Reader reader = new BufferedReader(new InputStreamReader(inputStream));
-
-        scriptRunner.setDelimiter(delimiter);
-        scriptRunner.runScript(reader);
+    private void executeSqlScript(Connection connection, String fileName, String separator) {
+        ScriptUtils.executeSqlScript(
+                connection,
+                new EncodedResource(new InputStreamResource(getClass().getResourceAsStream(fileName))),
+                false, false, ScriptUtils.DEFAULT_COMMENT_PREFIX, separator,
+                ScriptUtils.DEFAULT_BLOCK_COMMENT_START_DELIMITER, ScriptUtils.DEFAULT_BLOCK_COMMENT_END_DELIMITER);
     }
 
-    private void runScript(String jdbcUrl, String username, String password, String fileName) throws Exception {
-        runScript(jdbcUrl, username, password, fileName, ";");
+    private void executeSqlScript(Connection connection, String fileName) {
+        executeSqlScript(connection, fileName, ScriptUtils.DEFAULT_STATEMENT_SEPARATOR);
     }
 }
