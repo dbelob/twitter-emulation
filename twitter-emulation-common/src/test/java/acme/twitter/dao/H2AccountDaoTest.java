@@ -1,31 +1,43 @@
 package acme.twitter.dao;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
+import java.sql.SQLException;
+
 /**
  * Account DAO test for H2.
  */
 public class H2AccountDaoTest extends AccountDaoTest {
-    private EmbeddedDatabase embeddedDatabase;
+    private static EmbeddedDatabase database;
+
+    @BeforeClass
+    public static void start() {
+        database = new EmbeddedDatabaseBuilder()
+                .setType(EmbeddedDatabaseType.H2)
+                .addScript("schema-h2.sql")
+                .build();
+        accountDao = new JdbcAccountDao(new JdbcTemplate(database));
+    }
 
     @Before
-    public void setUp() {
-        embeddedDatabase = new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2)
-                .addScripts("schema-h2.sql", "data-h2.sql")
-                .build();
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(embeddedDatabase);
-
-        accountDao = new JdbcAccountDao(jdbcTemplate);
+    public void setUp() throws SQLException {
+        TestUtils.executeSqlScript(database.getConnection(), "/data-h2.sql");
     }
 
     @After
-    public void tearDown() {
-        embeddedDatabase.shutdown();
+    public void tearDown() throws SQLException {
+        TestUtils.executeSqlScript(database.getConnection(), "/clean-h2.sql");
+    }
+
+    @AfterClass
+    public static void stop() {
+        database.shutdown();
     }
 }

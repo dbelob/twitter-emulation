@@ -10,6 +10,13 @@ import java.sql.Connection;
  * Methods for testing.
  */
 public class TestUtils {
+    /**
+     * Executes script.
+     *
+     * @param connection connection
+     * @param fileName   file name
+     * @param separator  statement separator
+     */
     public static void executeSqlScript(Connection connection, String fileName, String separator) {
         ScriptUtils.executeSqlScript(
                 connection,
@@ -18,6 +25,12 @@ public class TestUtils {
                 ScriptUtils.DEFAULT_BLOCK_COMMENT_START_DELIMITER, ScriptUtils.DEFAULT_BLOCK_COMMENT_END_DELIMITER);
     }
 
+    /**
+     * Executes script.
+     *
+     * @param connection connection
+     * @param fileName   file name
+     */
     public static void executeSqlScript(Connection connection, String fileName) {
         executeSqlScript(connection, fileName, ScriptUtils.DEFAULT_STATEMENT_SEPARATOR);
     }

@@ -2,11 +2,15 @@ package acme.twitter.dao;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.Rule;
+import org.junit.BeforeClass;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.testcontainers.containers.OracleContainer;
 
+import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.Locale;
 
 /**
@@ -17,23 +21,38 @@ public class OracleDatabaseAccountDaoTest extends AccountDaoTest {
         Locale.setDefault(Locale.ENGLISH);
     }
 
-    @Rule
-    public OracleContainer oracleContainer = new OracleContainer();
+    private static OracleContainer oracleContainer;
+    private static DataSource dataSource;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeClass
+    public static void start() throws SQLException {
+        oracleContainer = new OracleContainer();
+        oracleContainer.start();
+
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(oracleContainer.getJdbcUrl());
         config.setUsername(oracleContainer.getUsername());
         config.setPassword(oracleContainer.getPassword());
+//        config.setConnectionTimeout(0);
 
-        HikariDataSource dataSource = new HikariDataSource(config);
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        dataSource = new HikariDataSource(config);
+        accountDao = new JdbcAccountDao(new JdbcTemplate(dataSource));
 
-        accountDao = new JdbcAccountDao(jdbcTemplate);
-
-        // Create tables and fill data
         TestUtils.executeSqlScript(dataSource.getConnection(), "/schema-oracledb.sql", "/");
+    }
+
+    @Before
+    public void setUp() throws Exception {
         TestUtils.executeSqlScript(dataSource.getConnection(), "/data-oracledb.sql");
+    }
+
+    @After
+    public void tearDown() throws SQLException {
+        TestUtils.executeSqlScript(dataSource.getConnection(), "/clean-oracledb.sql");
+    }
+
+    @AfterClass
+    public static void stop() {
+        oracleContainer.stop();
     }
 }
