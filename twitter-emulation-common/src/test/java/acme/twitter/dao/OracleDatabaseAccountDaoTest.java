@@ -33,7 +33,7 @@ public class OracleDatabaseAccountDaoTest extends AccountDaoTest {
         config.setJdbcUrl(oracleContainer.getJdbcUrl());
         config.setUsername(oracleContainer.getUsername());
         config.setPassword(oracleContainer.getPassword());
-//        config.setConnectionTimeout(0);
+        config.setMaximumPoolSize(100);
 
         dataSource = new HikariDataSource(config);
         accountDao = new JdbcAccountDao(new JdbcTemplate(dataSource));
