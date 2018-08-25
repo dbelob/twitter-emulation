@@ -1,7 +1,5 @@
 package acme.twitter.dao;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -29,20 +27,18 @@ public class OracleDatabaseAccountDaoTest extends AccountDaoTest {
         oracleContainer = new OracleContainer();
         oracleContainer.start();
 
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(oracleContainer.getJdbcUrl());
-        config.setUsername(oracleContainer.getUsername());
-        config.setPassword(oracleContainer.getPassword());
-        config.setMaximumPoolSize(100);
+        dataSource = TestUtils.getDataSource(
+                oracleContainer.getJdbcUrl(),
+                oracleContainer.getUsername(),
+                oracleContainer.getPassword());
 
-        dataSource = new HikariDataSource(config);
         accountDao = new JdbcAccountDao(new JdbcTemplate(dataSource));
 
         TestUtils.executeSqlScript(dataSource.getConnection(), "/schema-oracledb.sql", "/");
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws SQLException {
         TestUtils.executeSqlScript(dataSource.getConnection(), "/data-oracledb.sql");
     }
 

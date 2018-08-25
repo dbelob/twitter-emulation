@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import java.sql.SQLException;
@@ -19,10 +18,7 @@ public class H2AccountDaoTest extends AccountDaoTest {
 
     @BeforeClass
     public static void start() {
-        database = new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2)
-                .addScript("schema-h2.sql")
-                .build();
+        database = TestUtils.getEmbeddedDatabase(EmbeddedDatabaseType.H2, "schema-h2.sql");
         accountDao = new JdbcAccountDao(new JdbcTemplate(database));
     }
 
