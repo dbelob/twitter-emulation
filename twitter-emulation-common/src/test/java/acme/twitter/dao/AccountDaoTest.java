@@ -2,17 +2,42 @@ package acme.twitter.dao;
 
 import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotExistException;
+import acme.twitter.dao.utils.TestSupport;
 import acme.twitter.domain.Account;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
+import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
  * Account DAO test.
  */
 public abstract class AccountDaoTest {
-    protected static AccountDao accountDao;
+    private static TestSupport testSupport;
+    private static AccountDao accountDao;
+
+    protected static void start(TestSupport testSupport) throws SQLException {
+        AccountDaoTest.testSupport = testSupport;
+
+        testSupport.start();
+        accountDao = new JdbcAccountDao(new JdbcTemplate(testSupport.getDataSource()));
+    }
+
+    @Before
+    public void setUp() throws SQLException {
+        testSupport.setUp();
+    }
+
+    @After
+    public void tearDown() throws SQLException {
+        testSupport.tearDown();
+    }
+
+    @AfterClass
+    public static void stop() {
+        testSupport.stop();
+    }
 
     @Test
     public void add() throws AccountExistsException, AccountNotExistException {
