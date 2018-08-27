@@ -1,13 +1,12 @@
 package acme.twitter.dao;
 
 import acme.twitter.dao.utils.TestSupport;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Test;
+import acme.twitter.domain.Account;
+import org.junit.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Follower DAO test.
@@ -40,36 +39,48 @@ public abstract class FollowerDaoTest {
 
     @Test
     public void countFollowingByUsername() {
-        //TODO: implement
+        Assert.assertEquals(2, followerDao.countFollowingByUsername("jsmith"));
     }
 
     @Test
     public void countFollowersByUsername() {
-        //TODO: implement
+        Assert.assertEquals(1, followerDao.countFollowersByUsername("jsmith"));
     }
 
     @Test
     public void isExist() {
-        //TODO: implement
+        Assert.assertTrue(followerDao.isExist("jsmith", "jdoe"));
+        Assert.assertFalse(followerDao.isExist("jdoe", "rroe"));
     }
 
     @Test
     public void add() {
-        //TODO: implement
+        followerDao.add("jdoe", "rroe");
+
+        Assert.assertTrue(followerDao.isExist("jdoe", "rroe"));
     }
 
     @Test
     public void delete() {
-        //TODO: implement
+        followerDao.delete("jsmith", "jdoe");
+
+        Assert.assertFalse(followerDao.isExist("jsmith", "jdoe"));
     }
 
     @Test
     public void findFollowingByUsername() {
-        //TODO: implement
+        List<Account> accounts = followerDao.findFollowingByUsername("jsmith");
+
+        Assert.assertEquals(2, accounts.size());
+        Assert.assertEquals("jdoe", accounts.get(0).getUsername());
+        Assert.assertEquals("rroe", accounts.get(1).getUsername());
     }
 
     @Test
     public void findFollowersByUsername() {
-        //TODO: implement
+        List<Account> accounts = followerDao.findFollowersByUsername("jsmith");
+
+        Assert.assertEquals(1, accounts.size());
+        Assert.assertEquals("jdoe", accounts.get(0).getUsername());
     }
 }

@@ -102,6 +102,6 @@ public abstract class TweetDaoTest {
 
     @Test
     public void countByUsername() {
-        Assert.assertEquals(6L, tweetDao.countByUsername("jsmith"));
+        Assert.assertEquals(6, tweetDao.countByUsername("jsmith"));
     }
 }

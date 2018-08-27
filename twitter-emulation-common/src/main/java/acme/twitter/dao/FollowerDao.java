@@ -14,9 +14,9 @@ public interface FollowerDao {
 
     boolean isExist(String whoUsername, String whomUsername);
 
-    void add(Account whoAccount, Account whomAccount);
+    void add(String whoUsername, String whomUsername);
 
-    void delete(Account whoAccount, Account whomAccount);
+    void delete(String whoUsername, String whomUsername);
 
     List<Account> findFollowingByUsername(String username);
 

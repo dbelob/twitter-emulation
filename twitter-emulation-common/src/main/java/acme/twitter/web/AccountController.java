@@ -359,7 +359,7 @@ public class AccountController {
         Account whoAccount = accountDao.findByUsername(principal.getName());
         Account whomAccount = accountDao.findByUsername(username);
 
-        followerDao.add(whoAccount, whomAccount);
+        followerDao.add(whoAccount.getUsername(), whomAccount.getUsername());
 
         return "redirect:/account/show/" + username;
     }
@@ -379,7 +379,7 @@ public class AccountController {
         Account whoAccount = accountDao.findByUsername(principal.getName());
         Account whomAccount = accountDao.findByUsername(username);
 
-        followerDao.delete(whoAccount, whomAccount);
+        followerDao.delete(whoAccount.getUsername(), whomAccount.getUsername());
 
         return "redirect:/account/show/" + username;
     }

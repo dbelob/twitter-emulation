@@ -57,26 +57,31 @@ public class JdbcFollowerDao implements FollowerDao {
     }
 
     @Override
-    public void add(Account whoAccount, Account whomAccount) {
+    public void add(String whoUsername, String whomUsername) {
         jdbcTemplate.update(
                 "insert into follower (who_account_id, whom_account_id) " +
-                        "select ?, ? " +
-                        "from dual " +
-                        "where not exists ( " +
-                        "   select * from follower " +
-                        "      where who_account_id = ? " +
-                        "        and whom_account_id = ?)",
-                whoAccount.getId(), whomAccount.getId(),
-                whoAccount.getId(), whomAccount.getId());
+                        "select a1.account_id, a2.account_id " +
+                        "from account a1, account a2 " +
+                        "where a1.username = ? " +
+                        "  and a2.username = ? " +
+                        "  and not exists ( " +
+                        "   select * " +
+                        "      from account a1, account a2, follower f " +
+                        "      where a1.account_id = f.who_account_id " +
+                        "        and a2.account_id = f.whom_account_id " +
+                        "        and a1.username = ? " +
+                        "        and a2.username = ?)",
+                whoUsername, whomUsername,
+                whoUsername, whomUsername);
     }
 
     @Override
-    public void delete(Account whoAccount, Account whomAccount) {
+    public void delete(String whoUsername, String whomUsername) {
         jdbcTemplate.update(
                 "delete from follower " +
-                        "where who_account_id = ? " +
-                        "  and whom_account_id = ?",
-                whoAccount.getId(), whomAccount.getId());
+                        "where who_account_id = (select account_id from account where username = ?) " +
+                        "  and whom_account_id = (select account_id from account where username = ?)",
+                whoUsername, whomUsername);
     }
 
     @Override
