@@ -1,6 +1,28 @@
 # Twitter emulation on Java
 
-The application emulates the main features of Twitter in several ways:
+The application emulates the main features of Twitter
+
+* log in;
+* account management:
+  * registration;
+  * editing;
+  * deleting;
+  * search by substring;
+* main page:
+  * account properties:
+    * name;
+    * description;
+    * tweets count;
+    * following count;
+    * follower count;
+  * timeline tweets;
+  * account tweets;
+  * following accounts;
+  * follower accounts;
+* tweet creating;
+* follow/unfollow.
+
+in several ways:
 
 1. Spring MVC (*Java* configuration)
 1. Spring Boot
@@ -26,6 +48,16 @@ The application emulates the main features of Twitter in several ways:
     (for *twitter-emulation-spring-boot* module)
 
 1. Access the deployed web application at: http://localhost:8080
+
+## Frameworks and libraries
+
+* [Spring](https://spring.io):
+  * [Spring MVC](https://spring.io/projects/spring-framework)
+  * [Spring Boot](https://spring.io/projects/spring-boot)
+  * [Spring Security](https://spring.io/projects/spring-security)
+  * [Spring Test](https://spring.io/projects/spring-framework)
+* [H2](http://www.h2database.com) or [Oracle Database](https://www.oracle.com/database/index.html) (data storage)
+* [TestContainers](https://www.testcontainers.org) (testing with [Docker](https://www.docker.com) containers)
 
 ## Tools
 
