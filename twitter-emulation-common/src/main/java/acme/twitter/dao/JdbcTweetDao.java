@@ -21,7 +21,7 @@ public class JdbcTweetDao implements TweetDao {
     }
 
     @Override
-    public List<Tweet> findByUsername(Account account) {
+    public List<Tweet> findByAccount(Account account) {
         return jdbcTemplate.query(
                 "select t.text, t.time " +
                         "from tweet t, account a " +
@@ -33,7 +33,7 @@ public class JdbcTweetDao implements TweetDao {
     }
 
     @Override
-    public List<Tweet> findAllByUsername(Account account) {
+    public List<Tweet> findTimelineByAccount(Account account) {
         return jdbcTemplate.query(
                 "select a.account_id, a.username, a.password, a.description, t.text, t.time " +
                         "from tweet t, ( " +

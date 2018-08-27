@@ -45,7 +45,7 @@ INSERT INTO tweet (account_id, text, time)
         FROM account
         WHERE username = 'jdoe';
 INSERT INTO tweet (account_id, text, time)
-    SELECT account_id, 'It is more fun to talk with someone who doesn''t use long, difficult words but rather short, easy words like "What about lunch?”',
+    SELECT account_id, 'It is more fun to talk with someone who doesn''t use long, difficult words but rather short, easy words like "What about lunch?"',
             DATEADD(HOUR, -5, DATEADD(MINUTE, -27, DATEADD(SECOND, -12, SYSDATE)))
         FROM account
         WHERE username = 'jdoe';

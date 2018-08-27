@@ -206,7 +206,7 @@ public class AccountController {
 
         Account account = accountDao.findByUsername(username);
         AccountStatistics accountStatistics = getAccountStatistics(principal.getName(), username);
-        List<Tweet> tweets = tweetDao.findAllByUsername(account);
+        List<Tweet> tweets = tweetDao.findTimelineByAccount(account);
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
@@ -266,7 +266,7 @@ public class AccountController {
         AccountStatistics accountStatistics = getAccountStatistics(
                 (principal != null) ? principal.getName() : username,
                 username);
-        List<Tweet> tweets = tweetDao.findByUsername(account);
+        List<Tweet> tweets = tweetDao.findByAccount(account);
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);

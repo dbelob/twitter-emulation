@@ -9,9 +9,9 @@ import java.util.List;
  * Tweet DAO.
  */
 public interface TweetDao {
-    List<Tweet> findByUsername(Account account);
+    List<Tweet> findByAccount(Account account);
 
-    List<Tweet> findAllByUsername(Account account);
+    List<Tweet> findTimelineByAccount(Account account);
 
     void add(String username, String text);
 
