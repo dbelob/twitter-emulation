@@ -9,12 +9,7 @@ The application emulates the main features of Twitter
   * deleting;
   * search by substring;
 * main page:
-  * account properties:
-    * name;
-    * description;
-    * tweets count;
-    * following count;
-    * follower count;
+  * account properties;
   * timeline tweets;
   * account tweets;
   * following accounts;
