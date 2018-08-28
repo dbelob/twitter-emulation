@@ -34,11 +34,15 @@ in several ways:
 
 1. From the command line with Maven:
 
-    `mvn jetty:run`
+    `mvn jetty:run` (*H2*)  
+    `mvn jetty:run -P development` (*H2*)  
+    `mvn jetty:run -P production` (*Oracle Database*)
 
     (for *twitter-emulation-spring-mvc-java* module)
 
-    `mvn spring-boot:run`
+    `mvn spring-boot:run` (*H2*)  
+    `mvn spring-boot:run -Dspring-boot.run.profiles=development` (*H2*)  
+    `mvn spring-boot:run -Dspring-boot.run.profiles=production` (*Oracle Database*)
 
     (for *twitter-emulation-spring-boot* module)
 
