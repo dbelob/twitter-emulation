@@ -41,8 +41,8 @@ in several ways:
     (for *twitter-emulation-spring-mvc-java* module)
 
     `mvn spring-boot:run` (*H2*)  
-    `mvn spring-boot:run -Dspring-boot.run.profiles=development` (*H2*)  
-    `mvn spring-boot:run -Dspring-boot.run.profiles=production` (*Oracle Database*)
+    `mvn spring-boot:run -P development` (*H2*)  
+    `mvn spring-boot:run -P production` (*Oracle Database*)
 
     (for *twitter-emulation-spring-boot* module)
 

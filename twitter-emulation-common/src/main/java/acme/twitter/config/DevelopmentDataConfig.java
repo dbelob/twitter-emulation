@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
-@Profile("development")
+@Profile({"development", "default"})
 public class DevelopmentDataConfig {
     // jdbc:h2:mem:testdb
     @Bean
