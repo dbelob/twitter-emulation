@@ -54,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
             .jdbcAuthentication()
                 .dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, true from account where username = ?")
+                .usersByUsernameQuery("select username, password, 'true' as enabled from account where username = ?")
                 .authoritiesByUsernameQuery("select username, 'ROLE_USER' as authority from account where username = ?")
                 .groupAuthoritiesByUsername("select 1 as id, 'GROUP_NAME' as group_name, 'ROLE_USER' as authority from account where username = ?")
                 .passwordEncoder(NoOpPasswordEncoder.getInstance());

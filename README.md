@@ -48,6 +48,10 @@ in several ways:
 
 1. Access the deployed web application at: http://localhost:8080
 
+*Oracle Database* connection properties:
+* `etc/jetty.xml` (*twitter-emulation-spring-mvc-java* module)  
+* `src/main/resources/application.properties` (*twitter-emulation-spring-boot* module)
+
 ## Frameworks and libraries
 
 * [Spring](https://spring.io):
