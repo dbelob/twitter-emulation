@@ -39,7 +39,7 @@ public abstract class TweetDaoTest {
     }
 
     @Test
-    public void findByAccount() {
+    public void findByAccountTest() {
         List<Tweet> tweets = tweetDao.findByAccount(new Account(1L, "jsmith", "password", "John Smith"));
 
         Assert.assertEquals(6, tweets.size());
@@ -58,7 +58,7 @@ public abstract class TweetDaoTest {
     }
 
     @Test
-    public void findTimelineByAccount() {
+    public void findTimelineByAccountTest() {
         List<Tweet> tweets = tweetDao.findTimelineByAccount(new Account(1L, "jsmith", "password", "John Smith"));
 
         Assert.assertEquals(9, tweets.size());
@@ -83,7 +83,7 @@ public abstract class TweetDaoTest {
     }
 
     @Test
-    public void add() {
+    public void addTest() {
         tweetDao.add("rroe", "Tweet text");
 
         List<Tweet> tweets = tweetDao.findTimelineByAccount(new Account(3L, "rroe", "password", "Richard Roe"));
@@ -93,7 +93,7 @@ public abstract class TweetDaoTest {
     }
 
     @Test
-    public void deleteAll() {
+    public void deleteAllTest() {
         tweetDao.deleteAll("jsmith");
 
         List<Tweet> tweets = tweetDao.findByAccount(new Account(3L, "rroe", "password", "Richard Roe"));
@@ -101,7 +101,7 @@ public abstract class TweetDaoTest {
     }
 
     @Test
-    public void countByUsername() {
+    public void countByUsernameTest() {
         Assert.assertEquals(6, tweetDao.countByUsername("jsmith"));
     }
 }

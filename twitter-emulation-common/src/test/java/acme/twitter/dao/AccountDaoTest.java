@@ -40,7 +40,7 @@ public abstract class AccountDaoTest {
     }
 
     @Test
-    public void add() throws AccountExistsException, AccountNotExistException {
+    public void addTest() throws AccountExistsException, AccountNotExistException {
         accountDao.add("user", "qwerty", "Description");
         Account account = accountDao.findByUsername("user");
 
@@ -50,7 +50,7 @@ public abstract class AccountDaoTest {
     }
 
     @Test
-    public void update() throws AccountNotExistException {
+    public void updateTest() throws AccountNotExistException {
         accountDao.update("jsmith", "12345", "Description");
         Account account = accountDao.findByUsername("jsmith");
 
@@ -60,13 +60,13 @@ public abstract class AccountDaoTest {
     }
 
     @Test(expected = AccountNotExistException.class)
-    public void delete() throws AccountNotExistException {
+    public void deleteTest() throws AccountNotExistException {
         accountDao.delete("alone");
         accountDao.findByUsername("alone");
     }
 
     @Test
-    public void findByUsername() throws AccountNotExistException {
+    public void findByUsernameTest() throws AccountNotExistException {
         Account account = accountDao.findByUsername("jsmith");
 
         Assert.assertEquals("jsmith", account.getUsername());
@@ -75,7 +75,7 @@ public abstract class AccountDaoTest {
     }
 
     @Test
-    public void findByUsernamePart() {
+    public void findByUsernamePartTest() {
         List<Account> accounts = accountDao.findByUsernamePart("j");
 
         Assert.assertEquals(2, accounts.size());

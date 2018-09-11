@@ -1,4 +1,4 @@
-# Twitter emulation on Java
+# Twitter emulation in Java
 
 The application emulates the main features of Twitter
 

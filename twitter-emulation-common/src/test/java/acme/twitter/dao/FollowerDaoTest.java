@@ -38,37 +38,37 @@ public abstract class FollowerDaoTest {
     }
 
     @Test
-    public void countFollowingByUsername() {
+    public void countFollowingByUsernameTest() {
         Assert.assertEquals(2, followerDao.countFollowingByUsername("jsmith"));
     }
 
     @Test
-    public void countFollowersByUsername() {
+    public void countFollowersByUsernameTest() {
         Assert.assertEquals(1, followerDao.countFollowersByUsername("jsmith"));
     }
 
     @Test
-    public void isExist() {
+    public void isExistTest() {
         Assert.assertTrue(followerDao.isExist("jsmith", "jdoe"));
         Assert.assertFalse(followerDao.isExist("jdoe", "rroe"));
     }
 
     @Test
-    public void add() {
+    public void addTest() {
         followerDao.add("jdoe", "rroe");
 
         Assert.assertTrue(followerDao.isExist("jdoe", "rroe"));
     }
 
     @Test
-    public void delete() {
+    public void deleteTest() {
         followerDao.delete("jsmith", "jdoe");
 
         Assert.assertFalse(followerDao.isExist("jsmith", "jdoe"));
     }
 
     @Test
-    public void findFollowingByUsername() {
+    public void findFollowingByUsernameTest() {
         List<Account> accounts = followerDao.findFollowingByUsername("jsmith");
 
         Assert.assertEquals(2, accounts.size());
@@ -77,7 +77,7 @@ public abstract class FollowerDaoTest {
     }
 
     @Test
-    public void findFollowersByUsername() {
+    public void findFollowersByUsernameTest() {
         List<Account> accounts = followerDao.findFollowersByUsername("jsmith");
 
         Assert.assertEquals(1, accounts.size());
