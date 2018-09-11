@@ -37,13 +37,11 @@ in several ways:
     `mvn jetty:run` (*H2*)  
     `mvn jetty:run -P development` (*H2*)  
     `mvn jetty:run -P production` (*Oracle Database*)
-
     (for *twitter-emulation-spring-mvc-java* module)
 
     `mvn spring-boot:run` (*H2*)  
     `mvn spring-boot:run -P development` (*H2*)  
     `mvn spring-boot:run -P production` (*Oracle Database*)
-
     (for *twitter-emulation-spring-boot* module)
 
 1. Access the deployed web application at: http://localhost:8080
