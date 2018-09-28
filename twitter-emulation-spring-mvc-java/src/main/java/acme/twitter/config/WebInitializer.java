@@ -7,8 +7,6 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * Spring MVC web initializer.
  */
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-    private static final String PROFILES_ACTIVE_PROPERTY = "spring.profiles.active";
-
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{RootConfig.class};
