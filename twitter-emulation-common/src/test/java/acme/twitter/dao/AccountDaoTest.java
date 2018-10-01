@@ -1,7 +1,7 @@
 package acme.twitter.dao;
 
 import acme.twitter.dao.exception.AccountExistsException;
-import acme.twitter.dao.exception.AccountNotExistException;
+import acme.twitter.dao.exception.AccountNotExistExceptions;
 import acme.twitter.dao.utils.TestSupport;
 import acme.twitter.domain.Account;
 import org.junit.*;
@@ -40,7 +40,7 @@ public abstract class AccountDaoTest {
     }
 
     @Test
-    public void addTest() throws AccountExistsException, AccountNotExistException {
+    public void addTest() throws AccountExistsException, AccountNotExistExceptions {
         accountDao.add("user", "qwerty", "Description");
         Account account = accountDao.findByUsername("user");
 
@@ -50,7 +50,7 @@ public abstract class AccountDaoTest {
     }
 
     @Test
-    public void updateTest() throws AccountNotExistException {
+    public void updateTest() throws AccountNotExistExceptions {
         accountDao.update("jsmith", "12345", "Description");
         Account account = accountDao.findByUsername("jsmith");
 
@@ -59,14 +59,14 @@ public abstract class AccountDaoTest {
         Assert.assertEquals("Description", account.getDescription());
     }
 
-    @Test(expected = AccountNotExistException.class)
-    public void deleteTest() throws AccountNotExistException {
+    @Test(expected = AccountNotExistExceptions.class)
+    public void deleteTest() throws AccountNotExistExceptions {
         accountDao.delete("alone");
         accountDao.findByUsername("alone");
     }
 
     @Test
-    public void findByUsernameTest() throws AccountNotExistException {
+    public void findByUsernameTest() throws AccountNotExistExceptions {
         Account account = accountDao.findByUsername("jsmith");
 
         Assert.assertEquals("jsmith", account.getUsername());

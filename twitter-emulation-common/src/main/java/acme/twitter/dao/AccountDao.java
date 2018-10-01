@@ -1,7 +1,7 @@
 package acme.twitter.dao;
 
 import acme.twitter.dao.exception.AccountExistsException;
-import acme.twitter.dao.exception.AccountNotExistException;
+import acme.twitter.dao.exception.AccountNotExistExceptions;
 import acme.twitter.domain.Account;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public interface AccountDao {
 
     void delete(String username);
 
-    Account findByUsername(String username) throws AccountNotExistException;
+    Account findByUsername(String username) throws AccountNotExistExceptions;
 
     List<Account> findByUsernamePart(String usernamePart);
 }
