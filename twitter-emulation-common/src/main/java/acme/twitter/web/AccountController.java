@@ -4,7 +4,7 @@ import acme.twitter.dao.AccountDao;
 import acme.twitter.dao.FollowerDao;
 import acme.twitter.dao.TweetDao;
 import acme.twitter.dao.exception.AccountExistsException;
-import acme.twitter.dao.exception.AccountNotExistExceptions;
+import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
 import acme.twitter.domain.AccountStatistics;
 import acme.twitter.domain.Tweet;
@@ -94,10 +94,10 @@ public class AccountController {
      * @param model     model
      * @param principal principal
      * @return view name
-     * @throws AccountNotExistExceptions if account does not not exists
+     * @throws AccountNotExistsException if account does not exist
      */
     @RequestMapping(value = "/profile", method = GET)
-    public String showProfileForm(Model model, Principal principal) throws AccountNotExistExceptions {
+    public String showProfileForm(Model model, Principal principal) throws AccountNotExistsException {
         Account account = accountDao.findByUsername(principal.getName());
         model.addAttribute(new AccountForm(account.getUsername(), account.getDescription()));
 
@@ -186,13 +186,13 @@ public class AccountController {
      * @param model     model
      * @param principal principal
      * @return view name
-     * @throws AccountNotExistExceptions if account does not not exists
+     * @throws AccountNotExistsException if account does not exist
      */
     @RequestMapping(value = "/show/{username}", method = RequestMethod.GET)
     public String showAccountForm(
             @PathVariable String username,
             Model model,
-            Principal principal) throws AccountNotExistExceptions {
+            Principal principal) throws AccountNotExistsException {
         if (principal != null) {
             log.debug("username: {}, principal.name: {}", username, principal.getName());
         } else {
@@ -224,14 +224,14 @@ public class AccountController {
      * @param model      model
      * @param principal  principal
      * @return view name
-     * @throws AccountNotExistExceptions if account does not not exists
+     * @throws AccountNotExistsException if account does not exist
      */
     @RequestMapping(value = "/search", method = POST)
     public String processSearch(
             @Valid SearchForm searchForm,
             Errors errors,
             Model model,
-            Principal principal) throws AccountNotExistExceptions {
+            Principal principal) throws AccountNotExistsException {
         if (errors.hasErrors()) {
             return "redirect:/account/show";
         }
@@ -255,13 +255,13 @@ public class AccountController {
      * @param model     model
      * @param principal principal
      * @return view name
-     * @throws AccountNotExistExceptions if account does not not exists
+     * @throws AccountNotExistsException if account does not exist
      */
     @RequestMapping(value = "/tweets/{username}", method = GET)
     public String processTweets(
             @PathVariable String username,
             Model model,
-            Principal principal) throws AccountNotExistExceptions {
+            Principal principal) throws AccountNotExistsException {
         Account account = accountDao.findByUsername(username);
         AccountStatistics accountStatistics = getAccountStatistics(
                 (principal != null) ? principal.getName() : username,
@@ -284,13 +284,13 @@ public class AccountController {
      * @param model     model
      * @param principal principal
      * @return view name
-     * @throws AccountNotExistExceptions if account does not not exists
+     * @throws AccountNotExistsException if account does not exist
      */
     @RequestMapping(value = "/following/{username}", method = GET)
     public String processFollowing(
             @PathVariable String username,
             Model model,
-            Principal principal) throws AccountNotExistExceptions {
+            Principal principal) throws AccountNotExistsException {
         Account account = accountDao.findByUsername(username);
         AccountStatistics accountStatistics = getAccountStatistics(
                 (principal != null) ? principal.getName() : username,
@@ -313,13 +313,13 @@ public class AccountController {
      * @param model     model
      * @param principal principal
      * @return view name
-     * @throws AccountNotExistExceptions if account does not not exists
+     * @throws AccountNotExistsException if account does not exist
      */
     @RequestMapping(value = "/followers/{username}", method = GET)
     public String processFollowers(
             @PathVariable String username,
             Model model,
-            Principal principal) throws AccountNotExistExceptions {
+            Principal principal) throws AccountNotExistsException {
         Account account = accountDao.findByUsername(username);
         AccountStatistics accountStatistics = getAccountStatistics(
                 (principal != null) ? principal.getName() : username,
@@ -350,12 +350,12 @@ public class AccountController {
      * @param username  username
      * @param principal principal
      * @return view name
-     * @throws AccountNotExistExceptions if account does not not exists
+     * @throws AccountNotExistsException if account does not exist
      */
     @RequestMapping(value = "/follow/{username}", method = POST)
     public String processFollow(
             @PathVariable String username,
-            Principal principal) throws AccountNotExistExceptions {
+            Principal principal) throws AccountNotExistsException {
         Account whoAccount = accountDao.findByUsername(principal.getName());
         Account whomAccount = accountDao.findByUsername(username);
 
@@ -370,12 +370,12 @@ public class AccountController {
      * @param username  username
      * @param principal principal
      * @return view name
-     * @throws AccountNotExistExceptions if account does not not exists
+     * @throws AccountNotExistsException if account does not exist
      */
     @RequestMapping(value = "/unfollow/{username}", method = POST)
     public String processUnfollow(
             @PathVariable String username,
-            Principal principal) throws AccountNotExistExceptions {
+            Principal principal) throws AccountNotExistsException {
         Account whoAccount = accountDao.findByUsername(principal.getName());
         Account whomAccount = accountDao.findByUsername(username);
 
@@ -384,7 +384,7 @@ public class AccountController {
         return "redirect:/account/show/" + username;
     }
 
-    @ExceptionHandler(AccountNotExistExceptions.class)
+    @ExceptionHandler(AccountNotExistsException.class)
     public String handleAccountNotExistException() {
         return "redirect:/account/show";
     }

@@ -1,7 +1,7 @@
 package acme.twitter.dao;
 
 import acme.twitter.dao.exception.AccountExistsException;
-import acme.twitter.dao.exception.AccountNotExistExceptions;
+import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -51,14 +51,14 @@ public class JdbcAccountDao implements AccountDao {
     }
 
     @Override
-    public Account findByUsername(String username) throws AccountNotExistExceptions {
+    public Account findByUsername(String username) throws AccountNotExistsException {
         try {
             return jdbcTemplate.queryForObject(
                     "select account_id, username, password, description from account where username = ?",
                     new AccountRowMapper(),
                     username);
         } catch (EmptyResultDataAccessException e) {
-            throw new AccountNotExistExceptions();
+            throw new AccountNotExistsException();
         }
     }
 
