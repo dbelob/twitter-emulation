@@ -19,7 +19,7 @@ The application emulates the main features of Twitter
 
 in several ways:
 
-1. Spring MVC (*Java* configuration)
+1. Spring MVC
 1. Spring Boot
 
 ## Requirements
@@ -37,7 +37,7 @@ in several ways:
     `mvn jetty:run` (*H2*)  
     `mvn jetty:run -P development` (*H2*)  
     `mvn jetty:run -P production` (*Oracle Database*)  
-    (for *twitter-emulation-spring-mvc-java* module)
+    (for *twitter-emulation-spring-mvc* module)
 
     `mvn spring-boot:run` (*H2*)  
     `mvn spring-boot:run -P development` (*H2*)  
@@ -47,7 +47,7 @@ in several ways:
 1. Access the deployed web application at: http://localhost:8080
 
 *Oracle Database* connection properties:
-* `etc/jetty.xml` (*twitter-emulation-spring-mvc-java* module)  
+* `etc/jetty.xml` (*twitter-emulation-spring-mvc* module)  
 * `src/main/resources/application.properties` (*twitter-emulation-spring-boot* module)
 
 ## Frameworks and libraries
