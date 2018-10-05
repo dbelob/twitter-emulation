@@ -14,8 +14,8 @@
         <sf:errors path="*" element="div" cssClass="errors"/>
         <sf:textarea path="text" cssClass="tweetTextarea"/>
         <p>
-            <input type="submit" name="cancel" value="Cancel"/>
             <input type="submit" name="tweet" value="Tweet"/>
+            <input type="submit" name="cancel" value="Cancel"/>
         </p>
     </sf:form>
 </div>

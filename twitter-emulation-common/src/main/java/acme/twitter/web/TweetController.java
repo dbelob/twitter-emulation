@@ -40,16 +40,6 @@ public class TweetController {
     }
 
     /**
-     * Processes tweet creation to cancel
-     *
-     * @return view name
-     */
-    @RequestMapping(method = POST, params = "cancel")
-    public String cancelNewTweet() {
-        return "redirect:/account/show";
-    }
-
-    /**
      * Processes tweet creation to save
      *
      * @param tweetForm tweet form
@@ -68,6 +58,16 @@ public class TweetController {
 
         tweetDao.add(principal.getName(), tweetForm.getText());
 
+        return "redirect:/account/show";
+    }
+
+    /**
+     * Processes tweet creation to cancel
+     *
+     * @return view name
+     */
+    @RequestMapping(method = POST, params = "cancel")
+    public String cancelNewTweet() {
         return "redirect:/account/show";
     }
 }
