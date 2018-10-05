@@ -8,18 +8,16 @@
 </head>
 <body onload="document.tweetForm.text.focus();">
 <div class="webPage">
-    <div class="centered">
-        <h1>New tweet</h1>
+    <h1>New tweet</h1>
 
-        <sf:form name="tweetForm" method="POST" modelAttribute="tweetForm">
-            <sf:errors path="*" element="div" cssClass="errors"/>
-            <sf:textarea path="text" cssClass="tweetTextarea"/>
-            <p>
-                <input type="submit" name="cancel" value="Cancel"/>
-                <input type="submit" name="tweet" value="Tweet"/>
-            </p>
-        </sf:form>
-    </div>
+    <sf:form name="tweetForm" method="POST" modelAttribute="tweetForm">
+        <sf:errors path="*" element="div" cssClass="errors"/>
+        <sf:textarea path="text" cssClass="tweetTextarea"/>
+        <p>
+            <input type="submit" name="cancel" value="Cancel"/>
+            <input type="submit" name="tweet" value="Tweet"/>
+        </p>
+    </sf:form>
 </div>
 </body>
 </html>

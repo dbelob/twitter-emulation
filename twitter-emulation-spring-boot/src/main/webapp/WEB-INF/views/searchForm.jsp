@@ -8,29 +8,27 @@
 </head>
 <body>
 <div class="webPage">
-    <div class="centered">
-        <table class="mainTable centered">
-            <jsp:include page="topBar.jsp"/>
-            <tr>
-                <jsp:include page="accountTable.jsp"/>
-                <td>
-                    <h3>${title}</h3>
-                    <table class="searchResultTable">
-                        <c:forEach items="${searchAccountList}" var="searchAccount">
-                            <tr>
-                                <td>
-                                    <a class="description" href="<c:url value="/account/show/${searchAccount.username}" />">${searchAccount.description}</a>
-                                    &nbsp;
-                                    @${searchAccount.username}
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </td>
-                <jsp:include page="rightTable.jsp"/>
-            </tr>
-        </table>
-    </div>
+    <table class="mainTable centered">
+        <jsp:include page="topBar.jsp"/>
+        <tr>
+            <jsp:include page="accountTable.jsp"/>
+            <td>
+                <h3>${title}</h3>
+                <table class="searchResultTable">
+                    <c:forEach items="${searchAccountList}" var="searchAccount">
+                        <tr>
+                            <td>
+                                <a class="description" href="<c:url value="/account/show/${searchAccount.username}" />">${searchAccount.description}</a>
+                                &nbsp;
+                                @${searchAccount.username}
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </td>
+            <jsp:include page="rightTable.jsp"/>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

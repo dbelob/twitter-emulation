@@ -9,17 +9,15 @@
 </head>
 <body>
 <div class="webPage">
-    <div class="centered">
-        <h1>Delete account</h1>
+    <h1>Delete account</h1>
 
-        <sf:form method="POST">
-            <p>Are you sure to delete account '<sec:authentication property="principal.username" />'?</p>
-            <p>
-                <input type="submit" name="cancel" value="Cancel"/>
-                <input type="submit" name="delete" value="Delete"/>
-            </p>
-        </sf:form>
-    </div>
+    <sf:form method="POST">
+        <p>Are you sure to delete account '<sec:authentication property="principal.username"/>'?</p>
+        <p>
+            <input type="submit" name="cancel" value="Cancel"/>
+            <input type="submit" name="delete" value="Delete"/>
+        </p>
+    </sf:form>
 </div>
 </body>
 </html>

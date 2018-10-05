@@ -5,9 +5,6 @@ body {
 div.webPage {
     max-width: 1000px;
     margin: 0 auto;
-}
-
-div.centered {
     text-align: center;
 }
 
