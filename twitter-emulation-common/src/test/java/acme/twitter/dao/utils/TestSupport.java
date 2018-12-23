@@ -6,8 +6,6 @@ import java.sql.SQLException;
 public interface TestSupport {
     DataSource getDataSource();
 
-    void start() throws SQLException;
-
     void setUp() throws SQLException;
 
     void tearDown() throws SQLException;

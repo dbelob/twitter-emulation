@@ -15,10 +15,8 @@ public abstract class FollowerDaoTest {
     private static TestSupport testSupport;
     private static FollowerDao followerDao;
 
-    protected static void start(TestSupport testSupport) throws SQLException {
+    protected static void start(TestSupport testSupport) {
         FollowerDaoTest.testSupport = testSupport;
-
-        testSupport.start();
         followerDao = new JdbcFollowerDao(new JdbcTemplate(testSupport.getDataSource()));
     }
 

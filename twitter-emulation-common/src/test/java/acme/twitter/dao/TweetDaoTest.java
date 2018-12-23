@@ -16,10 +16,8 @@ public abstract class TweetDaoTest {
     private static TestSupport testSupport;
     private static TweetDao tweetDao;
 
-    protected static void start(TestSupport testSupport) throws SQLException {
+    protected static void start(TestSupport testSupport) {
         TweetDaoTest.testSupport = testSupport;
-
-        testSupport.start();
         tweetDao = new JdbcTweetDao(new JdbcTemplate(testSupport.getDataSource()));
     }
 

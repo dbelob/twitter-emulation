@@ -10,17 +10,16 @@ import java.sql.SQLException;
 public class H2TestSupport implements TestSupport {
     private EmbeddedDatabase database;
 
-    @Override
-    public DataSource getDataSource() {
-        return database;
-    }
-
-    @Override
-    public void start() {
+    public H2TestSupport() {
         database = new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
                 .addScript("schema-h2.sql")
                 .build();
+    }
+
+    @Override
+    public DataSource getDataSource() {
+        return database;
     }
 
     @Override

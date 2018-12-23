@@ -16,13 +16,7 @@ public class OracleDatabaseTestSupport implements TestSupport {
     private OracleContainer oracleContainer;
     private DataSource dataSource;
 
-    @Override
-    public DataSource getDataSource() {
-        return dataSource;
-    }
-
-    @Override
-    public void start() throws SQLException {
+    public OracleDatabaseTestSupport() throws SQLException {
         oracleContainer = new OracleContainer();
         oracleContainer.start();
 
@@ -35,6 +29,11 @@ public class OracleDatabaseTestSupport implements TestSupport {
         dataSource = new HikariDataSource(config);
 
         TestUtils.executeSqlScript(dataSource.getConnection(), "/schema-oracledb.sql", "/");
+    }
+
+    @Override
+    public DataSource getDataSource() {
+        return dataSource;
     }
 
     @Override

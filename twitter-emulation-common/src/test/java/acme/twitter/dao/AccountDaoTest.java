@@ -17,10 +17,8 @@ public abstract class AccountDaoTest {
     private static TestSupport testSupport;
     private static AccountDao accountDao;
 
-    protected static void start(TestSupport testSupport) throws SQLException {
+    protected static void start(TestSupport testSupport) {
         AccountDaoTest.testSupport = testSupport;
-
-        testSupport.start();
         accountDao = new JdbcAccountDao(new JdbcTemplate(testSupport.getDataSource()));
     }
 
