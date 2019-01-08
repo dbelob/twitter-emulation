@@ -4,12 +4,20 @@
       <a class="navbar-brand">TWITTER</a>
     </div>
   </div>
-  <div class="row text-white">
-    <div class="col-3 bg-info p-2">
+  <div class="row">
+    <div class="col-3 bg-info p-2 text-white">
       Tweets Following Followers
     </div>
-    <div class="col-9 bg-success p-2">
-      {{tweets.length}} Tweets
+    <div class="col-9 p-2">
+      <div *ngFor="let tweet of tweets" class="card m-1 p-1 bg-light">
+        <h4>
+          Account {{tweet.accountId}}
+          <span class="badge badge-pill badge-primary float-right">
+            {{ tweet.time | date:"dd.MM.yyyy hh:mm:ss" }}
+          </span>
+        </h4>
+        <div class="card-text bg-white p-1">{{tweet.text}}</div>
+      </div>
     </div>
   </div>
 </div>
