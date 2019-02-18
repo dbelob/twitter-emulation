@@ -19,8 +19,8 @@ The application emulates the main features of Twitter
 
 in several ways:
 
-1. Spring MVC
-1. Spring Boot
+1. Spring MVC (JSP)
+1. Spring Boot (JSP)
 
 ## Requirements
 
