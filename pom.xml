@@ -42,7 +42,7 @@
 
     <modules>
         <module>twitter-emulation-common</module>
-        <module>twitter-emulation-spring-mvc</module>
+        <module>twitter-emulation-spring-mvc-jsp</module>
         <module>twitter-emulation-spring-boot</module>
     </modules>
 
