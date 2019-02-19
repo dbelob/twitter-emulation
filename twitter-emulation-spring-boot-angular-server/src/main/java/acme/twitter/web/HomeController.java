@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
+//TODO: delete class
 public class HomeController {
     @GetMapping("/resource")
     @ResponseBody
