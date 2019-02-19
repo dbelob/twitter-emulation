@@ -33,7 +33,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("redirect:/account/show");
+        //TODO: uncomment
+//        registry.addViewController("/").setViewName("redirect:/account/show");
         registry.addViewController("/login").setViewName("loginForm");
     }
 
