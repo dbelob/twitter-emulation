@@ -2,8 +2,10 @@ package acme.twitter.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -20,5 +22,10 @@ public class HomeController {
         model.put("content", "Hello World");
 
         return model;
+    }
+
+    @RequestMapping("/user")
+    public Principal user(Principal user) {
+        return user;
     }
 }
