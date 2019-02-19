@@ -23,13 +23,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //TODO: uncomment
         http
-            .formLogin()
-                .loginPage("/login")
-            .and()
-            .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Support GET for logout with CSRF
-            .and()
+//            .formLogin()
+//                .loginPage("/login")
+//            .and()
+//            .logout()
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Support GET for logout with CSRF
+//            .and()
             .httpBasic()
             .and()
             .authorizeRequests()
