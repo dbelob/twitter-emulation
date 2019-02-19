@@ -20,6 +20,7 @@
 
         <clean.plugin.version>3.1.0</clean.plugin.version>
         <compiler.plugin.version>3.7.0</compiler.plugin.version>
+        <frontend.plugin.version>1.6</frontend.plugin.version>
         <war.plugin.version>3.2.1</war.plugin.version>
         <jetty.maven.version>9.4.10.v20180503</jetty.maven.version>
 
@@ -80,6 +81,15 @@
                 <version>${war.plugin.version}</version>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <version>${frontend.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <dependencyManagement>
