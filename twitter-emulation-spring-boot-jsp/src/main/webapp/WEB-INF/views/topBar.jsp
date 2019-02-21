@@ -3,5 +3,5 @@
     <jsp:include page="authenticatedTopBar.jsp"/>
 </sec:authorize>
 <sec:authorize access="!isAuthenticated()">
-    <jsp:include page="notAuthenticatedTopBar.jsp"/>
+    <jsp:include page="unauthenticatedTopBar.jsp"/>
 </sec:authorize>
