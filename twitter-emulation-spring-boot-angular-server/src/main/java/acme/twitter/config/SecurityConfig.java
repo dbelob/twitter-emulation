@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import javax.sql.DataSource;
 
@@ -44,11 +45,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/account/followers/**").permitAll()
 //                .antMatchers("/css/**").permitAll()
 //                .antMatchers("/h2-console/**").permitAll()  // Allow H2 Database Console
-                .anyRequest().authenticated();
+                .anyRequest().authenticated()
+                .and()
+                .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
         // Allow H2 Database Console, http://localhost:8080/h2-console
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+//        http.csrf().disable();
+//        http.headers().frameOptions().disable();
     }
 
     @Override
