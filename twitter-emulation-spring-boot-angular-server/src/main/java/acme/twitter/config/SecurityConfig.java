@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -31,18 +31,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //            .logout()
 //                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Support GET for logout with CSRF
 //            .and()
-            .httpBasic()
-            .and()
-            .authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/account/register").permitAll()
-                .antMatchers("/account/show").authenticated()
-                .antMatchers("/account/show/**").permitAll()
-                .antMatchers("/account/tweets/**").permitAll()
-                .antMatchers("/account/following/**").permitAll()
-                .antMatchers("/account/followers/**").permitAll()
-                .antMatchers("/css/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()  // Allow H2 Database Console
+                .httpBasic()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/index.html", "/", "/home", "/login").permitAll()
+//                .antMatchers("/login").permitAll()
+//                .antMatchers("/account/register").permitAll()
+//                .antMatchers("/account/show").authenticated()
+//                .antMatchers("/account/show/**").permitAll()
+//                .antMatchers("/account/tweets/**").permitAll()
+//                .antMatchers("/account/following/**").permitAll()
+//                .antMatchers("/account/followers/**").permitAll()
+//                .antMatchers("/css/**").permitAll()
+//                .antMatchers("/h2-console/**").permitAll()  // Allow H2 Database Console
                 .anyRequest().authenticated();
 
         // Allow H2 Database Console, http://localhost:8080/h2-console
@@ -51,9 +52,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("*.bundle.*");
+    }
+
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-            .jdbcAuthentication()
+                .jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select username, password, 'true' as enabled from account where username = ?")
                 .authoritiesByUsernameQuery("select username, 'ROLE_USER' as authority from account where username = ?")

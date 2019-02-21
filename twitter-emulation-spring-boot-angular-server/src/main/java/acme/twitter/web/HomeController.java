@@ -24,7 +24,8 @@ public class HomeController {
         return model;
     }
 
-    @RequestMapping("/user")
+    @GetMapping("/user")
+    @ResponseBody
     public Principal user(Principal user) {
         return user;
     }
