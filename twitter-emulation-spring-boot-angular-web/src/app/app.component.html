@@ -2,7 +2,7 @@
   <ul class="nav nav-pills">
     <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a></li>
     <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/login">Login</a></li>
-    <li class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li>
+    <li class="nav-item"><a class="nav-link" href (click)="$event.preventDefault();logout()">Logout</a></li>
   </ul>
 </div>
 <div class="container">
