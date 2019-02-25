@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
+@RequestMapping("/api")
 //TODO: delete class
 public class HomeController {
     @GetMapping("/resource")
