@@ -14,6 +14,7 @@ import {ProfileComponent} from './profile.component';
 import {DeleteAccountComponent} from './delete-account.component';
 import {NewTweetComponent} from './new-tweet.component';
 import {SearchComponent} from './search.component';
+import {NotFoundComponent} from './not-found.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -26,7 +27,6 @@ export class XhrInterceptor implements HttpInterceptor {
 }
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'account/show', component: AccountComponent},
@@ -34,7 +34,9 @@ const routes: Routes = [
   {path: 'account/profile', component: ProfileComponent},
   {path: 'account/delete', component: DeleteAccountComponent},
   {path: 'account/search', component: SearchComponent},
-  {path: 'tweet', component: NewTweetComponent}
+  {path: 'tweet', component: NewTweetComponent},
+  {path: '', pathMatch: 'full', redirectTo: 'login'},
+  {path: "**", component: NotFoundComponent}
 ];
 
 @NgModule({
@@ -47,7 +49,8 @@ const routes: Routes = [
     ProfileComponent,
     DeleteAccountComponent,
     NewTweetComponent,
-    SearchComponent
+    SearchComponent,
+    NotFoundComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

@@ -1,5 +1,5 @@
-<div>
-  <h1 class="bg-info p-1 text-white">Log in</h1>
+<div class="container p-1">
+  <h3 class="bg-info p-1 text-white">Log in</h3>
 
   <div class="alert alert-danger" [hidden]="!error">
     There was a problem logging in. Please try again.
@@ -17,6 +17,9 @@
              class="form-control" id="password" name="password"
              [(ngModel)]="credentials.password"/>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="text-center">
+      <button class="btn btn-secondary m-1" routerLink="/account/register">Register</button>
+      <button type="submit" class="btn btn-primary m-1">Log in</button>
+    </div>
   </form>
 </div>
