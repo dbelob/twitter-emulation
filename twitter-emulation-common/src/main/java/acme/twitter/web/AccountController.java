@@ -140,8 +140,8 @@ public class AccountController {
      * @return view name
      */
     @RequestMapping(value = "/delete", method = GET)
-    public String showDeleteForm() {
-        return "deleteForm";
+    public String showDeleteAccountForm() {
+        return "deleteAccountForm";
     }
 
     /**
