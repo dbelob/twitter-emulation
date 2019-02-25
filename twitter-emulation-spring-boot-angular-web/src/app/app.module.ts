@@ -28,13 +28,13 @@ export class XhrInterceptor implements HttpInterceptor {
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
-  {path: 'account', component: AccountComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'registration', component: RegistrationComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'delete-account', component: DeleteAccountComponent},
-  {path: 'new-tweet', component: NewTweetComponent},
-  {path: 'search', component: SearchComponent}
+  {path: 'account/show', component: AccountComponent},
+  {path: 'account/register', component: RegistrationComponent},
+  {path: 'account/profile', component: ProfileComponent},
+  {path: 'account/delete', component: DeleteAccountComponent},
+  {path: 'account/search', component: SearchComponent},
+  {path: 'tweet', component: NewTweetComponent}
 ];
 
 @NgModule({
