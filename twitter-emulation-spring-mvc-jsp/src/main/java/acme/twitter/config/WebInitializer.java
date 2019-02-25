@@ -1,6 +1,5 @@
 package acme.twitter.config;
 
-import acme.twitter.web.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
