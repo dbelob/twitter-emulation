@@ -7,6 +7,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {AppService} from './app.service';
 import {HomeComponent} from './home.component';
+import {AccountComponent} from './account.component';
 import {LoginComponent} from './login.component';
 import {RegistrationComponent} from './registration.component';
 import {ProfileComponent} from './profile.component';
@@ -27,6 +28,7 @@ export class XhrInterceptor implements HttpInterceptor {
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
+  {path: 'account', component: AccountComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'profile', component: ProfileComponent},
@@ -39,6 +41,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
+    AccountComponent,
     LoginComponent,
     RegistrationComponent,
     ProfileComponent,
