@@ -1,3 +1,34 @@
-<div>
-  <h3 class="bg-info p-1 text-white">Registration</h3>
+<div class="container p-2">
+  <h3 class="bg-info p-1 text-white text-center">Registration</h3>
+
+  <form role="form" (submit)="register()">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text"
+             class="form-control" id="username" name="username"
+             [(ngModel)]="credentials.username"/>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password"
+             class="form-control" id="password" name="password"
+             [(ngModel)]="credentials.password"/>
+    </div>
+    <div class="form-group">
+      <label for="confirmation">Confirmation:</label>
+      <input type="password"
+             class="form-control" id="confirmation" name="confirmation"
+             [(ngModel)]="credentials.confirmation"/>
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input type="text"
+             class="form-control" id="description" name="description"
+             [(ngModel)]="credentials.description"/>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-secondary m-1" routerLink="/login">Log in</button>
+      <button type="submit" class="btn btn-primary m-1">Register</button>
+    </div>
+  </form>
 </div>
