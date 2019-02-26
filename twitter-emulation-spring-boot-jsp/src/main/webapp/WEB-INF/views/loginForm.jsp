@@ -39,9 +39,9 @@
         </table>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <p>
-            <a href="<c:url value="/account/register" />">Register</a>
-            &nbsp;
             <input type="submit" value="Log in"/>
+            &nbsp;
+            <a href="<c:url value="/account/register" />">Register</a>
         </p>
     </form>
 </div>

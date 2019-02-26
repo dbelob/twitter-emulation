@@ -14,8 +14,8 @@
     <sf:form method="POST">
         <p>Are you sure to delete account '<sec:authentication property="principal.username"/>'?</p>
         <p>
-            <input type="submit" name="cancel" value="Cancel"/>
             <input type="submit" name="delete" value="Delete"/>
+            <input type="submit" name="cancel" value="Cancel"/>
         </p>
     </sf:form>
 </div>

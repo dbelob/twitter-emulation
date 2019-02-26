@@ -31,9 +31,9 @@
             </tr>
         </table>
         <p>
-            <a href="<c:url value="/login" />">Log in</a>
-            &nbsp;
             <input type="submit" value="Register"/>
+            &nbsp;
+            <a href="<c:url value="/login" />">Log in</a>
         </p>
     </sf:form>
 </div>
