@@ -1,3 +1,35 @@
-<div>
-  <h3 class="bg-info p-1 text-white">Profile</h3>
+<div class="container p-2">
+  <h3 class="bg-info p-1 text-white text-center">Profile</h3>
+
+  <form role="form" (submit)="save()">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text"
+             class="form-control" id="username" name="username"
+             [(ngModel)]="credentials.username"/>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password"
+             class="form-control" id="password" name="password"
+             [(ngModel)]="credentials.password"/>
+    </div>
+    <div class="form-group">
+      <label for="confirmation">Confirmation:</label>
+      <input type="password"
+             class="form-control" id="confirmation" name="confirmation"
+             [(ngModel)]="credentials.confirmation"/>
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input type="text"
+             class="form-control" id="description" name="description"
+             [(ngModel)]="credentials.description"/>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary m-1">Save</button>
+      <button class="btn btn-secondary m-1" routerLink="/account/show">Cancel</button>
+      <button class="btn btn-link m-1" routerLink="/account/delete">Delete</button>
+    </div>
+  </form>
 </div>

@@ -10,4 +10,8 @@ export class DeleteAccountComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  delete() {
+    //TODO: implement
+  }
 }

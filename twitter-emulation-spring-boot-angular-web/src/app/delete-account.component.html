@@ -1,3 +1,11 @@
-<div>
-  <h3 class="bg-info p-1 text-white">Delete account</h3>
+<div class="container p-2">
+  <h3 class="bg-danger p-1 text-white text-center">Delete account</h3>
+
+  <div class="alert text-center">
+    Are you sure to delete account 'jsmith'?
+  </div>
+  <div class="text-center">
+    <button class="btn btn-danger m-1" (click)="delete()">Delete</button>
+    <button class="btn btn-secondary m-1" routerLink="/account/profile">Cancel</button>
+  </div>
 </div>
