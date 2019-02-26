@@ -10,4 +10,8 @@ export class NewTweetComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  tweet() {
+    //TODO: implement
+  }
 }

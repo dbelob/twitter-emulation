@@ -1,3 +1,9 @@
-<p>
-  account works!
-</p>
+<div class="container p-2">
+  <div class="text-center">
+    <button class="btn btn-link m-1" routerLink="/account/show">Main</button>
+    <button class="btn btn-primary m-1" routerLink="/account/search">Search</button>
+    <button class="btn btn-primary m-1" routerLink="/tweet">Tweet</button>
+    <button class="btn btn-link m-1" routerLink="/account/profile">Profile</button>
+    <button class="btn btn-link m-1" (click)="logout()">Logout</button>
+  </div>
+</div>

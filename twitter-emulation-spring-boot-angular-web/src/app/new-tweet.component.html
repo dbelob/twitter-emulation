@@ -1,3 +1,13 @@
-<div>
-  <h3 class="bg-info p-1 text-white">New tweet</h3>
+<div class="container p-2">
+  <h3 class="bg-info p-1 text-white text-center">New tweet</h3>
+
+  <form role="form" (submit)="tweet()">
+    <div class="form-group">
+      <textarea class="form-control" id="text" rows="3"></textarea>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary m-1">Tweet</button>
+      <button class="btn btn-secondary m-1" routerLink="/account/show">Cancel</button>
+    </div>
+  </form>
 </div>

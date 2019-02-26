@@ -10,4 +10,8 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  logout() {
+    //TODO: implement
+  }
 }
