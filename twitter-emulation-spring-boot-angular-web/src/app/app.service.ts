@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class AppService {
+  baseUrl = '/api/';
   authenticated = false;
 
   constructor(private http: HttpClient) {
@@ -13,7 +14,7 @@ export class AppService {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
 
-    this.http.get('user', {headers: headers}).subscribe(response => {
+    this.http.get(this.baseUrl + 'user', {headers: headers}).subscribe(response => {
       if (response['name']) {
         this.authenticated = true;
       } else {
