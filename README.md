@@ -19,8 +19,9 @@ The application emulates the main features of Twitter
 
 in several ways:
 
-1. Spring MVC (JSP)
-1. Spring Boot (JSP)
+1. Spring MVC, JSP
+1. Spring Boot, JSP
+1. Spring Boot, Angular
 
 ## Requirements
 
@@ -29,26 +30,64 @@ in several ways:
 
 ## Running
 
-1. Change directory:
-    `cd <maven module directory>`
+### Spring MVC, JSP
 
-1. From the command line with Maven:
+1. Change directory:
+
+    `cd twitter-emulation-spring-mvc-jsp`
+
+1. From the command line with *Maven*:
 
     `mvn jetty:run` (*H2*)  
     `mvn jetty:run -P development` (*H2*)  
     `mvn jetty:run -P production` (*Oracle Database*)  
-    (for *twitter-emulation-spring-mvc* module)
+    (*Oracle Database* connection properties: `etc/jetty.xml`)
+
+1. Access the deployed web application at:
+
+    http://localhost:8080
+
+### Spring Boot, JSP
+
+1. Change directory:
+
+    `cd twitter-emulation-spring-boot-jsp`
+
+1. From the command line with *Maven*:
 
     `mvn spring-boot:run` (*H2*)  
     `mvn spring-boot:run -P development` (*H2*)  
     `mvn spring-boot:run -P production` (*Oracle Database*)  
-    (for *twitter-emulation-spring-boot* module)
+    (*Oracle Database* connection properties: `src/main/resources/application.properties`)
 
-1. Access the deployed web application at: http://localhost:8080
+1. Access the deployed web application at:
 
-*Oracle Database* connection properties:
-* `etc/jetty.xml` (*twitter-emulation-spring-mvc* module)  
-* `src/main/resources/application.properties` (*twitter-emulation-spring-boot* module)
+    http://localhost:8080
+
+### Spring Boot, Angular
+
+1. Change directory:
+
+    `cd twitter-emulation-spring-boot-angular-server`
+
+1. From the command line with *Maven*:
+
+    `mvn spring-boot:run` (*H2*)  
+    `mvn spring-boot:run -P development` (*H2*)  
+    `mvn spring-boot:run -P production` (*Oracle Database*)  
+    (*Oracle Database* connection properties: `src/main/resources/application.properties`)
+
+1. Change directory:
+
+    `cd twitter-emulation-spring-boot-angular-web`
+
+1. From the command line with *npm*:
+
+    `npm start`
+
+1. Access the deployed web application at:
+
+    http://localhost:4200
 
 ## Frameworks and libraries
 
