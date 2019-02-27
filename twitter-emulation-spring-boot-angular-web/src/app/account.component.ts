@@ -17,11 +17,8 @@ export class AccountComponent implements OnInit {
   }
 
   logout() {
-    this.http.post('logout', {}).pipe(
-      finalize(() => {
-        this.app.authenticated = false;
-        this.router.navigateByUrl('/login');
-      })
-    ).subscribe();
+    this.app.logout(() => {
+      this.router.navigateByUrl('/login');
+    });
   }
 }
