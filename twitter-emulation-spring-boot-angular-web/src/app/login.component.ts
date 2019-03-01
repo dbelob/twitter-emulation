@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {AppService} from './app.service';
-import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   templateUrl: './login.component.html'
@@ -9,14 +8,24 @@ import {Router} from '@angular/router';
 
 export class LoginComponent {
   credentials = {username: '', password: ''};
+  error = false;
+  logout = false;
 
-  constructor(private app: AppService, private http: HttpClient, private router: Router) {
+  constructor(private app: AppService, private router: Router, route: ActivatedRoute) {
+    route.queryParams.subscribe(params => {
+      this.logout = params["logout"] || false;
+    });
   }
 
   login() {
     this.app.authenticate(this.credentials, () => {
-      this.router.navigateByUrl('/account/show');
-    });
+        this.router.navigateByUrl('/account/show');
+      },
+      () => {
+        this.error = true;
+        this.logout = false;
+      },
+      undefined);
     return false;
   }
 }

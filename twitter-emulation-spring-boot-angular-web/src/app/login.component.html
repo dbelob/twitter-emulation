@@ -2,7 +2,10 @@
   <h3 class="bg-info p-1 text-white text-center">Log in</h3>
 
   <div class="alert alert-danger" [hidden]="!error">
-    There was a problem logging in. Please try again.
+    Failed to login.
+  </div>
+  <div class="alert alert-success" [hidden]="!logout">
+    You have been logged out.
   </div>
   <form role="form" (submit)="login()">
     <div class="form-group">

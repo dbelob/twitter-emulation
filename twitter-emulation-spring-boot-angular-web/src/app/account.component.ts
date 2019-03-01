@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AppService} from "./app.service";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {finalize} from "rxjs/operators";
 
 @Component({
   selector: 'app-account',
@@ -10,7 +9,7 @@ import {finalize} from "rxjs/operators";
 })
 export class AccountComponent implements OnInit {
   constructor(private app: AppService, private http: HttpClient, private router: Router) {
-    this.app.authenticate(undefined, undefined);
+    this.app.authenticate(undefined, undefined, undefined, undefined);
   }
 
   ngOnInit() {
@@ -18,7 +17,11 @@ export class AccountComponent implements OnInit {
 
   logout() {
     this.app.logout(() => {
-      this.router.navigateByUrl('/login');
+      this.router.navigate(['/login'], {
+        queryParams: {
+          "logout": true
+        }
+      });
     });
   }
 }
