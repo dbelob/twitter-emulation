@@ -14,6 +14,7 @@ import { DeleteAccountComponent } from './profile/delete-account.component';
 import { NewTweetComponent } from './tweet/new-tweet.component';
 import { SearchComponent } from './home/search.component';
 import { NotFoundComponent } from './not-found.component';
+import { AuthenticationGuardService } from "./authentication-guard.service";
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -27,13 +28,13 @@ export class XhrInterceptor implements HttpInterceptor {
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'account/show', component: AccountComponent},
   {path: 'account/register', component: RegistrationComponent},
-  {path: 'account/profile', component: ProfileComponent},
-  {path: 'account/delete', component: DeleteAccountComponent},
-  {path: 'account/search', component: SearchComponent},
-  {path: 'tweet', component: NewTweetComponent},
-  {path: '', pathMatch: 'full', redirectTo: 'login'},
+  {path: 'account/show', component: AccountComponent, canActivate: [AuthenticationGuardService]},
+  {path: 'account/profile', component: ProfileComponent, canActivate: [AuthenticationGuardService]},
+  {path: 'account/delete', component: DeleteAccountComponent, canActivate: [AuthenticationGuardService]},
+  {path: 'account/search', component: SearchComponent, canActivate: [AuthenticationGuardService]},
+  {path: 'tweet', component: NewTweetComponent, canActivate: [AuthenticationGuardService]},
+  {path: '', pathMatch: 'full', redirectTo: 'account/show'},
   {path: "**", component: NotFoundComponent}
 ];
 
