@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppService } from '../app.service';
+import { AuthenticationService } from '../authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,14 +11,14 @@ export class LoginComponent {
   error = false;
   logout = false;
 
-  constructor(private app: AppService, private router: Router, route: ActivatedRoute) {
+  constructor(private auth: AuthenticationService, private router: Router, route: ActivatedRoute) {
     route.queryParams.subscribe(params => {
       this.logout = params["logout"] || false;
     });
   }
 
   login() {
-    this.app.authenticate(this.credentials, () => {
+    this.auth.authenticate(this.credentials, () => {
         this.router.navigateByUrl('/account/show');
       },
       () => {

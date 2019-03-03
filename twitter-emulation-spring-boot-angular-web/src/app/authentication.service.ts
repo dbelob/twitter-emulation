@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { finalize } from "rxjs/operators";
 
 @Injectable()
-export class AppService {
+export class AuthenticationService {
   baseUrl = '/api/';
   authenticated = false;
 
