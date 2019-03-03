@@ -7,13 +7,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 import { HomeComponent } from './home.component';
-import { AccountComponent } from './account.component';
-import { LoginComponent } from './login.component';
-import { RegistrationComponent } from './registration.component';
-import { ProfileComponent } from './profile.component';
-import { DeleteAccountComponent } from './delete-account.component';
-import { NewTweetComponent } from './new-tweet.component';
-import { SearchComponent } from './search.component';
+import { AccountComponent } from './home/account.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { ProfileComponent } from './profile/profile.component';
+import { DeleteAccountComponent } from './profile/delete-account.component';
+import { NewTweetComponent } from './tweet/new-tweet.component';
+import { SearchComponent } from './home/search.component';
 import { NotFoundComponent } from './not-found.component';
 
 @Injectable()
