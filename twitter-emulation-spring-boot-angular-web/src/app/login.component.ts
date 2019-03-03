@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {AppService} from './app.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { AppService } from './app.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   templateUrl: './login.component.html'

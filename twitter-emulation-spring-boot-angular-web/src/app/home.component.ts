@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {AppService} from './app.service';
-import {HttpClient} from '@angular/common/http';
+import { Component } from '@angular/core';
+import { AppService } from './app.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   templateUrl: './home.component.html'

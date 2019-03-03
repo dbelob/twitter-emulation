@@ -1,20 +1,20 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {Injectable, NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {RouterModule, Routes} from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { Injectable, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 
-import {AppComponent} from './app.component';
-import {AppService} from './app.service';
-import {HomeComponent} from './home.component';
-import {AccountComponent} from './account.component';
-import {LoginComponent} from './login.component';
-import {RegistrationComponent} from './registration.component';
-import {ProfileComponent} from './profile.component';
-import {DeleteAccountComponent} from './delete-account.component';
-import {NewTweetComponent} from './new-tweet.component';
-import {SearchComponent} from './search.component';
-import {NotFoundComponent} from './not-found.component';
+import { AppComponent } from './app.component';
+import { AppService } from './app.service';
+import { HomeComponent } from './home.component';
+import { AccountComponent } from './account.component';
+import { LoginComponent } from './login.component';
+import { RegistrationComponent } from './registration.component';
+import { ProfileComponent } from './profile.component';
+import { DeleteAccountComponent } from './delete-account.component';
+import { NewTweetComponent } from './new-tweet.component';
+import { SearchComponent } from './search.component';
+import { NotFoundComponent } from './not-found.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {

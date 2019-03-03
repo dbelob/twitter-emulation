@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {finalize} from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { finalize } from "rxjs/operators";
 
 @Injectable()
 export class AppService {
