@@ -6,7 +6,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
-import { HomeComponent } from './home.component';
 import { AccountComponent } from './home/account.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -27,7 +26,6 @@ export class XhrInterceptor implements HttpInterceptor {
 }
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'account/show', component: AccountComponent},
   {path: 'account/register', component: RegistrationComponent},
@@ -42,7 +40,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     AccountComponent,
     LoginComponent,
     RegistrationComponent,
