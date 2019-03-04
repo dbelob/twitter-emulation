@@ -26,16 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //TODO: uncomment
         http
-            .formLogin()
-                .loginPage("/login")
-            .and()
-//            .logout()
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Support GET for logout with CSRF
-//            .and()
                 .httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/index.html", "/", "/home", "/login").permitAll()
+                .antMatchers("/index.html", "/", "/login").permitAll()
 //                .antMatchers("/login").permitAll()
 //                .antMatchers("/account/register").permitAll()
 //                .antMatchers("/account/show").authenticated()
@@ -49,10 +43,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf()
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-
-        // Allow H2 Database Console, http://localhost:8080/h2-console
-//        http.csrf().disable();
-//        http.headers().frameOptions().disable();
     }
 
     @Override

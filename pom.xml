@@ -94,22 +94,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>acme.twitter-emulation</groupId>
-                <artifactId>twitter-emulation-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>acme.twitter-emulation</groupId>
-                <artifactId>twitter-emulation-spring-mvc-java</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>acme.twitter-emulation</groupId>
-                <artifactId>twitter-emulation-spring-boot</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
             <!-- Spring -->
             <dependency>
                 <groupId>org.springframework</groupId>

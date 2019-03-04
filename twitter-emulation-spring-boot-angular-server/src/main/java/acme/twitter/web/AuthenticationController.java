@@ -12,19 +12,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/api")
-//TODO: delete class
-public class HomeController {
-    @GetMapping("/resource")
-    @ResponseBody
-    public Map<String, Object> home() {
-        Map<String, Object> model = new HashMap<>();
-
-        model.put("id", UUID.randomUUID().toString());
-        model.put("content", "Hello World");
-
-        return model;
-    }
-
+public class AuthenticationController {
     @GetMapping("/user")
     @ResponseBody
     public Principal user(Principal user) {

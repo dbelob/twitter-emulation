@@ -10,7 +10,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
   }
 
-  authenticate(credentials, next, error, complete) {
+  authenticate(credentials, next, error) {
     const headers = new HttpHeaders(credentials ? {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
@@ -24,12 +24,7 @@ export class AuthenticationService {
         }
         return next && next();
       },
-      () => {
-        return error && error();
-      },
-      () => {
-        return complete && complete();
-      });
+      error);
   }
 
   logout(callback) {

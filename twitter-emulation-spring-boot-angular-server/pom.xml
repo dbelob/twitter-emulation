@@ -51,6 +51,13 @@
         <dependency>
             <groupId>acme.twitter-emulation</groupId>
             <artifactId>twitter-emulation-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>acme.twitter-emulation</groupId>
+            <artifactId>twitter-emulation-spring-boot-angular-web</artifactId>
+            <version>${project.version}</version>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- Spring -->

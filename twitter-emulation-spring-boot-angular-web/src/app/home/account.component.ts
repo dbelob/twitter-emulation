@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 })
 export class AccountComponent implements OnInit {
   constructor(private auth: AuthenticationService, private http: HttpClient, private router: Router) {
-    this.auth.authenticate(undefined, undefined, undefined, undefined);
+    // this.auth.authenticate(undefined, undefined, undefined);
   }
 
   ngOnInit() {

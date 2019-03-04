@@ -30,6 +30,7 @@
         <dependency>
             <groupId>acme.twitter-emulation</groupId>
             <artifactId>twitter-emulation-common</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- Spring -->

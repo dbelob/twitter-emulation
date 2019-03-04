@@ -24,8 +24,7 @@ export class LoginComponent {
       () => {
         this.error = true;
         this.logout = false;
-      },
-      undefined);
+      });
     return false;
   }
 }
