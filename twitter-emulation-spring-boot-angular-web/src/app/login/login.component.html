@@ -1,10 +1,10 @@
 <div class="container-dialog p-2">
   <h3 class="bg-info p-1 text-white text-center">Log in</h3>
 
-  <div class="alert alert-danger" [hidden]="!error">
+  <div class="alert alert-danger text-center" [hidden]="!error">
     Failed to login.
   </div>
-  <div class="alert alert-success" [hidden]="!logout">
+  <div class="alert alert-success text-center" [hidden]="!logout">
     You have been logged out.
   </div>
   <form role="form" (submit)="login()">
