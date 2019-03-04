@@ -56,7 +56,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthenticationService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true}],
+  providers: [AuthenticationService, AuthenticationGuardService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 
