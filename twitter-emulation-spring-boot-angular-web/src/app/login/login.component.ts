@@ -18,12 +18,13 @@ export class LoginComponent {
   }
 
   login() {
+    this.logout = false;
+
     this.auth.authenticate(this.credentials, () => {
         this.router.navigateByUrl('/account/show');
       },
       () => {
         this.error = true;
-        this.logout = false;
       });
     return false;
   }
