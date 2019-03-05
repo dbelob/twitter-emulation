@@ -1,9 +1,13 @@
 <div class="container p-2">
-  <div class="text-center">
-    <button class="btn btn-link m-1" routerLink="/account/show">Main</button>
-    <button class="btn btn-primary m-1" routerLink="/account/search">Search</button>
-    <button class="btn btn-primary m-1" routerLink="/tweet">Tweet</button>
-    <button class="btn btn-link m-1" routerLink="/account/profile">Profile</button>
-    <button class="btn btn-link m-1" (click)="logout()">Logout</button>
+  <app-top-bar></app-top-bar>
+  <div class="row text-black m-2">
+    <div class="col-3 p-2 bg-light">
+      <app-account-table></app-account-table>
+    </div>
+    <div class="col-6 p-2 bg-info">
+    </div>
+    <div class="col-3 p-2 bg-light">
+      <app-right-table></app-right-table>
+    </div>
   </div>
 </div>

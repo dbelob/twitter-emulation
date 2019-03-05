@@ -15,6 +15,9 @@ import { NewTweetComponent } from './tweet/new-tweet.component';
 import { SearchComponent } from './home/search.component';
 import { NotFoundComponent } from './not-found.component';
 import { AuthenticationGuardService } from "./authentication-guard.service";
+import { TopBarComponent } from './home/top-bar.component';
+import { AccountTableComponent } from './home/account-table.component';
+import { RightTableComponent } from './home/right-table.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -48,7 +51,10 @@ const routes: Routes = [
     DeleteAccountComponent,
     NewTweetComponent,
     SearchComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TopBarComponent,
+    AccountTableComponent,
+    RightTableComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
