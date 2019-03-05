@@ -24,21 +24,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //TODO: uncomment
         http
                 .httpBasic()
                 .and()
                 .authorizeRequests()
                 .antMatchers("/index.html", "/", "/login").permitAll()
-//                .antMatchers("/login").permitAll()
-//                .antMatchers("/account/register").permitAll()
-//                .antMatchers("/account/show").authenticated()
-//                .antMatchers("/account/show/**").permitAll()
-//                .antMatchers("/account/tweets/**").permitAll()
-//                .antMatchers("/account/following/**").permitAll()
-//                .antMatchers("/account/followers/**").permitAll()
-//                .antMatchers("/css/**").permitAll()
-//                .antMatchers("/h2-console/**").permitAll()  // Allow H2 Database Console
                 .anyRequest().authenticated()
                 .and()
                 .csrf()
@@ -47,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("*.bundle.*");
+        web.ignoring().antMatchers("/*.js");
     }
 
     @Override
