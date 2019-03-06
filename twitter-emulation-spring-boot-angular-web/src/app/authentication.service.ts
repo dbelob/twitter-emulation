@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { finalize } from "rxjs/operators";
+import { catchError, finalize, map } from "rxjs/operators";
+import { Observable, of } from "rxjs";
 
 @Injectable()
 export class AuthenticationService {
@@ -10,28 +11,45 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
   }
 
-  authenticate(credentials, next, error) {
+  authenticate(credentials, success?: () => void, error?: () => void): Observable<boolean> {
     const headers = new HttpHeaders(credentials ? {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
 
-    this.http.get(this.baseUrl + 'user', {headers: headers}
-    ).subscribe(response => {
-        if (response['name']) {
-          this.authenticated = true;
-        } else {
-          this.authenticated = false;
+    return this.http.get(this.baseUrl + 'user', {headers: headers}).pipe(
+      map(response => {
+          if (response['name']) {
+            this.authenticated = true;
+            if (success) {
+              success();
+            }
+            return true;
+          } else {
+            this.authenticated = false;
+            if (error) {
+              error();
+            }
+            return false;
+          }
         }
-        return next && next();
-      },
-      error);
+      ),
+      catchError(err => {
+        this.authenticated = false;
+        if (error) {
+          error();
+        }
+        return of(false)
+      })
+    );
   }
 
-  logout(callback) {
+  logout(callback?: () => void) {
     this.http.post('logout', {}).pipe(
       finalize(() => {
         this.authenticated = false;
-        return callback && callback();
+        if (callback) {
+          callback();
+        }
       })
     ).subscribe();
   }

@@ -25,7 +25,7 @@ export class LoginComponent {
       },
       () => {
         this.error = true;
-      });
+      }).subscribe();
     return false;
   }
 }
