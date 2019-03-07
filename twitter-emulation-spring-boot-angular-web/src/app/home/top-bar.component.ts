@@ -22,4 +22,8 @@ export class TopBarComponent implements OnInit {
       });
     });
   }
+
+  search() {
+    //TODO: implement
+  }
 }
