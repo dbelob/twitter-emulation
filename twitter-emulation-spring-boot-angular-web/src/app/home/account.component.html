@@ -1,21 +1,21 @@
 <div class="container p-0">
   <app-top-bar></app-top-bar>
   <div class="row text-black m-0">
-    <div class="col-3 p-3 bg-light">
+    <div class="col-3 p-1">
       <app-account-table></app-account-table>
     </div>
     <div class="col-6 p-1">
       <div *ngFor="let tweet of tweets" class="card m-0 p-1 bg-light">
         <h6>
-          <a href="#">Full name{{tweet.accountId}}</a> @account{{tweet.accountId}}
+          <a class="font-weight-bold" href="#">{{tweet.accountUsername}}</a> @{{tweet.accountDescription}}
           <span class="badge badge-pill badge-primary float-right">
-            {{ tweet.time | date:"dd.MM.yyyy hh:mm:ss" }}
+            {{tweet.time | date:"dd.MM.yyyy hh:mm:ss"}}
           </span>
         </h6>
         <div class="card-text bg-white p-1">{{tweet.text}}</div>
       </div>
     </div>
-    <div class="col-3 p-3 bg-light">
+    <div class="col-3 p-1">
       <app-right-table></app-right-table>
     </div>
   </div>

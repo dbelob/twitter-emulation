@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './right-table.component.html'
 })
 export class RightTableComponent implements OnInit {
+  private copyrightDate = new Date();
+
   constructor() {
   }
 
