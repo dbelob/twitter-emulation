@@ -53,7 +53,7 @@ textarea.tweetTextarea {
     height: 100px;
 }
 
-a.description, a.statistics {
+a.description, td.description, a.statistics {
     font-weight: bold;
 }
 

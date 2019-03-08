@@ -2,7 +2,7 @@
 <td>
     <table class="accountTable">
         <tr>
-            <td colspan="3">
+            <td colspan="3" class="description">
                 ${account.description}
             </td>
         </tr>
