@@ -12,7 +12,7 @@
     <table class="mainTable centered">
         <jsp:include page="topBar.jsp"/>
         <tr>
-            <jsp:include page="accountTable.jsp"/>
+            <jsp:include page="accountInfo.jsp"/>
             <td>
                 <c:if test="${title != null}">
                     <h3>${title}</h3>

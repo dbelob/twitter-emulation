@@ -11,7 +11,7 @@
     <table class="mainTable centered">
         <jsp:include page="topBar.jsp"/>
         <tr>
-            <jsp:include page="accountTable.jsp"/>
+            <jsp:include page="accountInfo.jsp"/>
             <td>
                 <h3>${title}</h3>
                 <table class="searchResultTable">
