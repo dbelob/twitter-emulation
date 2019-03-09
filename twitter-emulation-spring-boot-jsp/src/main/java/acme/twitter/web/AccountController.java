@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -212,6 +213,7 @@ public class AccountController {
         model.addAttribute(accountStatistics);
         model.addAttribute(tweets);
         model.addAttribute(new SearchForm());
+        model.addAttribute("copyrightDate", new Date());
 
         return "accountForm";
     }
@@ -244,6 +246,7 @@ public class AccountController {
         model.addAttribute(accountStatistics);
         model.addAttribute("title", "Search Result");
         model.addAttribute("searchAccountList", accounts);
+        model.addAttribute("copyrightDate", new Date());
 
         return "searchForm";
     }
@@ -273,6 +276,7 @@ public class AccountController {
         model.addAttribute("title", "Tweets");
         model.addAttribute(tweets);
         model.addAttribute(new SearchForm());
+        model.addAttribute("copyrightDate", new Date());
 
         return "accountForm";
     }
@@ -302,6 +306,7 @@ public class AccountController {
         model.addAttribute("title", "Following");
         model.addAttribute("searchAccountList", accounts);
         model.addAttribute(new SearchForm());
+        model.addAttribute("copyrightDate", new Date());
 
         return "searchForm";
     }
@@ -331,6 +336,7 @@ public class AccountController {
         model.addAttribute("title", "Followers");
         model.addAttribute("searchAccountList", accounts);
         model.addAttribute(new SearchForm());
+        model.addAttribute("copyrightDate", new Date());
 
         return "searchForm";
     }
