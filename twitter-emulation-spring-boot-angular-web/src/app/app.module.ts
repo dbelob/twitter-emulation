@@ -16,7 +16,7 @@ import { SearchComponent } from './home/search.component';
 import { NotFoundComponent } from './not-found.component';
 import { AuthenticationGuardService } from "./authentication-guard.service";
 import { TopBarComponent } from './home/top-bar.component';
-import { AccountTableComponent } from './home/account-table.component';
+import { AccountInfoComponent } from './home/account-info.component';
 import { RightTableComponent } from './home/right-table.component';
 
 @Injectable()
@@ -53,7 +53,7 @@ const routes: Routes = [
     SearchComponent,
     NotFoundComponent,
     TopBarComponent,
-    AccountTableComponent,
+    AccountInfoComponent,
     RightTableComponent
   ],
   imports: [

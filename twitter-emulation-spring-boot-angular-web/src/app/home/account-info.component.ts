@@ -18,10 +18,10 @@ export class AccountStatistics {
 }
 
 @Component({
-  selector: 'app-account-table',
-  templateUrl: './account-table.component.html'
+  selector: 'app-account-info',
+  templateUrl: './account-info.component.html'
 })
-export class AccountTableComponent implements OnInit {
+export class AccountInfoComponent implements OnInit {
   private account: Account = new Account('jsmith', 'John Smith');
   private accountStatistics: AccountStatistics = new AccountStatistics(6, 2, 1);
 
