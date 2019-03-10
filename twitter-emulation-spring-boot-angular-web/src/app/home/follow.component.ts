@@ -12,4 +12,12 @@ export class FollowComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  follow() {
+    //TODO: implement
+  }
+
+  unfollow() {
+    //TODO: implement
+  }
 }
