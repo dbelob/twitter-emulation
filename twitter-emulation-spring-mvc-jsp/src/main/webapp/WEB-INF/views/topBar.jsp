@@ -11,13 +11,25 @@
                 <table class="searchTable">
                     <tr>
                         <td>
-                            <sf:input type="search" placeholder="Search accounts..." path="usernamePart"/>
-                        </td>
-                        <td>
-                            <input type="submit" value="Search"/>
+                            <div class="inputWrapper">
+                                <sf:input type="search" placeholder="Search accounts..." path="usernamePart"
+                                          class="searchInput"/>
+                            </div>
+                            <input type="submit" class="searchButton" value="Search"/>
                         </td>
                     </tr>
                 </table>
+
+                <%--<table class="searchTable">--%>
+                <%--<tr>--%>
+                <%--<td>--%>
+                <%--<sf:input type="search" placeholder="Search accounts..." path="usernamePart"/>--%>
+                <%--</td>--%>
+                <%--<td>--%>
+                <%--<input type="submit" value="Search"/>--%>
+                <%--</td>--%>
+                <%--</tr>--%>
+                <%--</table>--%>
             </sf:form>
         </td>
         <td>

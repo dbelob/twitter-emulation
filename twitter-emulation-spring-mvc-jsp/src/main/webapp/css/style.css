@@ -1,5 +1,5 @@
 body {
-	font-family: sans-serif;
+    font-family: sans-serif;
 }
 
 div.webPage {
@@ -17,13 +17,38 @@ table.mainTable tr td {
     vertical-align: top;
 }
 
-table.searchTable tr td {
-    padding: 0 2px;
+div.inputWrapper {
+    margin-right: 65px;
+    /*padding: 0 2px;*/
+}
+
+input.searchInput {
+    float: left;
+    width: 100%;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
+}
+
+table.searchTable {
     width: 100%;
 }
 
-table.searchTable tr td:first-child input {
-    width: 100%;
+table.searchTable tr td {
+    padding: 0 2px;
+    /*width: 100%;*/
+}
+
+/*table.searchTable tr td:first-child input {*/
+    /*float: left;*/
+    /*width: 100%;*/
+    /*-webkit-box-sizing: border-box; !* Safari/Chrome, other WebKit *!*/
+    /*-moz-box-sizing: border-box; !* Firefox, other Gecko *!*/
+    /*box-sizing: border-box; !* Opera/IE 8+ *!*/
+/*}*/
+
+input.searchButton {
+    width: 65px;
 }
 
 table.tweetButtonTable tr td {
