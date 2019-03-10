@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-right-table',
-  templateUrl: './right-table.component.html'
+  selector: 'app-follow',
+  templateUrl: './follow.component.html'
 })
-export class RightTableComponent implements OnInit {
+export class FollowComponent implements OnInit {
   private copyrightDate = new Date();
 
   constructor() {

@@ -17,7 +17,7 @@ import { NotFoundComponent } from './not-found.component';
 import { AuthenticationGuardService } from "./authentication-guard.service";
 import { TopBarComponent } from './home/top-bar.component';
 import { AccountInfoComponent } from './home/account-info.component';
-import { RightTableComponent } from './home/right-table.component';
+import { FollowComponent } from './home/follow.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -54,7 +54,7 @@ const routes: Routes = [
     NotFoundComponent,
     TopBarComponent,
     AccountInfoComponent,
-    RightTableComponent
+    FollowComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
