@@ -26,7 +26,7 @@
                     </c:forEach>
                 </table>
             </td>
-            <jsp:include page="rightTable.jsp"/>
+            <jsp:include page="follow.jsp"/>
         </tr>
     </table>
 </div>
