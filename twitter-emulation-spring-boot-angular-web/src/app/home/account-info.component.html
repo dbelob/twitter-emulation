@@ -1,24 +1,34 @@
 <div class="card p-3 bg-light">
-  <table class="w-100">
-    <tr>
-      <td colspan="3" class="font-weight-bold">
-        {{account.description}}
-      </td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        @{{account.username}}
-      </td>
-    </tr>
-    <tr>
+  <div class="row font-weight-bold">
+    <div class="col-12">
+      {{account.description}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      @{{account.username}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
       <td class="small"><a class="font-weight-bold" href="#">Tweets</a></td>
+    </div>
+    <div class="col-4">
       <td class="small"><a class="font-weight-bold" href="#">Following</a></td>
+    </div>
+    <div class="col-4">
       <td class="small"><a class="font-weight-bold" href="#">Followers</a></td>
-    </tr>
-    <tr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
       <td class="small"><a class="font-weight-bold" href="#">{{accountStatistics.tweetsCount}}</a></td>
+    </div>
+    <div class="col-4">
       <td class="small"><a class="font-weight-bold" href="#">{{accountStatistics.followingCount}}</a></td>
+    </div>
+    <div class="col-4">
       <td class="small"><a class="font-weight-bold" href="#">{{accountStatistics.followersCount}}</a></td>
-    </tr>
-  </table>
+    </div>
+  </div>
 </div>
