@@ -39,11 +39,12 @@ table.tweetTable, table.searchResultTable {
     width: 500px;
 }
 
-table.companyTable, table.followTable {
+table.followTable {
     width: 225px;
+    border-spacing: 0;
 }
 
-table.tweetTable tr td, table.accountTable tr td, table.companyTable tr td {
+table.tweetTable tr td, table.accountTable tr td, table.followTable tr td {
     background-color: lightgray;
     border: 5px solid lightgray;
 }
