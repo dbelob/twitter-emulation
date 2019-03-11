@@ -66,6 +66,29 @@ in several ways:
 
 ### Spring Boot, Angular
 
+#### Method 1
+
+1. From the command line with *Maven* (in the root directory):
+
+    `mvn clean package -Dmaven.test.skip=true`
+
+1. Change directory:
+
+    `cd twitter-emulation-spring-boot-angular-server`
+
+1. From the command line with *Maven*:
+
+    `mvn spring-boot:run` (*H2*)  
+    `mvn spring-boot:run -P development` (*H2*)  
+    `mvn spring-boot:run -P production` (*Oracle Database*)  
+    (*Oracle Database* connection properties: `src/main/resources/application.properties`)
+
+1. Access the deployed web application at:
+
+    http://localhost:8080
+
+#### Method 2
+
 1. Change directory:
 
     `cd twitter-emulation-spring-boot-angular-server`
