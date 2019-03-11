@@ -17,8 +17,12 @@ table.mainTable tr td {
     vertical-align: top;
 }
 
+table.searchTable {
+    width: 100%;
+}
+
 table.searchTable tr td {
-    padding: 0 2px;
+    padding: 0;
     width: 100%;
 }
 
