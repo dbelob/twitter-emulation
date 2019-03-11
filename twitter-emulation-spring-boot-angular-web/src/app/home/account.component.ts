@@ -1,14 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-export class Tweet {
-  constructor(
-    public accountUsername?: string,
-    public accountDescription?: string,
-    public text?: string,
-    public time?: Date
-  ) {
-  }
-}
+import { Tweet } from "../tweet";
+import { TweetService } from "../tweet.service";
 
 @Component({
   selector: 'app-account',
@@ -27,7 +19,7 @@ export class AccountComponent implements OnInit {
     new Tweet('John Smith', 'jsmith', 'At nobis voluptaria sed, quo at eius laudem gloriatur, ne sapientem salutandi pro. Erat quaeque electram vim at.', new Date()),
   ];
 
-  constructor() {
+  constructor(private tweet: TweetService) {
   }
 
   ngOnInit() {
