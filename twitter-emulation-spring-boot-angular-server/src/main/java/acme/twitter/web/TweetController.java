@@ -32,6 +32,13 @@ public class TweetController {
         this.tweetDao = tweetDao;
     }
 
+    /**
+     * Returns tweet timeline.
+     *
+     * @param principal principal
+     * @return tweet timeline
+     * @throws AccountNotExistsException if account not exists
+     */
     @GetMapping("/timeline")
     @ResponseBody
     private List<TweetDto> getTimeline(Principal principal) throws AccountNotExistsException {
