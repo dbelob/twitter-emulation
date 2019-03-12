@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 public class AuthenticationController {
     @GetMapping("/user")
     @ResponseBody

@@ -7,7 +7,7 @@
     <div class="col-6 p-1">
       <div *ngFor="let tweet of tweets" class="card m-0 p-1 bg-light">
         <h6>
-          <a class="font-weight-bold" href="#">{{tweet.username}}</a> @{{tweet.description}}
+          <a class="font-weight-bold" href="#">{{tweet.description}}</a> @{{tweet.username}}
           <span class="badge badge-pill badge-primary float-right">
             {{tweet.date | date:"dd.MM.yyyy hh:mm:ss"}}
           </span>

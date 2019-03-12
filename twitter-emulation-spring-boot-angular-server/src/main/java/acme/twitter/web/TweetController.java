@@ -10,9 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.security.Principal;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,16 +34,20 @@ public class TweetController {
 
     @GetMapping("/timeline")
     @ResponseBody
-    private List<TweetDto> getTimeline(@RequestParam String username) throws AccountNotExistsException {
-        Account account = accountDao.findByUsername(username);
-        List<Tweet> tweets = tweetDao.findTimelineByAccount(account);
+    private List<TweetDto> getTimeline(Principal principal) throws AccountNotExistsException {
+        if (principal != null) {
+            Account account = accountDao.findByUsername(principal.getName());
+            List<Tweet> tweets = tweetDao.findTimelineByAccount(account);
 
-        return tweets.stream()
-                .map(t -> new TweetDto(
-                        t.getAccount().getUsername(),
-                        t.getAccount().getDescription(),
-                        t.getText(),
-                        t.getDate()))
-                .collect(Collectors.toList());
+            return tweets.stream()
+                    .map(t -> new TweetDto(
+                            t.getAccount().getUsername(),
+                            t.getAccount().getDescription(),
+                            t.getText(),
+                            t.getDate()))
+                    .collect(Collectors.toList());
+        } else {
+            return Collections.emptyList();
+        }
     }
 }
