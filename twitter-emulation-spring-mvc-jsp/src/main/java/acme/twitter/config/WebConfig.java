@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("acme.twitter.web")
+@ComponentScan({"acme.twitter.web", "springfox.documentation.swagger.web"})
 public class WebConfig implements WebMvcConfigurer {
     @Bean
     public ViewResolver viewResolver() {

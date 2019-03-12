@@ -112,6 +112,12 @@ in several ways:
 
     http://localhost:4200
 
+## Development
+
+* Swagger UI
+
+    http://localhost:8080/swagger-ui.html
+
 ## Frameworks and libraries
 
 * [Spring](https://spring.io):
@@ -121,6 +127,7 @@ in several ways:
   * [Spring Test](https://spring.io/projects/spring-framework)
 * [H2](http://www.h2database.com) or [Oracle Database](https://www.oracle.com/database/index.html) (data storage)
 * [TestContainers](https://www.testcontainers.org) (testing with [Docker](https://www.docker.com) containers)
+* [Swagger](https://swagger.io) (REST API documentation)
 
 ## Tools
 
