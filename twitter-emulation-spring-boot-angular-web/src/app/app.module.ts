@@ -14,7 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { DeleteAccountComponent } from './profile/delete-account.component';
 import { NewTweetComponent } from './tweet/new-tweet.component';
 import { SearchComponent } from './home/search.component';
-import { NotFoundComponent } from './not-found.component';
+import { NotFoundComponent } from './unknown/not-found.component';
 import { AuthenticationGuardService } from "./authentication-guard.service";
 import { TopBarComponent } from './home/top-bar.component';
 import { AccountInfoComponent } from './home/account-info.component';
