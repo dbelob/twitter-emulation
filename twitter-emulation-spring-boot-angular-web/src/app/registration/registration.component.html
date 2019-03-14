@@ -1,7 +1,12 @@
 <div class="container-dialog p-2">
   <h3 class="bg-info p-1 text-white text-center">Registration</h3>
 
-  <form novalidate (ngSubmit)="register(newAccount)">
+  <form novalidate #form="ngForm" (ngSubmit)="submitForm(form)">
+    <div class="alert alert-danger text-center"
+         *ngIf="formSubmitted && form.invalid">
+      There are problems with the form
+    </div>
+
     <div class="form-group">
       <label for="username">Username:</label>
       <input type="text"
