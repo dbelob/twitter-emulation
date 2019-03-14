@@ -15,7 +15,7 @@ import { DeleteAccountComponent } from './profile/delete-account.component';
 import { NewTweetComponent } from './tweet/new-tweet.component';
 import { SearchComponent } from './home/search.component';
 import { NotFoundComponent } from './unknown/not-found.component';
-import { AuthenticationGuardService } from "./authentication-guard.service";
+import { AuthenticationGuard } from "./authentication.guard";
 import { TopBarComponent } from './home/top-bar.component';
 import { AccountInfoComponent } from './home/account-info.component';
 import { FollowComponent } from './home/follow.component';
@@ -33,11 +33,11 @@ export class XhrInterceptor implements HttpInterceptor {
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'account/register', component: RegistrationComponent},
-  {path: 'account/show', component: AccountComponent, canActivate: [AuthenticationGuardService]},
-  {path: 'account/profile', component: ProfileComponent, canActivate: [AuthenticationGuardService]},
-  {path: 'account/delete', component: DeleteAccountComponent, canActivate: [AuthenticationGuardService]},
-  {path: 'account/search', component: SearchComponent, canActivate: [AuthenticationGuardService]},
-  {path: 'tweet', component: NewTweetComponent, canActivate: [AuthenticationGuardService]},
+  {path: 'account/show', component: AccountComponent, canActivate: [AuthenticationGuard]},
+  {path: 'account/profile', component: ProfileComponent, canActivate: [AuthenticationGuard]},
+  {path: 'account/delete', component: DeleteAccountComponent, canActivate: [AuthenticationGuard]},
+  {path: 'account/search', component: SearchComponent, canActivate: [AuthenticationGuard]},
+  {path: 'tweet', component: NewTweetComponent, canActivate: [AuthenticationGuard]},
   {path: '', pathMatch: 'full', redirectTo: 'account/show'},
   {path: "**", component: NotFoundComponent}
 ];
@@ -63,7 +63,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthenticationService, AuthenticationGuardService, TweetService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true}],
+  providers: [AuthenticationService, AuthenticationGuard, TweetService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 
