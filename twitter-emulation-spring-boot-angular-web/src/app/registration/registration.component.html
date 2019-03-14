@@ -1,30 +1,34 @@
 <div class="container-dialog p-2">
   <h3 class="bg-info p-1 text-white text-center">Registration</h3>
 
-  <form role="form" (submit)="register()">
+  <form novalidate (ngSubmit)="register(newAccount)">
     <div class="form-group">
       <label for="username">Username:</label>
       <input type="text"
              class="form-control" id="username" name="username"
-             [(ngModel)]="credentials.username"/>
+             [(ngModel)]="newAccount.username"
+             required minlength="1" maxlength="16"/>
     </div>
     <div class="form-group">
       <label for="password">Password:</label>
       <input type="password"
              class="form-control" id="password" name="password"
-             [(ngModel)]="credentials.password"/>
+             [(ngModel)]="newAccount.password"
+             required minlength="5" maxlength="25"/>
     </div>
     <div class="form-group">
       <label for="confirmation">Confirmation:</label>
       <input type="password"
              class="form-control" id="confirmation" name="confirmation"
-             [(ngModel)]="credentials.confirmation"/>
+             [(ngModel)]="newAccount.confirmation"
+             required minlength="5" maxlength="25"/>
     </div>
     <div class="form-group">
       <label for="description">Description:</label>
       <input type="text"
              class="form-control" id="description" name="description"
-             [(ngModel)]="credentials.description"/>
+             [(ngModel)]="newAccount.description"
+             minlength="2" maxlength="30"/>
     </div>
     <div class="text-center">
       <button type="submit" class="btn btn-primary m-1">Register</button>

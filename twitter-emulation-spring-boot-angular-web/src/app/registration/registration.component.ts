@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Account } from "../account";
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html'
 })
 export class RegistrationComponent implements OnInit {
-  credentials = {username: '', password: '', confirmation: '', description: ''};
+  newAccount: Account = new Account();
 
   constructor() {
   }
@@ -13,7 +14,8 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
   }
 
-  register() {
+  register(account: Account) {
     //TODO: implement
+    console.log("New Account: " + JSON.stringify(account));
   }
 }
