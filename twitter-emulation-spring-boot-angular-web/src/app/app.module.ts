@@ -19,6 +19,7 @@ import { AuthenticationGuard } from "./authentication.guard";
 import { TopBarComponent } from './home/top-bar.component';
 import { AccountInfoComponent } from './home/account-info.component';
 import { FollowComponent } from './home/follow.component';
+import { PasswordsMatchDirective } from './passwords-match.directive';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -55,7 +56,8 @@ const routes: Routes = [
     NotFoundComponent,
     TopBarComponent,
     AccountInfoComponent,
-    FollowComponent
+    FollowComponent,
+    PasswordsMatchDirective
   ],
   imports: [
     RouterModule.forRoot(routes),
