@@ -19,7 +19,7 @@ import { AuthenticationGuard } from "./authentication.guard";
 import { TopBarComponent } from './home/top-bar.component';
 import { AccountInfoComponent } from './home/account-info.component';
 import { FollowComponent } from './home/follow.component';
-import { PasswordsMatchDirective } from './passwords-match.directive';
+import { EqualValidatorDirective } from './equal-validator.directive';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -57,7 +57,7 @@ const routes: Routes = [
     TopBarComponent,
     AccountInfoComponent,
     FollowComponent,
-    PasswordsMatchDirective
+    EqualValidatorDirective
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -65,7 +65,11 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthenticationService, AuthenticationGuard, TweetService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true}],
+  providers: [AuthenticationService, AuthenticationGuard, TweetService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: XhrInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 

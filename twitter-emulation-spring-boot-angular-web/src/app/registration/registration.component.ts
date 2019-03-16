@@ -50,8 +50,8 @@ export class RegistrationComponent implements OnInit {
           case "pattern":
             messages.push(`The ${thing} contains illegal characters`);
             break;
-          case "passwordsMatch":
-            messages.push(`Passwords and confirmation must be the same`);
+          case "validateEqual":
+            messages.push(`A ${state.errors['validateEqual'].validated} and ${thing} must be the same`);
             break;
         }
       }
