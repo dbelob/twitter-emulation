@@ -5,6 +5,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, Http
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { AccountService } from './account.service';
 import { AuthenticationService } from './authentication.service';
 import { TweetService } from './tweet.service';
 import { AccountComponent } from './home/account.component';
@@ -65,7 +66,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthenticationService, AuthenticationGuard, TweetService, {
+  providers: [AccountService, AuthenticationService, AuthenticationGuard, TweetService, {
     provide: HTTP_INTERCEPTORS,
     useClass: XhrInterceptor,
     multi: true

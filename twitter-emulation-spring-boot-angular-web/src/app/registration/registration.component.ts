@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from "../account";
 import { NgForm } from "@angular/forms";
+import { AccountService } from "../account.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -10,7 +12,7 @@ export class RegistrationComponent implements OnInit {
   formSubmitted: boolean = false;
   newAccount: Account = new Account();
 
-  constructor() {
+  constructor(private account: AccountService, private router: Router) {
   }
 
   ngOnInit() {
@@ -18,7 +20,9 @@ export class RegistrationComponent implements OnInit {
 
   register(account: Account) {
     //TODO: implement
-    console.log("New Account: " + JSON.stringify(account));
+    this.account.register(account, () => {
+      this.router.navigateByUrl('/login');
+    });
   }
 
   submitForm(form: NgForm) {
