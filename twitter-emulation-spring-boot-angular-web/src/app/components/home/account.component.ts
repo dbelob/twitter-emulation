@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tweet } from "../../models/tweet";
+import { Tweet } from "../../models/tweet.model";
 import { TweetService } from "../../services/tweet.service";
 
 @Component({
@@ -10,7 +10,7 @@ export class AccountComponent implements OnInit {
   tweets: Tweet[] = [];
 
   constructor(private tweet: TweetService) {
-    tweet.getTweets().subscribe(data => {
+    tweet.getTimeline().subscribe(data => {
       this.tweets = data;
     });
   }

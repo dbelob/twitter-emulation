@@ -1,4 +1,4 @@
-import { Account } from "../models/account";
+import { Account } from "../models/account.model";
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { catchError, map } from "rxjs/operators";

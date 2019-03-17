@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from "../../models/account";
+import { Account } from "../../models/account.model";
 import { NgForm } from "@angular/forms";
 import { AccountService } from "../../services/account.service";
 import { Router } from "@angular/router";
