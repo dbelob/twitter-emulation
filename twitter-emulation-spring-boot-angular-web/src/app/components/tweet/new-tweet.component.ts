@@ -1,17 +1,37 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from "@angular/forms";
+import { Tweet } from "../../models/tweet.model";
+import { ValidationService } from "../../services/validation.service";
 
 @Component({
   selector: 'app-new-tweet',
   templateUrl: './new-tweet.component.html'
 })
 export class NewTweetComponent implements OnInit {
-  constructor() {
+  formSubmitted: boolean = false;
+  newTweet: Tweet = new Tweet();
+
+  constructor(private validation: ValidationService) {
   }
 
   ngOnInit() {
   }
 
-  tweet() {
+  tweet(tweet: Tweet) {
     //TODO: implement
+  }
+
+  submitForm(form: NgForm) {
+    this.formSubmitted = true;
+    if (form.valid) {
+      this.tweet(this.newTweet);
+      this.newTweet = new Tweet();
+      form.reset();
+      this.formSubmitted = false;
+    }
+  }
+
+  getFormValidationMessages(form: NgForm): string[] {
+    return this.validation.getFormValidationMessages(form);
   }
 }

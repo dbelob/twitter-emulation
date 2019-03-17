@@ -1,9 +1,23 @@
 <div class="container-dialog p-2">
   <h3 class="bg-info p-1 text-white text-center">New tweet</h3>
 
-  <form role="form" (submit)="tweet()">
+  <form novalidate #form="ngForm" (ngSubmit)="submitForm(form)">
+    <div class="alert alert-danger"
+         *ngIf="formSubmitted && form.invalid">
+      There are problems with the form
+      <ul>
+        <li *ngFor="let error of getFormValidationMessages(form)">
+          {{error}}
+        </li>
+      </ul>
+    </div>
+
     <div class="form-group">
-      <textarea class="form-control" id="text" rows="3"></textarea>
+      <textarea class="form-control" id="text" rows="3"
+                id="text" name="text"
+                [(ngModel)]="newTweet.text"
+                required minlength="1" maxlength="140">
+      </textarea>
     </div>
     <div class="text-center">
       <button type="submit" class="btn btn-primary m-1">Tweet</button>
