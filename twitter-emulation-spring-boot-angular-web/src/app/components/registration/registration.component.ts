@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from "../../models/account.model";
 import { NgForm } from "@angular/forms";
-import { AccountService } from "../../services/account.service";
 import { Router } from "@angular/router";
+import { AccountService } from "../../services/account.service";
+import { ValidationService } from "../../services/validation.service";
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +13,7 @@ export class RegistrationComponent implements OnInit {
   formSubmitted: boolean = false;
   newAccount: Account = new Account();
 
-  constructor(private account: AccountService, private router: Router) {
+  constructor(private account: AccountService, private validation: ValidationService, private router: Router) {
   }
 
   ngOnInit() {
@@ -35,43 +36,7 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  getValidationMessages(state: any, thingName?: string) {
-    let thing: string = state.path || thingName;
-    let messages: string[] = [];
-
-    if (state.errors) {
-      for (let errorName in state.errors) {
-        switch (errorName) {
-          case "required":
-            messages.push(`You must enter a ${thing}`);
-            break;
-          case "minlength":
-            messages.push(`A ${thing} must be at least ${state.errors['minlength'].requiredLength} characters`);
-            break;
-          case "maxlength":
-            messages.push(`A ${thing} must be no more than ${state.errors['maxlength'].requiredLength} characters`);
-            break;
-          case "pattern":
-            messages.push(`The ${thing} contains illegal characters`);
-            break;
-          case "validateEqual":
-            messages.push(`A ${state.errors['validateEqual'].validated} and ${thing} must be the same`);
-            break;
-        }
-      }
-    }
-
-    return messages;
-  }
-
   getFormValidationMessages(form: NgForm): string[] {
-    let messages: string[] = [];
-
-    Object.keys(form.controls).forEach(k => {
-      this.getValidationMessages(form.controls[k], k)
-        .forEach(m => messages.push(m));
-    });
-
-    return messages;
+    return this.validation.getFormValidationMessages(form);
   }
 }

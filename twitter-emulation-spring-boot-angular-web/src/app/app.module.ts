@@ -5,22 +5,23 @@ import { HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, Http
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { AccountComponent } from './components/home/account.component';
+import { AccountInfoComponent } from './components/home/account-info.component';
+import { DeleteAccountComponent } from './components/profile/delete-account.component';
+import { FollowComponent } from './components/home/follow.component';
+import { LoginComponent } from './components/login/login.component';
+import { NewTweetComponent } from './components/tweet/new-tweet.component';
+import { NotFoundComponent } from './components/unknown/not-found.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { SearchComponent } from './components/home/search.component';
+import { TopBarComponent } from './components/home/top-bar.component';
+import { EqualValidatorDirective } from './directives/equal-validator.directive';
+import { AuthenticationGuard } from "./guards/authentication.guard";
 import { AccountService } from './services/account.service';
 import { AuthenticationService } from './services/authentication.service';
 import { TweetService } from './services/tweet.service';
-import { AccountComponent } from './components/home/account.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegistrationComponent } from './components/registration/registration.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { DeleteAccountComponent } from './components/profile/delete-account.component';
-import { NewTweetComponent } from './components/tweet/new-tweet.component';
-import { SearchComponent } from './components/home/search.component';
-import { NotFoundComponent } from './components/unknown/not-found.component';
-import { TopBarComponent } from './components/home/top-bar.component';
-import { AccountInfoComponent } from './components/home/account-info.component';
-import { FollowComponent } from './components/home/follow.component';
-import { AuthenticationGuard } from "./guards/authentication.guard";
-import { EqualValidatorDirective } from './directives/equal-validator.directive';
+import { ValidationService } from './services/validation.service';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -66,7 +67,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [AccountService, AuthenticationService, AuthenticationGuard, TweetService, {
+  providers: [AccountService, AuthenticationService, AuthenticationGuard, TweetService, ValidationService, {
     provide: HTTP_INTERCEPTORS,
     useClass: XhrInterceptor,
     multi: true
