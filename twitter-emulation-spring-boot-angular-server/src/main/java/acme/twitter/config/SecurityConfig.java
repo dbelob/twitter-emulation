@@ -28,16 +28,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/index.html", "/", "/login").permitAll()
-                .anyRequest().authenticated()
+                    .antMatchers("/index.html", "/", "/login").permitAll()
+                    .antMatchers("/account/api/register").permitAll()
+                    .anyRequest().authenticated()
                 .and()
                 .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/*.js");
+        web.ignoring().antMatchers("*.js");
     }
 
     @Override

@@ -114,6 +114,10 @@ in several ways:
 
 ## Development
 
+* H2 Database Console
+
+    http://localhost:8082
+
 * Swagger UI
 
     http://localhost:8080/swagger-ui.html

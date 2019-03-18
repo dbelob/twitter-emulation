@@ -41,18 +41,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/account/following/**").permitAll()
                 .antMatchers("/account/followers/**").permitAll()
                 .antMatchers("/css/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()  // Allow H2 Database Console
                 .anyRequest().authenticated();
-
-        // Allow H2 Database Console, http://localhost:8080/h2-console
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-            .jdbcAuthentication()
+                .jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select username, password, 'true' as enabled from account where username = ?")
                 .authoritiesByUsernameQuery("select username, 'ROLE_USER' as authority from account where username = ?")
