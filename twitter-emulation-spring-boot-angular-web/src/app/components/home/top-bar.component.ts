@@ -7,14 +7,14 @@ import { Router } from "@angular/router";
   templateUrl: './top-bar.component.html'
 })
 export class TopBarComponent implements OnInit {
-  constructor(private auth: AuthenticationService, private router: Router) {
+  constructor(private authenticationService: AuthenticationService, private router: Router) {
   }
 
   ngOnInit() {
   }
 
   logout() {
-    this.auth.logout(() => {
+    this.authenticationService.logout(() => {
       this.router.navigate(['/login'], {
         queryParams: {
           "logout": true

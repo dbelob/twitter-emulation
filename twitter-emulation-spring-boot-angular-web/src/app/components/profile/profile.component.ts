@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
   formSubmitted: boolean = false;
   oldAccount: Account = new Account();
 
-  constructor(private validation: ValidationService) {
+  constructor(private validationService: ValidationService) {
   }
 
   ngOnInit() {
@@ -32,6 +32,6 @@ export class ProfileComponent implements OnInit {
   }
 
   getFormValidationMessages(form: NgForm): string[] {
-    return this.validation.getFormValidationMessages(form);
+    return this.validationService.getFormValidationMessages(form);
   }
 }

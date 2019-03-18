@@ -9,8 +9,8 @@ import { TweetService } from "../../services/tweet.service";
 export class AccountComponent implements OnInit {
   tweets: Tweet[] = [];
 
-  constructor(private tweet: TweetService) {
-    tweet.getTimeline().subscribe(data => {
+  constructor(private tweetService: TweetService) {
+    tweetService.getTimeline().subscribe(data => {
       this.tweets = data;
     });
   }

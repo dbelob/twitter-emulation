@@ -5,11 +5,11 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
-  constructor(public auth: AuthenticationService, public router: Router) {
+  constructor(public authenticationService: AuthenticationService, public router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    return this.auth.authenticate(undefined, undefined, () => {
+    return this.authenticationService.authenticate(undefined, undefined, () => {
       this.router.navigateByUrl('/login');
     })
   }

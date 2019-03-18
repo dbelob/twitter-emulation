@@ -11,7 +11,7 @@ export class LoginComponent {
   error = false;
   logout = false;
 
-  constructor(private auth: AuthenticationService, private router: Router, route: ActivatedRoute) {
+  constructor(private authenticationService: AuthenticationService, private router: Router, route: ActivatedRoute) {
     route.queryParams.subscribe(params => {
       this.logout = params["logout"] || false;
     });
@@ -20,7 +20,7 @@ export class LoginComponent {
   login() {
     this.logout = false;
 
-    this.auth.authenticate(this.credentials, () => {
+    this.authenticationService.authenticate(this.credentials, () => {
         this.router.navigateByUrl('/account/show');
       },
       () => {

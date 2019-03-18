@@ -13,7 +13,7 @@ export class RegistrationComponent implements OnInit {
   formSubmitted: boolean = false;
   newAccount: Account = new Account();
 
-  constructor(private account: AccountService, private validation: ValidationService, private router: Router) {
+  constructor(private accountService: AccountService, private validationService: ValidationService, private router: Router) {
   }
 
   ngOnInit() {
@@ -21,7 +21,7 @@ export class RegistrationComponent implements OnInit {
 
   register(account: Account) {
     //TODO: implement
-    this.account.register(account, () => {
+    this.accountService.register(account, () => {
       this.router.navigateByUrl('/login');
     });
   }
@@ -37,6 +37,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   getFormValidationMessages(form: NgForm): string[] {
-    return this.validation.getFormValidationMessages(form);
+    return this.validationService.getFormValidationMessages(form);
   }
 }

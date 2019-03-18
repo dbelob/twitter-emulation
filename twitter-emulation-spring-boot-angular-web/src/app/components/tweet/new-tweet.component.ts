@@ -11,7 +11,7 @@ export class NewTweetComponent implements OnInit {
   formSubmitted: boolean = false;
   newTweet: Tweet = new Tweet();
 
-  constructor(private validation: ValidationService) {
+  constructor(private validationService: ValidationService) {
   }
 
   ngOnInit() {
@@ -32,6 +32,6 @@ export class NewTweetComponent implements OnInit {
   }
 
   getFormValidationMessages(form: NgForm): string[] {
-    return this.validation.getFormValidationMessages(form);
+    return this.validationService.getFormValidationMessages(form);
   }
 }
