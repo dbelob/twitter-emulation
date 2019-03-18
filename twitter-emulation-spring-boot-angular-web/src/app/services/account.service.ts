@@ -1,8 +1,7 @@
-import { Account } from "../models/account.model";
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { catchError, map } from "rxjs/operators";
-import { of } from "rxjs";
+import { Observable } from "rxjs";
+import { Account } from "../models/account.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +12,7 @@ export class AccountService {
   constructor(private http: HttpClient) {
   }
 
-  register(account: Account, success?: () => void, error?: () => void) {
-    this.http.post<Account>(this.baseUrl + 'register', account).pipe(
-      map(response => {
-          if (success) {
-            success();
-          }
-        }
-      ),
-      catchError(err => {
-        if (error) {
-          error();
-        }
-        return of(false)
-      })
-    );
+  register(account: Account): Observable<Account> {
+    return this.http.post<Account>(this.baseUrl + 'register', account);
   }
 }

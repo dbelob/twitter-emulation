@@ -19,20 +19,16 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
   }
 
-  register(account: Account) {
-    //TODO: implement
-    this.accountService.register(account, () => {
-      this.router.navigateByUrl('/login');
-    });
-  }
-
   submitForm(form: NgForm) {
     this.formSubmitted = true;
     if (form.valid) {
-      this.register(this.newAccount);
-      this.newAccount = new Account();
-      form.reset();
-      this.formSubmitted = false;
+      this.accountService.register(this.newAccount).subscribe(data => {
+        // this.newAccount = new Account();
+        // form.reset();
+        // this.formSubmitted = false;
+
+        this.router.navigateByUrl('/login');
+      });
     }
   }
 
