@@ -20,7 +20,11 @@
       </textarea>
     </div>
     <div class="text-center">
-      <button type="submit" class="btn btn-primary m-1">Tweet</button>
+      <button type="submit" class="btn btn-primary m-1"
+              [disabled]="formSubmitted && form.invalid"
+              [class.btn-secondary]="formSubmitted && form.invalid">
+        Tweet
+      </button>
       <button class="btn btn-secondary m-1" routerLink="/account/show">Cancel</button>
     </div>
   </form>

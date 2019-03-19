@@ -41,7 +41,11 @@
              required minlength="2" maxlength="30"/>
     </div>
     <div class="text-center">
-      <button type="submit" class="btn btn-primary m-1">Save</button>
+      <button type="submit" class="btn btn-primary m-1"
+              [disabled]="formSubmitted && form.invalid"
+              [class.btn-secondary]="formSubmitted && form.invalid">
+        Save
+      </button>
       <button class="btn btn-secondary m-1" routerLink="/account/show">Cancel</button>
       <button class="btn btn-link m-1" routerLink="/account/delete">Delete</button>
     </div>
