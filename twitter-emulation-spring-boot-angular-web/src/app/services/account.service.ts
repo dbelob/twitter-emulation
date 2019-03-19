@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
 import { Account } from "../models/account.model";
 
 @Injectable({
@@ -13,6 +14,11 @@ export class AccountService {
   }
 
   register(account: Account): Observable<Account> {
-    return this.http.post<Account>(this.baseUrl + 'register', account);
+    return this.http.post<Account>(this.baseUrl + 'register', account)
+      .pipe(
+        catchError((error: Response) =>
+          throwError(`Network Error: ${error.statusText} (${error.status})`))
+      )
+      ;
   }
 }
