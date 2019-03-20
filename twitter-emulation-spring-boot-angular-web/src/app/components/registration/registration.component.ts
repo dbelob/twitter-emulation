@@ -23,10 +23,6 @@ export class RegistrationComponent implements OnInit {
     this.formSubmitted = true;
     if (form.valid) {
       this.accountService.register(this.newAccount).subscribe(data => {
-        // this.newAccount = new Account();
-        // form.reset();
-        // this.formSubmitted = false;
-
         this.router.navigateByUrl('/login');
       });
     }

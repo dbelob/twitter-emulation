@@ -2,6 +2,8 @@
   <h3 class="bg-info p-1 text-white text-center">Registration</h3>
 
   <form novalidate #form="ngForm" (ngSubmit)="submitForm(form)">
+    <app-message></app-message>
+
     <div class="alert alert-danger"
          *ngIf="formSubmitted && form.invalid">
       There are problems with the form

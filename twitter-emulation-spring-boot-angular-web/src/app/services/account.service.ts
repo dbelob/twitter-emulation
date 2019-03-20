@@ -18,7 +18,6 @@ export class AccountService {
       .pipe(
         catchError((error: Response) =>
           throwError(`Network Error: ${error.statusText} (${error.status})`))
-      )
-      ;
+      );
   }
 }

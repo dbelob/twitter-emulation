@@ -23,6 +23,7 @@ import { AccountService } from './services/account.service';
 import { AuthenticationService } from './services/authentication.service';
 import { TweetService } from './services/tweet.service';
 import { ValidationService } from './services/validation.service';
+import { MessageModule } from "./components/message/message.module";
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -67,7 +68,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MessageModule
   ],
   providers: [AccountService, AuthenticationService, AuthenticationGuard, TweetService, ValidationService, {
     provide: HTTP_INTERCEPTORS,
