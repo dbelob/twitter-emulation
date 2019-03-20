@@ -27,8 +27,8 @@ export class ValidationService {
           case "pattern":
             messages.push(`The ${thing} contains illegal characters`);
             break;
-          case "validateEqual":
-            messages.push(`A ${state.errors['validateEqual'].validated} and ${thing} must be the same`);
+          case "appValidateEqual":
+            messages.push(`A ${state.errors['appValidateEqual'].validated} and ${thing} must be the same`);
             break;
         }
       }

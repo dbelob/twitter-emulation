@@ -31,7 +31,7 @@
       <input type="password"
              class="form-control" id="confirmation" name="confirmation"
              [(ngModel)]="oldAccount.passwordConfirmation"
-             required minlength="5" maxlength="25" validateEqual="password"/>
+             required minlength="5" maxlength="25" appValidateEqual="password"/>
     </div>
     <div class="form-group">
       <label for="description">Description:</label>
