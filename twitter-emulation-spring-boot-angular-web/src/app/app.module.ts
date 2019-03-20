@@ -16,6 +16,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { SearchComponent } from './components/home/search.component';
 import { TopBarComponent } from './components/home/top-bar.component';
+import { AutofocusDirective } from './directives/autofocus.directive';
 import { EqualValidatorDirective } from './directives/equal-validator.directive';
 import { AuthenticationGuard } from "./guards/authentication.guard";
 import { AccountService } from './services/account.service';
@@ -59,7 +60,8 @@ const routes: Routes = [
     TopBarComponent,
     AccountInfoComponent,
     FollowComponent,
-    EqualValidatorDirective
+    EqualValidatorDirective,
+    AutofocusDirective
   ],
   imports: [
     RouterModule.forRoot(routes),
