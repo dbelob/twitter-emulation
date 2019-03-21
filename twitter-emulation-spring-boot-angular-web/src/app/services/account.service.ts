@@ -16,8 +16,23 @@ export class AccountService {
   register(account: Account): Observable<Account> {
     return this.http.post<Account>(this.baseUrl + 'register', account)
       .pipe(
-        catchError((error: Response) =>
-          throwError(`Network Error: ${error.statusText} (${error.status})`))
+        catchError((response: Response) => {
+          // console.log(JSON.stringify(response));
+
+          let error = response['error'];
+          if (error) {
+            // console.log(JSON.stringify(error));
+
+            let trace = error['trace'];
+            // console.log(JSON.stringify(trace));
+
+            if (trace.indexOf('AccountExistsException') != -1) {
+              return throwError(`Account with the same name already exists`);
+            }
+          }
+
+          return throwError(`Network Error: ${response.statusText} (${response.status})`);
+        })
       );
   }
 }
