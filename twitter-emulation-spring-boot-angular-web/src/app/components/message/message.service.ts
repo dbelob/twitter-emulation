@@ -9,6 +9,7 @@ export class MessageService {
 
   constructor() {
     this.exceptionMessages.set('AccountExistsException', 'Account with the same name already exists');
+    this.exceptionMessages.set('AccountNotExistsException', 'Account does not exist');
   }
 
   reportMessage(msg: Message) {

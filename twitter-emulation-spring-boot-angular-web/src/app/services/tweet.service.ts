@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { Tweet } from "../models/tweet.model";
+import { catchError } from "rxjs/operators";
+import { MessageService } from "../components/message/message.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +11,14 @@ import { Tweet } from "../models/tweet.model";
 export class TweetService {
   baseUrl = 'api/tweet/';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private messageService: MessageService) {
   }
 
   getTimeline(): Observable<Tweet[]> {
-    return this.http.get<Tweet[]>(this.baseUrl + 'timeline');
+    return this.http.get<Tweet[]>(this.baseUrl + 'timeline').pipe(
+      catchError((response: Response) => {
+        return throwError(this.messageService.getMessageText(response));
+      })
+    );
   }
 }
