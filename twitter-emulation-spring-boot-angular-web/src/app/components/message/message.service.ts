@@ -26,11 +26,13 @@ export class MessageService {
     if (error) {
       let trace = error['trace'];
 
-      for (let key of Array.from(this.exceptionMessages.keys())) {
-        let value = this.exceptionMessages.get(key);
+      if (trace) {
+        for (let key of Array.from(this.exceptionMessages.keys())) {
+          let value = this.exceptionMessages.get(key);
 
-        if (trace.indexOf(key) != -1) {
-          return value;
+          if (trace.indexOf(key) != -1) {
+            return value;
+          }
         }
       }
     }
