@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { ValidationService } from "../../services/validation.service";
 import { Account } from "../../models/account.model";
+import { AccountService } from "../../services/account.service";
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,10 @@ export class ProfileComponent implements OnInit {
   formSubmitted: boolean = false;
   oldAccount: Account = new Account();
 
-  constructor(private validationService: ValidationService) {
+  constructor(private accountService: AccountService, private validationService: ValidationService) {
+    accountService.profile().subscribe(data => {
+      this.oldAccount = data;
+    });
   }
 
   ngOnInit() {

@@ -22,4 +22,12 @@ export class AccountService {
         })
       );
   }
+
+  profile(): Observable<Account> {
+    return this.http.get<Account>(this.baseUrl + 'profile').pipe(
+      catchError((response: Response) => {
+        return throwError(this.messageService.getMessageText(response));
+      })
+    );
+  }
 }

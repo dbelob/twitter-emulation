@@ -16,7 +16,7 @@
       <label for="username">Username:</label>
       <input type="text"
              class="form-control" id="username" name="username"
-             [(ngModel)]="oldAccount.username"
+             [(ngModel)]="oldAccount.username" readonly
              required minlength="1" maxlength="16"
              appAutofocus/>
     </div>
