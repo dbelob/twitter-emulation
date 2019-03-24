@@ -45,4 +45,11 @@ public class AccountController {
 
         return new AccountDto(account.getUsername(), account.getPassword(), account.getDescription());
     }
+
+    @PostMapping("/profile")
+    public ResponseEntity<Void> profile(@RequestBody AccountForm accountForm) {
+        accountDao.update(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

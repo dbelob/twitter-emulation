@@ -23,11 +23,20 @@ export class AccountService {
       );
   }
 
-  profile(): Observable<Account> {
+  loadProfile(): Observable<Account> {
     return this.http.get<Account>(this.baseUrl + 'profile').pipe(
       catchError((response: Response) => {
         return throwError(this.messageService.getMessageText(response));
       })
     );
+  }
+
+  saveProfile(account: Account): Observable<Account> {
+    return this.http.post<Account>(this.baseUrl + 'profile', account)
+      .pipe(
+        catchError((response: Response) => {
+          return throwError(this.messageService.getMessageText(response));
+        })
+      );
   }
 }

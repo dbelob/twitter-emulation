@@ -11,7 +11,7 @@ import { ValidationService } from "../../services/validation.service";
 })
 export class RegistrationComponent implements OnInit {
   formSubmitted: boolean = false;
-  newAccount: Account = new Account();
+  credentials = {username: '', password: '', passwordConfirmation: '', description: ''};
 
   constructor(private accountService: AccountService, private validationService: ValidationService, private router: Router) {
   }
@@ -21,8 +21,14 @@ export class RegistrationComponent implements OnInit {
 
   submitForm(form: NgForm) {
     this.formSubmitted = true;
+
     if (form.valid) {
-      this.accountService.register(this.newAccount).subscribe(data => {
+      this.accountService.register(
+        new Account(
+          this.credentials.username,
+          this.credentials.password,
+          this.credentials.description)
+      ).subscribe(data => {
         this.router.navigateByUrl('/login');
       });
     }
