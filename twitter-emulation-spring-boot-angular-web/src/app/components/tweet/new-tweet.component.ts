@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { Tweet } from "../../models/tweet.model";
 import { ValidationService } from "../../services/validation.service";
+import { TweetService } from "../../services/tweet.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-new-tweet',
@@ -9,25 +10,21 @@ import { ValidationService } from "../../services/validation.service";
 })
 export class NewTweetComponent implements OnInit {
   formSubmitted: boolean = false;
-  newTweet: Tweet = new Tweet();
+  text: string;
 
-  constructor(private validationService: ValidationService) {
+  constructor(private tweetService: TweetService, private validationService: ValidationService, private router: Router) {
   }
 
   ngOnInit() {
   }
 
-  tweet(tweet: Tweet) {
-    //TODO: implement
-  }
-
   submitForm(form: NgForm) {
     this.formSubmitted = true;
+
     if (form.valid) {
-      this.tweet(this.newTweet);
-      this.newTweet = new Tweet();
-      form.reset();
-      this.formSubmitted = false;
+      this.tweetService.tweet(this.text).subscribe(data => {
+        this.router.navigateByUrl('/account/show');
+      });
     }
   }
 

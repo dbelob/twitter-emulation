@@ -7,10 +7,10 @@ import acme.twitter.domain.Account;
 import acme.twitter.domain.Tweet;
 import acme.twitter.dto.TweetDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Collections;
@@ -56,5 +56,12 @@ public class TweetController {
         } else {
             return Collections.emptyList();
         }
+    }
+
+    @PostMapping("/tweet")
+    public ResponseEntity<Void> tweet(@RequestBody String text, Principal principal) {
+        tweetDao.add(principal.getName(), text);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
