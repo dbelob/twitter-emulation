@@ -11,6 +11,11 @@ public class AccountDto {
         this.description = description;
     }
 
+    public AccountDto(String username, String description) {
+        this.username = username;
+        this.description = description;
+    }
+
     public String getUsername() {
         return username;
     }

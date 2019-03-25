@@ -46,13 +46,7 @@ public class TweetController {
             Account account = accountDao.findByUsername(principal.getName());
             List<Tweet> tweets = tweetDao.findTimelineByAccount(account);
 
-            return tweets.stream()
-                    .map(t -> new TweetDto(
-                            t.getAccount().getUsername(),
-                            t.getAccount().getDescription(),
-                            t.getText(),
-                            t.getDate()))
-                    .collect(Collectors.toList());
+            return convertToDto(tweets);
         } else {
             return Collections.emptyList();
         }
@@ -63,5 +57,24 @@ public class TweetController {
         tweetDao.add(principal.getName(), text);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/tweets/{username}")
+    @ResponseBody
+    public List<TweetDto> getTweets(@PathVariable String username) throws AccountNotExistsException {
+        Account account = accountDao.findByUsername(username);
+        List<Tweet> tweets = tweetDao.findByAccount(account);
+
+        return convertToDto(tweets);
+    }
+
+    private List<TweetDto> convertToDto(List<Tweet> tweets) {
+        return tweets.stream()
+                .map(t -> new TweetDto(
+                        t.getAccount().getUsername(),
+                        t.getAccount().getDescription(),
+                        t.getText(),
+                        t.getDate()))
+                .collect(Collectors.toList());
     }
 }
