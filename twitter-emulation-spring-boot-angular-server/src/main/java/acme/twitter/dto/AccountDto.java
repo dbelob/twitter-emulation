@@ -1,5 +1,10 @@
 package acme.twitter.dto;
 
+import acme.twitter.domain.Account;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AccountDto {
     private String username;
     private String password;
@@ -38,5 +43,11 @@ public class AccountDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public static List<AccountDto> convertToDto(List<Account> accounts) {
+        return accounts.stream()
+                .map(a -> new AccountDto(a.getUsername(), a.getDescription()))
+                .collect(Collectors.toList());
     }
 }

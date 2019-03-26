@@ -13,9 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Tweet controller.
@@ -32,49 +30,28 @@ public class TweetController {
         this.tweetDao = tweetDao;
     }
 
-    /**
-     * Returns tweet timeline.
-     *
-     * @param principal principal
-     * @return tweet timeline
-     * @throws AccountNotExistsException if account not exists
-     */
-    @GetMapping("/timeline")
-    @ResponseBody
-    private List<TweetDto> getTimeline(Principal principal) throws AccountNotExistsException {
-        if (principal != null) {
-            Account account = accountDao.findByUsername(principal.getName());
-            List<Tweet> tweets = tweetDao.findTimelineByAccount(account);
-
-            return convertToDto(tweets);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    @PostMapping("/tweet")
-    public ResponseEntity<Void> tweet(@RequestBody String text, Principal principal) {
-        tweetDao.add(principal.getName(), text);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
     @GetMapping("/tweets/{username}")
     @ResponseBody
     public List<TweetDto> getTweets(@PathVariable String username) throws AccountNotExistsException {
         Account account = accountDao.findByUsername(username);
         List<Tweet> tweets = tweetDao.findByAccount(account);
 
-        return convertToDto(tweets);
+        return TweetDto.convertToDto(tweets);
     }
 
-    private List<TweetDto> convertToDto(List<Tweet> tweets) {
-        return tweets.stream()
-                .map(t -> new TweetDto(
-                        t.getAccount().getUsername(),
-                        t.getAccount().getDescription(),
-                        t.getText(),
-                        t.getDate()))
-                .collect(Collectors.toList());
+    @PostMapping("/tweets")
+    public ResponseEntity<Void> addTweet(@RequestBody String text, Principal principal) {
+        tweetDao.add(principal.getName(), text);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/timeline")
+    @ResponseBody
+    private List<TweetDto> getTimeline(Principal principal) throws AccountNotExistsException {
+        Account account = accountDao.findByUsername(principal.getName());
+        List<Tweet> tweets = tweetDao.findTimelineByAccount(account);
+
+        return TweetDto.convertToDto(tweets);
     }
 }

@@ -23,7 +23,7 @@ export class TweetService {
   }
 
   tweet(text: string): Observable<string> {
-    return this.http.post<string>(this.baseUrl + 'tweet', text)
+    return this.http.post<string>(this.baseUrl + 'tweets', text)
       .pipe(
         catchError((response: Response) => {
           return throwError(this.messageService.getMessageText(response));

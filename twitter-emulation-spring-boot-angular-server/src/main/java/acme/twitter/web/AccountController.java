@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Account controller.
@@ -53,7 +52,7 @@ public class AccountController {
     }
 
     @PutMapping("/accounts/{username}")
-    public ResponseEntity<Void> changeAccount(@PathVariable String username, @RequestBody AccountDto account, Principal principal)
+    public ResponseEntity<Void> replaceAccount(@PathVariable String username, @RequestBody AccountDto account, Principal principal)
             throws AccountNotAllowedException {
         if (!username.equals(account.getUsername()) || !username.equals(principal.getName())) {
             throw new AccountNotAllowedException();
@@ -74,6 +73,28 @@ public class AccountController {
         accountDao.delete(username);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/accounts")
+    @ResponseBody
+    public List<AccountDto> getAccounts(@RequestBody String usernamePart) {
+        List<Account> accounts = accountDao.findByUsernamePart(usernamePart);
+
+        return AccountDto.convertToDto(accounts);
+    }
+
+    @GetMapping("/statistics/{username}")
+    @ResponseBody
+    public AccountStatistics getStatistics(@PathVariable String username, Principal principal) {
+        String whoUsername = (principal != null) ? principal.getName() : username;
+        String whomUsername = username;
+
+        int tweetsCount = tweetDao.countByUsername(whomUsername);
+        int followingCount = followerDao.countFollowingByUsername(whomUsername);
+        int followersCount = followerDao.countFollowersByUsername(whomUsername);
+        boolean isFollow = followerDao.isExist(whoUsername, whomUsername);
+
+        return new AccountStatistics(tweetsCount, followingCount, followersCount, isFollow);
     }
 
 
@@ -109,41 +130,5 @@ public class AccountController {
         accountDao.delete(principal.getName());
 
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @GetMapping("/statistics/{username}")
-    @ResponseBody
-    public AccountStatistics getAccountStatistics(@PathVariable String username, Principal principal) {
-        String whoUsername = (principal != null) ? principal.getName() : username;
-        String whomUsername = username;
-
-        int tweetsCount = tweetDao.countByUsername(whomUsername);
-        int followingCount = followerDao.countFollowingByUsername(whomUsername);
-        int followersCount = followerDao.countFollowersByUsername(whomUsername);
-        boolean isFollow = followerDao.isExist(whoUsername, whomUsername);
-
-        return new AccountStatistics(tweetsCount, followingCount, followersCount, isFollow);
-    }
-
-    @GetMapping("/following/{username}")
-    @ResponseBody
-    public List<AccountDto> following(@PathVariable String username) {
-        List<Account> accounts = followerDao.findFollowingByUsername(username);
-
-        return convertToDto(accounts);
-    }
-
-    @GetMapping("/followers/{username}")
-    @ResponseBody
-    public List<AccountDto> followers(@PathVariable String username) {
-        List<Account> accounts = followerDao.findFollowersByUsername(username);
-
-        return convertToDto(accounts);
-    }
-
-    private List<AccountDto> convertToDto(List<Account> accounts) {
-        return accounts.stream()
-                .map(a -> new AccountDto(a.getUsername(), a.getDescription()))
-                .collect(Collectors.toList());
     }
 }

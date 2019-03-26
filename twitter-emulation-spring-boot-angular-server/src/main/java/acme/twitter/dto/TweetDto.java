@@ -1,6 +1,10 @@
 package acme.twitter.dto;
 
+import acme.twitter.domain.Tweet;
+
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TweetDto {
     private String username;
@@ -29,5 +33,15 @@ public class TweetDto {
 
     public Date getDate() {
         return date;
+    }
+
+    public static List<TweetDto> convertToDto(List<Tweet> tweets) {
+        return tweets.stream()
+                .map(t -> new TweetDto(
+                        t.getAccount().getUsername(),
+                        t.getAccount().getDescription(),
+                        t.getText(),
+                        t.getDate()))
+                .collect(Collectors.toList());
     }
 }
