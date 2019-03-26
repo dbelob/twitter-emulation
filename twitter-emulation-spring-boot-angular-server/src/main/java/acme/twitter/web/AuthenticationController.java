@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.security.Principal;
 
 @Controller
-@RequestMapping("/api/auth")
+@RequestMapping("/api/authentication")
 public class AuthenticationController {
     /**
      * Returns user information.
@@ -18,7 +18,7 @@ public class AuthenticationController {
      */
     @GetMapping("/user")
     @ResponseBody
-    public Principal user(Principal principal) {
+    public Principal getUser(Principal principal) {
         return principal;
     }
 }

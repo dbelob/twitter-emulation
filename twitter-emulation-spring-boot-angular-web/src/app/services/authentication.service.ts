@@ -5,7 +5,7 @@ import { Observable, of } from "rxjs";
 
 @Injectable()
 export class AuthenticationService {
-  baseUrl = 'api/auth/';
+  baseUrl = 'api/authentication/';
   authenticated = false;
 
   constructor(private http: HttpClient) {
