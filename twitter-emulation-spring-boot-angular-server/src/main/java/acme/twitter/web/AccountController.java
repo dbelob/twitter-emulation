@@ -4,6 +4,7 @@ import acme.twitter.dao.AccountDao;
 import acme.twitter.dao.FollowerDao;
 import acme.twitter.dao.TweetDao;
 import acme.twitter.dao.exception.AccountExistsException;
+import acme.twitter.dao.exception.AccountNotAllowedException;
 import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
 import acme.twitter.domain.AccountStatistics;
@@ -35,12 +36,49 @@ public class AccountController {
         this.followerDao = followerDao;
     }
 
-    /**
-     * Processes registration.
-     *
-     * @param account account
-     */
+    @GetMapping("/accounts/{username}")
+    @ResponseBody
+    public AccountDto getAccount(@PathVariable String username, Principal principal) throws AccountNotExistsException {
+        Account account = accountDao.findByUsername(username);
+        String password = ((principal != null) && username.equals(principal.getName())) ? account.getPassword() : null;
+
+        return new AccountDto(account.getUsername(), password, account.getDescription());
+    }
+
+    @PostMapping("/accounts")
+    public ResponseEntity<Void> addAccount(@RequestBody AccountDto account) throws AccountExistsException {
+        accountDao.add(account.getUsername(), account.getPassword(), account.getDescription());
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/accounts/{username}")
+    public ResponseEntity<Void> changeAccount(@PathVariable String username, @RequestBody AccountDto account, Principal principal)
+            throws AccountNotAllowedException {
+        if (!username.equals(account.getUsername()) || !username.equals(principal.getName())) {
+            throw new AccountNotAllowedException();
+        }
+
+        accountDao.update(account.getUsername(), account.getPassword(), account.getDescription());
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/accounts/{username}")
+    public ResponseEntity<Void> deleteAccount(@PathVariable String username, Principal principal) throws AccountNotAllowedException {
+        if (!username.equals(principal.getName())) {
+            throw new AccountNotAllowedException();
+        }
+
+        tweetDao.deleteAll(username);
+        accountDao.delete(username);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
     @PostMapping("/register")
+    @Deprecated
     public ResponseEntity<Void> register(@RequestBody AccountDto account) throws AccountExistsException {
         accountDao.add(account.getUsername(), account.getPassword(), account.getDescription());
 
@@ -49,6 +87,7 @@ public class AccountController {
 
     @GetMapping("/profile")
     @ResponseBody
+    @Deprecated
     public AccountDto profile(Principal principal) throws AccountNotExistsException {
         Account account = accountDao.findByUsername(principal.getName());
 
@@ -56,6 +95,7 @@ public class AccountController {
     }
 
     @PostMapping("/profile")
+    @Deprecated
     public ResponseEntity<Void> profile(@RequestBody AccountDto account) {
         accountDao.update(account.getUsername(), account.getPassword(), account.getDescription());
 
@@ -63,6 +103,7 @@ public class AccountController {
     }
 
     @PostMapping("/delete")
+    @Deprecated
     public ResponseEntity<Void> delete(Principal principal) {
         tweetDao.deleteAll(principal.getName());
         accountDao.delete(principal.getName());
