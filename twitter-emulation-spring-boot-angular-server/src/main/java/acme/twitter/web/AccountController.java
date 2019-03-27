@@ -96,22 +96,4 @@ public class AccountController {
 
         return new AccountStatistics(tweetsCount, followingCount, followersCount, isFollow);
     }
-
-
-    @GetMapping("/profile")
-    @ResponseBody
-    @Deprecated
-    public AccountDto profile(Principal principal) throws AccountNotExistsException {
-        Account account = accountDao.findByUsername(principal.getName());
-
-        return new AccountDto(account.getUsername(), account.getPassword(), account.getDescription());
-    }
-
-    @PostMapping("/profile")
-    @Deprecated
-    public ResponseEntity<Void> profile(@RequestBody AccountDto account) {
-        accountDao.update(account.getUsername(), account.getPassword(), account.getDescription());
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 }

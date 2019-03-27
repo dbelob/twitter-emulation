@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, finalize, map } from "rxjs/operators";
-import { Observable, of } from "rxjs";
+import { Observable, of, throwError } from "rxjs";
+import { User } from "../models/user.model";
+import { MessageService } from "../components/message/message.service";
 
 @Injectable()
 export class AuthenticationService {
   baseUrl = 'api/authentication/';
   authenticated = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private messageService: MessageService) {
   }
 
   authenticate(credentials, success?: () => void, error?: () => void): Observable<boolean> {
@@ -52,5 +54,13 @@ export class AuthenticationService {
         }
       })
     ).subscribe();
+  }
+
+  getUser(): Observable<User> {
+    return this.http.get(this.baseUrl + 'user').pipe(
+      catchError((response: Response) => {
+        return throwError(this.messageService.getMessageText(response));
+      })
+    );
   }
 }

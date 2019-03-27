@@ -23,16 +23,16 @@ export class AccountService {
       );
   }
 
-  loadProfile(): Observable<Account> {
-    return this.http.get<Account>(this.baseUrl + 'profile').pipe(
+  loadProfile(username: string): Observable<Account> {
+    return this.http.get<Account>(this.baseUrl + `accounts/${username}`).pipe(
       catchError((response: Response) => {
         return throwError(this.messageService.getMessageText(response));
       })
     );
   }
 
-  saveProfile(account: Account): Observable<Account> {
-    return this.http.post<Account>(this.baseUrl + 'profile', account)
+  saveProfile(username: string, account: Account): Observable<Account> {
+    return this.http.put<Account>(this.baseUrl + `accounts/${username}`, account)
       .pipe(
         catchError((response: Response) => {
           return throwError(this.messageService.getMessageText(response));
