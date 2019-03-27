@@ -15,7 +15,7 @@ export class AccountService {
   }
 
   register(account: Account): Observable<Account> {
-    return this.http.post<Account>(this.baseUrl + 'register', account)
+    return this.http.post<Account>(this.baseUrl + 'accounts', account)
       .pipe(
         catchError((response: Response) => {
           return throwError(this.messageService.getMessageText(response));

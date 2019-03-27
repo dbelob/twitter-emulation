@@ -98,14 +98,6 @@ public class AccountController {
     }
 
 
-    @PostMapping("/register")
-    @Deprecated
-    public ResponseEntity<Void> register(@RequestBody AccountDto account) throws AccountExistsException {
-        accountDao.add(account.getUsername(), account.getPassword(), account.getDescription());
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
     @GetMapping("/profile")
     @ResponseBody
     @Deprecated
@@ -119,15 +111,6 @@ public class AccountController {
     @Deprecated
     public ResponseEntity<Void> profile(@RequestBody AccountDto account) {
         accountDao.update(account.getUsername(), account.getPassword(), account.getDescription());
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PostMapping("/delete")
-    @Deprecated
-    public ResponseEntity<Void> delete(Principal principal) {
-        tweetDao.deleteAll(principal.getName());
-        accountDao.delete(principal.getName());
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

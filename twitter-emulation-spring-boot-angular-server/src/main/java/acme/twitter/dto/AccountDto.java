@@ -10,6 +10,9 @@ public class AccountDto {
     private String password;
     private String description;
 
+    public AccountDto() {
+    }
+
     public AccountDto(String username, String password, String description) {
         this.username = username;
         this.password = password;
