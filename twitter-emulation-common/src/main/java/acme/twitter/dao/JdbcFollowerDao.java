@@ -85,6 +85,15 @@ public class JdbcFollowerDao implements FollowerDao {
     }
 
     @Override
+    public void deleteAll(String username) {
+        jdbcTemplate.update(
+                "delete from follower " +
+                        "where who_account_id = (select account_id from account where username = ?) " +
+                        "   or whom_account_id = (select account_id from account where username = ?)",
+                username, username);
+    }
+
+    @Override
     public List<Account> findFollowingByUsername(String username) {
         return jdbcTemplate.query(
                 "select a2.account_id, a2.username, a2.password, a2.description " +

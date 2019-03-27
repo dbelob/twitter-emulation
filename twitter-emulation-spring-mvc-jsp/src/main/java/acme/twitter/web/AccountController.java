@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -162,8 +163,10 @@ public class AccountController {
      * @return view name
      */
     @RequestMapping(value = "/delete", method = POST, params = "delete")
+    @Transactional
     public String processDelete(Principal principal) {
         tweetDao.deleteAll(principal.getName());
+        followerDao.deleteAll(principal.getName());
         accountDao.delete(principal.getName());
 
         return "redirect:/logout";

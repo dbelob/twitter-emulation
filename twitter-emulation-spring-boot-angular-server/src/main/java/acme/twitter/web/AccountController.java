@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -64,12 +65,14 @@ public class AccountController {
     }
 
     @DeleteMapping("/accounts/{username}")
+    @Transactional
     public ResponseEntity<Void> deleteAccount(@PathVariable String username, Principal principal) throws AccountNotAllowedException {
         if (!username.equals(principal.getName())) {
             throw new AccountNotAllowedException();
         }
 
         tweetDao.deleteAll(username);
+        followerDao.deleteAll(username);
         accountDao.delete(username);
 
         return new ResponseEntity<>(HttpStatus.OK);

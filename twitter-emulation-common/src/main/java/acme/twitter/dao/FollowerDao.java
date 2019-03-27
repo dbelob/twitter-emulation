@@ -18,6 +18,8 @@ public interface FollowerDao {
 
     void delete(String whoUsername, String whomUsername);
 
+    void deleteAll(String username);
+
     List<Account> findFollowingByUsername(String username);
 
     List<Account> findFollowersByUsername(String username);

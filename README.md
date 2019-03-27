@@ -111,6 +111,8 @@ in several ways:
 1. Access the deployed web application at:
 
     http://localhost:4200
+    
+Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`
 
 ## Development
 
