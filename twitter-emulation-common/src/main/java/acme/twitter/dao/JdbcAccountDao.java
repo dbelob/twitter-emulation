@@ -67,9 +67,10 @@ public class JdbcAccountDao implements AccountDao {
         return jdbcTemplate.query(
                 "select account_id, username, password, description " +
                         "from account " +
-                        "where username like '%' || ? || '%' " +
+                        "where ? is null " +
+                        "   or username like '%' || ? || '%' " +
                         "order by username",
                 new AccountRowMapper(),
-                usernamePart);
+                usernamePart, usernamePart);
     }
 }

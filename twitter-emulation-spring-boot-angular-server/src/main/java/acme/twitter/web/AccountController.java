@@ -80,7 +80,7 @@ public class AccountController {
 
     @GetMapping("/accounts")
     @ResponseBody
-    public List<AccountDto> getAccounts(@RequestBody String usernamePart) {
+    public List<AccountDto> getAccounts(@RequestParam(required = false) String usernamePart) {
         List<Account> accounts = accountDao.findByUsernamePart(usernamePart);
 
         return AccountDto.convertToDto(accounts);
