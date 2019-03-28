@@ -1,7 +1,7 @@
 <div class="container-dialog p-2">
   <h3 class="bg-info p-1 text-white text-center">Registration</h3>
 
-  <form novalidate #form="ngForm" (ngSubmit)="submitForm(form)">
+  <form novalidate #form="ngForm">
     <div *ngIf="!(formSubmitted && form.invalid)">
       <app-message></app-message>
     </div>
@@ -48,7 +48,8 @@
     <div class="text-center">
       <button type="submit" class="btn btn-primary m-1"
               [disabled]="formSubmitted && form.invalid"
-              [class.btn-secondary]="formSubmitted && form.invalid">
+              [class.btn-secondary]="formSubmitted && form.invalid"
+              (click)="submitForm(form)">
         Register
       </button>
       <button class="btn btn-link m-1" routerLink="/login">Log in</button>

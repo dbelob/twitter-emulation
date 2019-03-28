@@ -7,7 +7,7 @@
   <div class="alert alert-success text-center" [hidden]="!logout">
     You have been logged out.
   </div>
-  <form role="form" (submit)="login()">
+  <form role="form">
     <div class="form-group">
       <label for="username">Username:</label>
       <input type="text"
@@ -22,7 +22,7 @@
              [(ngModel)]="credentials.password"/>
     </div>
     <div class="text-center">
-      <button type="submit" class="btn btn-primary m-1">Log in</button>
+      <button type="submit" class="btn btn-primary m-1" (click)="login()">Log in</button>
       <button class="btn btn-link m-1" routerLink="/account/register">Register</button>
     </div>
   </form>

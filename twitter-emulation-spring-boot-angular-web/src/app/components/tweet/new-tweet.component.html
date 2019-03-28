@@ -1,7 +1,7 @@
 <div class="container-dialog p-2">
   <h3 class="bg-info p-1 text-white text-center">New tweet</h3>
 
-  <form novalidate #form="ngForm" (ngSubmit)="submitForm(form)">
+  <form novalidate #form="ngForm">
     <div class="alert alert-danger"
          *ngIf="formSubmitted && form.invalid">
       There are problems with the form
@@ -23,7 +23,8 @@
     <div class="text-center">
       <button type="submit" class="btn btn-primary m-1"
               [disabled]="formSubmitted && form.invalid"
-              [class.btn-secondary]="formSubmitted && form.invalid">
+              [class.btn-secondary]="formSubmitted && form.invalid"
+              (click)="submitForm(form)">
         Tweet
       </button>
       <button class="btn btn-secondary m-1" routerLink="/account/show">Cancel</button>
