@@ -39,4 +39,13 @@ export class AccountService {
         })
       );
   }
+
+  deleteAccount(username: string): Observable<Account> {
+    return this.http.delete<Account>(this.baseUrl + `accounts/${username}`)
+      .pipe(
+        catchError((response: Response) => {
+          return throwError(this.messageService.getMessageText(response));
+        })
+      );
+  }
 }
