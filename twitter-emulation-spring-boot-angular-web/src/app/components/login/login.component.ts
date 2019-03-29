@@ -7,9 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class LoginComponent {
-  credentials = {username: '', password: ''};
-  error = false;
-  logout = false;
+  private credentials = {username: '', password: ''};
+  private error = false;
+  private logout = false;
 
   constructor(private authenticationService: AuthenticationService, private router: Router, route: ActivatedRoute) {
     route.queryParams.subscribe(params => {

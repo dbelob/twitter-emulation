@@ -9,8 +9,8 @@ import { Router } from "@angular/router";
   templateUrl: './new-tweet.component.html'
 })
 export class NewTweetComponent implements OnInit {
-  formSubmitted: boolean = false;
-  text: string;
+  private formSubmitted: boolean = false;
+  private text: string;
 
   constructor(private tweetService: TweetService, private validationService: ValidationService, private router: Router) {
   }

@@ -9,7 +9,7 @@ import { MessageService } from "../components/message/message.service";
   providedIn: 'root'
 })
 export class TweetService {
-  baseUrl = 'api/tweet/';
+  private baseUrl = 'api/tweet/';
 
   constructor(private http: HttpClient, private messageService: MessageService) {
   }

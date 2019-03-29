@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
   templateUrl: './delete-account.component.html'
 })
 export class DeleteAccountComponent implements OnInit {
-  user: User = new User();
+  private user: User = new User();
 
   constructor(private authenticationService: AuthenticationService, private accountService: AccountService, private router: Router) {
     authenticationService.getUser().subscribe(data => {

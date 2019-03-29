@@ -7,8 +7,8 @@ import { MessageService } from "../components/message/message.service";
 
 @Injectable()
 export class AuthenticationService {
-  baseUrl = 'api/authentication/';
-  authenticated = false;
+  private baseUrl = 'api/authentication/';
+  private authenticated = false;
 
   constructor(private http: HttpClient, private messageService: MessageService) {
   }

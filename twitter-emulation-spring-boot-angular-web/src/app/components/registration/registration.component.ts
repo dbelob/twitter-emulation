@@ -10,8 +10,8 @@ import { ValidationService } from "../../services/validation.service";
   templateUrl: './registration.component.html'
 })
 export class RegistrationComponent implements OnInit {
-  formSubmitted: boolean = false;
-  credentials = {username: '', password: '', passwordConfirmation: '', description: ''};
+  private formSubmitted: boolean = false;
+  private credentials = {username: '', password: '', passwordConfirmation: '', description: ''};
 
   constructor(private accountService: AccountService, private validationService: ValidationService, private router: Router) {
   }

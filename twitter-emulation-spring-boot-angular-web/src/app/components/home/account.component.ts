@@ -7,7 +7,7 @@ import { TweetService } from "../../services/tweet.service";
   templateUrl: './account.component.html'
 })
 export class AccountComponent implements OnInit {
-  tweets: Tweet[] = [];
+  private tweets: Tweet[] = [];
 
   constructor(private tweetService: TweetService) {
     tweetService.getTimeline().subscribe(data => {

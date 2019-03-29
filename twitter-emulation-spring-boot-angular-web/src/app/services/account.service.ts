@@ -10,7 +10,7 @@ import { AccountStatistics } from "../models/account-statistics.model";
   providedIn: 'root'
 })
 export class AccountService {
-  baseUrl = 'api/account/';
+  private baseUrl = 'api/account/';
 
   constructor(private http: HttpClient, private messageService: MessageService) {
   }

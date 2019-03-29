@@ -12,9 +12,9 @@ import { User } from "../../models/user.model";
   templateUrl: './profile.component.html'
 })
 export class ProfileComponent implements OnInit {
-  formSubmitted: boolean = false;
-  credentials = {username: '', password: '', passwordConfirmation: '', description: ''};
-  user: User = new User();
+  private formSubmitted: boolean = false;
+  private credentials = {username: '', password: '', passwordConfirmation: '', description: ''};
+  private user: User = new User();
 
   constructor(private authenticationService: AuthenticationService, private accountService: AccountService, private validationService: ValidationService, private router: Router) {
     authenticationService.getUser().subscribe(data => {
