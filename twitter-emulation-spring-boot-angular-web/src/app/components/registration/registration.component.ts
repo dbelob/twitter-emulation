@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from "../../models/account.model";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Account } from "../../models/account.model";
 import { AccountService } from "../../services/account.service";
 import { ValidationService } from "../../services/validation.service";
 
@@ -23,7 +23,7 @@ export class RegistrationComponent implements OnInit {
     this.formSubmitted = true;
 
     if (form.valid) {
-      this.accountService.register(
+      this.accountService.addAccount(
         new Account(
           this.credentials.username,
           this.credentials.password,

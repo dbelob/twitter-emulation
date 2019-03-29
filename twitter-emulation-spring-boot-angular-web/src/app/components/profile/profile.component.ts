@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
     authenticationService.getUser().subscribe(data => {
       this.user = data;
 
-      accountService.loadProfile(this.user.name).subscribe(data => {
+      accountService.getAccount(this.user.name).subscribe(data => {
         this.credentials.username = data.username;
         this.credentials.password = data.password;
         this.credentials.passwordConfirmation = data.password;
@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
     this.formSubmitted = true;
 
     if (form.valid) {
-      this.accountService.saveProfile(
+      this.accountService.saveAccount(
         this.user.name,
         new Account(
           this.credentials.username,
