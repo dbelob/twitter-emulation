@@ -8,7 +8,6 @@ import acme.twitter.domain.Tweet;
 import acme.twitter.dto.TweetDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,10 +39,9 @@ public class TweetController {
     }
 
     @PostMapping("/tweets")
-    public ResponseEntity<Void> addTweet(@RequestBody String text, Principal principal) {
+    @ResponseStatus(HttpStatus.OK)
+    public void addTweet(@RequestBody String text, Principal principal) {
         tweetDao.add(principal.getName(), text);
-
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/timeline")

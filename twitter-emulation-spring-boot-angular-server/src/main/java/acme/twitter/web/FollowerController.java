@@ -7,7 +7,6 @@ import acme.twitter.domain.Account;
 import acme.twitter.dto.AccountDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,22 +45,20 @@ public class FollowerController {
     }
 
     @PostMapping("/following/{username}")
-    public ResponseEntity<Void> addFollowing(@PathVariable String username, Principal principal) throws AccountNotExistsException {
+    @ResponseStatus(HttpStatus.OK)
+    public void addFollowing(@PathVariable String username, Principal principal) throws AccountNotExistsException {
         Account whoAccount = accountDao.findByUsername(principal.getName());
         Account whomAccount = accountDao.findByUsername(username);
 
         followerDao.add(whoAccount.getUsername(), whomAccount.getUsername());
-
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/following/{username}")
-    public ResponseEntity<Void> deleteFollowing(@PathVariable String username, Principal principal) throws AccountNotExistsException {
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteFollowing(@PathVariable String username, Principal principal) throws AccountNotExistsException {
         Account whoAccount = accountDao.findByUsername(principal.getName());
         Account whomAccount = accountDao.findByUsername(username);
 
         followerDao.delete(whoAccount.getUsername(), whomAccount.getUsername());
-
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
