@@ -9,6 +9,8 @@ export class MessageErrorHandler implements ErrorHandler {
 
   handleError(error) {
     let msg = error instanceof Error ? error.message : error.toString();
+
+    console.log(msg);
     this.ngZone.run(() => this.messageService
       .reportMessage(new Message(msg, true)), 0);
   }
