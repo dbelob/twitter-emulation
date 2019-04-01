@@ -5,12 +5,6 @@ import { Observable, Subject } from "rxjs";
 @Injectable()
 export class MessageService {
   private subject = new Subject<Message>();
-  private exceptionMessages = new Map<string, string>();
-
-  constructor() {
-    this.exceptionMessages.set('AccountExistsException', 'Account with the same name already exists');
-    this.exceptionMessages.set('AccountNotExistsException', 'Account does not exist');
-  }
 
   reportMessage(msg: Message) {
     this.subject.next(msg);
@@ -21,19 +15,15 @@ export class MessageService {
   }
 
   getMessageText(response: Response): string {
+    console.log(JSON.stringify(response));
+
     let error = response['error'];
 
     if (error) {
-      let trace = error['trace'];
+      let customMessage = error['customMessage'];
 
-      if (trace) {
-        for (let key of Array.from(this.exceptionMessages.keys())) {
-          let value = this.exceptionMessages.get(key);
-
-          if (trace.indexOf(key) != -1) {
-            return value;
-          }
-        }
+      if (customMessage) {
+        return customMessage;
       }
     }
 
