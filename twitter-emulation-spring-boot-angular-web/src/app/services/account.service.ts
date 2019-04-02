@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
+import { Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Account } from "../models/account.model";
 import { MessageService } from "../components/message/message.service";
@@ -19,7 +19,8 @@ export class AccountService {
     return this.http.post<Account>(this.baseUrl + 'accounts', account)
       .pipe(
         catchError((response: Response) => {
-          return throwError(this.messageService.getMessageText(response));
+          this.messageService.reportMessage(response);
+          throw response;
         })
       );
   }
@@ -27,7 +28,8 @@ export class AccountService {
   getAccount(username: string): Observable<Account> {
     return this.http.get<Account>(this.baseUrl + `accounts/${username}`).pipe(
       catchError((response: Response) => {
-        return throwError(this.messageService.getMessageText(response));
+        this.messageService.reportMessage(response);
+        throw response;
       })
     );
   }
@@ -36,7 +38,8 @@ export class AccountService {
     return this.http.put<Account>(this.baseUrl + `accounts/${username}`, account)
       .pipe(
         catchError((response: Response) => {
-          return throwError(this.messageService.getMessageText(response));
+          this.messageService.reportMessage(response);
+          throw response;
         })
       );
   }
@@ -45,7 +48,8 @@ export class AccountService {
     return this.http.delete<Account>(this.baseUrl + `accounts/${username}`)
       .pipe(
         catchError((response: Response) => {
-          return throwError(this.messageService.getMessageText(response));
+          this.messageService.reportMessage(response);
+          throw response;
         })
       );
   }
@@ -54,7 +58,8 @@ export class AccountService {
     return this.http.get(this.baseUrl + `statistics/${username}`)
       .pipe(
         catchError((response: Response) => {
-          return throwError(this.messageService.getMessageText(response));
+          this.messageService.reportMessage(response);
+          throw response;
         })
       )
   }

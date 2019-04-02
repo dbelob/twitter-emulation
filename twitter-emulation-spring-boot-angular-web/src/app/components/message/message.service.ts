@@ -6,7 +6,9 @@ import { Observable, Subject } from "rxjs";
 export class MessageService {
   private subject = new Subject<Message>();
 
-  reportMessage(msg: Message) {
+  reportMessage(response: Response) {
+    let msg = new Message(MessageService.getMessageText(response), true);
+
     this.subject.next(msg);
   }
 
@@ -14,9 +16,7 @@ export class MessageService {
     return this.subject;
   }
 
-  getMessageText(response: Response): string {
-    console.log(JSON.stringify(response));
-
+  private static getMessageText(response: Response): string {
     let error = response['error'];
 
     if (error) {

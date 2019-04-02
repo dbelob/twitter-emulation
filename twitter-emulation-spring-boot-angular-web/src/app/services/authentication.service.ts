@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, finalize, map } from "rxjs/operators";
-import { Observable, of, throwError } from "rxjs";
+import { Observable, of } from "rxjs";
 import { User } from "../models/user.model";
 import { MessageService } from "../components/message/message.service";
 
@@ -59,7 +59,8 @@ export class AuthenticationService {
   getUser(): Observable<User> {
     return this.http.get(this.baseUrl + 'user').pipe(
       catchError((response: Response) => {
-        return throwError(this.messageService.getMessageText(response));
+        this.messageService.reportMessage(response);
+        throw response;
       })
     );
   }
