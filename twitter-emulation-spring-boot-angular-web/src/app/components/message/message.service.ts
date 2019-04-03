@@ -7,7 +7,7 @@ export class MessageService {
   private subject = new Subject<Message>();
 
   reportMessage(response: Response) {
-    let msg = new Message(MessageService.getMessageText(response), true);
+    let msg = new Message(MessageService.getMessageText(response), new Date(), true);
 
     this.subject.next(msg);
   }
