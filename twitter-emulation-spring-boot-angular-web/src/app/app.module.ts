@@ -23,7 +23,7 @@ import { AccountService } from './services/account.service';
 import { AuthenticationService } from './services/authentication.service';
 import { TweetService } from './services/tweet.service';
 import { ValidationService } from './services/validation.service';
-import { MessageModule } from "./components/message/message.module";
+import { MessageModule } from "./modules/message/message.module";
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {

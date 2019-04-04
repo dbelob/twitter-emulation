@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Account } from "../models/account.model";
-import { MessageService } from "../components/message/message.service";
+import { MessageService } from "../modules/message/message.service";
 import { AccountStatistics } from "../models/account-statistics.model";
 
 @Injectable({

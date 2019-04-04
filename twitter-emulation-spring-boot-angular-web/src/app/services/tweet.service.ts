@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Tweet } from "../models/tweet.model";
 import { catchError } from "rxjs/operators";
-import { MessageService } from "../components/message/message.service";
+import { MessageService } from "../modules/message/message.service";
 
 @Injectable({
   providedIn: 'root'
