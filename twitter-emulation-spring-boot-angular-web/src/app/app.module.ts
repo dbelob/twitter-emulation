@@ -5,17 +5,14 @@ import { HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, Http
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { AccountComponent } from './components/home/account.component';
-import { AccountInfoComponent } from './components/home/account-info.component';
+import { AccountComponent } from './modules/home/account.component';
 import { DeleteAccountComponent } from './components/profile/delete-account.component';
-import { FollowComponent } from './components/home/follow.component';
 import { LoginComponent } from './components/login/login.component';
 import { NewTweetComponent } from './components/tweet/new-tweet.component';
 import { NotFoundComponent } from './components/unknown/not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { SearchComponent } from './components/home/search.component';
-import { TopBarComponent } from './components/home/top-bar.component';
+import { SearchComponent } from './modules/home/search.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
 import { EqualValidatorDirective } from './directives/equal-validator.directive';
 import { AuthenticationGuard } from "./guards/authentication.guard";
@@ -23,6 +20,7 @@ import { AccountService } from './services/account.service';
 import { AuthenticationService } from './services/authentication.service';
 import { TweetService } from './services/tweet.service';
 import { ValidationService } from './services/validation.service';
+import { HomeModule } from "./modules/home/home.module";
 import { MessageModule } from "./modules/message/message.module";
 
 @Injectable()
@@ -50,17 +48,12 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AccountComponent,
     LoginComponent,
     RegistrationComponent,
     ProfileComponent,
     DeleteAccountComponent,
     NewTweetComponent,
-    SearchComponent,
     NotFoundComponent,
-    TopBarComponent,
-    AccountInfoComponent,
-    FollowComponent,
     EqualValidatorDirective,
     AutofocusDirective
   ],
@@ -69,6 +62,7 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    HomeModule,
     MessageModule
   ],
   providers: [AccountService, AuthenticationService, AuthenticationGuard, TweetService, ValidationService, {
