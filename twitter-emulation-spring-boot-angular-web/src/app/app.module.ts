@@ -6,11 +6,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AccountComponent } from './modules/home/account.component';
-import { DeleteAccountComponent } from './components/profile/delete-account.component';
+import { DeleteAccountComponent } from './modules/profile/delete-account.component';
 import { LoginComponent } from './modules/login/login.component';
 import { NewTweetComponent } from './components/tweet/new-tweet.component';
 import { NotFoundComponent } from './components/unknown/not-found.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileComponent } from './modules/profile/profile.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { SearchComponent } from './modules/home/search.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
@@ -23,6 +23,7 @@ import { ValidationService } from './services/validation.service';
 import { HomeModule } from "./modules/home/home.module";
 import { LoginModule } from "./modules/login/login.module";
 import { MessageModule } from "./modules/message/message.module";
+import { ProfileModule } from "./modules/profile/profile.module";
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -50,8 +51,6 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     RegistrationComponent,
-    ProfileComponent,
-    DeleteAccountComponent,
     NewTweetComponent,
     NotFoundComponent,
     EqualValidatorDirective,
@@ -64,7 +63,8 @@ const routes: Routes = [
     FormsModule,
     HomeModule,
     LoginModule,
-    MessageModule
+    MessageModule,
+    ProfileModule
   ],
   providers: [AccountService, AuthenticationService, AuthenticationGuard, TweetService, ValidationService, {
     provide: HTTP_INTERCEPTORS,
