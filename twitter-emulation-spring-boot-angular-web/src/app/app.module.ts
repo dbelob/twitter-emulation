@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AccountComponent } from './modules/home/account.component';
 import { DeleteAccountComponent } from './components/profile/delete-account.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './modules/login/login.component';
 import { NewTweetComponent } from './components/tweet/new-tweet.component';
 import { NotFoundComponent } from './components/unknown/not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -21,6 +21,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { TweetService } from './services/tweet.service';
 import { ValidationService } from './services/validation.service';
 import { HomeModule } from "./modules/home/home.module";
+import { LoginModule } from "./modules/login/login.module";
 import { MessageModule } from "./modules/message/message.module";
 
 @Injectable()
@@ -48,7 +49,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     RegistrationComponent,
     ProfileComponent,
     DeleteAccountComponent,
@@ -63,6 +63,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     HomeModule,
+    LoginModule,
     MessageModule
   ],
   providers: [AccountService, AuthenticationService, AuthenticationGuard, TweetService, ValidationService, {
