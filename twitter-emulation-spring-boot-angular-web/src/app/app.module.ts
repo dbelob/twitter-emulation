@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { AccountComponent } from './modules/home/account.component';
 import { DeleteAccountComponent } from './modules/profile/delete-account.component';
 import { LoginComponent } from './modules/login/login.component';
-import { NewTweetComponent } from './components/tweet/new-tweet.component';
+import { NewTweetComponent } from './modules/tweet/new-tweet.component';
 import { NotFoundComponent } from './components/unknown/not-found.component';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { RegistrationComponent } from './modules/registration/registration.component';
@@ -25,6 +25,7 @@ import { LoginModule } from "./modules/login/login.module";
 import { MessageModule } from "./modules/message/message.module";
 import { ProfileModule } from "./modules/profile/profile.module";
 import { RegistrationModule } from "./modules/registration/registration.module";
+import { TweetModule } from "./modules/tweet/tweet.module";
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -51,7 +52,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    NewTweetComponent,
     NotFoundComponent,
     EqualValidatorDirective,
     AutofocusDirective
@@ -65,7 +65,8 @@ const routes: Routes = [
     LoginModule,
     MessageModule,
     ProfileModule,
-    RegistrationModule
+    RegistrationModule,
+    TweetModule
   ],
   providers: [AccountService, AuthenticationService, AuthenticationGuard, TweetService, ValidationService, {
     provide: HTTP_INTERCEPTORS,
