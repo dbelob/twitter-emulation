@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { Injectable, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -13,8 +12,6 @@ import { NotFoundComponent } from './modules/unknown/not-found.component';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { RegistrationComponent } from './modules/registration/registration.component';
 import { SearchComponent } from './modules/home/search.component';
-import { AutofocusDirective } from './directives/autofocus.directive';
-import { EqualValidatorDirective } from './directives/equal-validator.directive';
 import { AuthenticationGuard } from "./guards/authentication.guard";
 import { AccountService } from './services/account.service';
 import { AuthenticationService } from './services/authentication.service';
@@ -27,6 +24,7 @@ import { ProfileModule } from "./modules/profile/profile.module";
 import { RegistrationModule } from "./modules/registration/registration.module";
 import { TweetModule } from "./modules/tweet/tweet.module";
 import { UnknownModule } from "./modules/unknown/unknown.module";
+import { GeneralModule } from "./modules/general/general.module";
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -52,15 +50,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
-    EqualValidatorDirective,
-    AutofocusDirective
+    AppComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
-    FormsModule,
+    GeneralModule,
     HomeModule,
     LoginModule,
     MessageModule,
