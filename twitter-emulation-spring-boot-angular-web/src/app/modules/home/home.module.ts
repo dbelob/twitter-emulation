@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from "@angular/router";
 import { AccountComponent } from "./account.component";
 import { AccountInfoComponent } from "./account-info.component";
 import { FollowComponent } from "./follow.component";
@@ -17,6 +18,7 @@ import { MessageModule } from "../message/message.module";
   ],
   imports: [
     CommonModule,
+    RouterModule,
     MessageModule
   ]
 })

@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from "./profile.component";
 import { DeleteAccountComponent } from "./delete-account.component";
-import { MessageModule } from "../message/message.module";
 import { FormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
+import { GeneralModule } from "../general/general.module";
+import { MessageModule } from "../message/message.module";
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { FormsModule } from "@angular/forms";
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
+    GeneralModule,
     MessageModule
   ]
 })
