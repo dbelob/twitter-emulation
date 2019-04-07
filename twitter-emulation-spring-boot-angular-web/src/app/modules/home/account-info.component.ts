@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Account } from "../../models/account.model";
-import { AuthenticationService } from "../../services/authentication.service";
-import { AccountService } from "../../services/account.service";
 import { AccountStatistics } from "../../models/account-statistics.model";
 
 @Component({
@@ -9,19 +7,13 @@ import { AccountStatistics } from "../../models/account-statistics.model";
   templateUrl: './account-info.component.html'
 })
 export class AccountInfoComponent implements OnInit {
-  private account: Account = new Account();
-  private accountStatistics: AccountStatistics = new AccountStatistics();
+  @Input('account')
+  account: Account;
 
-  constructor(private authenticationService: AuthenticationService, private accountService: AccountService) {
-    authenticationService.getUser().subscribe(user => {
-      accountService.getAccount(user.name).subscribe(data => {
-        this.account = data;
-      });
+  @Input('accountStatistics')
+  accountStatistics: AccountStatistics;
 
-      accountService.getAccountStatistics(user.name).subscribe(data => {
-        this.accountStatistics = data;
-      });
-    });
+  constructor() {
   }
 
   ngOnInit() {
