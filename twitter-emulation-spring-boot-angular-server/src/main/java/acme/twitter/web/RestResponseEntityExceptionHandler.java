@@ -11,8 +11,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
-    public static String CUSTOM_MESSAGE_ATTRIBUTE = "customMessage";
-
     @ExceptionHandler({
             AccountExistsException.class,
             AccountNotExistsException.class,
@@ -30,7 +28,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         }
 
         if (customMessage != null) {
-            request.setAttribute(CUSTOM_MESSAGE_ATTRIBUTE, customMessage, WebRequest.SCOPE_REQUEST);
+            request.setAttribute(RestErrorAttributes.CUSTOM_MESSAGE_ATTRIBUTE, customMessage, WebRequest.SCOPE_REQUEST);
         }
 
         throw ex;
