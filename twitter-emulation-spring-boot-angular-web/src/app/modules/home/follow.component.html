@@ -1,5 +1,5 @@
 <div class="card p-3 bg-light">
-  <div class="row m-1">
+  <div *ngIf="isFollowVisible" class="row m-1">
     <button class="btn btn-primary m-0" (click)="follow()">Follow</button>
   </div>
   <div class="row m-1">
