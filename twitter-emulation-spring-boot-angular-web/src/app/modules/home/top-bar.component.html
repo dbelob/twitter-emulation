@@ -3,9 +3,9 @@
     <button class="btn btn-link m-0" routerLink="/account/show">Main</button>
   </div>
   <div class="col-6 p-1">
-    <form role="form" (ngSubmit)="search()">
+    <form role="form" novalidate #form="ngForm" (ngSubmit)="search(form)">
       <div class="input-group mt-1">
-        <input type="search" class="form-control" id="search" name="search" placeholder="Search accounts..."/>
+        <input type="search" class="form-control" id="searchText" name="searchText" [(ngModel)]="searchText" placeholder="Search accounts..."/>
         <div class="input-group-append">
           <button class="btn btn-primary">Search</button>
         </div>
