@@ -3,11 +3,11 @@
     <button class="btn btn-link m-0" routerLink="/account/show">Main</button>
   </div>
   <div class="col-6 p-1">
-    <form role="form" (submit)="search()">
+    <form role="form" (ngSubmit)="search()">
       <div class="input-group mt-1">
         <input type="search" class="form-control" id="search" name="search" placeholder="Search accounts..."/>
         <div class="input-group-append">
-          <button class="btn btn-primary" routerLink="/account/search">Search</button>
+          <button class="btn btn-primary">Search</button>
         </div>
       </div>
     </form>

@@ -25,5 +25,6 @@ export class TopBarComponent implements OnInit {
 
   search() {
     //TODO: implement
+    this.router.navigateByUrl('/account/search');
   }
 }
