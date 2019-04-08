@@ -1,6 +1,5 @@
 package acme.twitter.web;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -8,7 +7,6 @@ import javax.validation.constraints.NotNull;
  */
 public class SearchForm {
     @NotNull
-    @NotEmpty
     private String usernamePart;
 
     public String getUsernamePart() {
