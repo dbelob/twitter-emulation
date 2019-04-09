@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Account } from "../models/account.model";
@@ -46,6 +46,19 @@ export class AccountService {
 
   deleteAccount(username: string): Observable<Account> {
     return this.http.delete<Account>(this.baseUrl + `accounts/${username}`)
+      .pipe(
+        catchError((response: Response) => {
+          this.messageService.reportMessage(response);
+          throw response;
+        })
+      );
+  }
+
+  getAccounts(usernamePart: string): Observable<Account[]> {
+    let params = new HttpParams();
+    params.set('usernamePart', usernamePart);
+
+    return this.http.get<Account[]>(this.baseUrl + 'accounts', {params: params})
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);

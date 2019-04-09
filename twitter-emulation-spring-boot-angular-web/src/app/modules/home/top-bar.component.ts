@@ -29,7 +29,7 @@ export class TopBarComponent implements OnInit {
   search(form: NgForm) {
     this.router.navigate(['/account/search'], {
       queryParams: {
-        "text": this.searchText
+        "searchText": this.searchText
       }
     });
   }

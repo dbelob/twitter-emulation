@@ -17,7 +17,7 @@ export class AccountComponent implements OnInit {
   private accountStatistics: AccountStatistics = new AccountStatistics();
   private tweets: Tweet[] = [];
 
-  constructor(private authenticationService: AuthenticationService, private accountService: AccountService, private tweetService: TweetService) {
+  constructor(authenticationService: AuthenticationService, accountService: AccountService, tweetService: TweetService) {
     authenticationService.getUser().subscribe(user => {
       this.user = user;
 
