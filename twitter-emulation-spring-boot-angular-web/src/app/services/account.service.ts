@@ -55,8 +55,7 @@ export class AccountService {
   }
 
   getAccounts(usernamePart: string): Observable<Account[]> {
-    let params = new HttpParams();
-    params.set('usernamePart', usernamePart);
+    let params = usernamePart ? new HttpParams().set('usernamePart', usernamePart) : new HttpParams();
 
     return this.http.get<Account[]>(this.baseUrl + 'accounts', {params: params})
       .pipe(
