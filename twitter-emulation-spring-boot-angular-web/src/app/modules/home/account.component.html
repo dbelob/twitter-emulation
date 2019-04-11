@@ -1,27 +1,11 @@
-<div class="container p-0">
-  <div class="row m-0">
-    <div class="col-12 mt-1">
-      <app-message [autoHide]="true"></app-message>
-    </div>
-  </div>
-  <app-top-bar></app-top-bar>
-  <div class="row text-black m-0">
-    <div class="col-3 p-1">
-      <app-account-info [account]="account" [accountStatistics]="accountStatistics"></app-account-info>
-    </div>
-    <div class="col-6 p-1">
-      <div *ngFor="let tweet of tweets" class="card m-0 p-1 bg-light">
-        <h6>
-          <a class="font-weight-bold" href="#">{{tweet.description}}</a> @{{tweet.username}}
-          <span class="badge badge-pill badge-primary float-right">
+<app-home>
+  <div *ngFor="let tweet of tweets" class="card m-0 p-1 bg-light">
+    <h6>
+      <a class="font-weight-bold" href="#">{{tweet.description}}</a> @{{tweet.username}}
+      <span class="badge badge-pill badge-primary float-right">
             {{tweet.date | date:"dd.MM.yyyy HH:mm:ss"}}
           </span>
-        </h6>
-        <div class="card-text bg-white p-1">{{tweet.text}}</div>
-      </div>
-    </div>
-    <div class="col-3 p-1">
-      <app-follow [user]="user" [account]="account"></app-follow>
-    </div>
+    </h6>
+    <div class="card-text bg-white p-1">{{tweet.text}}</div>
   </div>
-</div>
+</app-home>

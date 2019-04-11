@@ -1,3 +1,19 @@
-<p>
-  home works!
-</p>
+<div class="container p-0">
+  <div class="row m-0">
+    <div class="col-12 mt-1">
+      <app-message [autoHide]="true"></app-message>
+    </div>
+  </div>
+  <app-top-bar></app-top-bar>
+  <div class="row text-black m-0">
+    <div class="col-3 p-1">
+      <app-account-info [account]="account" [accountStatistics]="accountStatistics"></app-account-info>
+    </div>
+    <div class="col-6 p-1">
+      <ng-content></ng-content>
+    </div>
+    <div class="col-3 p-1">
+      <app-follow [user]="user" [account]="account"></app-follow>
+    </div>
+  </div>
+</div>
