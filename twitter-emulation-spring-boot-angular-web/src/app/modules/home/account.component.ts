@@ -1,24 +1,21 @@
 import { Component } from '@angular/core';
-import { Tweet } from "../../models/tweet.model";
 import { AuthenticationService } from "../../services/authentication.service";
 import { AccountService } from "../../services/account.service";
 import { TweetService } from "../../services/tweet.service";
-import { HomeComponent } from "./home.component";
+import { HomeTweetsComponent } from "./home-tweets.component";
+import { Observable, of } from "rxjs";
+import { Tweet } from "../../models/tweet.model";
 
 @Component({
   selector: 'app-account',
-  templateUrl: './account.component.html'
+  template: '<app-home-tweets></app-home-tweets>'
 })
-export class AccountComponent extends HomeComponent {
-  private tweets: Tweet[] = [];
-
-  constructor(authenticationService: AuthenticationService, accountService: AccountService, private tweetService: TweetService) {
-    super(authenticationService, accountService);
+export class AccountComponent extends HomeTweetsComponent {
+  constructor(authenticationService: AuthenticationService, accountService: AccountService, tweetService: TweetService) {
+    super(authenticationService, accountService, tweetService);
   }
 
-  getData() {
-    this.tweetService.getTimeline().subscribe(data => {
-      this.tweets = data;
-    });
+  getTweets(): Observable<Tweet[]> {
+    return this.tweetService.getTimeline();
   }
 }
