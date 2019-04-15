@@ -3,8 +3,6 @@ import { AuthenticationService } from "../../services/authentication.service";
 import { AccountService } from "../../services/account.service";
 import { TweetService } from "../../services/tweet.service";
 import { HomeTweetsComponent } from "./home-tweets.component";
-import { Observable, of } from "rxjs";
-import { Tweet } from "../../models/tweet.model";
 
 @Component({
   selector: 'app-account',
@@ -15,7 +13,9 @@ export class AccountComponent extends HomeTweetsComponent {
     super(authenticationService, accountService, tweetService);
   }
 
-  getTweets(): Observable<Tweet[]> {
-    return this.tweetService.getTimeline();
+  getData() {
+    this.tweetService.getTimeline().subscribe(data => {
+      this.tweets = data;
+    });
   }
 }
