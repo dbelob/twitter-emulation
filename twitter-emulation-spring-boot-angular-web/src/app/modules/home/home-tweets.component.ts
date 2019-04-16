@@ -15,7 +15,4 @@ export class HomeTweetsComponent extends HomeComponent {
   constructor(authenticationService: AuthenticationService, accountService: AccountService, protected tweetService: TweetService) {
     super(authenticationService, accountService);
   }
-
-  getData() {
-  }
 }
