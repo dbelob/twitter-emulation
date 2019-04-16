@@ -9,6 +9,7 @@ import { SearchComponent } from "./search.component";
 import { TopBarComponent } from "./top-bar.component";
 import { MessageModule } from "../message/message.module";
 import { HomeComponent } from "./home.component";
+import { HomeAccountComponent } from "./home-account.component";
 import { HomeTweetsComponent } from "./home-tweets.component";
 
 @NgModule({
@@ -17,6 +18,7 @@ import { HomeTweetsComponent } from "./home-tweets.component";
     AccountInfoComponent,
     FollowComponent,
     HomeComponent,
+    HomeAccountComponent,
     HomeTweetsComponent,
     SearchComponent,
     TopBarComponent

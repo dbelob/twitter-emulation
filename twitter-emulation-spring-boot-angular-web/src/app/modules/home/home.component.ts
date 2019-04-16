@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService, protected accountService: AccountService) {
   }
 
-  getData() {
+  getData(userName: string) {
   };
 
   ngOnInit() {
@@ -31,8 +31,8 @@ export class HomeComponent implements OnInit {
       this.accountService.getAccountStatistics(user.name).subscribe(data => {
         this.accountStatistics = data;
       });
-    });
 
-    this.getData();
+      this.getData(user.name);
+    });
   }
 }

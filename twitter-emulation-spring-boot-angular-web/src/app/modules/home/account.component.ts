@@ -9,11 +9,11 @@ import { HomeTweetsComponent } from "./home-tweets.component";
   template: '<app-home-tweets></app-home-tweets>'
 })
 export class AccountComponent extends HomeTweetsComponent {
-  constructor(authenticationService: AuthenticationService, accountService: AccountService, tweetService: TweetService) {
-    super(authenticationService, accountService, tweetService);
+  constructor(authenticationService: AuthenticationService, accountService: AccountService, private tweetService: TweetService) {
+    super(authenticationService, accountService);
   }
 
-  getData() {
+  getData(userName: string) {
     this.tweetService.getTimeline().subscribe(data => {
       this.tweets = data;
     });
