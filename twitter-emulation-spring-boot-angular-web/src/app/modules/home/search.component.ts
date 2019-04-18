@@ -6,7 +6,7 @@ import { HomeAccountComponent } from "./home-account.component";
 
 @Component({
   selector: 'app-search',
-  template: '<app-home-account></app-home-account>'
+  templateUrl: './home-account.component.html'
 })
 export class SearchComponent extends HomeAccountComponent {
   constructor(authenticationService: AuthenticationService, accountService: AccountService, private route: ActivatedRoute) {

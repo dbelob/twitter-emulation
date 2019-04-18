@@ -6,7 +6,7 @@ import { HomeTweetsComponent } from "./home-tweets.component";
 
 @Component({
   selector: 'app-account',
-  template: '<app-home-tweets></app-home-tweets>'
+  templateUrl: './home-tweets.component.html'
 })
 export class AccountComponent extends HomeTweetsComponent {
   constructor(authenticationService: AuthenticationService, accountService: AccountService, private tweetService: TweetService) {
