@@ -14,13 +14,14 @@ export class TweetService {
   constructor(private http: HttpClient, private messageService: MessageService) {
   }
 
-  getTimeline(): Observable<Tweet[]> {
-    return this.http.get<Tweet[]>(this.baseUrl + 'timeline').pipe(
-      catchError((response: Response) => {
-        this.messageService.reportMessage(response);
-        throw response;
-      })
-    );
+  getTweets(username: string): Observable<Tweet[]> {
+    return this.http.get<Tweet[]>(this.baseUrl + `tweets/${username}`)
+      .pipe(
+        catchError((response: Response) => {
+          this.messageService.reportMessage(response);
+          throw response;
+        })
+      );
   }
 
   tweet(text: string): Observable<string> {
@@ -31,5 +32,14 @@ export class TweetService {
           throw response;
         })
       );
+  }
+
+  getTimeline(): Observable<Tweet[]> {
+    return this.http.get<Tweet[]>(this.baseUrl + 'timeline').pipe(
+      catchError((response: Response) => {
+        this.messageService.reportMessage(response);
+        throw response;
+      })
+    );
   }
 }

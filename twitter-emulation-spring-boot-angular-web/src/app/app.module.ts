@@ -25,6 +25,7 @@ import { RegistrationModule } from "./modules/registration/registration.module";
 import { TweetModule } from "./modules/tweet/tweet.module";
 import { UnknownModule } from "./modules/unknown/unknown.module";
 import { GeneralModule } from "./modules/general/general.module";
+import { TweetsComponent } from "./modules/home/tweets.component";
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'account/register', component: RegistrationComponent},
   {path: 'account/show', component: AccountComponent, canActivate: [AuthenticationGuard]},
+  {path: 'account/tweets', component: TweetsComponent, canActivate: [AuthenticationGuard]},
   {path: 'account/profile', component: ProfileComponent, canActivate: [AuthenticationGuard]},
   {path: 'account/delete', component: DeleteAccountComponent, canActivate: [AuthenticationGuard]},
   {path: 'account/search', component: SearchComponent, canActivate: [AuthenticationGuard]},

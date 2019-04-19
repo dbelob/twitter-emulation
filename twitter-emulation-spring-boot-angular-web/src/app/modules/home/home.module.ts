@@ -11,6 +11,7 @@ import { MessageModule } from "../message/message.module";
 import { HomeComponent } from "./home.component";
 import { HomeAccountComponent } from "./home-account.component";
 import { HomeTweetsComponent } from "./home-tweets.component";
+import { TweetsComponent } from "./tweets.component";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HomeTweetsComponent } from "./home-tweets.component";
     HomeComponent,
     HomeAccountComponent,
     HomeTweetsComponent,
+    TweetsComponent,
     SearchComponent,
     TopBarComponent
   ],
