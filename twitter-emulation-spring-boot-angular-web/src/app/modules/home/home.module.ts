@@ -12,6 +12,8 @@ import { HomeComponent } from "./home.component";
 import { HomeAccountComponent } from "./home-account.component";
 import { HomeTweetsComponent } from "./home-tweets.component";
 import { TweetsComponent } from "./tweets.component";
+import { FollowersComponent } from "./followers.component";
+import { FollowingComponent } from "./following.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { TweetsComponent } from "./tweets.component";
     HomeAccountComponent,
     HomeTweetsComponent,
     TweetsComponent,
+    FollowingComponent,
+    FollowersComponent,
     SearchComponent,
     TopBarComponent
   ],

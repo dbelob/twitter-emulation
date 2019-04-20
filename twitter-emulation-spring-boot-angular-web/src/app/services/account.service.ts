@@ -67,7 +67,7 @@ export class AccountService {
   }
 
   getAccountStatistics(username: string): Observable<AccountStatistics> {
-    return this.http.get(this.baseUrl + `statistics/${username}`)
+    return this.http.get<AccountStatistics>(this.baseUrl + `statistics/${username}`)
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);
