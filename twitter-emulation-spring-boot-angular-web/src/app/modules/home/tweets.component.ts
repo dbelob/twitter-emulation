@@ -11,6 +11,8 @@ import { TweetService } from "../../services/tweet.service";
 export class TweetsComponent extends HomeTweetsComponent {
   constructor(authenticationService: AuthenticationService, accountService: AccountService, private tweetService: TweetService) {
     super(authenticationService, accountService);
+
+    this.title = 'Tweets';
   }
 
   getData(userName: string) {

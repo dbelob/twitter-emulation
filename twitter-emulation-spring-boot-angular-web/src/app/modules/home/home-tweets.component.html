@@ -1,4 +1,5 @@
 <app-home>
+  <h5 *ngIf="title" class="font-weight-bold">{{title}}</h5>
   <div *ngFor="let tweet of tweets" class="card m-0 p-1 bg-light">
     <h6>
       <a class="font-weight-bold" href="#">{{tweet.description}}</a> @{{tweet.username}}

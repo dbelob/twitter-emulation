@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   protected user: User = new User();
   protected account: Account = new Account();
   protected accountStatistics: AccountStatistics = new AccountStatistics();
+  protected title: string;
 
   constructor(private authenticationService: AuthenticationService, protected accountService: AccountService) {
   }

@@ -11,6 +11,8 @@ import { FollowerService } from "../../services/follower.service";
 export class FollowingComponent extends HomeAccountComponent {
   constructor(authenticationService: AuthenticationService, accountService: AccountService, private followerService: FollowerService) {
     super(authenticationService, accountService);
+
+    this.title = 'Following';
   }
 
   getData(userName: string) {

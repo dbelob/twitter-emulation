@@ -11,6 +11,8 @@ import { HomeAccountComponent } from "./home-account.component";
 export class SearchComponent extends HomeAccountComponent {
   constructor(authenticationService: AuthenticationService, accountService: AccountService, private route: ActivatedRoute) {
     super(authenticationService, accountService);
+
+    this.title = 'Search Result';
   }
 
   getData(userName: string) {
