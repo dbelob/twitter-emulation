@@ -33,4 +33,24 @@ export class FollowerService {
         })
       )
   }
+
+  follow(username: string) {
+    this.http.post<string>(this.baseUrl + `followers/${username}`, {})
+      .pipe(
+        catchError((response: Response) => {
+          this.messageService.reportMessage(response);
+          throw response;
+        })
+      )
+  }
+
+  unfollow(username: string) {
+    this.http.delete<string>(this.baseUrl + `followers/${username}`, {})
+      .pipe(
+        catchError((response: Response) => {
+          this.messageService.reportMessage(response);
+          throw response;
+        })
+      )
+  }
 }
