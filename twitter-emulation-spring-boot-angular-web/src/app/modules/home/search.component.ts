@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { AccountService } from "../../services/account.service";
-import { AuthenticationService } from "../../services/authentication.service";
+import { AccountService } from "../../shared/services/account.service";
+import { AuthenticationService } from "../../shared/services/authentication.service";
 import { HomeAccountComponent } from "./home-account.component";
 
 @Component({

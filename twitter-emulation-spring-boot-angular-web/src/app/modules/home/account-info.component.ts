@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Account } from "../../models/account.model";
-import { AccountStatistics } from "../../models/account-statistics.model";
+import { Account } from "../../shared/models/account.model";
+import { AccountStatistics } from "../../shared/models/account-statistics.model";
 
 @Component({
   selector: 'app-account-info',

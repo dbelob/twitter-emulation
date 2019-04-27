@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { ValidationService } from "../../services/validation.service";
-import { TweetService } from "../../services/tweet.service";
 import { Router } from "@angular/router";
+import { ValidationService } from "../../shared/services/validation.service";
+import { TweetService } from "../../shared/services/tweet.service";
 
 @Component({
   selector: 'app-new-tweet',

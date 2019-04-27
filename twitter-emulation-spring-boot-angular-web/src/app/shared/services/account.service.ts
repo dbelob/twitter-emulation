@@ -3,8 +3,8 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Account } from "../models/account.model";
-import { MessageService } from "../modules/message/message.service";
 import { AccountStatistics } from "../models/account-statistics.model";
+import { MessageService } from "../../modules/message/message.service";
 
 @Injectable({
   providedIn: 'root'

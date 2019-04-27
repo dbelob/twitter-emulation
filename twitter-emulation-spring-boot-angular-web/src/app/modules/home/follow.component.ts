@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Account } from "../../models/account.model";
-import { User } from "../../models/user.model";
+import { Account } from "../../shared/models/account.model";
+import { User } from "../../shared/models/user.model";
 
 @Component({
   selector: 'app-follow',

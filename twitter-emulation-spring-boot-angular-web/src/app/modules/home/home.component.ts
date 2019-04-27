@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from "../../models/user.model";
-import { Account } from "../../models/account.model";
-import { AccountStatistics } from "../../models/account-statistics.model";
-import { AuthenticationService } from "../../services/authentication.service";
-import { AccountService } from "../../services/account.service";
+import { User } from "../../shared/models/user.model";
+import { Account } from "../../shared/models/account.model";
+import { AccountStatistics } from "../../shared/models/account-statistics.model";
+import { AuthenticationService } from "../../shared/services/authentication.service";
+import { AccountService } from "../../shared/services/account.service";
 
 @Component({
   selector: 'app-home',

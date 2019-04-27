@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { HomeComponent } from "./home.component";
-import { Tweet } from "../../models/tweet.model";
-import { AuthenticationService } from "../../services/authentication.service";
-import { AccountService } from "../../services/account.service";
+import { Tweet } from "../../shared/models/tweet.model";
+import { AuthenticationService } from "../../shared/services/authentication.service";
+import { AccountService } from "../../shared/services/account.service";
 
 @Component({
   selector: 'app-home-tweets',

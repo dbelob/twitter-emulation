@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
-import { Account } from "../../models/account.model";
-import { AccountService } from "../../services/account.service";
-import { ValidationService } from "../../services/validation.service";
+import { Account } from "../../shared/models/account.model";
+import { AccountService } from "../../shared/services/account.service";
+import { ValidationService } from "../../shared/services/validation.service";
 
 @Component({
   selector: 'app-registration',

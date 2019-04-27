@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from "../../models/user.model";
-import { AuthenticationService } from "../../services/authentication.service";
-import { AccountService } from "../../services/account.service";
 import { Router } from "@angular/router";
+import { User } from "../../shared/models/user.model";
+import { AuthenticationService } from "../../shared/services/authentication.service";
+import { AccountService } from "../../shared/services/account.service";
 
 @Component({
   selector: 'app-delete-account',

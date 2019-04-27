@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { HomeAccountComponent } from "./home-account.component";
-import { AuthenticationService } from "../../services/authentication.service";
-import { AccountService } from "../../services/account.service";
-import { FollowerService } from "../../services/follower.service";
+import { AuthenticationService } from "../../shared/services/authentication.service";
+import { AccountService } from "../../shared/services/account.service";
+import { FollowerService } from "../../shared/services/follower.service";
 
 @Component({
   selector: 'app-following',

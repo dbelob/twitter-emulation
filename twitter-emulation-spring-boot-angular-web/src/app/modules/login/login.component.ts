@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '../../services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../../shared/services/authentication.service';
 
 @Component({
   templateUrl: './login.component.html'

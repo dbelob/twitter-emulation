@@ -12,11 +12,12 @@ import { NotFoundComponent } from './modules/unknown/not-found.component';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { RegistrationComponent } from './modules/registration/registration.component';
 import { SearchComponent } from './modules/home/search.component';
-import { AuthenticationGuard } from "./guards/authentication.guard";
-import { AccountService } from './services/account.service';
-import { AuthenticationService } from './services/authentication.service';
-import { TweetService } from './services/tweet.service';
-import { ValidationService } from './services/validation.service';
+import { AuthenticationGuard } from "./shared/guards/authentication.guard";
+import { AccountService } from './shared/services/account.service';
+import { AuthenticationService } from './shared/services/authentication.service';
+import { TweetService } from './shared/services/tweet.service';
+import { ValidationService } from './shared/services/validation.service';
+import { FollowerService } from "./shared/services/follower.service";
 import { HomeModule } from "./modules/home/home.module";
 import { LoginModule } from "./modules/login/login.module";
 import { MessageModule } from "./modules/message/message.module";
@@ -28,7 +29,6 @@ import { GeneralModule } from "./modules/general/general.module";
 import { TweetsComponent } from "./modules/home/tweets.component";
 import { FollowingComponent } from "./modules/home/following.component";
 import { FollowersComponent } from "./modules/home/followers.component";
-import { FollowerService } from "./services/follower.service";
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { HomeComponent } from "./home.component";
-import { Account } from "../../models/account.model";
-import { AuthenticationService } from "../../services/authentication.service";
-import { AccountService } from "../../services/account.service";
+import { Account } from "../../shared/models/account.model";
+import { AuthenticationService } from "../../shared/services/authentication.service";
+import { AccountService } from "../../shared/services/account.service";
 
 @Component({
   selector: 'app-home-account',
