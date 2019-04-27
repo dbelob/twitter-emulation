@@ -4,7 +4,6 @@ import { ProfileComponent } from "./profile.component";
 import { DeleteAccountComponent } from "./delete-account.component";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { GeneralModule } from "../general/general.module";
 import { MessageModule } from "../message/message.module";
 
 @NgModule({
@@ -16,7 +15,6 @@ import { MessageModule } from "../message/message.module";
     CommonModule,
     FormsModule,
     RouterModule,
-    GeneralModule,
     MessageModule
   ]
 })

@@ -25,10 +25,11 @@ import { ProfileModule } from "./modules/profile/profile.module";
 import { RegistrationModule } from "./modules/registration/registration.module";
 import { TweetModule } from "./modules/tweet/tweet.module";
 import { UnknownModule } from "./modules/unknown/unknown.module";
-import { GeneralModule } from "./modules/general/general.module";
 import { TweetsComponent } from "./modules/home/tweets.component";
 import { FollowingComponent } from "./modules/home/following.component";
 import { FollowersComponent } from "./modules/home/followers.component";
+import { EqualValidatorDirective } from "./shared/directives/equal-validator.directive";
+import { AutofocusDirective } from "./shared/directives/autofocus.directive";
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -57,13 +58,14 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EqualValidatorDirective,
+    AutofocusDirective
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
-    GeneralModule,
     HomeModule,
     LoginModule,
     MessageModule,

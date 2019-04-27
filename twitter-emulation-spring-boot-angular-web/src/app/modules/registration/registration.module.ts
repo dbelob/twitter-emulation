@@ -4,7 +4,6 @@ import { RegistrationComponent } from "./registration.component";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { MessageModule } from "../message/message.module";
-import { GeneralModule } from "../general/general.module";
 
 @NgModule({
   declarations: [
@@ -14,7 +13,6 @@ import { GeneralModule } from "../general/general.module";
     CommonModule,
     FormsModule,
     RouterModule,
-    GeneralModule,
     MessageModule
   ]
 })
