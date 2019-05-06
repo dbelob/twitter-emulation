@@ -4,6 +4,7 @@ import { NewTweetComponent } from "./new-tweet.component";
 import { FormsModule } from "@angular/forms";
 import { MessageModule } from "../message/message.module";
 import { RouterModule } from "@angular/router";
+import { GeneralModule } from "../general/general.module";
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { RouterModule } from "@angular/router";
     CommonModule,
     FormsModule,
     RouterModule,
+    GeneralModule,
     MessageModule
   ]
 })
