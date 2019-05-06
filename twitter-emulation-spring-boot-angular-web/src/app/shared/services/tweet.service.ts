@@ -9,13 +9,13 @@ import { MessageService } from "../../modules/message/message.service";
   providedIn: 'root'
 })
 export class TweetService {
-  private baseUrl = 'api/tweet/';
+  private baseUrl = 'api/tweet';
 
   constructor(private http: HttpClient, private messageService: MessageService) {
   }
 
   getTweets(username: string): Observable<Tweet[]> {
-    return this.http.get<Tweet[]>(this.baseUrl + `tweets/${username}`)
+    return this.http.get<Tweet[]>(`${this.baseUrl}/tweets/${username}`)
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);
@@ -25,7 +25,7 @@ export class TweetService {
   }
 
   tweet(text: string): Observable<string> {
-    return this.http.post<string>(this.baseUrl + 'tweets', text)
+    return this.http.post<string>(`${this.baseUrl}/tweets`, text)
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);
@@ -35,7 +35,7 @@ export class TweetService {
   }
 
   getTimeline(): Observable<Tweet[]> {
-    return this.http.get<Tweet[]>(this.baseUrl + 'timeline').pipe(
+    return this.http.get<Tweet[]>(`${this.baseUrl}/timeline`).pipe(
       catchError((response: Response) => {
         this.messageService.reportMessage(response);
         throw response;

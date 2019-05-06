@@ -10,13 +10,13 @@ import { MessageService } from "../../modules/message/message.service";
   providedIn: 'root'
 })
 export class AccountService {
-  private baseUrl = 'api/account/';
+  private baseUrl = 'api/account';
 
   constructor(private http: HttpClient, private messageService: MessageService) {
   }
 
   addAccount(account: Account): Observable<Account> {
-    return this.http.post<Account>(this.baseUrl + 'accounts', account)
+    return this.http.post<Account>(`${this.baseUrl}/accounts`, account)
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);
@@ -26,7 +26,7 @@ export class AccountService {
   }
 
   getAccount(username: string): Observable<Account> {
-    return this.http.get<Account>(this.baseUrl + `accounts/${username}`).pipe(
+    return this.http.get<Account>(`${this.baseUrl}/accounts/${username}`).pipe(
       catchError((response: Response) => {
         this.messageService.reportMessage(response);
         throw response;
@@ -35,7 +35,7 @@ export class AccountService {
   }
 
   saveAccount(username: string, account: Account): Observable<Account> {
-    return this.http.put<Account>(this.baseUrl + `accounts/${username}`, account)
+    return this.http.put<Account>(`${this.baseUrl}/accounts/${username}`, account)
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);
@@ -45,7 +45,7 @@ export class AccountService {
   }
 
   deleteAccount(username: string): Observable<Account> {
-    return this.http.delete<Account>(this.baseUrl + `accounts/${username}`)
+    return this.http.delete<Account>(`${this.baseUrl}/accounts/${username}`)
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);
@@ -57,7 +57,7 @@ export class AccountService {
   getAccounts(usernamePart: string): Observable<Account[]> {
     let params = usernamePart ? new HttpParams().set('usernamePart', usernamePart) : new HttpParams();
 
-    return this.http.get<Account[]>(this.baseUrl + 'accounts', {params: params})
+    return this.http.get<Account[]>(`${this.baseUrl}/accounts`, {params: params})
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);
@@ -67,7 +67,7 @@ export class AccountService {
   }
 
   getAccountStatistics(username: string): Observable<AccountStatistics> {
-    return this.http.get<AccountStatistics>(this.baseUrl + `statistics/${username}`)
+    return this.http.get<AccountStatistics>(`${this.baseUrl}/statistics/${username}`)
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);

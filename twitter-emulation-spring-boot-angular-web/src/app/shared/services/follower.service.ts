@@ -9,13 +9,13 @@ import { Account } from "../models/account.model";
   providedIn: 'root'
 })
 export class FollowerService {
-  private baseUrl = 'api/follower/';
+  private baseUrl = 'api/follower';
 
   constructor(private http: HttpClient, private messageService: MessageService) {
   }
 
   getFollowing(username: string): Observable<Account[]> {
-    return this.http.get<Account[]>(this.baseUrl + `following/${username}`)
+    return this.http.get<Account[]>(`${this.baseUrl}/following/${username}`)
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);
@@ -25,7 +25,7 @@ export class FollowerService {
   }
 
   getFollowers(username: string): Observable<Account[]> {
-    return this.http.get<Account[]>(this.baseUrl + `followers/${username}`)
+    return this.http.get<Account[]>(`${this.baseUrl}/followers/${username}`)
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);
@@ -35,7 +35,7 @@ export class FollowerService {
   }
 
   follow(username: string) {
-    this.http.post<string>(this.baseUrl + `followers/${username}`, {})
+    this.http.post<string>(`${this.baseUrl}/followers/${username}`, {})
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);
@@ -45,7 +45,7 @@ export class FollowerService {
   }
 
   unfollow(username: string) {
-    this.http.delete<string>(this.baseUrl + `followers/${username}`, {})
+    this.http.delete<string>(`${this.baseUrl}/followers/${username}`, {})
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);

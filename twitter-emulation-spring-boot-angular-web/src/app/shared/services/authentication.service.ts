@@ -7,7 +7,7 @@ import { User } from "../models/user.model";
 
 @Injectable()
 export class AuthenticationService {
-  private baseUrl = 'api/authentication/';
+  private baseUrl = 'api/authentication';
   private authenticated = false;
 
   constructor(private http: HttpClient, private messageService: MessageService) {
@@ -18,7 +18,7 @@ export class AuthenticationService {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
 
-    return this.http.get(this.baseUrl + 'user', {headers: headers}).pipe(
+    return this.http.get(`${this.baseUrl}/user`, {headers: headers}).pipe(
       map(response => {
           if (response['name']) {
             this.authenticated = true;
@@ -57,7 +57,7 @@ export class AuthenticationService {
   }
 
   getUser(): Observable<User> {
-    return this.http.get(this.baseUrl + 'user').pipe(
+    return this.http.get(`${this.baseUrl}/user`).pipe(
       catchError((response: Response) => {
         this.messageService.reportMessage(response);
         throw response;
