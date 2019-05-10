@@ -42,6 +42,7 @@ export class XhrInterceptor implements HttpInterceptor {
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'account/register', component: RegistrationComponent},
+  {path: 'account/show/:user', component: AccountComponent, canActivate: [AuthenticationGuard]},
   {path: 'account/show', component: AccountComponent, canActivate: [AuthenticationGuard]},
   {path: 'account/tweets', component: TweetsComponent, canActivate: [AuthenticationGuard]},
   {path: 'account/following', component: FollowingComponent, canActivate: [AuthenticationGuard]},

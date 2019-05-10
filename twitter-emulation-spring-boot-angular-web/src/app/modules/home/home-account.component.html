@@ -3,7 +3,7 @@
   <table>
     <tr *ngFor="let account of accounts">
       <td>
-        <a class="font-weight-bold" href="#">{{account.description}}</a> @{{account.username}}
+        <a class="font-weight-bold" [routerLink]="['/account', 'show', account.username]">{{account.description}}</a> @{{account.username}}
       </td>
     </tr>
   </table>
