@@ -18,7 +18,7 @@ export class TopBarComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout(() => {
-      this.router.navigate(['/login'], {
+      this.router.navigateByUrl('/login', {
         queryParams: {
           "logout": true
         }
