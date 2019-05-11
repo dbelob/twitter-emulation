@@ -9,14 +9,14 @@ import { HomeAccountComponent } from "./home-account.component";
   templateUrl: './home-account.component.html'
 })
 export class SearchComponent extends HomeAccountComponent {
-  constructor(authenticationService: AuthenticationService, accountService: AccountService, private route: ActivatedRoute) {
-    super(authenticationService, accountService);
+  constructor(authenticationService: AuthenticationService, accountService: AccountService, private activatedRoute: ActivatedRoute) {
+    super(authenticationService, accountService, activatedRoute);
 
     this.title = 'Search Result';
   }
 
   getData(userName: string) {
-    this.route.queryParams.subscribe(params => {
+    this.activatedRoute.queryParams.subscribe(params => {
       let searchText = params["searchText"];
 
       this.accountService.getAccounts(searchText).subscribe(data => {
