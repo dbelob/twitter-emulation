@@ -3,7 +3,7 @@ import { HomeComponent } from "./home.component";
 import { Tweet } from "../../shared/models/tweet.model";
 import { AuthenticationService } from "../../shared/services/authentication.service";
 import { AccountService } from "../../shared/services/account.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-home-tweets',
@@ -12,7 +12,7 @@ import { ActivatedRoute } from "@angular/router";
 export class HomeTweetsComponent extends HomeComponent {
   protected tweets: Tweet[] = [];
 
-  constructor(authenticationService: AuthenticationService, accountService: AccountService, activatedRoute: ActivatedRoute) {
-    super(authenticationService, accountService, activatedRoute);
+  constructor(authenticationService: AuthenticationService, accountService: AccountService, activatedRoute: ActivatedRoute, router: Router) {
+    super(authenticationService, accountService, activatedRoute, router);
   }
 }

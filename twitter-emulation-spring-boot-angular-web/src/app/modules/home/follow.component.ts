@@ -7,8 +7,8 @@ import { User } from "../../shared/models/user.model";
   templateUrl: './follow.component.html'
 })
 export class FollowComponent implements OnInit {
-  @Input('user')
-  user: User;
+  @Input('authenticatedUser')
+  authenticatedUser: User;
 
   @Input('account')
   account: Account;
@@ -20,7 +20,7 @@ export class FollowComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isFollowVisible = this.user.name !== this.account.username;
+    this.isFollowVisible = this.authenticatedUser.name !== this.account.username;
   }
 
   follow() {

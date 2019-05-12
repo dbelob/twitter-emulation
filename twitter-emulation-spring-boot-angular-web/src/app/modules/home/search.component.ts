@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AccountService } from "../../shared/services/account.service";
 import { AuthenticationService } from "../../shared/services/authentication.service";
 import { HomeAccountComponent } from "./home-account.component";
@@ -9,8 +9,8 @@ import { HomeAccountComponent } from "./home-account.component";
   templateUrl: './home-account.component.html'
 })
 export class SearchComponent extends HomeAccountComponent {
-  constructor(authenticationService: AuthenticationService, accountService: AccountService, private activatedRoute: ActivatedRoute) {
-    super(authenticationService, accountService, activatedRoute);
+  constructor(authenticationService: AuthenticationService, accountService: AccountService, private activatedRoute: ActivatedRoute, router: Router) {
+    super(authenticationService, accountService, activatedRoute, router);
 
     this.title = 'Search Result';
   }
