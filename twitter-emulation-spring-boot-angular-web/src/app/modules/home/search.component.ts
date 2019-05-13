@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { AccountService } from "../../shared/services/account.service";
 import { AuthenticationService } from "../../shared/services/authentication.service";
 import { HomeAccountComponent } from "./home-account.component";
+import { DATA_USERNAME } from "../../shared/models/user.model";
+import { Observer } from "rxjs";
+import { AccountService } from "../../shared/services/account.service";
 
 @Component({
   selector: 'app-search',
   templateUrl: './home-account.component.html'
 })
 export class SearchComponent extends HomeAccountComponent {
-  constructor(authenticationService: AuthenticationService, accountService: AccountService, private activatedRoute: ActivatedRoute, router: Router) {
-    super(authenticationService, accountService, activatedRoute, router);
+  constructor(authenticationService: AuthenticationService, private activatedRoute: ActivatedRoute, router: Router,
+              @Inject(DATA_USERNAME) observer: Observer<string>, private accountService: AccountService) {
+    super(authenticationService, activatedRoute, router, observer);
 
     this.title = 'Search Result';
   }

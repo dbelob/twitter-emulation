@@ -20,7 +20,8 @@ export class FollowComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isFollowVisible = this.authenticatedUser.name !== this.account.username;
+    //TODO: change
+    this.isFollowVisible = false; //this.authenticatedUser.name !== this.account.username;
   }
 
   follow() {

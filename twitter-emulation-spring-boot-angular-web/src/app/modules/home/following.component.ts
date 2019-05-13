@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { Observer } from "rxjs";
 import { HomeAccountComponent } from "./home-account.component";
 import { AuthenticationService } from "../../shared/services/authentication.service";
-import { AccountService } from "../../shared/services/account.service";
 import { FollowerService } from "../../shared/services/follower.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { DATA_USERNAME } from "../../shared/models/user.model";
 
 @Component({
   selector: 'app-following',
   templateUrl: './home-account.component.html'
 })
 export class FollowingComponent extends HomeAccountComponent {
-  constructor(authenticationService: AuthenticationService, accountService: AccountService, activatedRoute: ActivatedRoute,
-              router: Router, private followerService: FollowerService) {
-    super(authenticationService, accountService, activatedRoute, router);
+  constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,
+              @Inject(DATA_USERNAME) observer: Observer<string>, private followerService: FollowerService) {
+    super(authenticationService, activatedRoute, router, observer);
 
     this.title = 'Following';
   }
