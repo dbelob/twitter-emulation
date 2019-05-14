@@ -15,7 +15,6 @@ import { HomeTweetsComponent } from "./home-tweets.component";
 import { TweetsComponent } from "./tweets.component";
 import { FollowersComponent } from "./followers.component";
 import { FollowingComponent } from "./following.component";
-import { HomeChildComponent } from "./home-child.component";
 import { DATA_USERNAME } from "../../shared/models/user.model";
 
 @NgModule({
@@ -24,7 +23,6 @@ import { DATA_USERNAME } from "../../shared/models/user.model";
     AccountInfoComponent,
     FollowComponent,
     HomeComponent,
-    HomeChildComponent,
     HomeAccountComponent,
     HomeTweetsComponent,
     TweetsComponent,

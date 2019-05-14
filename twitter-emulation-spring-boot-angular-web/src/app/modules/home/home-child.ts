@@ -1,20 +1,15 @@
-import { Component, Inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { Observer } from "rxjs";
 import { filter } from "rxjs/operators";
 import { AuthenticationService } from "../../shared/services/authentication.service";
-import { DATA_USERNAME, User } from "../../shared/models/user.model";
+import { User } from "../../shared/models/user.model";
 
-@Component({
-  selector: 'app-home-child',
-  templateUrl: './home-child.component.html'
-})
-export class HomeChildComponent {
+export abstract class HomeChild {
   protected authenticatedUser: User = new User();
   protected title: string;
 
-  constructor(private authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,
-              @Inject(DATA_USERNAME) observer: Observer<string>) {
+  protected constructor(private authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,
+                        observer: Observer<string>) {
     router.events
       .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe(e => {
