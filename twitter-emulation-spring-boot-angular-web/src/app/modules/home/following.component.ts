@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { Observer } from "rxjs";
 import { HomeAccountComponent } from "./home-account.component";
 import { AuthenticationService } from "../../shared/services/authentication.service";
@@ -11,9 +11,9 @@ import { DATA_USERNAME } from "../../shared/models/user.model";
   templateUrl: './home-account.component.html'
 })
 export class FollowingComponent extends HomeAccountComponent {
-  constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,
+  constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute,
               @Inject(DATA_USERNAME) observer: Observer<string>, private followerService: FollowerService) {
-    super(authenticationService, activatedRoute, router, observer);
+    super(authenticationService, activatedRoute, observer);
 
     this.title = 'Following';
   }

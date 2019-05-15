@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { Observer } from "rxjs";
 import { AuthenticationService } from "../../shared/services/authentication.service";
 import { TweetService } from "../../shared/services/tweet.service";
@@ -11,9 +11,9 @@ import { DATA_USERNAME } from "../../shared/models/user.model";
   templateUrl: './home-tweets.component.html'
 })
 export class AccountComponent extends HomeTweetsComponent {
-  constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,
+  constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute,
               @Inject(DATA_USERNAME) observer: Observer<string>, private tweetService: TweetService) {
-    super(authenticationService, activatedRoute, router, observer);
+    super(authenticationService, activatedRoute, observer);
   }
 
   getData(userName: string) {
