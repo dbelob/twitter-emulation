@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Observer } from "rxjs";
 import { Account } from "../../shared/models/account.model";
 import { AuthenticationService } from "../../shared/services/authentication.service";
@@ -13,7 +13,8 @@ import { HomeChild } from "./home-child";
 export class HomeAccountComponent extends HomeChild {
   protected accounts: Account[] = [];
 
-  constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, @Inject(DATA_USERNAME) observer: Observer<string>) {
-    super(authenticationService, activatedRoute, observer);
+  constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,
+              @Inject(DATA_USERNAME) observer: Observer<string>) {
+    super(authenticationService, activatedRoute, router, observer);
   }
 }
