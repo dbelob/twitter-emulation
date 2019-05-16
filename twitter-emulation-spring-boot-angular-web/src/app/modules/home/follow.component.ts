@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { UserState } from "../../shared/models/user-state.model";
 import { Account } from "../../shared/models/account.model";
-import { User } from "../../shared/models/user.model";
 
 @Component({
   selector: 'app-follow',
   templateUrl: './follow.component.html'
 })
 export class FollowComponent implements OnInit {
-  @Input('authenticatedUser')
-  authenticatedUser: User;
+  @Input('userState')
+  userState: UserState;
 
   @Input('account')
   account: Account;
@@ -21,7 +21,7 @@ export class FollowComponent implements OnInit {
 
   ngOnInit() {
     //TODO: change
-    this.isFollowVisible = false; //this.authenticatedUser.name !== this.account.username;
+    this.isFollowVisible = this.userState.isAuthenticated() && (this.userState.authenticatedUserName !== this.userState.selectedUserName);
   }
 
   follow() {

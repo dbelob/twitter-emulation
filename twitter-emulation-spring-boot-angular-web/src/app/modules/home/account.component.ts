@@ -4,7 +4,7 @@ import { Observer } from "rxjs";
 import { AuthenticationService } from "../../shared/services/authentication.service";
 import { TweetService } from "../../shared/services/tweet.service";
 import { HomeTweetsComponent } from "./home-tweets.component";
-import { DATA_USERNAME } from "../../shared/models/user.model";
+import { USER_STATE, UserState } from "../../shared/models/user-state.model";
 
 @Component({
   selector: 'app-account',
@@ -12,7 +12,7 @@ import { DATA_USERNAME } from "../../shared/models/user.model";
 })
 export class AccountComponent extends HomeTweetsComponent {
   constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,
-              @Inject(DATA_USERNAME) observer: Observer<string>, private tweetService: TweetService) {
+              @Inject(USER_STATE) observer: Observer<UserState>, private tweetService: TweetService) {
     super(authenticationService, activatedRoute, router, observer);
   }
 

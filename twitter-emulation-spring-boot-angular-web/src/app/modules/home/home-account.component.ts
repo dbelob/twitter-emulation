@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Observer } from "rxjs";
 import { Account } from "../../shared/models/account.model";
 import { AuthenticationService } from "../../shared/services/authentication.service";
-import { DATA_USERNAME } from "../../shared/models/user.model";
 import { HomeChild } from "./home-child";
+import { USER_STATE, UserState } from "../../shared/models/user-state.model";
 
 @Component({
   selector: 'app-home-account',
@@ -14,7 +14,7 @@ export class HomeAccountComponent extends HomeChild {
   protected accounts: Account[] = [];
 
   constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,
-              @Inject(DATA_USERNAME) observer: Observer<string>) {
+              @Inject(USER_STATE) observer: Observer<UserState>) {
     super(authenticationService, activatedRoute, router, observer);
   }
 }
