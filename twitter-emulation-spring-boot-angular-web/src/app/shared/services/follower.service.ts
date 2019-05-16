@@ -34,8 +34,8 @@ export class FollowerService {
       )
   }
 
-  follow(username: string) {
-    this.http.post<string>(`${this.baseUrl}/followers/${username}`, {})
+  follow(username: string): Observable<string> {
+    return this.http.post<string>(`${this.baseUrl}/following/${username}`, {})
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);
@@ -44,8 +44,8 @@ export class FollowerService {
       )
   }
 
-  unfollow(username: string) {
-    this.http.delete<string>(`${this.baseUrl}/followers/${username}`, {})
+  unfollow(username: string): Observable<string> {
+    return this.http.delete<string>(`${this.baseUrl}/following/${username}`, {})
       .pipe(
         catchError((response: Response) => {
           this.messageService.reportMessage(response);
