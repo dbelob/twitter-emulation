@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
           this.credentials.password,
           this.credentials.description)
       ).subscribe(data => {
-        this.router.navigateByUrl('/account/show');
+        this.router.navigate(['/account', 'show', this.credentials.username]);
       });
     }
   }

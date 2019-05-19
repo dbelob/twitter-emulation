@@ -26,8 +26,10 @@ export abstract class HomeChild {
   apply(url: UrlSegment[], authenticatedUserName: string, selectedUserName: string) {
     if ((url[0].path === 'account') && (url[1].path === 'show')) {
       if (!selectedUserName) {
-        this.router.navigate(['/account', 'show', authenticatedUserName]);
-        return;
+        if (authenticatedUserName) {
+          this.router.navigate(['/account', 'show', authenticatedUserName]);
+          return;
+        }
       } else {
         if (selectedUserName !== authenticatedUserName) {
           this.router.navigate(['/account', 'tweets', selectedUserName]);

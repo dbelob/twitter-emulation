@@ -21,7 +21,7 @@ export class LoginComponent {
     this.logout = false;
 
     this.authenticationService.authenticate(this.credentials, () => {
-        this.router.navigateByUrl('/account/show');
+        this.router.navigate(['/account', 'show', this.credentials.username]);
       },
       () => {
         this.error = true;
