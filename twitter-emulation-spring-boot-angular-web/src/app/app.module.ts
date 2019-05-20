@@ -28,6 +28,7 @@ import { UnknownModule } from "./modules/unknown/unknown.module";
 import { TweetsComponent } from "./modules/home/tweets.component";
 import { FollowingComponent } from "./modules/home/following.component";
 import { FollowersComponent } from "./modules/home/followers.component";
+import { HomeResolver } from "./modules/home/home.resolver";
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -42,11 +43,11 @@ export class XhrInterceptor implements HttpInterceptor {
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'account/register', component: RegistrationComponent},
-  {path: 'account/show/:user', component: AccountComponent},
+  {path: 'account/show/:user', component: AccountComponent, resolve: {home: HomeResolver}},
   {path: 'account/show', component: AccountComponent, canActivate: [AuthenticationGuard]},
-  {path: 'account/tweets/:user', component: TweetsComponent},
-  {path: 'account/following/:user', component: FollowingComponent},
-  {path: 'account/followers/:user', component: FollowersComponent},
+  {path: 'account/tweets/:user', component: TweetsComponent, resolve: {home: HomeResolver}},
+  {path: 'account/following/:user', component: FollowingComponent, resolve: {home: HomeResolver}},
+  {path: 'account/followers/:user', component: FollowersComponent, resolve: {home: HomeResolver}},
   {path: 'account/profile', component: ProfileComponent, canActivate: [AuthenticationGuard]},
   {path: 'account/delete', component: DeleteAccountComponent, canActivate: [AuthenticationGuard]},
   {path: 'account/search', component: SearchComponent, canActivate: [AuthenticationGuard]},
