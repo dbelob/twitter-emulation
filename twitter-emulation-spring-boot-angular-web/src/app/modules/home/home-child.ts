@@ -44,6 +44,6 @@ export abstract class HomeChild {
     this.getData(userState.getDataUserName());
   }
 
-  getData(userName: string) {
+  getData(username: string) {
   };
 }

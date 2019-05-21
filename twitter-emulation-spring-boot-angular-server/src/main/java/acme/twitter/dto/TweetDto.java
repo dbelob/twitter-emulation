@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Tweet DTO.
+ */
 public class TweetDto {
     private String username;
     private String description;

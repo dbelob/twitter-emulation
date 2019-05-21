@@ -18,8 +18,8 @@ export class FollowingComponent extends HomeAccountComponent {
     this.title = 'Following';
   }
 
-  getData(userName: string) {
-    this.followerService.getFollowing(userName).subscribe(data => {
+  getData(username: string) {
+    this.followerService.getFollowing(username).subscribe(data => {
       this.accounts = data;
     });
   }

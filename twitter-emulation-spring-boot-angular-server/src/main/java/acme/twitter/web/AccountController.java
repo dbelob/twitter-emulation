@@ -7,8 +7,8 @@ import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotAllowedException;
 import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
-import acme.twitter.domain.AccountStatistics;
 import acme.twitter.dto.AccountDto;
+import acme.twitter.dto.AccountStatisticsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -84,15 +84,16 @@ public class AccountController {
 
     @GetMapping("/statistics/{username}")
     @ResponseBody
-    public AccountStatistics getStatistics(@PathVariable String username, Principal principal) {
+    public AccountStatisticsDto getStatistics(@PathVariable String username, Principal principal) throws AccountNotExistsException {
         String whoUsername = (principal != null) ? principal.getName() : username;
         String whomUsername = username;
 
+        Account account = accountDao.findByUsername(whomUsername);
         int tweetsCount = tweetDao.countByUsername(whomUsername);
         int followingCount = followerDao.countFollowingByUsername(whomUsername);
         int followersCount = followerDao.countFollowersByUsername(whomUsername);
         boolean isFollow = followerDao.isExist(whoUsername, whomUsername);
 
-        return new AccountStatistics(tweetsCount, followingCount, followersCount, isFollow);
+        return new AccountStatisticsDto(account.getUsername(), account.getDescription(), tweetsCount, followingCount, followersCount, isFollow);
     }
 }

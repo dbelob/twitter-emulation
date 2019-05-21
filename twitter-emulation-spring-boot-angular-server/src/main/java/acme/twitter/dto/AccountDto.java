@@ -5,6 +5,9 @@ import acme.twitter.domain.Account;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Account DTO.
+ */
 public class AccountDto {
     private String username;
     private String password;

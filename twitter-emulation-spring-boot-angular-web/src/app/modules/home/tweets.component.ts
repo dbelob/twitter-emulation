@@ -18,8 +18,8 @@ export class TweetsComponent extends HomeTweetsComponent {
     this.title = 'Tweets';
   }
 
-  getData(userName: string) {
-    this.tweetService.getTweets(userName).subscribe(data => {
+  getData(username: string) {
+    this.tweetService.getTweets(username).subscribe(data => {
       this.tweets = data;
     });
   }
