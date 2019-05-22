@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { Observable } from "rxjs";
-import { Account } from "../../shared/models/account.model";
 import { AccountStatistics } from "../../shared/models/account-statistics.model";
 import { AccountService } from "../../shared/services/account.service";
 import { USER_STATE, UserState } from "../../shared/models/user-state.model";
@@ -11,17 +10,12 @@ import { USER_STATE, UserState } from "../../shared/models/user-state.model";
 })
 export class HomeComponent {
   protected userState: UserState = new UserState();
-  protected account: Account = new Account();
   protected accountStatistics: AccountStatistics = new AccountStatistics();
 
   constructor(protected accountService: AccountService, @Inject(USER_STATE) userStateObservable: Observable<UserState>) {
     userStateObservable.subscribe((userState) => {
       this.userState = userState;
       const dataUserName = userState.getDataUserName();
-
-      this.accountService.getAccount(dataUserName).subscribe(data => {
-        this.account = data;
-      });
 
       this.accountService.getAccountStatistics(dataUserName).subscribe(data => {
         this.accountStatistics = data;
