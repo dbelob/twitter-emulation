@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { UserState } from "../../shared/models/user-state.model";
@@ -8,16 +8,13 @@ import { AuthenticationService } from "../../shared/services/authentication.serv
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html'
 })
-export class TopBarComponent implements OnInit {
+export class TopBarComponent {
   @Input('userState')
   userState: UserState;
 
   private searchText: string;
 
   constructor(private authenticationService: AuthenticationService, private router: Router) {
-  }
-
-  ngOnInit() {
   }
 
   search(form: NgForm) {

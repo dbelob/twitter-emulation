@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 import { User } from "../../shared/models/user.model";
 import { AuthenticationService } from "../../shared/services/authentication.service";
@@ -8,16 +8,13 @@ import { AccountService } from "../../shared/services/account.service";
   selector: 'app-delete-account',
   templateUrl: './delete-account.component.html'
 })
-export class DeleteAccountComponent implements OnInit {
+export class DeleteAccountComponent {
   private user: User = new User();
 
   constructor(private authenticationService: AuthenticationService, private accountService: AccountService, private router: Router) {
     authenticationService.getUser().subscribe(data => {
       this.user = data;
     });
-  }
-
-  ngOnInit() {
   }
 
   delete() {

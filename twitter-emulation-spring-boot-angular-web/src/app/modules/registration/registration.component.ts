@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Account } from "../../shared/models/account.model";
@@ -9,14 +9,11 @@ import { ValidationService } from "../../shared/services/validation.service";
   selector: 'app-registration',
   templateUrl: './registration.component.html'
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
   private formSubmitted: boolean = false;
   private credentials = {username: '', password: '', passwordConfirmation: '', description: ''};
 
   constructor(private accountService: AccountService, private validationService: ValidationService, private router: Router) {
-  }
-
-  ngOnInit() {
   }
 
   submitForm(form: NgForm) {

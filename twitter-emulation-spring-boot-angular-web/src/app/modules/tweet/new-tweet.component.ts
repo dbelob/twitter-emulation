@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ValidationService } from "../../shared/services/validation.service";
@@ -8,14 +8,11 @@ import { TweetService } from "../../shared/services/tweet.service";
   selector: 'app-new-tweet',
   templateUrl: './new-tweet.component.html'
 })
-export class NewTweetComponent implements OnInit {
+export class NewTweetComponent {
   private formSubmitted: boolean = false;
   private text: string;
 
   constructor(private tweetService: TweetService, private validationService: ValidationService, private router: Router) {
-  }
-
-  ngOnInit() {
   }
 
   submitForm(form: NgForm) {

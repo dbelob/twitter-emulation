@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Account } from "../../shared/models/account.model";
@@ -11,7 +11,7 @@ import { User } from "../../shared/models/user.model";
   selector: 'app-profile',
   templateUrl: './profile.component.html'
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   private formSubmitted: boolean = false;
   private credentials = {username: '', password: '', passwordConfirmation: '', description: ''};
   private user: User = new User();
@@ -27,9 +27,6 @@ export class ProfileComponent implements OnInit {
         this.credentials.description = data.description;
       });
     });
-  }
-
-  ngOnInit() {
   }
 
   submitForm(form: NgForm) {
