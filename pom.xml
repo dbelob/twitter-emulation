@@ -227,15 +227,15 @@
 
     <repositories>
         <repository>
-            <id>atlassian-3rd-party</id>
-            <url>https://maven.atlassian.com/3rdparty/</url>
+            <id>spring-plugins-repository</id>
+            <url>http://repo.spring.io/plugins-release/</url>
         </repository>
     </repositories>
 
     <pluginRepositories>
         <pluginRepository>
-            <id>atlassian-3rd-party</id>
-            <url>https://maven.atlassian.com/3rdparty/</url>
+            <id>spring-plugins-repository</id>
+            <url>http://repo.spring.io/plugins-release/</url>
         </pluginRepository>
     </pluginRepositories>
 
