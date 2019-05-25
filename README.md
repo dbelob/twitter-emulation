@@ -71,7 +71,7 @@ in several ways:
 
 1. From the command line with *Maven* (in the root directory):
 
-    `mvn clean package -Dmaven.test.skip=true`
+    `mvn clean install -Dmaven.test.skip=true`
 
 1. Change directory:
 
