@@ -90,6 +90,12 @@ in several ways:
 
 #### Method 2
 
+1. Install *Node.js*
+
+1. Run to ensure that *npm* is working:
+
+    `npm -v`
+
 1. Change directory:
 
     `cd twitter-emulation-spring-boot-angular-server`
