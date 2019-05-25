@@ -27,6 +27,7 @@ in several ways:
 
 * [JDK 8+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Apache Maven 3.5.0+](https://maven.apache.org/download.cgi)
+* [Node.js 10.15.3](https://nodejs.org) (optional)
 
 ## Running
 
