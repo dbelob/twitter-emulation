@@ -8,8 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should create', () => {
-    expect(page).toBeTruthy();
+  it('should display welcome message', () => {
+    page.navigateTo();
+    expect(page.getTitleText()).toEqual('Log in');
   });
 
   afterEach(async () => {
