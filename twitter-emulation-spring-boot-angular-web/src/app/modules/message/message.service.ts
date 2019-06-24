@@ -6,8 +6,10 @@ import { Observable, Subject } from "rxjs";
 export class MessageService {
   private subject = new Subject<Message>();
 
-  reportMessage(response: Response) {
-    let msg = new Message(MessageService.getMessageText(response), new Date(), true);
+  reportMessage(parameter: Message | Response) {
+    let msg = (parameter instanceof Message) ?
+      parameter :
+      new Message(MessageService.getMessageText(parameter), new Date(), true);
 
     this.subject.next(msg);
   }
