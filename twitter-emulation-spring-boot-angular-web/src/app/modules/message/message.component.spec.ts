@@ -64,10 +64,16 @@ describe('MessagesComponent', () => {
 
     messageService.reportMessage(new Message('Message 2', new Date(), true));
     fixture.detectChanges();
+    bindingElement = debugElement.query(By.css("div")).nativeElement;
     expect(bindingElement.textContent).toContain('Message 2');
 
     messageService.reportMessage(new Message('Message 3', new Date(), true));
     fixture.detectChanges();
+    bindingElement = debugElement.query(By.css("div")).nativeElement;
     expect(bindingElement.textContent).toContain('Message 3');
+
+    messageService.reportMessage(undefined);
+    fixture.detectChanges();
+    expect(debugElement.query(By.css("div"))).toBeNull();
   });
 });
