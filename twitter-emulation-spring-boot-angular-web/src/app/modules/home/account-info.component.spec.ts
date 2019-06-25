@@ -41,7 +41,7 @@ describe('AccountInfoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('receives the account statistics through an input property', () => {
+  it('receives the account statistics through input property', () => {
     expect(component.accountStatistics.username).toBeUndefined();
     expect(component.accountStatistics.description).toBeUndefined();
     expect(debugElement.query(By.css("div.username")).nativeElement.textContent).toContain('@');
