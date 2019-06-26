@@ -1,5 +1,5 @@
 import { AutofocusDirective } from './autofocus.directive';
-import { Component, ViewChild } from "@angular/core";
+import { Component, DebugElement, ViewChild } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
@@ -16,6 +16,7 @@ class TestComponent {
 describe('AutofocusDirective', () => {
   let fixture: ComponentFixture<TestComponent>;
   let directive: AutofocusDirective;
+  let debugElement: DebugElement;
   let usernameInputElement: HTMLInputElement;
   let passwordInputElement: HTMLInputElement;
 
@@ -25,11 +26,17 @@ describe('AutofocusDirective', () => {
     });
     fixture = TestBed.createComponent(TestComponent);
     directive = fixture.componentInstance.autofocusDirective;
-    usernameInputElement = fixture.debugElement.query(By.css("input[id=username]")).nativeElement;
-    passwordInputElement = fixture.debugElement.query(By.css("input[id=password]")).nativeElement;
+    debugElement = fixture.debugElement;
+    usernameInputElement = debugElement.query(By.css("input[id=username]")).nativeElement;
+    passwordInputElement = debugElement.query(By.css("input[id=password]")).nativeElement;
+    fixture.detectChanges();
   });
 
   it('checks focus', () => {
-    //TODO: implement
+    fixture.whenStable().then(() => {
+      const focusElement = debugElement.query(By.css(":focus")).nativeElement;
+      expect(focusElement).toBe(usernameInputElement);
+      expect(focusElement).not.toBe(passwordInputElement);
+    });
   });
 });
