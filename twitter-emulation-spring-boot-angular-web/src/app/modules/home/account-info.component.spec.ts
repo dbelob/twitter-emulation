@@ -44,14 +44,14 @@ describe('AccountInfoComponent', () => {
   it('receives the account statistics through input property', () => {
     expect(component.accountStatistics.username).toBeUndefined();
     expect(component.accountStatistics.description).toBeUndefined();
-    expect(debugElement.query(By.css("div.username")).nativeElement.textContent).toContain('@');
-    expect(debugElement.query(By.css("div.description")).nativeElement.textContent.trim()).toBe('');
+    expect(debugElement.query(By.css("div[id=username]")).nativeElement.textContent).toContain('@');
+    expect(debugElement.query(By.css("div[id=description]")).nativeElement.textContent.trim()).toBe('');
 
     component.accountStatistics = new AccountStatistics('jsmith', 'John Smith');
     fixture.detectChanges();
     expect(component.accountStatistics.username).toBe('jsmith');
     expect(component.accountStatistics.description).toBe('John Smith');
-    expect(debugElement.query(By.css("div.username")).nativeElement.textContent).toContain('@jsmith');
-    expect(debugElement.query(By.css("div.description")).nativeElement.textContent).toContain('John Smith');
+    expect(debugElement.query(By.css("div[id=username]")).nativeElement.textContent).toContain('@jsmith');
+    expect(debugElement.query(By.css("div[id=description]")).nativeElement.textContent).toContain('John Smith');
   });
 });
