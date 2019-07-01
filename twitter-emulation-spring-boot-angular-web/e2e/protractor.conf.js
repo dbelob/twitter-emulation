@@ -19,18 +19,10 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     print: function() {}
   },
-  mocks: {
-    default: [], // default value: []
-    dir: 'mocks' // default value: 'mocks'
-  },
   onPrepare() {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.e2e.json')
     });
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
-    require('protractor-http-mock').config = {
-      rootDirectory: __dirname, // default value: process.cwd()
-      protractorConfig: 'protractor.conf.js' // default value: 'protractor-conf.js'
-    };
   }
 };

@@ -3,23 +3,9 @@ import { browser, logging } from 'protractor';
 
 describe('workspace-project App', () => {
   let page: AppPage;
-  let mock = require('protractor-http-mock');
 
   beforeEach(() => {
     page = new AppPage();
-
-    mock([{
-      request: {
-        path: 'api/authentication/user',
-        method: 'GET'
-      },
-      response: {
-        data: {
-          userName: 'pro-mock',
-          email: 'pro-mock@email.com'
-        }
-      }
-    }]);
   });
 
   it('should display welcome message', () => {
