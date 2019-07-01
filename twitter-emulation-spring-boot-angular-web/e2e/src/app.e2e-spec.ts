@@ -1,30 +1,26 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
-import * as angular from 'angular';
-import { IHttpBackendService } from 'angular';
-import 'angular-mocks';
 
 describe('workspace-project App', () => {
   let page: AppPage;
-  let $httpBackend: IHttpBackendService;
+  let mock = require('protractor-http-mock');
 
   beforeEach(() => {
-    angular
-      .module('test', [])
-      .service('appPage', AppPage);
-    angular.mock.module('test');
+    page = new AppPage();
+
+    mock([{
+      request: {
+        path: 'api/authentication/user',
+        method: 'GET'
+      },
+      response: {
+        data: {
+          userName: 'pro-mock',
+          email: 'pro-mock@email.com'
+        }
+      }
+    }]);
   });
-
-  // beforeEach(() => {
-  //   page = new AppPage();
-  // });
-
-  beforeEach(inject((_$httpBackend_: IHttpBackendService, _appPage_: AppPage) => {
-    $httpBackend = _$httpBackend_;
-    page = _appPage_;
-
-    $httpBackend.expectGET('api/authentication/user').respond(200, []);
-  }));
 
   it('should display welcome message', () => {
     page.navigateTo();
