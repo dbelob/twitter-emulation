@@ -13,8 +13,8 @@ describe('workspace-project App', () => {
   beforeEach(() => mockServer.start(8080));
   afterEach(() => mockServer.stop());
 
-  it('should display welcome message', () => {
-    mockServer.get("/api/authentication/user").thenReply(200);
+  it('should display log in message', async () => {
+    await mockServer.get("/api/authentication/user").thenReply(200);
 
     page.navigateTo();
     expect(page.getTitleText()).toEqual('Log in');
