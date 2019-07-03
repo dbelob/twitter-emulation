@@ -1,4 +1,4 @@
-import { browser, by, element } from 'protractor';
+import { browser, by, element, ElementFinder } from 'protractor';
 
 export class AppPage {
   navigateTo() {
@@ -7,5 +7,13 @@ export class AppPage {
 
   getTitleText() {
     return element(by.css('app-root h3')).getText() as Promise<string>;
+  }
+
+  getButtonById(id: string) {
+    return element(by.css('button[id="' + id + '"]')) as ElementFinder;
+  }
+
+  getDivByIdText(id: string) {
+    return element(by.css('div[id="' + id + '"]')).getText() as Promise<string>;
   }
 }
