@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.5.RELEASE</version>
+        <version>2.1.6.RELEASE</version>
     </parent>
 
     <groupId>acme.twitter-emulation</groupId>
@@ -36,7 +36,7 @@
         <ojdbc6.version>12.1.0.1-atlassian-hosted</ojdbc6.version>
         <servlet.api.version>4.0.1</servlet.api.version>
         <sl4j.version>1.7.26</sl4j.version>
-        <spring.version>5.1.7.RELEASE</spring.version>
+        <spring.version>5.1.8.RELEASE</spring.version>
         <spring.security.version>5.1.5.RELEASE</spring.security.version>
         <springfox.swagger>2.9.2</springfox.swagger>
         <testcontainers.version>1.11.3</testcontainers.version>
