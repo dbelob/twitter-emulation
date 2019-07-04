@@ -1,4 +1,4 @@
-# Twitter emulation in Java
+# Twitter emulation in Java and Angular
 
 The application emulates the main features of Twitter
 
@@ -27,7 +27,7 @@ in several ways:
 
 * [JDK 8+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Apache Maven 3.5.0+](https://maven.apache.org/download.cgi)
-* [Node.js 10.15.3](https://nodejs.org) (optional)
+* [Node.js 10.16.0](https://nodejs.org) (optional)
 
 ## Running
 
@@ -128,6 +128,28 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
 * Swagger:
   * [Swagger UI](http://localhost:8080/swagger-ui.html)  
   * [Swagger JSON](http://localhost:8080/v2/api-docs)
+  
+## Testing
+
+### Frontend unit testing
+
+1. Change directory:
+
+    `cd twitter-emulation-spring-boot-angular-web`
+
+1. From the command line with *npm*:
+
+    `npm run test`
+
+### Frontend end-to-end testing
+
+1. Change directory:
+
+    `cd twitter-emulation-spring-boot-angular-web`
+
+1. From the command line with *npm*:
+
+    `npm run e2e`
 
 ## Frameworks and libraries
 
@@ -139,6 +161,8 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
 * [H2](http://www.h2database.com) or [Oracle Database](https://www.oracle.com/database/index.html) (data storage)
 * [TestContainers](https://www.testcontainers.org) (testing with [Docker](https://www.docker.com) containers)
 * [Swagger](https://swagger.io) (REST API documentation)
+* [Jasmine](https://jasmine.github.io) (JavaScript unit testing)
+* [Protractor](https://www.protractortest.org) (end-to-end testing for Angular)
 
 ## Tools
 
