@@ -5,18 +5,9 @@ The application emulates the main features of *Twitter*
 
 ![Screenshot](/images/screenshot.png)
 
-* log in;
-* account management:
-  * registration;
-  * editing;
-  * deleting;
-  * search by substring;
-* main page:
-  * account properties;
-  * timeline tweets;
-  * account tweets;
-  * following accounts;
-  * follower accounts;
+* login, logout;
+* account management (registration, editing, deleting, search by substring);
+* main page (account properties, timeline, tweets, following, followers);
 * tweet creating;
 * follow/unfollow.
 
