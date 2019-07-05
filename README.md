@@ -1,10 +1,8 @@
 # Twitter emulation in Java and Angular
 
-The application emulates the main features of *Twitter*
-
-
 ![Screenshot](/images/screenshot.png)
 
+The application emulates the main features of *Twitter*:
 * login, logout;
 * account management (registration, editing, deleting, search by substring);
 * main page (account properties, timeline, tweets, following, followers);
