@@ -2,12 +2,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
-    </parent>
-
     <groupId>acme.twitter-emulation</groupId>
     <artifactId>twitter-emulation-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -37,6 +31,7 @@
         <servlet.api.version>4.0.1</servlet.api.version>
         <sl4j.version>1.7.26</sl4j.version>
         <spring.version>5.1.8.RELEASE</spring.version>
+        <spring.boot.version>2.1.6.RELEASE</spring.boot.version>
         <spring.security.version>5.1.5.RELEASE</spring.security.version>
         <springfox.swagger>2.9.2</springfox.swagger>
         <testcontainers.version>1.11.3</testcontainers.version>
@@ -48,6 +43,7 @@
         <module>twitter-emulation-spring-boot-jsp</module>
         <module>twitter-emulation-spring-boot-angular-server</module>
         <module>twitter-emulation-spring-boot-angular-web</module>
+        <module>twitter-emulation-spring-boot-admin</module>
     </modules>
 
     <build>
