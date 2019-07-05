@@ -124,10 +124,10 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
 ## Development
 
 * [H2 Database Console](http://localhost:8082)
-
 * Swagger:
   * [Swagger UI](http://localhost:8080/swagger-ui.html)  
-  * [Swagger JSON](http://localhost:8080/v2/api-docs)
+  * [Swagger JSON](http://localhost:8080/v2/api-docs)  
+* [Spring Boot Admin](http://localhost:9000)
   
 ## Testing
 
@@ -161,6 +161,7 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
 * [H2](http://www.h2database.com) or [Oracle Database](https://www.oracle.com/database/index.html) (data storage)
 * [TestContainers](https://www.testcontainers.org) (testing with [Docker](https://www.docker.com) containers)
 * [Swagger](https://swagger.io) (REST API documentation)
+* [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin) (UI for administration of Spring Boot applications)
 * [Jasmine](https://jasmine.github.io) (JavaScript unit testing)
 * [Protractor](https://www.protractortest.org) (end-to-end testing for Angular)
 

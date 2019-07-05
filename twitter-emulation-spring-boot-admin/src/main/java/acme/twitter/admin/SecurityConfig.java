@@ -8,10 +8,10 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
-public class SecuritySecureConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final String adminContextPath;
 
-    public SecuritySecureConfig(AdminServerProperties adminServerProperties) {
+    public SecurityConfig(AdminServerProperties adminServerProperties) {
         this.adminContextPath = adminServerProperties.getContextPath();
     }
 
@@ -21,20 +21,21 @@ public class SecuritySecureConfig extends WebSecurityConfigurerAdapter {
         successHandler.setTargetUrlParameter("redirectTo");
         successHandler.setDefaultTargetUrl(adminContextPath + "/");
 
-        http.authorizeRequests()
-                .antMatchers(adminContextPath + "/assets/**").permitAll() // <1>
-                .antMatchers(adminContextPath + "/login").permitAll()
-                .anyRequest().authenticated() // <2>
-                .and()
+        http
+                .authorizeRequests()
+                    .antMatchers(adminContextPath + "/assets/**").permitAll() // <1>
+                    .antMatchers(adminContextPath + "/login").permitAll()
+                    .anyRequest().authenticated() // <2>
+                    .and()
                 .formLogin().loginPage(adminContextPath + "/login").successHandler(successHandler)
-                .and() // <3>
-                .logout().logoutUrl(adminContextPath + "/login")
-                .and()
+                    .and() // <3>
+                .logout().logoutUrl(adminContextPath + "/logout")
+                    .and()
                 .httpBasic()
-                .and() // <4>
+                    .and() // <4>
                 .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // <5>
-                .ignoringAntMatchers(
+                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // <5>
+                    .ignoringAntMatchers(
                         adminContextPath + "/instances", // <6>
                         adminContextPath + "/actuator/**" // <7>
                 );

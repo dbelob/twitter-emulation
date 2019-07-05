@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .httpBasic()
-                .and()
+                    .and()
                 .authorizeRequests()
                     .antMatchers("/index.html", "/", "/login").permitAll()
                     .antMatchers("/api/account/accounts/**").permitAll()
@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/api/follower/followers/**").permitAll()
                     .antMatchers("/api/tweet/tweets/**").permitAll()
                     .anyRequest().authenticated()
-                .and()
+                    .and()
                 .csrf()
                     .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
