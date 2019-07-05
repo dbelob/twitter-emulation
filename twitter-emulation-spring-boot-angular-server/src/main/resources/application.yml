@@ -1,0 +1,20 @@
+oracle:
+  url: "jdbc:oracle:thin:@acme.com:1521:sid"
+  username: "te"
+  password: "password"
+
+spring:
+  jackson:
+    default-property-inclusion: non_null
+  boot:
+    admin:
+      client:
+        url: http://localhost:9000
+        username: "user"      #These two are needed so that the client
+        password: "password"  #can register at the protected server api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

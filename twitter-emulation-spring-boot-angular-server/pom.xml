@@ -83,6 +83,13 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- Spring Boot Admin -->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>${spring.boot.admin.version}</version>
+        </dependency>
+
         <!-- Database -->
         <dependency>
             <groupId>com.oracle</groupId>
