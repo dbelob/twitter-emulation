@@ -1,6 +1,9 @@
 # Twitter emulation in Java and Angular
 
-The application emulates the main features of Twitter
+The application emulates the main features of *Twitter*
+
+
+![Screenshot](/images/screenshot.png)
 
 * log in;
 * account management:
@@ -181,10 +184,10 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
   * [Spring Test](https://spring.io/projects/spring-framework)
 * [H2](http://www.h2database.com) or [Oracle Database](https://www.oracle.com/database/index.html) (data storage)
 * [TestContainers](https://www.testcontainers.org) (testing with [Docker](https://www.docker.com) containers)
-* [Swagger](https://swagger.io) (REST API documentation)
-* [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin) (UI for administration of Spring Boot applications)
-* [Jasmine](https://jasmine.github.io) (JavaScript unit testing)
-* [Protractor](https://www.protractortest.org) (end-to-end testing for Angular)
+* [Swagger](https://swagger.io) (*REST API* documentation)
+* [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin) (UI for administration of *Spring Boot* applications)
+* [Jasmine](https://jasmine.github.io) (*JavaScript* unit testing)
+* [Protractor](https://www.protractortest.org) (end-to-end testing for *Angular*)
 
 ## Tools
 
