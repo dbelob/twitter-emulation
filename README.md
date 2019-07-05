@@ -19,9 +19,9 @@ The application emulates the main features of Twitter
 
 in several ways:
 
-1. Spring MVC, JSP
-1. Spring Boot, JSP
-1. Spring Boot, Angular
+1. *Spring MVC*, *JSP*
+1. *Spring Boot*, *JSP*
+1. *Spring Boot*, *Angular*
 
 ## Requirements
 
@@ -59,7 +59,7 @@ in several ways:
     `mvn spring-boot:run` (*H2*)  
     `mvn spring-boot:run -P development` (*H2*)  
     `mvn spring-boot:run -P production` (*Oracle Database*)  
-    (*Oracle Database* connection properties: `src/main/resources/application.properties`)
+    (*Oracle Database* connection properties: `src/main/resources/application.yml`)
 
 1. Access the deployed web application at:
 
@@ -82,7 +82,7 @@ in several ways:
     `mvn spring-boot:run` (*H2*)  
     `mvn spring-boot:run -P development` (*H2*)  
     `mvn spring-boot:run -P production` (*Oracle Database*)  
-    (*Oracle Database* connection properties: `src/main/resources/application.properties`)
+    (*Oracle Database* connection properties: `src/main/resources/application.yml`)
 
 1. Access the deployed web application at:
 
@@ -105,7 +105,7 @@ in several ways:
     `mvn spring-boot:run` (*H2*)  
     `mvn spring-boot:run -P development` (*H2*)  
     `mvn spring-boot:run -P production` (*Oracle Database*)  
-    (*Oracle Database* connection properties: `src/main/resources/application.properties`)
+    (*Oracle Database* connection properties: `src/main/resources/application.yml`)
 
 1. Change directory:
 
@@ -121,13 +121,27 @@ in several ways:
     
 Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`
 
-## Development
+## Monitoring
 
-* [H2 Database Console](http://localhost:8082)
-* Swagger:
-  * [Swagger UI](http://localhost:8080/swagger-ui.html)  
-  * [Swagger JSON](http://localhost:8080/v2/api-docs)  
-* [Spring Boot Admin](http://localhost:9000)
+1. Change directory:
+
+    `cd twitter-emulation-spring-boot-admin`
+
+1. From the command line with *Maven*:
+
+    `mvn spring-boot:run`  
+
+1. Change directory:
+
+    `cd twitter-emulation-spring-boot-angular-server`
+
+1. From the command line with *Maven*:
+
+    `mvn spring-boot:run`  
+
+1. Access *Spring Boot Admin* application at:
+
+    http://localhost:9000
   
 ## Testing
 
@@ -150,6 +164,13 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
 1. From the command line with *npm*:
 
     `npm run e2e`
+
+## Development
+
+* [H2 Database Console](http://localhost:8082)
+* Swagger:
+  * [Swagger UI](http://localhost:8080/swagger-ui.html)  
+  * [Swagger JSON](http://localhost:8080/v2/api-docs)  
 
 ## Frameworks and libraries
 
