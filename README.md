@@ -170,7 +170,7 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
   * [Spring MVC](https://spring.io/projects/spring-framework)
   * [Spring Boot](https://spring.io/projects/spring-boot)
   * [Spring Security](https://spring.io/projects/spring-security)
-  * [Spring Test](https://spring.io/projects/spring-framework)
+  * [Spring Test](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html)
   * [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin)
 * [H2](http://www.h2database.com) or [Oracle Database](https://www.oracle.com/database/index.html) (data storage)
 * [TestContainers](https://www.testcontainers.org) (testing with [Docker](https://www.docker.com) containers)
