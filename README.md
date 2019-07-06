@@ -20,6 +20,7 @@ in several ways:
 * [JDK 8+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Apache Maven 3.5.0+](https://maven.apache.org/download.cgi)
 * [Node.js 10.16.0](https://nodejs.org) (optional)
+* [Docker](https://www.docker.com) (optional)
 
 ## Running
 
@@ -121,7 +122,7 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
 
 1. From the command line with *Maven*:
 
-    `mvn spring-boot:run`  
+    `mvn spring-boot:run`
 
 1. Change directory:
 
@@ -129,13 +130,27 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
 
 1. From the command line with *Maven*:
 
-    `mvn spring-boot:run`  
+    `mvn spring-boot:run`
 
 1. Access *Spring Boot Admin* application at:
 
     http://localhost:9000
   
 ## Testing
+
+### Backend DAO unit testing
+
+1. Install *Docker* (optional, only for *Oracle Database* testing)
+
+1. Change directory:
+
+    `cd twitter-emulation-common`
+
+1. From the command line with *Maven*:
+
+    `mvn test` (*H2*)  
+    `mvn test -P development` (*H2*)  
+    `mvn test -P production` (*Oracle Database*)  
 
 ### Frontend unit testing
 
