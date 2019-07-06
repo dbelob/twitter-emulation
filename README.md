@@ -171,10 +171,10 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
   * [Spring Boot](https://spring.io/projects/spring-boot)
   * [Spring Security](https://spring.io/projects/spring-security)
   * [Spring Test](https://spring.io/projects/spring-framework)
+  * [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin)
 * [H2](http://www.h2database.com) or [Oracle Database](https://www.oracle.com/database/index.html) (data storage)
 * [TestContainers](https://www.testcontainers.org) (testing with [Docker](https://www.docker.com) containers)
 * [Swagger](https://swagger.io) (*REST API* documentation)
-* [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin) (UI for administration of *Spring Boot* applications)
 * [Jasmine](https://jasmine.github.io) (*JavaScript* unit testing)
 * [Protractor](https://www.protractortest.org) (end-to-end testing for *Angular*)
 
