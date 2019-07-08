@@ -1,6 +1,5 @@
 package acme.twitter.web;
 
-import acme.twitter.dao.AccountDao;
 import acme.twitter.dao.FollowerDao;
 import acme.twitter.dao.TweetDao;
 import acme.twitter.dao.exception.AccountExistsException;
@@ -14,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -39,7 +37,6 @@ public class AccountController {
     private static final Logger log = LoggerFactory.getLogger(AccountController.class);
 
     //TODO: delete
-    private AccountDao accountDao;
     private TweetDao tweetDao;
     private FollowerDao followerDao;
 
@@ -47,10 +44,9 @@ public class AccountController {
     private MessageSourceAccessor messageSourceAccessor;
 
     @Autowired
-    public AccountController(AccountDao accountDao, TweetDao tweetDao, FollowerDao followerDao,
+    public AccountController(TweetDao tweetDao, FollowerDao followerDao,
                              AccountService accountService,
                              MessageSourceAccessor messageSourceAccessor) {
-        this.accountDao = accountDao;
         this.tweetDao = tweetDao;
         this.followerDao = followerDao;
 
@@ -87,7 +83,7 @@ public class AccountController {
         }
 
         try {
-            accountDao.add(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
+            accountService.add(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
             return "redirect:/login";
         } catch (AccountExistsException e) {
@@ -138,7 +134,7 @@ public class AccountController {
             return "profileForm";
         }
 
-        accountDao.update(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
+        accountService.update(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
         return "redirect:/account/show";
     }
@@ -170,11 +166,8 @@ public class AccountController {
      * @return view name
      */
     @RequestMapping(value = "/delete", method = POST, params = "delete")
-    @Transactional
     public String processDelete(Principal principal) {
-        tweetDao.deleteAll(principal.getName());
-        followerDao.deleteAll(principal.getName());
-        accountDao.delete(principal.getName());
+        accountService.delete(principal.getName());
 
         return "redirect:/logout";
     }

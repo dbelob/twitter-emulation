@@ -1,10 +1,14 @@
 package acme.twitter.service;
 
 import acme.twitter.dao.AccountDao;
+import acme.twitter.dao.FollowerDao;
+import acme.twitter.dao.TweetDao;
+import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,10 +18,32 @@ import java.util.List;
 @Service
 public class AccountServiceImpl implements AccountService {
     private AccountDao accountDao;
+    private TweetDao tweetDao;
+    private FollowerDao followerDao;
 
     @Autowired
-    public AccountServiceImpl(AccountDao accountDao) {
+    public AccountServiceImpl(AccountDao accountDao, TweetDao tweetDao, FollowerDao followerDao) {
         this.accountDao = accountDao;
+        this.tweetDao = tweetDao;
+        this.followerDao = followerDao;
+    }
+
+    @Override
+    public void add(String username, String password, String description) throws AccountExistsException {
+        accountDao.add(username, password, description);
+    }
+
+    @Override
+    public void update(String username, String password, String description) {
+        accountDao.update(username, password, description);
+    }
+
+    @Override
+    @Transactional
+    public void delete(String username) {
+        tweetDao.deleteAll(username);
+        followerDao.deleteAll(username);
+        accountDao.delete(username);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package acme.twitter.web;
 
-import acme.twitter.dao.AccountDao;
 import acme.twitter.dao.FollowerDao;
 import acme.twitter.dao.TweetDao;
 import acme.twitter.dao.exception.AccountExistsException;
@@ -13,7 +12,6 @@ import acme.twitter.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -26,16 +24,14 @@ import java.util.List;
 @RequestMapping("/api/account")
 public class AccountController {
     //TODO: delete
-    private AccountDao accountDao;
     private TweetDao tweetDao;
     private FollowerDao followerDao;
 
     private AccountService accountService;
 
     @Autowired
-    public AccountController(AccountDao accountDao, TweetDao tweetDao, FollowerDao followerDao,
+    public AccountController(TweetDao tweetDao, FollowerDao followerDao,
                              AccountService accountService) {
-        this.accountDao = accountDao;
         this.tweetDao = tweetDao;
         this.followerDao = followerDao;
 
@@ -54,7 +50,7 @@ public class AccountController {
     @PostMapping("/accounts")
     @ResponseStatus(HttpStatus.OK)
     public void addAccount(@RequestBody AccountDto account) throws AccountExistsException {
-        accountDao.add(account.getUsername(), account.getPassword(), account.getDescription());
+        accountService.add(account.getUsername(), account.getPassword(), account.getDescription());
     }
 
     @PutMapping("/accounts/{username}")
@@ -65,20 +61,17 @@ public class AccountController {
             throw new AccountNotAllowedException();
         }
 
-        accountDao.update(account.getUsername(), account.getPassword(), account.getDescription());
+        accountService.update(account.getUsername(), account.getPassword(), account.getDescription());
     }
 
     @DeleteMapping("/accounts/{username}")
     @ResponseStatus(HttpStatus.OK)
-    @Transactional
     public void deleteAccount(@PathVariable String username, Principal principal) throws AccountNotAllowedException {
         if (!username.equals(principal.getName())) {
             throw new AccountNotAllowedException();
         }
 
-        tweetDao.deleteAll(username);
-        followerDao.deleteAll(username);
-        accountDao.delete(username);
+        accountService.delete(username);
     }
 
     @GetMapping("/accounts")
