@@ -36,7 +36,7 @@ public class AccountServiceTest {
         private FollowerDao followerDao;
 
         @Bean
-        public AccountService employeeService() {
+        public AccountService accountService() {
             return new AccountServiceImpl(accountDao, tweetDao, followerDao);
         }
     }

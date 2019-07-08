@@ -8,6 +8,7 @@ import acme.twitter.domain.Account;
 import acme.twitter.domain.AccountStatistics;
 import acme.twitter.domain.Tweet;
 import acme.twitter.service.AccountService;
+import acme.twitter.service.TweetService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,16 +42,18 @@ public class AccountController {
     private FollowerDao followerDao;
 
     private AccountService accountService;
+    private TweetService tweetService;
     private MessageSourceAccessor messageSourceAccessor;
 
     @Autowired
     public AccountController(TweetDao tweetDao, FollowerDao followerDao,
-                             AccountService accountService,
+                             AccountService accountService, TweetService tweetService,
                              MessageSourceAccessor messageSourceAccessor) {
         this.tweetDao = tweetDao;
         this.followerDao = followerDao;
 
         this.accountService = accountService;
+        this.tweetService = tweetService;
         this.messageSourceAccessor = messageSourceAccessor;
     }
 
@@ -272,7 +275,7 @@ public class AccountController {
         AccountStatistics accountStatistics = getAccountStatistics(
                 (principal != null) ? principal.getName() : username,
                 username);
-        List<Tweet> tweets = tweetDao.findByAccount(account);
+        List<Tweet> tweets = tweetService.findByAccount(account);
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);

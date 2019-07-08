@@ -6,6 +6,7 @@ import acme.twitter.domain.Account;
 import acme.twitter.domain.Tweet;
 import acme.twitter.dto.TweetDto;
 import acme.twitter.service.AccountService;
+import acme.twitter.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -23,13 +24,15 @@ public class TweetController {
     //TODO: delete
     private TweetDao tweetDao;
 
+    private TweetService tweetService;
     private AccountService accountService;
 
     @Autowired
     public TweetController(TweetDao tweetDao,
-                           AccountService accountService) {
+                           TweetService tweetService, AccountService accountService) {
         this.tweetDao = tweetDao;
 
+        this.tweetService = tweetService;
         this.accountService = accountService;
     }
 
@@ -37,7 +40,7 @@ public class TweetController {
     @ResponseBody
     public List<TweetDto> getTweets(@PathVariable String username) throws AccountNotExistsException {
         Account account = accountService.findByUsername(username);
-        List<Tweet> tweets = tweetDao.findByAccount(account);
+        List<Tweet> tweets = tweetService.findByAccount(account);
 
         return TweetDto.convertToDto(tweets);
     }
