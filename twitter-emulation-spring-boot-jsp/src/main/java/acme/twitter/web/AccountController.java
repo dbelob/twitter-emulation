@@ -8,6 +8,7 @@ import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
 import acme.twitter.domain.AccountStatistics;
 import acme.twitter.domain.Tweet;
+import acme.twitter.service.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,17 +38,23 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class AccountController {
     private static final Logger log = LoggerFactory.getLogger(AccountController.class);
 
+    //TODO: delete
     private AccountDao accountDao;
     private TweetDao tweetDao;
     private FollowerDao followerDao;
+
+    private AccountService accountService;
     private MessageSourceAccessor messageSourceAccessor;
 
     @Autowired
     public AccountController(AccountDao accountDao, TweetDao tweetDao, FollowerDao followerDao,
+                             AccountService accountService,
                              MessageSourceAccessor messageSourceAccessor) {
         this.accountDao = accountDao;
         this.tweetDao = tweetDao;
         this.followerDao = followerDao;
+
+        this.accountService = accountService;
         this.messageSourceAccessor = messageSourceAccessor;
     }
 
@@ -100,7 +107,7 @@ public class AccountController {
      */
     @RequestMapping(value = "/profile", method = GET)
     public String showProfileForm(Model model, Principal principal) throws AccountNotExistsException {
-        Account account = accountDao.findByUsername(principal.getName());
+        Account account = accountService.findByUsername(principal.getName());
         model.addAttribute(new AccountForm(account.getUsername(), account.getDescription()));
 
         return "profileForm";
@@ -208,7 +215,7 @@ public class AccountController {
             return "forward:/account/tweets/" + username;
         }
 
-        Account account = accountDao.findByUsername(username);
+        Account account = accountService.findByUsername(username);
         AccountStatistics accountStatistics = getAccountStatistics(principal.getName(), username);
         List<Tweet> tweets = tweetDao.findTimelineByAccount(account);
 
@@ -241,9 +248,9 @@ public class AccountController {
             return "redirect:/account/show";
         }
 
-        Account account = accountDao.findByUsername(principal.getName());
+        Account account = accountService.findByUsername(principal.getName());
         AccountStatistics accountStatistics = getAccountStatistics(principal.getName(), principal.getName());
-        List<Account> accounts = accountDao.findByUsernamePart(searchForm.getUsernamePart());
+        List<Account> accounts = accountService.findByUsernamePart(searchForm.getUsernamePart());
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
@@ -268,7 +275,7 @@ public class AccountController {
             @PathVariable String username,
             Model model,
             Principal principal) throws AccountNotExistsException {
-        Account account = accountDao.findByUsername(username);
+        Account account = accountService.findByUsername(username);
         AccountStatistics accountStatistics = getAccountStatistics(
                 (principal != null) ? principal.getName() : username,
                 username);
@@ -298,7 +305,7 @@ public class AccountController {
             @PathVariable String username,
             Model model,
             Principal principal) throws AccountNotExistsException {
-        Account account = accountDao.findByUsername(username);
+        Account account = accountService.findByUsername(username);
         AccountStatistics accountStatistics = getAccountStatistics(
                 (principal != null) ? principal.getName() : username,
                 username);
@@ -328,7 +335,7 @@ public class AccountController {
             @PathVariable String username,
             Model model,
             Principal principal) throws AccountNotExistsException {
-        Account account = accountDao.findByUsername(username);
+        Account account = accountService.findByUsername(username);
         AccountStatistics accountStatistics = getAccountStatistics(
                 (principal != null) ? principal.getName() : username,
                 username);
@@ -365,8 +372,8 @@ public class AccountController {
     public String processFollow(
             @PathVariable String username,
             Principal principal) throws AccountNotExistsException {
-        Account whoAccount = accountDao.findByUsername(principal.getName());
-        Account whomAccount = accountDao.findByUsername(username);
+        Account whoAccount = accountService.findByUsername(principal.getName());
+        Account whomAccount = accountService.findByUsername(username);
 
         followerDao.add(whoAccount.getUsername(), whomAccount.getUsername());
 
@@ -385,8 +392,8 @@ public class AccountController {
     public String processUnfollow(
             @PathVariable String username,
             Principal principal) throws AccountNotExistsException {
-        Account whoAccount = accountDao.findByUsername(principal.getName());
-        Account whomAccount = accountDao.findByUsername(username);
+        Account whoAccount = accountService.findByUsername(principal.getName());
+        Account whomAccount = accountService.findByUsername(username);
 
         followerDao.delete(whoAccount.getUsername(), whomAccount.getUsername());
 

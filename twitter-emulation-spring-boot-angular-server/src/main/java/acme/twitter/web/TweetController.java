@@ -1,11 +1,11 @@
 package acme.twitter.web;
 
-import acme.twitter.dao.AccountDao;
 import acme.twitter.dao.TweetDao;
 import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
 import acme.twitter.domain.Tweet;
 import acme.twitter.dto.TweetDto;
+import acme.twitter.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -20,19 +20,23 @@ import java.util.List;
 @Controller
 @RequestMapping("/api/tweet")
 public class TweetController {
-    private AccountDao accountDao;
+    //TODO: delete
     private TweetDao tweetDao;
 
+    private AccountService accountService;
+
     @Autowired
-    public TweetController(AccountDao accountDao, TweetDao tweetDao) {
-        this.accountDao = accountDao;
+    public TweetController(TweetDao tweetDao,
+                           AccountService accountService) {
         this.tweetDao = tweetDao;
+
+        this.accountService = accountService;
     }
 
     @GetMapping("/tweets/{username}")
     @ResponseBody
     public List<TweetDto> getTweets(@PathVariable String username) throws AccountNotExistsException {
-        Account account = accountDao.findByUsername(username);
+        Account account = accountService.findByUsername(username);
         List<Tweet> tweets = tweetDao.findByAccount(account);
 
         return TweetDto.convertToDto(tweets);
@@ -47,7 +51,7 @@ public class TweetController {
     @GetMapping("/timeline")
     @ResponseBody
     private List<TweetDto> getTimeline(Principal principal) throws AccountNotExistsException {
-        Account account = accountDao.findByUsername(principal.getName());
+        Account account = accountService.findByUsername(principal.getName());
         List<Tweet> tweets = tweetDao.findTimelineByAccount(account);
 
         return TweetDto.convertToDto(tweets);

@@ -1,10 +1,10 @@
 package acme.twitter.web;
 
-import acme.twitter.dao.AccountDao;
 import acme.twitter.dao.FollowerDao;
 import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
 import acme.twitter.dto.AccountDto;
+import acme.twitter.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -19,13 +19,17 @@ import java.util.List;
 @Controller
 @RequestMapping("/api/follower")
 public class FollowerController {
-    private AccountDao accountDao;
+    //TODO: delete
     private FollowerDao followerDao;
 
+    private AccountService accountService;
+
     @Autowired
-    public FollowerController(AccountDao accountDao, FollowerDao followerDao) {
-        this.accountDao = accountDao;
+    public FollowerController(FollowerDao followerDao,
+                              AccountService accountService) {
         this.followerDao = followerDao;
+
+        this.accountService = accountService;
     }
 
     @GetMapping("/following/{username}")
@@ -47,8 +51,8 @@ public class FollowerController {
     @PostMapping("/following/{username}")
     @ResponseStatus(HttpStatus.OK)
     public void addFollowing(@PathVariable String username, Principal principal) throws AccountNotExistsException {
-        Account whoAccount = accountDao.findByUsername(principal.getName());
-        Account whomAccount = accountDao.findByUsername(username);
+        Account whoAccount = accountService.findByUsername(principal.getName());
+        Account whomAccount = accountService.findByUsername(username);
 
         followerDao.add(whoAccount.getUsername(), whomAccount.getUsername());
     }
@@ -56,8 +60,8 @@ public class FollowerController {
     @DeleteMapping("/following/{username}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteFollowing(@PathVariable String username, Principal principal) throws AccountNotExistsException {
-        Account whoAccount = accountDao.findByUsername(principal.getName());
-        Account whomAccount = accountDao.findByUsername(username);
+        Account whoAccount = accountService.findByUsername(principal.getName());
+        Account whomAccount = accountService.findByUsername(username);
 
         followerDao.delete(whoAccount.getUsername(), whomAccount.getUsername());
     }
