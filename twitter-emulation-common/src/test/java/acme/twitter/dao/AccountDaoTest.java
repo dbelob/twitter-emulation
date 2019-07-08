@@ -72,6 +72,11 @@ public abstract class AccountDaoTest {
         Assert.assertEquals("John Smith", account.getDescription());
     }
 
+    @Test(expected = AccountNotExistsException.class)
+    public void findByUsernameNotExistsTest() throws AccountNotExistsException {
+        accountDao.findByUsername("unknown");
+    }
+
     @Test
     public void findByUsernamePartTest() {
         List<Account> accounts = accountDao.findByUsernamePart("j");
@@ -79,5 +84,12 @@ public abstract class AccountDaoTest {
         Assert.assertEquals(2, accounts.size());
         Assert.assertEquals("jdoe", accounts.get(0).getUsername());
         Assert.assertEquals("jsmith", accounts.get(1).getUsername());
+    }
+
+    @Test
+    public void findByUsernameEmptyResultPartTest() {
+        List<Account> accounts = accountDao.findByUsernamePart("unknown");
+
+        Assert.assertEquals(0, accounts.size());
     }
 }

@@ -9,6 +9,7 @@ import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
 import acme.twitter.dto.AccountDto;
 import acme.twitter.dto.AccountStatisticsDto;
+import acme.twitter.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -24,21 +25,27 @@ import java.util.List;
 @Controller
 @RequestMapping("/api/account")
 public class AccountController {
+    //TODO: delete
     private AccountDao accountDao;
     private TweetDao tweetDao;
     private FollowerDao followerDao;
 
+    private AccountService accountService;
+
     @Autowired
-    public AccountController(AccountDao accountDao, TweetDao tweetDao, FollowerDao followerDao) {
+    public AccountController(AccountDao accountDao, TweetDao tweetDao, FollowerDao followerDao,
+                             AccountService accountService) {
         this.accountDao = accountDao;
         this.tweetDao = tweetDao;
         this.followerDao = followerDao;
+
+        this.accountService = accountService;
     }
 
     @GetMapping("/accounts/{username}")
     @ResponseBody
     public AccountDto getAccount(@PathVariable String username, Principal principal) throws AccountNotExistsException {
-        Account account = accountDao.findByUsername(username);
+        Account account = accountService.findByUsername(username);
         String password = ((principal != null) && username.equals(principal.getName())) ? account.getPassword() : null;
 
         return new AccountDto(account.getUsername(), password, account.getDescription());
@@ -77,7 +84,7 @@ public class AccountController {
     @GetMapping("/accounts")
     @ResponseBody
     public List<AccountDto> getAccounts(@RequestParam(required = false) String usernamePart) {
-        List<Account> accounts = accountDao.findByUsernamePart(usernamePart);
+        List<Account> accounts = accountService.findByUsernamePart(usernamePart);
 
         return AccountDto.convertToDto(accounts);
     }
@@ -88,7 +95,7 @@ public class AccountController {
         String whoUsername = (principal != null) ? principal.getName() : username;
         String whomUsername = username;
 
-        Account account = accountDao.findByUsername(whomUsername);
+        Account account = accountService.findByUsername(whomUsername);
         int tweetsCount = tweetDao.countByUsername(whomUsername);
         int followingCount = followerDao.countFollowingByUsername(whomUsername);
         int followersCount = followerDao.countFollowersByUsername(whomUsername);
