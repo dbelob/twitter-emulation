@@ -1,12 +1,12 @@
 package acme.twitter.web;
 
-import acme.twitter.dao.FollowerDao;
 import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
 import acme.twitter.domain.AccountStatistics;
 import acme.twitter.domain.Tweet;
 import acme.twitter.service.AccountService;
+import acme.twitter.service.FollowerService;
 import acme.twitter.service.TweetService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,21 +36,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class AccountController {
     private static final Logger log = LoggerFactory.getLogger(AccountController.class);
 
-    //TODO: delete
-    private FollowerDao followerDao;
-
     private AccountService accountService;
     private TweetService tweetService;
+    private FollowerService followerService;
     private MessageSourceAccessor messageSourceAccessor;
 
     @Autowired
-    public AccountController(FollowerDao followerDao,
-                             AccountService accountService, TweetService tweetService,
+    public AccountController(AccountService accountService, TweetService tweetService, FollowerService followerService,
                              MessageSourceAccessor messageSourceAccessor) {
-        this.followerDao = followerDao;
-
         this.accountService = accountService;
         this.tweetService = tweetService;
+        this.followerService = followerService;
         this.messageSourceAccessor = messageSourceAccessor;
     }
 
@@ -302,7 +298,7 @@ public class AccountController {
         AccountStatistics accountStatistics = getAccountStatistics(
                 (principal != null) ? principal.getName() : username,
                 username);
-        List<Account> accounts = followerDao.findFollowingByUsername(username);
+        List<Account> accounts = followerService.findFollowingByUsername(username);
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
@@ -332,7 +328,7 @@ public class AccountController {
         AccountStatistics accountStatistics = getAccountStatistics(
                 (principal != null) ? principal.getName() : username,
                 username);
-        List<Account> accounts = followerDao.findFollowersByUsername(username);
+        List<Account> accounts = followerService.findFollowersByUsername(username);
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
@@ -346,9 +342,9 @@ public class AccountController {
 
     private AccountStatistics getAccountStatistics(String whoUsername, String whomUsername) {
         int tweetsCount = tweetService.countByUsername(whomUsername);
-        int followingCount = followerDao.countFollowingByUsername(whomUsername);
-        int followersCount = followerDao.countFollowersByUsername(whomUsername);
-        boolean isFollow = followerDao.isExist(whoUsername, whomUsername);
+        int followingCount = followerService.countFollowingByUsername(whomUsername);
+        int followersCount = followerService.countFollowersByUsername(whomUsername);
+        boolean isFollow = followerService.isExist(whoUsername, whomUsername);
 
         return new AccountStatistics(tweetsCount, followingCount, followersCount, isFollow);
     }
@@ -368,7 +364,7 @@ public class AccountController {
         Account whoAccount = accountService.findByUsername(principal.getName());
         Account whomAccount = accountService.findByUsername(username);
 
-        followerDao.add(whoAccount.getUsername(), whomAccount.getUsername());
+        followerService.add(whoAccount.getUsername(), whomAccount.getUsername());
 
         return "redirect:/account/show/" + username;
     }
@@ -388,7 +384,7 @@ public class AccountController {
         Account whoAccount = accountService.findByUsername(principal.getName());
         Account whomAccount = accountService.findByUsername(username);
 
-        followerDao.delete(whoAccount.getUsername(), whomAccount.getUsername());
+        followerService.delete(whoAccount.getUsername(), whomAccount.getUsername());
 
         return "redirect:/account/show/" + username;
     }

@@ -1,6 +1,5 @@
 package acme.twitter.web;
 
-import acme.twitter.dao.FollowerDao;
 import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotAllowedException;
 import acme.twitter.dao.exception.AccountNotExistsException;
@@ -8,6 +7,7 @@ import acme.twitter.domain.Account;
 import acme.twitter.dto.AccountDto;
 import acme.twitter.dto.AccountStatisticsDto;
 import acme.twitter.service.AccountService;
+import acme.twitter.service.FollowerService;
 import acme.twitter.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,19 +23,15 @@ import java.util.List;
 @Controller
 @RequestMapping("/api/account")
 public class AccountController {
-    //TODO: delete
-    private FollowerDao followerDao;
-
     private AccountService accountService;
     private TweetService tweetService;
+    private FollowerService followerService;
 
     @Autowired
-    public AccountController(FollowerDao followerDao,
-                             AccountService accountService, TweetService tweetService) {
-        this.followerDao = followerDao;
-
+    public AccountController(AccountService accountService, TweetService tweetService, FollowerService followerService) {
         this.accountService = accountService;
         this.tweetService = tweetService;
+        this.followerService = followerService;
     }
 
     @GetMapping("/accounts/{username}")
@@ -90,9 +86,9 @@ public class AccountController {
 
         Account account = accountService.findByUsername(whomUsername);
         int tweetsCount = tweetService.countByUsername(whomUsername);
-        int followingCount = followerDao.countFollowingByUsername(whomUsername);
-        int followersCount = followerDao.countFollowersByUsername(whomUsername);
-        boolean isFollow = followerDao.isExist(whoUsername, whomUsername);
+        int followingCount = followerService.countFollowingByUsername(whomUsername);
+        int followersCount = followerService.countFollowersByUsername(whomUsername);
+        boolean isFollow = followerService.isExist(whoUsername, whomUsername);
 
         return new AccountStatisticsDto(account.getUsername(), account.getDescription(), tweetsCount, followingCount, followersCount, isFollow);
     }
