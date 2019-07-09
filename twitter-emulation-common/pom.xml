@@ -85,7 +85,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${maven.surefire.plugin.version}</version>
+                        <version>${surefire.plugin.version}</version>
                         <configuration>
                             <excludes>
                                 <exclude>**/OracleDatabase*Test.java</exclude>
@@ -103,7 +103,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${maven.surefire.plugin.version}</version>
+                        <version>${surefire.plugin.version}</version>
                         <configuration>
                             <excludes>
                                 <exclude>**/H2*Test.java</exclude>
