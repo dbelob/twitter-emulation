@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.mockito.internal.verification.VerificationModeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -40,14 +41,19 @@ public class TweetServiceTest {
     @Before
     public void setUp() {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
-        Tweet tweet0 = new Tweet(jsmith, "Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.", new Date());
-        Tweet tweet1 = new Tweet(jsmith, "Duo suas molestiae ea, ex sit rebum voluptua. Graeci mandamus ad mei, harum rationibus qui at. Ut vel fabellas deserunt senserit.", new Date());
-        Tweet tweet2 = new Tweet(jsmith, "Vel eros vero cu, at vis animal ceteros. Veritus invidunt postulant qui ne. Mel latine patrioque necessitatibus id, ius ne adhuc maluisset.", new Date());
-        Tweet tweet3 = new Tweet(jsmith, "No per viderer invidunt consequat, vix ei probo oratio luptatum, quo stet graece an. Has in nemore partiendo.", new Date());
-        Tweet tweet4 = new Tweet(jsmith, "Decore ocurreret te vis, eligendi scaevola no vel. Brute hendrerit duo ne. Molestie percipitur adversarium quo ut.", new Date());
-        Tweet tweet5 = new Tweet(jsmith, "At nobis voluptaria sed, quo at eius laudem gloriatur, ne sapientem salutandi pro. Erat quaeque electram vim at.", new Date());
+        Account jdoe = new Account(2, "jdoe", "password", "John Doe");
 
-        Mockito.when(tweetDao.findByAccount(jsmith)).thenReturn(Arrays.asList(tweet0, tweet1, tweet2, tweet3, tweet4, tweet5));
+        Tweet jsmithTweet0 = new Tweet(jsmith, "Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.", new Date());
+        Tweet jsmithTweet1 = new Tweet(jsmith, "Duo suas molestiae ea, ex sit rebum voluptua. Graeci mandamus ad mei, harum rationibus qui at. Ut vel fabellas deserunt senserit.", new Date());
+        Tweet jsmithTweet2 = new Tweet(jsmith, "Vel eros vero cu, at vis animal ceteros. Veritus invidunt postulant qui ne. Mel latine patrioque necessitatibus id, ius ne adhuc maluisset.", new Date());
+        Tweet jsmithTweet3 = new Tweet(jsmith, "No per viderer invidunt consequat, vix ei probo oratio luptatum, quo stet graece an. Has in nemore partiendo.", new Date());
+        Tweet jsmithTweet4 = new Tweet(jsmith, "Decore ocurreret te vis, eligendi scaevola no vel. Brute hendrerit duo ne. Molestie percipitur adversarium quo ut.", new Date());
+        Tweet jsmithTweet5 = new Tweet(jsmith, "At nobis voluptaria sed, quo at eius laudem gloriatur, ne sapientem salutandi pro. Erat quaeque electram vim at.", new Date());
+        Tweet jdoeTweet0 = new Tweet(jsmith, "Some people care too much. I think it's called love.", new Date());
+
+        Mockito.when(tweetDao.findByAccount(jsmith)).thenReturn(Arrays.asList(jsmithTweet0, jsmithTweet1, jsmithTweet2, jsmithTweet3, jsmithTweet4, jsmithTweet5));
+        Mockito.when(tweetDao.findTimelineByAccount(jsmith)).thenReturn(Arrays.asList(jdoeTweet0, jsmithTweet0, jsmithTweet1));
+        Mockito.when(tweetDao.countByUsername("jsmith")).thenReturn(6);
     }
 
     @Test
@@ -67,5 +73,30 @@ public class TweetServiceTest {
                 tweets.get(4).getText());
         Assert.assertEquals("At nobis voluptaria sed, quo at eius laudem gloriatur, ne sapientem salutandi pro. Erat quaeque electram vim at.",
                 tweets.get(5).getText());
+    }
+
+    @Test
+    public void whenValidAccount_thenTimelineShouldBeFound() {
+        List<Tweet> tweets = tweetService.findTimelineByAccount(new Account(1L, "jsmith", "password", "John Smith"));
+
+        Assert.assertEquals(3, tweets.size());
+        Assert.assertEquals("Some people care too much. I think it's called love.",
+                tweets.get(0).getText());
+        Assert.assertEquals("Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.",
+                tweets.get(1).getText());
+        Assert.assertEquals("Duo suas molestiae ea, ex sit rebum voluptua. Graeci mandamus ad mei, harum rationibus qui at. Ut vel fabellas deserunt senserit.",
+                tweets.get(2).getText());
+    }
+
+    @Test
+    public void whenAdded_thenShouldBeRunAdd() {
+        tweetService.add("rroe", "Tweet text");
+        Mockito.verify(tweetDao, VerificationModeFactory.times(1)).add("rroe", "Tweet text");
+        Mockito.reset(tweetDao);
+    }
+
+    @Test
+    public void whenValidName_thenShouldBeReturnCount() {
+        Assert.assertEquals(6, tweetService.countByUsername("jsmith"));
     }
 }

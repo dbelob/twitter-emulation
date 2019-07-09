@@ -1,7 +1,6 @@
 package acme.twitter.web;
 
 import acme.twitter.dao.FollowerDao;
-import acme.twitter.dao.TweetDao;
 import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
@@ -38,7 +37,6 @@ public class AccountController {
     private static final Logger log = LoggerFactory.getLogger(AccountController.class);
 
     //TODO: delete
-    private TweetDao tweetDao;
     private FollowerDao followerDao;
 
     private AccountService accountService;
@@ -46,10 +44,9 @@ public class AccountController {
     private MessageSourceAccessor messageSourceAccessor;
 
     @Autowired
-    public AccountController(TweetDao tweetDao, FollowerDao followerDao,
+    public AccountController(FollowerDao followerDao,
                              AccountService accountService, TweetService tweetService,
                              MessageSourceAccessor messageSourceAccessor) {
-        this.tweetDao = tweetDao;
         this.followerDao = followerDao;
 
         this.accountService = accountService;
@@ -213,7 +210,7 @@ public class AccountController {
 
         Account account = accountService.findByUsername(username);
         AccountStatistics accountStatistics = getAccountStatistics(principal.getName(), username);
-        List<Tweet> tweets = tweetDao.findTimelineByAccount(account);
+        List<Tweet> tweets = tweetService.findTimelineByAccount(account);
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
@@ -348,7 +345,7 @@ public class AccountController {
     }
 
     private AccountStatistics getAccountStatistics(String whoUsername, String whomUsername) {
-        int tweetsCount = tweetDao.countByUsername(whomUsername);
+        int tweetsCount = tweetService.countByUsername(whomUsername);
         int followingCount = followerDao.countFollowingByUsername(whomUsername);
         int followersCount = followerDao.countFollowersByUsername(whomUsername);
         boolean isFollow = followerDao.isExist(whoUsername, whomUsername);

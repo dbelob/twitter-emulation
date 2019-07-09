@@ -138,7 +138,7 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
   
 ## Testing
 
-### Backend DAO unit testing
+### Backend DAO, services unit testing
 
 1. Install *Docker* (optional, only for *Oracle Database* testing)
 

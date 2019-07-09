@@ -24,4 +24,19 @@ public class TweetServiceImpl implements TweetService {
     public List<Tweet> findByAccount(Account account) {
         return tweetDao.findByAccount(account);
     }
+
+    @Override
+    public List<Tweet> findTimelineByAccount(Account account) {
+        return tweetDao.findTimelineByAccount(account);
+    }
+
+    @Override
+    public void add(String username, String text) {
+        tweetDao.add(username, text);
+    }
+
+    @Override
+    public int countByUsername(String username) {
+        return tweetDao.countByUsername(username);
+    }
 }

@@ -1,6 +1,5 @@
 package acme.twitter.web;
 
-import acme.twitter.dao.TweetDao;
 import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
 import acme.twitter.domain.Tweet;
@@ -21,17 +20,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/api/tweet")
 public class TweetController {
-    //TODO: delete
-    private TweetDao tweetDao;
-
     private TweetService tweetService;
     private AccountService accountService;
 
     @Autowired
-    public TweetController(TweetDao tweetDao,
-                           TweetService tweetService, AccountService accountService) {
-        this.tweetDao = tweetDao;
-
+    public TweetController(TweetService tweetService, AccountService accountService) {
         this.tweetService = tweetService;
         this.accountService = accountService;
     }
@@ -48,14 +41,14 @@ public class TweetController {
     @PostMapping("/tweets")
     @ResponseStatus(HttpStatus.OK)
     public void addTweet(@RequestBody String text, Principal principal) {
-        tweetDao.add(principal.getName(), text);
+        tweetService.add(principal.getName(), text);
     }
 
     @GetMapping("/timeline")
     @ResponseBody
     private List<TweetDto> getTimeline(Principal principal) throws AccountNotExistsException {
         Account account = accountService.findByUsername(principal.getName());
-        List<Tweet> tweets = tweetDao.findTimelineByAccount(account);
+        List<Tweet> tweets = tweetService.findTimelineByAccount(account);
 
         return TweetDto.convertToDto(tweets);
     }

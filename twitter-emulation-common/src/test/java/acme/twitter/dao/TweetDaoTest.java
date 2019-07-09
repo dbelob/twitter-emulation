@@ -84,7 +84,7 @@ public abstract class TweetDaoTest {
     public void addTest() {
         tweetDao.add("rroe", "Tweet text");
 
-        List<Tweet> tweets = tweetDao.findTimelineByAccount(new Account(3L, "rroe", "password", "Richard Roe"));
+        List<Tweet> tweets = tweetDao.findByAccount(new Account(3L, "rroe", "password", "Richard Roe"));
         Assert.assertEquals(1, tweets.size());
         Assert.assertEquals("Tweet text",
                 tweets.get(0).getText());

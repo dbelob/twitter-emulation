@@ -10,4 +10,10 @@ import java.util.List;
  */
 public interface TweetService {
     List<Tweet> findByAccount(Account account);
+
+    List<Tweet> findTimelineByAccount(Account account);
+
+    void add(String username, String text);
+
+    int countByUsername(String username);
 }

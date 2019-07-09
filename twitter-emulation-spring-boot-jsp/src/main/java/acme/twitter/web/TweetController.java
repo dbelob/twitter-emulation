@@ -1,6 +1,6 @@
 package acme.twitter.web;
 
-import acme.twitter.dao.TweetDao;
+import acme.twitter.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +19,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 @RequestMapping("/tweet")
 public class TweetController {
-    private TweetDao tweetDao;
+    private TweetService tweetService;
 
     @Autowired
-    public TweetController(TweetDao tweetDao) {
-        this.tweetDao = tweetDao;
+    public TweetController(TweetService tweetService) {
+        this.tweetService = tweetService;
     }
 
     /**
@@ -56,7 +56,7 @@ public class TweetController {
             return "newTweetForm";
         }
 
-        tweetDao.add(principal.getName(), tweetForm.getText());
+        tweetService.add(principal.getName(), tweetForm.getText());
 
         return "redirect:/account/show";
     }
