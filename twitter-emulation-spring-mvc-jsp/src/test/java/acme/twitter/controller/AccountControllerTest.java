@@ -1,6 +1,5 @@
-package acme.twitter.web;
+package acme.twitter.controller;
 
-import acme.twitter.controller.AccountController;
 import acme.twitter.service.AccountService;
 import acme.twitter.service.FollowerService;
 import acme.twitter.service.TweetService;
