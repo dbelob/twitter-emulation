@@ -15,7 +15,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("acme.twitter.web"))
+                .apis(RequestHandlerSelectors.basePackage("acme.twitter.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

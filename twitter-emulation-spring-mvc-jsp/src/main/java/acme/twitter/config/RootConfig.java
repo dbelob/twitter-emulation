@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 public class RootConfig {
     public static class WebPackage extends RegexPatternTypeFilter {
         public WebPackage() {
-            super(Pattern.compile("acme\\.twitter\\.web"));
+            super(Pattern.compile("acme\\.twitter\\.controller"));
         }
     }
 }

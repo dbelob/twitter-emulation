@@ -1,4 +1,4 @@
-package acme.twitter.web;
+package acme.twitter.controller;
 
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.stereotype.Component;

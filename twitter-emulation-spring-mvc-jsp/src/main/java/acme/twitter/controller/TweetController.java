@@ -1,6 +1,7 @@
-package acme.twitter.web;
+package acme.twitter.controller;
 
 import acme.twitter.service.TweetService;
+import acme.twitter.web.TweetForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

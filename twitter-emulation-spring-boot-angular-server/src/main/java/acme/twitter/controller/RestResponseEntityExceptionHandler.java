@@ -1,4 +1,4 @@
-package acme.twitter.web;
+package acme.twitter.controller;
 
 import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotAllowedException;

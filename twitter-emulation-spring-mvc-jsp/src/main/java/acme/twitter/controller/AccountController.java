@@ -1,4 +1,4 @@
-package acme.twitter.web;
+package acme.twitter.controller;
 
 import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotExistsException;
@@ -8,6 +8,8 @@ import acme.twitter.domain.Tweet;
 import acme.twitter.service.AccountService;
 import acme.twitter.service.FollowerService;
 import acme.twitter.service.TweetService;
+import acme.twitter.web.AccountForm;
+import acme.twitter.web.SearchForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

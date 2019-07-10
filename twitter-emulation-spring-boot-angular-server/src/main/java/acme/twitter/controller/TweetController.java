@@ -1,4 +1,4 @@
-package acme.twitter.web;
+package acme.twitter.controller;
 
 import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
