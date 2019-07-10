@@ -152,6 +152,16 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
     `mvn test -P development` (*H2*)  
     `mvn test -P production` (*Oracle Database*)  
 
+### Backend unit testing for controllers
+
+1. Change directory:
+
+    `cd twitter-emulation-spring-boot-angular-server`
+
+1. From the command line with *Maven*:
+
+    `mvn test`  
+
 ### Frontend unit testing
 
 1. Change directory:
