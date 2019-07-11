@@ -22,10 +22,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import javax.servlet.http.Cookie;
 import javax.sql.DataSource;
+import java.util.Arrays;
+import java.util.Collections;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -65,8 +68,7 @@ public class AccountControllerTest {
     @Test
     public void whenPostAccount_thenCreateAccount() throws Exception {
         AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
-        CookieCsrfTokenRepository cookieCsrfTokenRepository = new CookieCsrfTokenRepository();
-        CsrfToken csrfToken = cookieCsrfTokenRepository.generateToken(new MockHttpServletRequest());
+        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         mvc.perform(post("/api/account/accounts")
                 .header(csrfToken.getHeaderName(), csrfToken.getToken())
@@ -75,6 +77,66 @@ public class AccountControllerTest {
                 .content(JsonUtil.toJson(jsmith)))
                 .andExpect(status().isOk());
         Mockito.verify(accountService, VerificationModeFactory.times(1)).add("jsmith", "password", "John Smith");
+        Mockito.reset(accountService);
+    }
+
+    @Test
+    public void whenPutAccount_thenUpdateAccount() throws Exception {
+        AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
+        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
+
+        mvc.perform(put("/api/account/accounts/jsmith")
+                .with(user("jsmith"))
+                .header(csrfToken.getHeaderName(), csrfToken.getToken())
+                .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.toJson(jsmith)))
+                .andExpect(status().isOk());
+        Mockito.verify(accountService, VerificationModeFactory.times(1)).update("jsmith", "password", "John Smith");
+        Mockito.reset(accountService);
+    }
+
+    @Test
+    public void whenDeleteAccount_thenDeleteAccount() throws Exception {
+        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
+
+        mvc.perform(delete("/api/account/accounts/jsmith")
+                .with(user("jsmith"))
+                .header(csrfToken.getHeaderName(), csrfToken.getToken())
+                .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+        Mockito.verify(accountService, VerificationModeFactory.times(1)).delete("jsmith");
+        Mockito.reset(accountService);
+    }
+
+    @Test
+    public void whenValidPart_thenAccountsShouldBeFound() throws Exception {
+        Account jsmith = new Account(1, "jsmith", "password", "John Smith");
+        Account jdoe = new Account(2, "jdoe", "password", "John Doe");
+        BDDMockito.given(accountService.findByUsernamePart("j")).willReturn(Arrays.asList(jsmith, jdoe));
+
+        mvc.perform(get("/api/account/accounts")
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("usernamePart", "j"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].username", is("jsmith")))
+                .andExpect(jsonPath("$[1].username", is("jdoe")));
+        Mockito.verify(accountService, VerificationModeFactory.times(1)).findByUsernamePart("j");
+        Mockito.reset(accountService);
+    }
+
+    @Test
+    public void whenInvalidPart_thenAccountsShouldNotBeFound() throws Exception {
+        BDDMockito.given(accountService.findByUsernamePart("unknown")).willReturn(Collections.emptyList());
+
+        mvc.perform(get("/api/account/accounts")
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("usernamePart", "unknown"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(0)));
+        Mockito.verify(accountService, VerificationModeFactory.times(1)).findByUsernamePart("unknown");
         Mockito.reset(accountService);
     }
 }

@@ -104,7 +104,7 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void whenValidPart_thenAccountsShouldBeFound() throws AccountNotExistsException {
+    public void whenValidPart_thenAccountsShouldBeFound() {
         List<Account> accounts = accountService.findByUsernamePart("j");
 
         Assert.assertEquals(2, accounts.size());
