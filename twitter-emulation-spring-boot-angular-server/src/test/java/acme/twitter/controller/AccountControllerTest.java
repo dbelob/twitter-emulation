@@ -14,9 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.servlet.http.Cookie;
 import javax.sql.DataSource;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -28,6 +32,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(AccountController.class)
 public class AccountControllerTest {
+    private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
+
     @Autowired
     private MockMvc mvc;
 
@@ -56,11 +62,15 @@ public class AccountControllerTest {
         Mockito.reset(accountService);
     }
 
-//    @Test
+    @Test
     public void whenPostAccount_thenCreateAccount() throws Exception {
         AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
+        CookieCsrfTokenRepository cookieCsrfTokenRepository = new CookieCsrfTokenRepository();
+        CsrfToken csrfToken = cookieCsrfTokenRepository.generateToken(new MockHttpServletRequest());
 
         mvc.perform(post("/api/account/accounts")
+                .header(csrfToken.getHeaderName(), csrfToken.getToken())
+                .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.toJson(jsmith)))
                 .andExpect(status().isOk());
