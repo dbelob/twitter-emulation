@@ -1,0 +1,78 @@
+package acme.twitter.controller;
+
+import acme.twitter.domain.Account;
+import acme.twitter.domain.Tweet;
+import acme.twitter.service.AccountService;
+import acme.twitter.service.TweetService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.BDDMockito;
+import org.mockito.Mockito;
+import org.mockito.internal.verification.VerificationModeFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+import javax.sql.DataSource;
+import java.util.Arrays;
+import java.util.Date;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@RunWith(SpringRunner.class)
+@WebMvcTest(TweetController.class)
+public class TweetControllerTest {
+    @Autowired
+    private MockMvc mvc;
+
+    @MockBean
+    private DataSource dataSource;
+
+    @MockBean
+    private TweetService tweetService;
+
+    @MockBean
+    private AccountService accountService;
+
+    @Test
+    public void whenGetTweets_thenReturnJsonArray() throws Exception {
+        Account jsmith = new Account(1, "jsmith", "password", "John Smith");
+        Tweet jsmithTweet0 = new Tweet(jsmith, "Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.", new Date());
+        Tweet jsmithTweet1 = new Tweet(jsmith, "Duo suas molestiae ea, ex sit rebum voluptua. Graeci mandamus ad mei, harum rationibus qui at. Ut vel fabellas deserunt senserit.", new Date());
+        Tweet jsmithTweet2 = new Tweet(jsmith, "Vel eros vero cu, at vis animal ceteros. Veritus invidunt postulant qui ne. Mel latine patrioque necessitatibus id, ius ne adhuc maluisset.", new Date());
+        Tweet jsmithTweet3 = new Tweet(jsmith, "No per viderer invidunt consequat, vix ei probo oratio luptatum, quo stet graece an. Has in nemore partiendo.", new Date());
+        Tweet jsmithTweet4 = new Tweet(jsmith, "Decore ocurreret te vis, eligendi scaevola no vel. Brute hendrerit duo ne. Molestie percipitur adversarium quo ut.", new Date());
+        Tweet jsmithTweet5 = new Tweet(jsmith, "At nobis voluptaria sed, quo at eius laudem gloriatur, ne sapientem salutandi pro. Erat quaeque electram vim at.", new Date());
+
+        BDDMockito.given(accountService.findByUsername("jsmith")).willReturn(jsmith);
+        BDDMockito.given(tweetService.findByAccount(jsmith)).willReturn(Arrays.asList(jsmithTweet0, jsmithTweet1, jsmithTweet2, jsmithTweet3, jsmithTweet4, jsmithTweet5));
+
+        mvc.perform(get("/api/tweet/tweets/jsmith")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(6)))
+                .andExpect(jsonPath("$[0].text", is("Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.")))
+                .andExpect(jsonPath("$[0].username", is("jsmith")))
+                .andExpect(jsonPath("$[1].text", is("Duo suas molestiae ea, ex sit rebum voluptua. Graeci mandamus ad mei, harum rationibus qui at. Ut vel fabellas deserunt senserit.")))
+                .andExpect(jsonPath("$[1].username", is("jsmith")))
+                .andExpect(jsonPath("$[2].text", is("Vel eros vero cu, at vis animal ceteros. Veritus invidunt postulant qui ne. Mel latine patrioque necessitatibus id, ius ne adhuc maluisset.")))
+                .andExpect(jsonPath("$[2].username", is("jsmith")))
+                .andExpect(jsonPath("$[3].text", is("No per viderer invidunt consequat, vix ei probo oratio luptatum, quo stet graece an. Has in nemore partiendo.")))
+                .andExpect(jsonPath("$[3].username", is("jsmith")))
+                .andExpect(jsonPath("$[4].text", is("Decore ocurreret te vis, eligendi scaevola no vel. Brute hendrerit duo ne. Molestie percipitur adversarium quo ut.")))
+                .andExpect(jsonPath("$[4].username", is("jsmith")))
+                .andExpect(jsonPath("$[5].text", is("At nobis voluptaria sed, quo at eius laudem gloriatur, ne sapientem salutandi pro. Erat quaeque electram vim at.")))
+                .andExpect(jsonPath("$[5].username", is("jsmith")));
+        Mockito.verify(accountService, VerificationModeFactory.times(1)).findByUsername("jsmith");
+        Mockito.verify(tweetService, VerificationModeFactory.times(1)).findByAccount(jsmith);
+        Mockito.reset(accountService);
+        Mockito.reset(tweetService);
+    }
+}
