@@ -139,4 +139,33 @@ public class AccountControllerTest {
         Mockito.verify(accountService, VerificationModeFactory.times(1)).findByUsernamePart("unknown");
         Mockito.reset(accountService);
     }
+
+    @Test
+    public void whenGetStatistics_thenReturnJson() throws Exception {
+        Account jsmith = new Account(1, "jsmith", "password", "John Smith");
+        BDDMockito.given(accountService.findByUsername("jsmith")).willReturn(jsmith);
+        BDDMockito.given(tweetService.countByUsername("jsmith")).willReturn(6);
+        BDDMockito.given(followerService.countFollowingByUsername("jsmith")).willReturn(2);
+        BDDMockito.given(followerService.countFollowersByUsername("jsmith")).willReturn(1);
+        BDDMockito.given(followerService.isExist("jsmith", "jsmith")).willReturn(false);
+
+        mvc.perform(get("/api/account/statistics/jsmith")
+                .with(user("jsmith"))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.username", is("jsmith")))
+                .andExpect(jsonPath("$.description", is("John Smith")))
+                .andExpect(jsonPath("$.tweetsCount", is(6)))
+                .andExpect(jsonPath("$.followingCount", is(2)))
+                .andExpect(jsonPath("$.followersCount", is(1)))
+                .andExpect(jsonPath("$.follow", is(false)));
+        Mockito.verify(accountService, VerificationModeFactory.times(1)).findByUsername("jsmith");
+        Mockito.verify(tweetService, VerificationModeFactory.times(1)).countByUsername("jsmith");
+        Mockito.verify(followerService, VerificationModeFactory.times(1)).countFollowingByUsername("jsmith");
+        Mockito.verify(followerService, VerificationModeFactory.times(1)).countFollowersByUsername("jsmith");
+        Mockito.verify(followerService, VerificationModeFactory.times(1)).isExist("jsmith", "jsmith");
+        Mockito.reset(accountService);
+        Mockito.reset(tweetService);
+        Mockito.reset(followerService);
+    }
 }
