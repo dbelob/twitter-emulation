@@ -13,22 +13,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.servlet.http.Cookie;
 import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TweetController.class)
 public class TweetControllerTest {
+    private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
+
     @Autowired
     private MockMvc mvc;
 
@@ -72,6 +80,51 @@ public class TweetControllerTest {
                 .andExpect(jsonPath("$[5].username", is("jsmith")));
         Mockito.verify(accountService, VerificationModeFactory.times(1)).findByUsername("jsmith");
         Mockito.verify(tweetService, VerificationModeFactory.times(1)).findByAccount(jsmith);
+        Mockito.reset(accountService);
+        Mockito.reset(tweetService);
+    }
+
+    @Test
+    public void whenPostTweet_thenCreateTweet() throws Exception {
+        Account jsmith = new Account(1, "jsmith", "password", "John Smith");
+        Tweet tweet = new Tweet(jsmith, "Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.", new Date());
+        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
+
+        mvc.perform(post("/api/tweet/tweets")
+                .with(user("jsmith"))
+                .header(csrfToken.getHeaderName(), csrfToken.getToken())
+                .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(tweet.getText()))
+                .andExpect(status().isOk());
+        Mockito.verify(tweetService, VerificationModeFactory.times(1)).add("jsmith", tweet.getText());
+        Mockito.reset(tweetService);
+    }
+
+    @Test
+    public void whenGetTimeline_thenReturnJsonArray() throws Exception {
+        Account jsmith = new Account(1, "jsmith", "password", "John Smith");
+        Account jdoe = new Account(2, "jdoe", "password", "John Doe");
+        Tweet jsmithTweet0 = new Tweet(jsmith, "Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.", new Date());
+        Tweet jsmithTweet1 = new Tweet(jsmith, "Duo suas molestiae ea, ex sit rebum voluptua. Graeci mandamus ad mei, harum rationibus qui at. Ut vel fabellas deserunt senserit.", new Date());
+        Tweet jdoeTweet0 = new Tweet(jdoe, "Some people care too much. I think it's called love.", new Date());
+
+        BDDMockito.given(accountService.findByUsername("jsmith")).willReturn(jsmith);
+        BDDMockito.given(tweetService.findTimelineByAccount(jsmith)).willReturn(Arrays.asList(jdoeTweet0, jsmithTweet0, jsmithTweet1));
+
+        mvc.perform(get("/api/tweet/timeline")
+                .with(user("jsmith"))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$[0].text", is("Some people care too much. I think it's called love.")))
+                .andExpect(jsonPath("$[0].username", is("jdoe")))
+                .andExpect(jsonPath("$[1].text", is("Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.")))
+                .andExpect(jsonPath("$[1].username", is("jsmith")))
+                .andExpect(jsonPath("$[2].text", is("Duo suas molestiae ea, ex sit rebum voluptua. Graeci mandamus ad mei, harum rationibus qui at. Ut vel fabellas deserunt senserit.")))
+                .andExpect(jsonPath("$[2].username", is("jsmith")));
+        Mockito.verify(accountService, VerificationModeFactory.times(1)).findByUsername("jsmith");
+        Mockito.verify(tweetService, VerificationModeFactory.times(1)).findTimelineByAccount(jsmith);
         Mockito.reset(accountService);
         Mockito.reset(tweetService);
     }
