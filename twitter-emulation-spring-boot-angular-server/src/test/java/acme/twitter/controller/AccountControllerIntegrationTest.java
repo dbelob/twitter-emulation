@@ -1,0 +1,88 @@
+package acme.twitter.controller;
+
+import acme.twitter.App;
+import acme.twitter.dto.AccountDto;
+import org.junit.After;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+import javax.servlet.http.Cookie;
+import javax.sql.DataSource;
+import java.sql.SQLException;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        classes = App.class)
+@AutoConfigureMockMvc
+@AutoConfigureTestDatabase
+public class AccountControllerIntegrationTest {
+    private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
+
+    @Autowired
+    private MockMvc mvc;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @After
+    public void tearDown() throws SQLException {
+        TestUtils.executeSqlScript(dataSource.getConnection(), "/clean.sql");
+        TestUtils.executeSqlScript(dataSource.getConnection(), "/data.sql");
+    }
+
+    @Test
+    public void whenGetAccount_thenReturnJson() throws Exception {
+        mvc.perform(get("/api/account/accounts/jsmith")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.username", is("jsmith")));
+    }
+
+    @Test
+    public void whenPostAccount_thenCreateAccount() throws Exception {
+        AccountDto jsmith = new AccountDto("user", "password", "User");
+        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
+
+        mvc.perform(post("/api/account/accounts")
+                .header(csrfToken.getHeaderName(), csrfToken.getToken())
+                .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.toJson(jsmith)))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void whenPutAccount_thenUpdateAccount() throws Exception {
+        AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
+        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
+
+        mvc.perform(put("/api/account/accounts/jsmith")
+                .with(user("jsmith"))
+                .header(csrfToken.getHeaderName(), csrfToken.getToken())
+                .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.toJson(jsmith)))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+}
