@@ -152,7 +152,7 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
     `mvn test -P development` (*H2*)  
     `mvn test -P production` (*Oracle Database*)  
 
-### Backend unit testing for controllers, integration testing for application
+### Backend unit testing for controllers, integration testing
 
 1. Change directory:
 
