@@ -35,11 +35,12 @@ export class TweetService {
   }
 
   getTimeline(): Observable<Tweet[]> {
-    return this.http.get<Tweet[]>(`${this.baseUrl}/timeline`).pipe(
-      catchError((response: Response) => {
-        this.messageService.reportMessage(response);
-        throw response;
-      })
-    );
+    return this.http.get<Tweet[]>(`${this.baseUrl}/timeline`)
+      .pipe(
+        catchError((response: Response) => {
+          this.messageService.reportMessage(response);
+          throw response;
+        })
+      );
   }
 }

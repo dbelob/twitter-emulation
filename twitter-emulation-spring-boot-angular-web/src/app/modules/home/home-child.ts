@@ -13,9 +13,10 @@ export abstract class HomeChild {
       const url = activatedRoute.snapshot.url;
 
       this.authenticationService.authenticate(undefined, () => {
-          this.authenticationService.getUser().subscribe(authenticatedUser => {
-            this.apply(url, authenticatedUser.name, selectedUserName);
-          });
+          this.authenticationService.getUser()
+            .subscribe(authenticatedUser => {
+              this.apply(url, authenticatedUser.name, selectedUserName);
+            });
         },
         () => {
           this.apply(url, undefined, selectedUserName);

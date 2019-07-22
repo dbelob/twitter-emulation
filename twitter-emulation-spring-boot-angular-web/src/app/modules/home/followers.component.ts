@@ -19,8 +19,9 @@ export class FollowersComponent extends HomeAccountComponent {
   }
 
   getData(username: string) {
-    this.followerService.getFollowers(username).subscribe(data => {
-      this.accounts = data;
-    });
+    this.followerService.getFollowers(username)
+      .subscribe(data => {
+        this.accounts = data;
+      });
   }
 }

@@ -17,8 +17,9 @@ export class AccountComponent extends HomeTweetsComponent {
   }
 
   getData(username: string) {
-    this.tweetService.getTimeline().subscribe(data => {
-      this.tweets = data;
-    });
+    this.tweetService.getTimeline()
+      .subscribe(data => {
+        this.tweets = data;
+      });
   }
 }

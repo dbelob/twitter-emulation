@@ -24,10 +24,10 @@ export class RegistrationComponent {
         new Account(
           this.credentials.username,
           this.credentials.password,
-          this.credentials.description)
-      ).subscribe(data => {
-        this.router.navigateByUrl('/login');
-      });
+          this.credentials.description))
+        .subscribe(data => {
+          this.router.navigateByUrl('/login');
+        });
     }
   }
 

@@ -18,50 +18,53 @@ export class AuthenticationService {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
 
-    return this.http.get(`${this.baseUrl}/user`, {headers: headers}).pipe(
-      map(response => {
-          if (response['name']) {
-            this.authenticated = true;
-            if (success) {
-              success();
+    return this.http.get(`${this.baseUrl}/user`, {headers: headers})
+      .pipe(
+        map(response => {
+            if (response['name']) {
+              this.authenticated = true;
+              if (success) {
+                success();
+              }
+              return true;
+            } else {
+              this.authenticated = false;
+              if (error) {
+                error();
+              }
+              return false;
             }
-            return true;
-          } else {
-            this.authenticated = false;
-            if (error) {
-              error();
-            }
-            return false;
           }
-        }
-      ),
-      catchError(err => {
-        this.authenticated = false;
-        if (error) {
-          error();
-        }
-        return of(false)
-      })
-    );
+        ),
+        catchError(err => {
+          this.authenticated = false;
+          if (error) {
+            error();
+          }
+          return of(false)
+        })
+      );
   }
 
   logout(callback?: () => void) {
-    this.http.post('logout', {}).pipe(
-      finalize(() => {
-        this.authenticated = false;
-        if (callback) {
-          callback();
-        }
-      })
-    ).subscribe();
+    this.http.post('logout', {})
+      .pipe(
+        finalize(() => {
+          this.authenticated = false;
+          if (callback) {
+            callback();
+          }
+        })
+      ).subscribe();
   }
 
   getUser(): Observable<User> {
-    return this.http.get(`${this.baseUrl}/user`).pipe(
-      catchError((response: Response) => {
-        this.messageService.reportMessage(response);
-        throw response;
-      })
-    );
+    return this.http.get(`${this.baseUrl}/user`)
+      .pipe(
+        catchError((response: Response) => {
+          this.messageService.reportMessage(response);
+          throw response;
+        })
+      );
   }
 }

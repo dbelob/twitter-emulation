@@ -19,8 +19,9 @@ export class TweetsComponent extends HomeTweetsComponent {
   }
 
   getData(username: string) {
-    this.tweetService.getTweets(username).subscribe(data => {
-      this.tweets = data;
-    });
+    this.tweetService.getTweets(username)
+      .subscribe(data => {
+        this.tweets = data;
+      });
   }
 }

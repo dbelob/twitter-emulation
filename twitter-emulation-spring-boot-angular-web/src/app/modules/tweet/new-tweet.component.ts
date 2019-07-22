@@ -19,9 +19,10 @@ export class NewTweetComponent {
     this.formSubmitted = true;
 
     if (form.valid) {
-      this.tweetService.tweet(this.text).subscribe(data => {
-        this.router.navigateByUrl('/account/show');
-      });
+      this.tweetService.tweet(this.text)
+        .subscribe(data => {
+          this.router.navigateByUrl('/account/show');
+        });
     }
   }
 

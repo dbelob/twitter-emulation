@@ -17,9 +17,10 @@ export class HomeComponent {
       this.userState = userState;
       const dataUserName = userState.getDataUserName();
 
-      this.accountService.getAccountStatistics(dataUserName).subscribe(data => {
-        this.accountStatistics = data;
-      });
+      this.accountService.getAccountStatistics(dataUserName)
+        .subscribe(data => {
+          this.accountStatistics = data;
+        });
     });
   }
 }

@@ -26,12 +26,13 @@ export class AccountService {
   }
 
   getAccount(username: string): Observable<Account> {
-    return this.http.get<Account>(`${this.baseUrl}/accounts/${username}`).pipe(
-      catchError((response: Response) => {
-        this.messageService.reportMessage(response);
-        throw response;
-      })
-    );
+    return this.http.get<Account>(`${this.baseUrl}/accounts/${username}`)
+      .pipe(
+        catchError((response: Response) => {
+          this.messageService.reportMessage(response);
+          throw response;
+        })
+      );
   }
 
   saveAccount(username: string, account: Account): Observable<Account> {

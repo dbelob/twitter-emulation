@@ -22,9 +22,10 @@ export class SearchComponent extends HomeAccountComponent {
     this.activatedRoute.queryParams.subscribe(params => {
       let searchText = params["searchText"];
 
-      this.accountService.getAccounts(searchText).subscribe(data => {
-        this.accounts = data;
-      });
+      this.accountService.getAccounts(searchText)
+        .subscribe(data => {
+          this.accounts = data;
+        });
     });
   }
 }
