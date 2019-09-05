@@ -41,6 +41,8 @@ in several ways:
 
     http://localhost:8080
 
+1. Authenticate with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
+
 ### Spring Boot, JSP
 
 1. Change directory:
@@ -57,6 +59,8 @@ in several ways:
 1. Access the deployed web application at:
 
     http://localhost:8080
+
+1. Authenticate with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
 
 ### Spring Boot, Angular
 
@@ -80,6 +84,8 @@ in several ways:
 1. Access the deployed web application at:
 
     http://localhost:8080
+
+1. Authenticate with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
 
 #### Method 2
 
@@ -111,8 +117,8 @@ in several ways:
 1. Access the deployed web application at:
 
     http://localhost:4200
-    
-Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`
+
+1. Authenticate with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
 
 ## Monitoring
 
@@ -198,8 +204,10 @@ Existing users: `jsmith/password`, `jdoe/password`, `rroe/password`, `alone/pass
   * [Spring Test](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html)
   * [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin)
 * [H2](http://www.h2database.com) or [Oracle Database](https://www.oracle.com/database/index.html) (data storage)
-* [TestContainers](https://www.testcontainers.org) (testing with [Docker](https://www.docker.com) containers)
 * [Swagger](https://swagger.io) (*REST API* documentation)
+* [JUnit](https://junit.org) (*Java* unit testing)
+* [Mockito](https://site.mockito.org) (mocking for unit tests in *Java*)
+* [TestContainers](https://www.testcontainers.org) (testing with [Docker](https://www.docker.com) containers)
 * [Jasmine](https://jasmine.github.io) (*JavaScript* unit testing)
 * [Protractor](https://www.protractortest.org) (end-to-end testing for *Angular*)
 
