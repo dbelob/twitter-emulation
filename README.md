@@ -41,7 +41,7 @@ in several ways:
 
     http://localhost:8080
 
-1. Authenticate with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
+1. Log in with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
 
 ### Spring Boot, JSP
 
@@ -60,7 +60,7 @@ in several ways:
 
     http://localhost:8080
 
-1. Authenticate with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
+1. Log in with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
 
 ### Spring Boot, Angular
 
@@ -85,7 +85,7 @@ in several ways:
 
     http://localhost:8080
 
-1. Authenticate with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
+1. Log in with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
 
 #### Method 2
 
@@ -118,7 +118,7 @@ in several ways:
 
     http://localhost:4200
 
-1. Authenticate with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
+1. Log in with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
 
 ## Monitoring
 
