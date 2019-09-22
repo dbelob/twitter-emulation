@@ -216,3 +216,7 @@ in several ways:
 * [ToDoList 7.1.5+](http://www.abstractspoon.com) (planning)
 * [Pencil 3.0.4+](https://pencil.evolus.vn) (GUI prototyping)
 * [Violet 0.21.1](http://violet.sourceforge.net) (UML diagrams)
+
+## Article
+
+See [Habr](https://habr.com/ru/company/jugru/blog/453468/) (Russian)
