@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dbelob/twitter-emulation.svg?branch=master)](https://travis-ci.org/dbelob/twitter-emulation)
+
 # Twitter emulation in Java and Angular
 
 ![Screenshot](/images/screenshot.png)
