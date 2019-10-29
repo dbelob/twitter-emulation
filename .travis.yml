@@ -1,0 +1,18 @@
+---
+dist: xenial
+
+sudo: required
+
+language: java
+
+jdk: openjdk8
+
+addons:
+  chrome: stable
+
+cache:
+  directories:
+  - $HOME/.m2
+
+script:
+  - mvn clean package 
