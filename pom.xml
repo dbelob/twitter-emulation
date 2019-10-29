@@ -22,7 +22,7 @@
 
         <hamcrest.version>2.2</hamcrest.version>
         <hibernate.validator.version>6.1.0.Final</hibernate.validator.version>
-        <h2.version>1.4.199</h2.version>
+        <h2.version>1.4.200</h2.version>
         <jsp.api.version>2.3.3</jsp.api.version>
         <jsp.el.version>3.0.0</jsp.el.version>
         <jstl.version>1.2</jstl.version>
