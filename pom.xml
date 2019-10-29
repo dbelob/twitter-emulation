@@ -31,11 +31,11 @@
         <mockito.version>2.27.0</mockito.version>
         <ojdbc6.version>12.1.0.1-atlassian-hosted</ojdbc6.version>
         <servlet.api.version>4.0.1</servlet.api.version>
-        <sl4j.version>1.7.26</sl4j.version>
-        <spring.version>5.1.9.RELEASE</spring.version>
-        <spring.boot.version>2.1.8.RELEASE</spring.boot.version>
+        <sl4j.version>1.7.28</sl4j.version>
+        <spring.version>5.2.0.RELEASE</spring.version>
+        <spring.boot.version>2.2.0.RELEASE</spring.boot.version>
         <spring.boot.admin.version>2.1.6</spring.boot.admin.version>
-        <spring.security.version>5.1.6.RELEASE</spring.security.version>
+        <spring.security.version>5.2.0.RELEASE</spring.security.version>
         <springfox.swagger>2.9.2</springfox.swagger>
         <testcontainers.version>1.12.3</testcontainers.version>
     </properties>
@@ -199,7 +199,7 @@
             </dependency>
             <dependency>
                 <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-library</artifactId>
+                <artifactId>hamcrest</artifactId>
                 <version>${hamcrest.version}</version>
                 <scope>test</scope>
             </dependency>
