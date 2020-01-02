@@ -26,7 +26,7 @@
         <jsp.api.version>2.3.3</jsp.api.version>
         <jsp.el.version>3.0.0</jsp.el.version>
         <jstl.version>1.2</jstl.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13</junit.version>
         <logback.version>1.2.3</logback.version>
         <mockito.version>3.2.0</mockito.version>
         <ojdbc6.version>12.1.0.1-atlassian-hosted</ojdbc6.version>
