@@ -37,7 +37,7 @@
         <spring.boot.admin.version>2.2.1</spring.boot.admin.version>
         <spring.security.version>5.2.1.RELEASE</spring.security.version>
         <springfox.swagger>2.9.2</springfox.swagger>
-        <testcontainers.version>1.12.4</testcontainers.version>
+        <testcontainers.version>1.12.5</testcontainers.version>
     </properties>
 
     <modules>
