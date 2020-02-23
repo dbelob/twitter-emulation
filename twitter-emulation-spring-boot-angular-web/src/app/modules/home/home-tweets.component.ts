@@ -11,7 +11,7 @@ import { USER_STATE, UserState } from "../../shared/models/user-state.model";
   templateUrl: './home-tweets.component.html'
 })
 export class HomeTweetsComponent extends HomeChild {
-  protected tweets: Tweet[] = [];
+  public tweets: Tweet[] = [];
 
   constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,
               @Inject(USER_STATE) observer: Observer<UserState>) {

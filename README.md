@@ -21,8 +21,8 @@ in several ways:
 ## Requirements
 
 * [JDK 8+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-* [Apache Maven 3.5.0+](https://maven.apache.org/download.cgi)
-* [Node.js 10.16.0](https://nodejs.org) (optional)
+* [Apache Maven 3.6.0+](https://maven.apache.org/download.cgi)
+* [Node.js 12.16.1](https://nodejs.org) (optional)
 * [Docker](https://www.docker.com) (optional)
 
 ## Running

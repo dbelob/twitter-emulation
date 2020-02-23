@@ -15,7 +15,7 @@ export class FollowComponent {
   @Input('accountStatistics')
   accountStatistics: AccountStatistics;
 
-  private copyrightDate = new Date();
+  public copyrightDate = new Date();
 
   constructor(private followerService: FollowerService, private router: Router) {
   }

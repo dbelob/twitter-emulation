@@ -9,7 +9,7 @@ import { AccountService } from "../../shared/services/account.service";
   templateUrl: './delete-account.component.html'
 })
 export class DeleteAccountComponent {
-  private user: User = new User();
+  public user: User = new User();
 
   constructor(private authenticationService: AuthenticationService, private accountService: AccountService, private router: Router) {
     authenticationService.getUser().subscribe(data => {

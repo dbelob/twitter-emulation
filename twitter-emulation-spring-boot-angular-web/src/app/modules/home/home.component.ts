@@ -9,8 +9,8 @@ import { USER_STATE, UserState } from "../../shared/models/user-state.model";
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  protected userState: UserState = new UserState();
-  protected accountStatistics: AccountStatistics = new AccountStatistics();
+  public userState: UserState = new UserState();
+  public accountStatistics: AccountStatistics = new AccountStatistics();
 
   constructor(protected accountService: AccountService, @Inject(USER_STATE) userStateObservable: Observable<UserState>) {
     userStateObservable.subscribe((userState) => {

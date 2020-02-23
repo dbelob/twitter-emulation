@@ -10,8 +10,8 @@ import { ValidationService } from "../../shared/services/validation.service";
   templateUrl: './registration.component.html'
 })
 export class RegistrationComponent {
-  private formSubmitted: boolean = false;
-  private credentials = {username: '', password: '', passwordConfirmation: '', description: ''};
+  public formSubmitted: boolean = false;
+  public credentials = {username: '', password: '', passwordConfirmation: '', description: ''};
 
   constructor(private accountService: AccountService, private validationService: ValidationService, private router: Router) {
   }
