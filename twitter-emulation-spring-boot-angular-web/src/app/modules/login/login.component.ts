@@ -7,9 +7,9 @@ import { AuthenticationService } from '../../shared/services/authentication.serv
 })
 
 export class LoginComponent {
-  private credentials = {username: '', password: ''};
-  private error = false;
-  private logout = false;
+  public credentials = {username: '', password: ''};
+  public error = false;
+  public logout = false;
 
   constructor(private authenticationService: AuthenticationService, private router: Router, route: ActivatedRoute) {
     route.queryParams.subscribe(params => {

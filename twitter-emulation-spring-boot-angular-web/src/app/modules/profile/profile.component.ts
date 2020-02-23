@@ -12,8 +12,8 @@ import { User } from "../../shared/models/user.model";
   templateUrl: './profile.component.html'
 })
 export class ProfileComponent {
-  private formSubmitted: boolean = false;
-  private credentials = {username: '', password: '', passwordConfirmation: '', description: ''};
+  public formSubmitted: boolean = false;
+  public credentials = {username: '', password: '', passwordConfirmation: '', description: ''};
   private user: User = new User();
 
   constructor(private authenticationService: AuthenticationService, private accountService: AccountService, private validationService: ValidationService, private router: Router) {

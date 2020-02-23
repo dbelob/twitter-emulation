@@ -4,7 +4,7 @@ import { AuthenticationService } from "../../shared/services/authentication.serv
 import { UserState } from "../../shared/models/user-state.model";
 
 export abstract class HomeChild {
-  protected title: string;
+  public title: string;
 
   protected constructor(private authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, private router: Router,
                         private userStateObserver: Observer<UserState>) {

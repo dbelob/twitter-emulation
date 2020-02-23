@@ -11,7 +11,7 @@ import { USER_STATE, UserState } from "../../shared/models/user-state.model";
   templateUrl: './home-account.component.html'
 })
 export class HomeAccountComponent extends HomeChild {
-  protected accounts: Account[] = [];
+  public accounts: Account[] = [];
 
   constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,
               @Inject(USER_STATE) observer: Observer<UserState>) {

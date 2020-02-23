@@ -9,8 +9,8 @@ import { TweetService } from "../../shared/services/tweet.service";
   templateUrl: './new-tweet.component.html'
 })
 export class NewTweetComponent {
-  private formSubmitted: boolean = false;
-  private text: string;
+  public formSubmitted: boolean = false;
+  public text: string;
 
   constructor(private tweetService: TweetService, private validationService: ValidationService, private router: Router) {
   }
