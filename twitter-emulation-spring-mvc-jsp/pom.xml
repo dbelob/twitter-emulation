@@ -145,6 +145,12 @@
             <artifactId>hamcrest</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
+            <scope>test</scope>
+        </dependency>
+
 
         <!-- Swagger -->
         <dependency>

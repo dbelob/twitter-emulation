@@ -23,6 +23,7 @@
         <hamcrest.version>2.2</hamcrest.version>
         <hibernate.validator.version>6.1.2.Final</hibernate.validator.version>
         <h2.version>1.4.200</h2.version>
+        <javax.el.version>3.0.0</javax.el.version>
         <jsp.api.version>2.3.3</jsp.api.version>
         <jsp.el.version>3.0.0</jsp.el.version>
         <jstl.version>1.2</jstl.version>
@@ -207,6 +208,12 @@
                 <groupId>org.testcontainers</groupId>
                 <artifactId>oracle-xe</artifactId>
                 <version>${testcontainers.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.el</artifactId>
+                <version>${javax.el.version}</version>
                 <scope>test</scope>
             </dependency>
 
