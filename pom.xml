@@ -29,7 +29,7 @@
         <jstl.version>1.2</jstl.version>
         <junit.version>4.13</junit.version>
         <logback.version>1.2.3</logback.version>
-        <mockito.version>3.2.4</mockito.version>
+        <mockito.version>3.3.1</mockito.version>
         <ojdbc6.version>12.1.0.1-atlassian-hosted</ojdbc6.version>
         <servlet.api.version>4.0.1</servlet.api.version>
         <sl4j.version>1.7.30</sl4j.version>
