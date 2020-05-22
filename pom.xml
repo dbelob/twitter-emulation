@@ -18,7 +18,7 @@
         <resources.plugin.version>3.1.0</resources.plugin.version>
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
         <war.plugin.version>3.2.3</war.plugin.version>
-        <jetty.maven.version>9.4.28.v20200408</jetty.maven.version>
+        <jetty.maven.version>9.4.29.v20200521</jetty.maven.version>
 
         <hamcrest.version>2.2</hamcrest.version>
         <hibernate.validator.version>6.1.5.Final</hibernate.validator.version>
