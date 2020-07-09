@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>acme.twitter-emulation</groupId>
     <artifactId>twitter-emulation-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>TwitterEmulation Parent</name>
 
@@ -310,6 +309,6 @@
     <scm>
         <connection>scm:git:https://github.com/dbelob/twitter-emulation</connection>
         <developerConnection>scm:git:https://github.com/dbelob/twitter-emulation</developerConnection>
-        <tag>HEAD</tag>
+        <tag>twitter-emulation-parent-1.0.0</tag>
     </scm>
 </project>
