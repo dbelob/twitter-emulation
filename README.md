@@ -1,5 +1,7 @@
 <a href="https://github.com/dbelob/twitter-emulation/actions"><img alt="GitHub Actions status" src="https://github.com/dbelob/twitter-emulation/workflows/Build/badge.svg"></a>
 [![Dependabot Status](https://badgen.net/dependabot/dbelob/twitter-emulation)](https://dependabot.com)
+[![codecov](https://codecov.io/gh/dbelob/twitter-emulation/branch/master/graph/badge.svg)](https://codecov.io/gh/dbelob/twitter-emulation)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dbelob_twitter-emulation&metric=alert_status)](https://sonarcloud.io/dashboard?id=dbelob_twitter-emulation)
 
 # Twitter emulation in Java and Angular
 

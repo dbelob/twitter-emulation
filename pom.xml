@@ -17,6 +17,7 @@
         <frontend.plugin.version>1.10.0</frontend.plugin.version>
         <jacoco.plugin.version>0.8.5</jacoco.plugin.version>
         <resources.plugin.version>3.1.0</resources.plugin.version>
+        <sonar.plugin.version>3.7.0.1746</sonar.plugin.version>
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
         <war.plugin.version>3.3.0</war.plugin.version>
         <jetty.maven.version>9.4.30.v20200611</jetty.maven.version>
@@ -115,6 +116,13 @@
                         <include>**/*IT*.java</include>
                     </includes>
                 </configuration>
+            </plugin>
+
+            <!-- SonarQube analysis -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar.plugin.version}</version>
             </plugin>
         </plugins>
         <pluginManagement>
