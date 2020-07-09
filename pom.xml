@@ -263,4 +263,10 @@
             </properties>
         </profile>
     </profiles>
+
+    <scm>
+        <connection>scm:git:https://github.com/dbelob/twitter-emulation</connection>
+        <developerConnection>scm:git:https://github.com/dbelob/twitter-emulation</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 </project>
