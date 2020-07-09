@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/dbelob/twitter-emulation.svg?branch=master)](https://travis-ci.org/dbelob/twitter-emulation)
+<a href="https://github.com/dbelob/twitter-emulation/actions"><img alt="GitHub Actions status" src="https://github.com/dbelob/twitter-emulation/workflows/Build/badge.svg"></a>
 [![Dependabot Status](https://badgen.net/dependabot/dbelob/twitter-emulation)](https://dependabot.com)
 
 # Twitter emulation in Java and Angular
