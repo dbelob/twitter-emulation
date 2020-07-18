@@ -10,6 +10,11 @@ jobs:
   sonarcloud:
     runs-on: ubuntu-latest
     steps:
+      - name: Update Google Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get --only-upgrade install google-chrome-stable
+          google-chrome --version
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up JDK
