@@ -97,6 +97,11 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.plugin.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>acme/twitter/domain/**/*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>

@@ -20,8 +20,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/api/tweet")
 public class TweetController {
-    private TweetService tweetService;
-    private AccountService accountService;
+    private final TweetService tweetService;
+    private final AccountService accountService;
 
     @Autowired
     public TweetController(TweetService tweetService, AccountService accountService) {
@@ -46,7 +46,7 @@ public class TweetController {
 
     @GetMapping("/timeline")
     @ResponseBody
-    private List<TweetDto> getTimeline(Principal principal) throws AccountNotExistsException {
+    public List<TweetDto> getTimeline(Principal principal) throws AccountNotExistsException {
         Account account = accountService.findByUsername(principal.getName());
         List<Tweet> tweets = tweetService.findTimelineByAccount(account);
 
