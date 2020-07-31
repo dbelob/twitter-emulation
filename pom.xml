@@ -100,6 +100,7 @@
                 <configuration>
                     <excludes>
                         <exclude>acme/twitter/domain/**/*</exclude>
+                        <exclude>acme/twitter/dto/**/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
