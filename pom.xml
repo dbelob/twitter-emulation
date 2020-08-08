@@ -41,6 +41,13 @@
         <spring.security.version>5.3.4.RELEASE</spring.security.version>
         <springfox.swagger>3.0.0</springfox.swagger>
         <testcontainers.version>1.14.3</testcontainers.version>
+
+        <sonar.coverage.exclusions>
+            **/acme/twitter/config/**/*,
+            **/acme/twitter/domain/**/*,
+            **/acme/twitter/dto/**/*,
+            **/*Exception.java
+        </sonar.coverage.exclusions>
     </properties>
 
     <modules>
@@ -99,8 +106,10 @@
                 <version>${jacoco.plugin.version}</version>
                 <configuration>
                     <excludes>
+                        <exclude>acme/twitter/config/**/*</exclude>
                         <exclude>acme/twitter/domain/**/*</exclude>
                         <exclude>acme/twitter/dto/**/*</exclude>
+                        <exclude>**/*Exception.java</exclude>
                     </excludes>
                 </configuration>
                 <executions>
