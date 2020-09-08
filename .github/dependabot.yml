@@ -1,8 +1,14 @@
 version: 2
 updates:
-- package-ecosystem: maven
+- package-ecosystem: "maven"
   directory: "/"
   schedule:
-    interval: daily
-    time: "02:00"
-  open-pull-requests-limit: 10
+    interval: "daily"
+- package-ecosystem: "npm"
+  directory: "/"
+  schedule:
+    interval: "daily"
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: "daily"
