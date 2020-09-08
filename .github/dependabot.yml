@@ -5,7 +5,7 @@ updates:
   schedule:
     interval: "daily"
 - package-ecosystem: "npm"
-  directory: "/"
+  directory: "/twitter-emulation-spring-boot-angular-web"
   schedule:
     interval: "daily"
 - package-ecosystem: "github-actions"
