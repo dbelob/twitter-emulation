@@ -35,7 +35,7 @@
         <ojdbc8.version>19.7.0.0</ojdbc8.version>
         <servlet.api.version>4.0.1</servlet.api.version>
         <sl4j.version>1.7.30</sl4j.version>
-        <spring.version>5.2.8.RELEASE</spring.version>
+        <spring.version>5.2.9.RELEASE</spring.version>
         <spring.boot.version>2.3.4.RELEASE</spring.boot.version>
         <spring.boot.admin.version>2.3.0</spring.boot.admin.version>
         <spring.security.version>5.4.0</spring.security.version>
