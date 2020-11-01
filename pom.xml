@@ -35,10 +35,8 @@
         <ojdbc8.version>19.8.0.0</ojdbc8.version>
         <servlet.api.version>4.0.1</servlet.api.version>
         <sl4j.version>1.7.30</sl4j.version>
-        <spring.version>5.3.0</spring.version>
-        <spring.boot.version>2.3.4.RELEASE</spring.boot.version>
+        <spring.boot.version>2.3.5.RELEASE</spring.boot.version>
         <spring.boot.admin.version>2.3.0</spring.boot.admin.version>
-        <spring.security.version>5.4.1</spring.security.version>
         <springfox.swagger>3.0.0</springfox.swagger>
         <testcontainers.version>1.14.3</testcontainers.version>
 
@@ -163,29 +161,11 @@
         <dependencies>
             <!-- Spring -->
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-jdbc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-config</artifactId>
-                <version>${spring.security.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-web</artifactId>
-                <version>${spring.security.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-taglibs</artifactId>
-                <version>${spring.security.version}</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- JEE -->
@@ -250,12 +230,6 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>${spring.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
