@@ -20,7 +20,7 @@
         <sonar.plugin.version>3.7.0.1746</sonar.plugin.version>
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
         <war.plugin.version>3.3.1</war.plugin.version>
-        <jetty.maven.version>9.4.33.v20201020</jetty.maven.version>
+        <jetty.maven.version>9.4.34.v20201102</jetty.maven.version>
 
         <hamcrest.version>2.2</hamcrest.version>
         <hibernate.validator.version>6.1.6.Final</hibernate.validator.version>
