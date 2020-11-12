@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { Component, DebugElement, ViewChild } from "@angular/core";
 import { By } from "@angular/platform-browser";
@@ -26,7 +26,7 @@ describe('FollowComponent', () => {
   let component: FollowComponent;
   let debugElement: DebugElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [FollowComponent, TestComponent],
       imports: [HttpClientModule, RouterTestingModule],
