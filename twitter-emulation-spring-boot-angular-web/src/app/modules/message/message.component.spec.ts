@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MessageComponent } from './message.component';
 import { MessageService } from "./message.service";
@@ -27,7 +27,7 @@ describe('MessagesComponent', () => {
   let debugElement: DebugElement;
   let bindingElement: HTMLDivElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [MessageComponent],
       providers: [
