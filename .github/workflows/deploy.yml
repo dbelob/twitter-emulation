@@ -27,5 +27,5 @@ jobs:
           maven-args: "-Dmaven.javadoc.skip=true -DskipTests -DskipITs -Ddockerfile.skip -DdockerCompose.skip"
           git-release-bot-name: "release-bot"
           git-release-bot-email: "release-bot@github.com"
-          access-token: ${{ secrets.RELEASE_TOKEN }}
+          access-token: ${{ secrets.GITHUB_TOKEN }}
           skip-perform: true
