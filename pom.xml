@@ -23,7 +23,7 @@
         <jetty.maven.version>11.0.0</jetty.maven.version>
 
         <hamcrest.version>2.2</hamcrest.version>
-        <hibernate.validator.version>6.1.7.Final</hibernate.validator.version>
+        <hibernate.validator.version>7.0.0.Final</hibernate.validator.version>
         <h2.version>1.4.200</h2.version>
         <javax.el.version>3.0.0</javax.el.version>
         <jsp.api.version>2.3.3</jsp.api.version>
