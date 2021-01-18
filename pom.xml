@@ -31,7 +31,7 @@
         <jstl.version>1.2</jstl.version>
         <junit.version>4.13.1</junit.version>
         <logback.version>1.2.3</logback.version>
-        <mockito.version>3.7.0</mockito.version>
+        <mockito.version>3.7.7</mockito.version>
         <ojdbc8.version>21.1.0.0</ojdbc8.version>
         <servlet.api.version>4.0.1</servlet.api.version>
         <sl4j.version>1.7.30</sl4j.version>
