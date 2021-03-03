@@ -21,7 +21,7 @@
     "@angular/router": "^11.0.0",
     "bootstrap": "^4.6.0",
     "core-js": "^3.9.1",
-    "jquery": "^3.5.1",
+    "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
     "rxjs": "^6.6.6",
     "tslib": "^2.1.0",
