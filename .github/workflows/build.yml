@@ -27,6 +27,6 @@ jobs:
       - name: Build with Maven
         run: mvn -B clean package
       - name: Test coverage
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v1.5.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
