@@ -3,7 +3,7 @@
 
     <groupId>acme.twitter-emulation</groupId>
     <artifactId>twitter-emulation-parent</artifactId>
-    <version>1.0.287-SNAPSHOT</version>
+    <version>1.0.290-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>TwitterEmulation Parent</name>
 
@@ -13,7 +13,7 @@
 
         <clean.plugin.version>3.1.0</clean.plugin.version>
         <compiler.plugin.version>3.8.1</compiler.plugin.version>
-        <frontend.plugin.version>1.11.3</frontend.plugin.version>
+        <frontend.plugin.version>1.12.0</frontend.plugin.version>
         <jacoco.plugin.version>0.8.7</jacoco.plugin.version>
         <release.plugin.version>2.5.3</release.plugin.version>
         <resources.plugin.version>3.2.0</resources.plugin.version>
@@ -31,7 +31,7 @@
         <jstl.version>1.2</jstl.version>
         <junit.version>4.13.2</junit.version>
         <logback.version>1.2.3</logback.version>
-        <mockito.version>3.9.0</mockito.version>
+        <mockito.version>3.10.0</mockito.version>
         <ojdbc8.version>21.1.0.0</ojdbc8.version>
         <servlet.api.version>4.0.1</servlet.api.version>
         <sl4j.version>1.7.30</sl4j.version>
