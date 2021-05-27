@@ -1,5 +1,6 @@
 package acme.twitter.controller;
 
+import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
@@ -11,8 +12,8 @@ public class RestErrorAttributes extends DefaultErrorAttributes {
     public static String CUSTOM_MESSAGE_ATTRIBUTE = "customMessage";
 
     @Override
-    public Map<String, Object> getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) {
-        Map<String, Object> errorAttributes = super.getErrorAttributes(webRequest, includeStackTrace);
+    public Map<String, Object> getErrorAttributes(WebRequest webRequest, ErrorAttributeOptions options) {
+        Map<String, Object> errorAttributes = super.getErrorAttributes(webRequest, options);
 
         Object customMessage = webRequest.getAttribute(CUSTOM_MESSAGE_ATTRIBUTE, WebRequest.SCOPE_REQUEST);
         if (customMessage instanceof String) {
