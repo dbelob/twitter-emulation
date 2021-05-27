@@ -3,7 +3,7 @@
 
     <groupId>acme.twitter-emulation</groupId>
     <artifactId>twitter-emulation-parent</artifactId>
-    <version>1.0.296-SNAPSHOT</version>
+    <version>1.0.302-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>TwitterEmulation Parent</name>
 
@@ -20,7 +20,7 @@
         <sonar.plugin.version>3.9.0.2155</sonar.plugin.version>
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
         <war.plugin.version>3.3.1</war.plugin.version>
-        <jetty.maven.version>11.0.2</jetty.maven.version>
+        <jetty.maven.version>11.0.3</jetty.maven.version>
 
         <hamcrest.version>2.2</hamcrest.version>
         <hibernate.validator.version>7.0.1.Final</hibernate.validator.version>
