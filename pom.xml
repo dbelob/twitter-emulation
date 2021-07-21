@@ -38,7 +38,7 @@
         <spring.boot.version>2.5.2</spring.boot.version>
         <spring.boot.admin.version>2.4.3</spring.boot.admin.version>
         <springfox.swagger>3.0.0</springfox.swagger>
-        <testcontainers.version>1.15.3</testcontainers.version>
+        <testcontainers.version>1.16.0</testcontainers.version>
 
         <sonar.coverage.exclusions>
             **/acme/twitter/config/**/*,
