@@ -19,7 +19,7 @@
         <resources.plugin.version>3.2.0</resources.plugin.version>
         <sonar.plugin.version>3.9.0.2155</sonar.plugin.version>
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
-        <war.plugin.version>3.3.1</war.plugin.version>
+        <war.plugin.version>3.3.2</war.plugin.version>
         <jetty.maven.version>11.0.6</jetty.maven.version>
 
         <hamcrest.version>2.2</hamcrest.version>
