@@ -35,7 +35,7 @@
         <ojdbc8.version>21.3.0.0</ojdbc8.version>
         <servlet.api.version>4.0.1</servlet.api.version>
         <sl4j.version>1.7.32</sl4j.version>
-        <spring.boot.version>2.5.5</spring.boot.version>
+        <spring.boot.version>2.5.6</spring.boot.version>
         <spring.boot.admin.version>2.5.2</spring.boot.admin.version>
         <springfox.swagger>3.0.0</springfox.swagger>
         <testcontainers.version>1.16.1</testcontainers.version>
