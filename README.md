@@ -153,6 +153,8 @@ in several ways:
 1. Access *Spring Boot Admin* application at:
 
     http://localhost:9000
+
+1. Log in with existing account `admin/password`
   
 ## Testing
 
