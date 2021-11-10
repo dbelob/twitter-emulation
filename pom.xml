@@ -3,7 +3,7 @@
 
     <groupId>acme.twitter-emulation</groupId>
     <artifactId>twitter-emulation-parent</artifactId>
-    <version>1.0.428-SNAPSHOT</version>
+    <version>1.0.429-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>TwitterEmulation Parent</name>
 
@@ -17,7 +17,7 @@
         <jacoco.plugin.version>0.8.7</jacoco.plugin.version>
         <release.plugin.version>2.5.3</release.plugin.version>
         <resources.plugin.version>3.2.0</resources.plugin.version>
-        <sonar.plugin.version>3.9.0.2155</sonar.plugin.version>
+        <sonar.plugin.version>3.9.1.2184</sonar.plugin.version>
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
         <war.plugin.version>3.3.2</war.plugin.version>
         <jetty.maven.version>11.0.7</jetty.maven.version>
