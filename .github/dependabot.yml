@@ -4,10 +4,14 @@ updates:
   directory: "/"
   schedule:
     interval: "daily"
+  ignore:
+    - dependency-name: "org.eclipse.jetty:jetty-maven-plugin"
 - package-ecosystem: "npm"
   directory: "/twitter-emulation-spring-boot-angular-web"
   schedule:
     interval: "daily"
+  ignore:
+    - dependency-name: "bootstrap"
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:

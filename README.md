@@ -21,20 +21,24 @@ in several ways:
 
 ## Requirements
 
-* [JDK 8+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+* [JDK 11+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Apache Maven 3.6.0+](https://maven.apache.org/download.cgi)
-* [Node.js 12.16.1](https://nodejs.org) (optional)
+* [Node.js 14.18.0](https://nodejs.org) (optional)
 * [Docker](https://www.docker.com) (optional)
 
 ## Running
 
 ### Spring MVC, JSP
 
+1. From the command line with *Maven* (in the root directory):
+
+    `mvn clean install -Dmaven.test.skip=true`
+
 1. Change directory:
 
     `cd twitter-emulation-spring-mvc-jsp`
 
-1. From the command line with *Maven*:
+1. From the command line run one of the commands with *Maven*:
 
     `mvn jetty:run` (*H2*)  
     `mvn jetty:run -P development` (*H2*)  
@@ -49,11 +53,15 @@ in several ways:
 
 ### Spring Boot, JSP
 
+1. From the command line with *Maven* (in the root directory):
+
+    `mvn clean install -Dmaven.test.skip=true`
+
 1. Change directory:
 
     `cd twitter-emulation-spring-boot-jsp`
 
-1. From the command line with *Maven*:
+1. From the command line run one of the commands with *Maven*:
 
     `mvn spring-boot:run` (*H2*)  
     `mvn spring-boot:run -P development` (*H2*)  
@@ -78,7 +86,7 @@ in several ways:
 
     `cd twitter-emulation-spring-boot-angular-server`
 
-1. From the command line with *Maven*:
+1. From the command line run one of the commands with *Maven*:
 
     `mvn spring-boot:run` (*H2*)  
     `mvn spring-boot:run -P development` (*H2*)  
@@ -103,7 +111,7 @@ in several ways:
 
     `cd twitter-emulation-spring-boot-angular-server`
 
-1. From the command line with *Maven*:
+1. From the command line run one of the commands with *Maven*:
 
     `mvn spring-boot:run` (*H2*)  
     `mvn spring-boot:run -P development` (*H2*)  
@@ -145,6 +153,8 @@ in several ways:
 1. Access *Spring Boot Admin* application at:
 
     http://localhost:9000
+
+1. Log in with existing account `admin/password`
   
 ## Testing
 
@@ -156,7 +166,7 @@ in several ways:
 
     `cd twitter-emulation-common`
 
-1. From the command line with *Maven*:
+1. From the command line run one of the commands with *Maven*:
 
     `mvn test` (*H2*)  
     `mvn test -P development` (*H2*)  
