@@ -20,23 +20,23 @@
         <sonar.plugin.version>3.9.1.2184</sonar.plugin.version>
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
         <war.plugin.version>3.3.2</war.plugin.version>
-        <jetty.maven.version>11.0.7</jetty.maven.version>
+        <jetty.plugin.version>11.0.7</jetty.plugin.version>
 
         <hamcrest.version>2.2</hamcrest.version>
-        <hibernate.validator.version>7.0.1.Final</hibernate.validator.version>
+        <hibernate-validator.version>7.0.1.Final</hibernate-validator.version>
         <h2.version>1.4.200</h2.version>
         <javax.el.version>3.0.0</javax.el.version>
-        <jsp.api.version>2.3.3</jsp.api.version>
-        <jsp.el.version>3.0.0</jsp.el.version>
+        <javax.servlet.jsp-api>2.3.3</javax.servlet.jsp-api>
+        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+        <javax.el-api.version>3.0.0</javax.el-api.version>
         <jstl.version>1.2</jstl.version>
         <junit.version>4.13.2</junit.version>
         <logback.version>1.2.6</logback.version>
         <mockito.version>4.0.0</mockito.version>
         <ojdbc8.version>21.3.0.0</ojdbc8.version>
-        <servlet.api.version>4.0.1</servlet.api.version>
         <sl4j.version>1.7.32</sl4j.version>
-        <spring.boot.version>2.5.6</spring.boot.version>
-        <spring.boot.admin.version>2.5.3</spring.boot.admin.version>
+        <spring-boot.version>2.5.6</spring-boot.version>
+        <spring-boot-admin.version>2.5.3</spring-boot-admin.version>
         <springfox.swagger>3.0.0</springfox.swagger>
         <testcontainers.version>1.16.2</testcontainers.version>
 
@@ -163,7 +163,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.version}</version>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -172,19 +172,19 @@
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
-                <version>${servlet.api.version}</version>
+                <version>${javax.servlet-api}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>javax.servlet.jsp</groupId>
                 <artifactId>javax.servlet.jsp-api</artifactId>
-                <version>${jsp.api.version}</version>
+                <version>${javax.servlet.jsp-api}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>javax.el</groupId>
                 <artifactId>javax.el-api</artifactId>
-                <version>${jsp.el.version}</version>
+                <version>${javax.el-api.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -210,7 +210,7 @@
             <dependency>
                 <groupId>org.hibernate.validator</groupId>
                 <artifactId>hibernate-validator</artifactId>
-                <version>${hibernate.validator.version}</version>
+                <version>${hibernate-validator.version}</version>
             </dependency>
 
             <!-- Logging -->
