@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="false" contentType="text/html; charset=UTF-8" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Twitter</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css" />">
