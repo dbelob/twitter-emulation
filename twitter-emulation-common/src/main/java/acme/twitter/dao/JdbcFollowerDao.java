@@ -26,8 +26,8 @@ public class JdbcFollowerDao implements FollowerDao {
                         "from account a, follower f " +
                         "where a.account_id = f.who_account_id " +
                         "  and a.username = ?",
-                new Object[]{username},
-                Integer.class);
+                Integer.class,
+                username);
     }
 
     @Override
@@ -37,8 +37,8 @@ public class JdbcFollowerDao implements FollowerDao {
                         "from account a, follower f " +
                         "where a.account_id = f.whom_account_id " +
                         "  and a.username = ?",
-                new Object[]{username},
-                Integer.class);
+                Integer.class,
+                username);
     }
 
     @Override
@@ -50,8 +50,8 @@ public class JdbcFollowerDao implements FollowerDao {
                         "  and a2.account_id = f.whom_account_id " +
                         "  and a1.username = ? " +
                         "  and a2.username = ?",
-                new Object[]{whoUsername, whomUsername},
-                Integer.class);
+                Integer.class,
+                whoUsername, whomUsername);
 
         return (count > 0);
     }

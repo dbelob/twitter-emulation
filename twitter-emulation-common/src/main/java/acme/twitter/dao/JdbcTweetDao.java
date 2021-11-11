@@ -77,7 +77,7 @@ public class JdbcTweetDao implements TweetDao {
                         "from account a, tweet t " +
                         "where a.account_id = t.account_id " +
                         "  and a.username = ?",
-                new Object[]{username},
-                Integer.class);
+                Integer.class,
+                username);
     }
 }
