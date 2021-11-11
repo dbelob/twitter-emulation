@@ -7,7 +7,7 @@ public abstract class AbstractAccount {
     private String password;
     private String description;
 
-    public AbstractAccount(String username, String password, String description) {
+    protected AbstractAccount(String username, String password, String description) {
         this.username = username;
         this.password = password;
         this.description = description;
