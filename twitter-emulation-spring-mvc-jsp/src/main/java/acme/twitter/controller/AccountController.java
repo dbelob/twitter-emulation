@@ -17,18 +17,12 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * Account controller.
@@ -38,10 +32,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class AccountController {
     private static final Logger log = LoggerFactory.getLogger(AccountController.class);
 
-    private AccountService accountService;
-    private TweetService tweetService;
-    private FollowerService followerService;
-    private MessageSourceAccessor messageSourceAccessor;
+    private final AccountService accountService;
+    private final TweetService tweetService;
+    private final FollowerService followerService;
+    private final MessageSourceAccessor messageSourceAccessor;
 
     @Autowired
     public AccountController(AccountService accountService, TweetService tweetService, FollowerService followerService,
@@ -58,7 +52,7 @@ public class AccountController {
      * @param model model
      * @return view name
      */
-    @RequestMapping(value = "/register", method = GET)
+    @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute(new AccountForm());
 
@@ -72,7 +66,7 @@ public class AccountController {
      * @param errors      errors
      * @return view name
      */
-    @RequestMapping(value = "/register", method = POST)
+    @PostMapping("/register")
     public String processRegistration(
             @Valid AccountForm accountForm,
             Errors errors) {
@@ -99,7 +93,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/profile", method = GET)
+    @GetMapping("/profile")
     public String showProfileForm(Model model, Principal principal) throws AccountNotExistsException {
         Account account = accountService.findByUsername(principal.getName());
         model.addAttribute(new AccountForm(account.getUsername(), account.getDescription()));
@@ -112,7 +106,7 @@ public class AccountController {
      *
      * @return view name
      */
-    @RequestMapping(value = "/profile", method = POST, params = "cancel")
+    @PostMapping(value = "/profile", params = "cancel")
     public String cancelProfile() {
         return "redirect:/account/show";
     }
@@ -124,7 +118,7 @@ public class AccountController {
      * @param errors      errors
      * @return view name
      */
-    @RequestMapping(value = "/profile", method = POST, params = "save")
+    @PostMapping(value = "/profile", params = "save")
     public String processProfile(
             @Valid AccountForm accountForm,
             Errors errors) {
@@ -142,7 +136,7 @@ public class AccountController {
      *
      * @return view name
      */
-    @RequestMapping(value = "/delete", method = GET)
+    @GetMapping("/delete")
     public String showDeleteAccountForm() {
         return "deleteAccountForm";
     }
@@ -152,7 +146,7 @@ public class AccountController {
      *
      * @return view name
      */
-    @RequestMapping(value = "/delete", method = POST, params = "cancel")
+    @PostMapping(value = "/delete", params = "cancel")
     public String cancelDelete() {
         return "redirect:/account/profile";
     }
@@ -163,7 +157,7 @@ public class AccountController {
      * @param principal principal
      * @return view name
      */
-    @RequestMapping(value = "/delete", method = POST, params = "delete")
+    @PostMapping(value = "/delete", params = "delete")
     public String processDelete(Principal principal) {
         accountService.delete(principal.getName());
 
@@ -176,7 +170,7 @@ public class AccountController {
      * @param principal principal
      * @return view name
      */
-    @RequestMapping(value = "/show", method = RequestMethod.GET)
+    @GetMapping("/show")
     public String showAccountForm(Principal principal) {
         return "redirect:/account/show/" + principal.getName();
     }
@@ -190,7 +184,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/show/{username}", method = RequestMethod.GET)
+    @GetMapping("/show/{username}")
     public String showAccountForm(
             @PathVariable String username,
             Model model,
@@ -229,7 +223,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/search", method = POST)
+    @PostMapping("/search")
     public String processSearch(
             @Valid SearchForm searchForm,
             Errors errors,
@@ -261,7 +255,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/tweets/{username}", method = GET)
+    @GetMapping("/tweets/{username}")
     public String processTweets(
             @PathVariable String username,
             Model model,
@@ -291,7 +285,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/following/{username}", method = GET)
+    @GetMapping("/following/{username}")
     public String processFollowing(
             @PathVariable String username,
             Model model,
@@ -321,7 +315,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/followers/{username}", method = GET)
+    @GetMapping("/followers/{username}")
     public String processFollowers(
             @PathVariable String username,
             Model model,
@@ -359,7 +353,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/follow/{username}", method = POST)
+    @PostMapping("/follow/{username}")
     public String processFollow(
             @PathVariable String username,
             Principal principal) throws AccountNotExistsException {
@@ -379,7 +373,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/unfollow/{username}", method = POST)
+    @PostMapping("/unfollow/{username}")
     public String processUnfollow(
             @PathVariable String username,
             Principal principal) throws AccountNotExistsException {

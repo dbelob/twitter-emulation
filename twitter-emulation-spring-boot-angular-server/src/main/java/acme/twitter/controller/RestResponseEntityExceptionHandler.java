@@ -6,6 +6,7 @@ import acme.twitter.dao.exception.AccountNotExistsException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -28,7 +29,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         }
 
         if (customMessage != null) {
-            request.setAttribute(RestErrorAttributes.CUSTOM_MESSAGE_ATTRIBUTE, customMessage, WebRequest.SCOPE_REQUEST);
+            request.setAttribute(RestErrorAttributes.CUSTOM_MESSAGE_ATTRIBUTE, customMessage, RequestAttributes.SCOPE_REQUEST);
         }
 
         throw ex;
