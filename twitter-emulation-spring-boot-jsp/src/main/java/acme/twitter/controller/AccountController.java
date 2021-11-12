@@ -17,18 +17,12 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * Account controller.
@@ -38,10 +32,27 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class AccountController {
     private static final Logger log = LoggerFactory.getLogger(AccountController.class);
 
-    private AccountService accountService;
-    private TweetService tweetService;
-    private FollowerService followerService;
-    private MessageSourceAccessor messageSourceAccessor;
+    private static final String ACCOUNT_FORM = "accountForm";
+    private static final String DELETE_ACCOUNT_FORM = "deleteAccountForm";
+    private static final String PROFILE_FORM = "profileForm";
+    private static final String REGISTRATION_FORM = "registrationForm";
+    private static final String SEARCH_FORM = "searchForm";
+
+    private static final String FORWARD_ACCOUNT_TWEETS = "forward:/account/tweets";
+
+    private static final String REDIRECT_ACCOUNT_PROFILE = "redirect:/account/profile";
+    private static final String REDIRECT_ACCOUNT_SHOW = "redirect:/account/show";
+    private static final String REDIRECT_LOGIN = "redirect:/login";
+    private static final String REDIRECT_LOGOUT = "redirect:/logout";
+
+    private static final String TITLE_ATTRIBUTE_CODE = "title";
+    private static final String SEARCH_ACCOUNT_LIST_ATTRIBUTE_CODE = "searchAccountList";
+    private static final String COPYRIGHT_DATE_ATTRIBUTE_CODE = "copyrightDate";
+
+    private final AccountService accountService;
+    private final TweetService tweetService;
+    private final FollowerService followerService;
+    private final MessageSourceAccessor messageSourceAccessor;
 
     @Autowired
     public AccountController(AccountService accountService, TweetService tweetService, FollowerService followerService,
@@ -58,11 +69,11 @@ public class AccountController {
      * @param model model
      * @return view name
      */
-    @RequestMapping(value = "/register", method = GET)
+    @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute(new AccountForm());
 
-        return "registrationForm";
+        return REGISTRATION_FORM;
     }
 
     /**
@@ -72,22 +83,22 @@ public class AccountController {
      * @param errors      errors
      * @return view name
      */
-    @RequestMapping(value = "/register", method = POST)
+    @PostMapping("/register")
     public String processRegistration(
             @Valid AccountForm accountForm,
             Errors errors) {
         if (errors.hasErrors()) {
-            return "registrationForm";
+            return REGISTRATION_FORM;
         }
 
         try {
             accountService.add(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
-            return "redirect:/login";
+            return REDIRECT_LOGIN;
         } catch (AccountExistsException e) {
             errors.reject("account.exists", messageSourceAccessor.getMessage("account.exists"));
 
-            return "registrationForm";
+            return REGISTRATION_FORM;
         }
     }
 
@@ -99,12 +110,12 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/profile", method = GET)
+    @GetMapping("/profile")
     public String showProfileForm(Model model, Principal principal) throws AccountNotExistsException {
         Account account = accountService.findByUsername(principal.getName());
         model.addAttribute(new AccountForm(account.getUsername(), account.getDescription()));
 
-        return "profileForm";
+        return PROFILE_FORM;
     }
 
     /**
@@ -112,9 +123,9 @@ public class AccountController {
      *
      * @return view name
      */
-    @RequestMapping(value = "/profile", method = POST, params = "cancel")
+    @PostMapping(value = "/profile", params = "cancel")
     public String cancelProfile() {
-        return "redirect:/account/show";
+        return REDIRECT_ACCOUNT_SHOW;
     }
 
     /**
@@ -124,17 +135,17 @@ public class AccountController {
      * @param errors      errors
      * @return view name
      */
-    @RequestMapping(value = "/profile", method = POST, params = "save")
+    @PostMapping(value = "/profile", params = "save")
     public String processProfile(
             @Valid AccountForm accountForm,
             Errors errors) {
         if (errors.hasErrors()) {
-            return "profileForm";
+            return PROFILE_FORM;
         }
 
         accountService.update(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
-        return "redirect:/account/show";
+        return REDIRECT_ACCOUNT_SHOW;
     }
 
     /**
@@ -142,9 +153,9 @@ public class AccountController {
      *
      * @return view name
      */
-    @RequestMapping(value = "/delete", method = GET)
+    @GetMapping("/delete")
     public String showDeleteAccountForm() {
-        return "deleteAccountForm";
+        return DELETE_ACCOUNT_FORM;
     }
 
     /**
@@ -152,9 +163,9 @@ public class AccountController {
      *
      * @return view name
      */
-    @RequestMapping(value = "/delete", method = POST, params = "cancel")
+    @PostMapping(value = "/delete", params = "cancel")
     public String cancelDelete() {
-        return "redirect:/account/profile";
+        return REDIRECT_ACCOUNT_PROFILE;
     }
 
     /**
@@ -163,11 +174,11 @@ public class AccountController {
      * @param principal principal
      * @return view name
      */
-    @RequestMapping(value = "/delete", method = POST, params = "delete")
+    @PostMapping(value = "/delete", params = "delete")
     public String processDelete(Principal principal) {
         accountService.delete(principal.getName());
 
-        return "redirect:/logout";
+        return REDIRECT_LOGOUT;
     }
 
     /**
@@ -176,9 +187,9 @@ public class AccountController {
      * @param principal principal
      * @return view name
      */
-    @RequestMapping(value = "/show", method = RequestMethod.GET)
+    @GetMapping("/show")
     public String showAccountForm(Principal principal) {
-        return "redirect:/account/show/" + principal.getName();
+        return String.format("%s/%s", REDIRECT_ACCOUNT_SHOW, principal.getName());
     }
 
     /**
@@ -190,7 +201,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/show/{username}", method = RequestMethod.GET)
+    @GetMapping("/show/{username}")
     public String showAccountForm(
             @PathVariable String username,
             Model model,
@@ -203,7 +214,7 @@ public class AccountController {
 
         // Forward for unauthorized or other account
         if ((principal == null) || !username.equals(principal.getName())) {
-            return "forward:/account/tweets/" + username;
+            return String.format("%s/%s", FORWARD_ACCOUNT_TWEETS, username);
         }
 
         Account account = accountService.findByUsername(username);
@@ -214,9 +225,9 @@ public class AccountController {
         model.addAttribute(accountStatistics);
         model.addAttribute(tweets);
         model.addAttribute(new SearchForm());
-        model.addAttribute("copyrightDate", new Date());
+        model.addAttribute(COPYRIGHT_DATE_ATTRIBUTE_CODE, new Date());
 
-        return "accountForm";
+        return ACCOUNT_FORM;
     }
 
     /**
@@ -229,14 +240,14 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/search", method = POST)
+    @PostMapping("/search")
     public String processSearch(
             @Valid SearchForm searchForm,
             Errors errors,
             Model model,
             Principal principal) throws AccountNotExistsException {
         if (errors.hasErrors()) {
-            return "redirect:/account/show";
+            return REDIRECT_ACCOUNT_SHOW;
         }
 
         Account account = accountService.findByUsername(principal.getName());
@@ -245,11 +256,11 @@ public class AccountController {
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
-        model.addAttribute("title", "Search Result");
-        model.addAttribute("searchAccountList", accounts);
-        model.addAttribute("copyrightDate", new Date());
+        model.addAttribute(TITLE_ATTRIBUTE_CODE, "Search Result");
+        model.addAttribute(SEARCH_ACCOUNT_LIST_ATTRIBUTE_CODE, accounts);
+        model.addAttribute(COPYRIGHT_DATE_ATTRIBUTE_CODE, new Date());
 
-        return "searchForm";
+        return SEARCH_FORM;
     }
 
     /**
@@ -261,7 +272,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/tweets/{username}", method = GET)
+    @GetMapping("/tweets/{username}")
     public String processTweets(
             @PathVariable String username,
             Model model,
@@ -274,12 +285,12 @@ public class AccountController {
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
-        model.addAttribute("title", "Tweets");
+        model.addAttribute(TITLE_ATTRIBUTE_CODE, "Tweets");
         model.addAttribute(tweets);
         model.addAttribute(new SearchForm());
-        model.addAttribute("copyrightDate", new Date());
+        model.addAttribute(COPYRIGHT_DATE_ATTRIBUTE_CODE, new Date());
 
-        return "accountForm";
+        return ACCOUNT_FORM;
     }
 
     /**
@@ -291,7 +302,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/following/{username}", method = GET)
+    @GetMapping("/following/{username}")
     public String processFollowing(
             @PathVariable String username,
             Model model,
@@ -304,12 +315,12 @@ public class AccountController {
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
-        model.addAttribute("title", "Following");
-        model.addAttribute("searchAccountList", accounts);
+        model.addAttribute(TITLE_ATTRIBUTE_CODE, "Following");
+        model.addAttribute(SEARCH_ACCOUNT_LIST_ATTRIBUTE_CODE, accounts);
         model.addAttribute(new SearchForm());
-        model.addAttribute("copyrightDate", new Date());
+        model.addAttribute(COPYRIGHT_DATE_ATTRIBUTE_CODE, new Date());
 
-        return "searchForm";
+        return SEARCH_FORM;
     }
 
     /**
@@ -321,7 +332,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/followers/{username}", method = GET)
+    @GetMapping("/followers/{username}")
     public String processFollowers(
             @PathVariable String username,
             Model model,
@@ -334,12 +345,12 @@ public class AccountController {
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
-        model.addAttribute("title", "Followers");
-        model.addAttribute("searchAccountList", accounts);
+        model.addAttribute(TITLE_ATTRIBUTE_CODE, "Followers");
+        model.addAttribute(SEARCH_ACCOUNT_LIST_ATTRIBUTE_CODE, accounts);
         model.addAttribute(new SearchForm());
-        model.addAttribute("copyrightDate", new Date());
+        model.addAttribute(COPYRIGHT_DATE_ATTRIBUTE_CODE, new Date());
 
-        return "searchForm";
+        return SEARCH_FORM;
     }
 
     private AccountStatistics getAccountStatistics(String whoUsername, String whomUsername) {
@@ -359,7 +370,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/follow/{username}", method = POST)
+    @PostMapping("/follow/{username}")
     public String processFollow(
             @PathVariable String username,
             Principal principal) throws AccountNotExistsException {
@@ -368,7 +379,7 @@ public class AccountController {
 
         followerService.add(whoAccount.getUsername(), whomAccount.getUsername());
 
-        return "redirect:/account/show/" + username;
+        return String.format("%s/%s", REDIRECT_ACCOUNT_SHOW, username);
     }
 
     /**
@@ -379,7 +390,7 @@ public class AccountController {
      * @return view name
      * @throws AccountNotExistsException if account does not exist
      */
-    @RequestMapping(value = "/unfollow/{username}", method = POST)
+    @PostMapping("/unfollow/{username}")
     public String processUnfollow(
             @PathVariable String username,
             Principal principal) throws AccountNotExistsException {
@@ -388,11 +399,11 @@ public class AccountController {
 
         followerService.delete(whoAccount.getUsername(), whomAccount.getUsername());
 
-        return "redirect:/account/show/" + username;
+        return String.format("%s/%s", REDIRECT_ACCOUNT_SHOW, username);
     }
 
     @ExceptionHandler(AccountNotExistsException.class)
     public String handleAccountNotExistException() {
-        return "redirect:/account/show";
+        return REDIRECT_ACCOUNT_SHOW;
     }
 }
