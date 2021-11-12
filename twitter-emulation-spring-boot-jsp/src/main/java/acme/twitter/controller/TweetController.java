@@ -6,13 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.security.Principal;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * Tweet controller.
@@ -20,7 +19,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 @RequestMapping("/tweet")
 public class TweetController {
-    private TweetService tweetService;
+    private static final String NEW_TWEET_FORM = "newTweetForm";
+    private static final String REDIRECT_ACCOUNT_SHOW = "redirect:/account/show";
+
+    private final TweetService tweetService;
 
     @Autowired
     public TweetController(TweetService tweetService) {
@@ -33,11 +35,11 @@ public class TweetController {
      * @param model model
      * @return view name
      */
-    @RequestMapping(method = GET)
+    @GetMapping
     public String showNewTweetForm(Model model) {
         model.addAttribute(new TweetForm());
 
-        return "newTweetForm";
+        return NEW_TWEET_FORM;
     }
 
     /**
@@ -48,18 +50,18 @@ public class TweetController {
      * @param principal principal
      * @return view name
      */
-    @RequestMapping(method = POST, params = "tweet")
+    @PostMapping(params = "tweet")
     public String processNewTweet(
             @Valid TweetForm tweetForm,
             Errors errors,
             Principal principal) {
         if (errors.hasErrors()) {
-            return "newTweetForm";
+            return NEW_TWEET_FORM;
         }
 
         tweetService.add(principal.getName(), tweetForm.getText());
 
-        return "redirect:/account/show";
+        return REDIRECT_ACCOUNT_SHOW;
     }
 
     /**
@@ -67,8 +69,8 @@ public class TweetController {
      *
      * @return view name
      */
-    @RequestMapping(method = POST, params = "cancel")
+    @PostMapping(params = "cancel")
     public String cancelNewTweet() {
-        return "redirect:/account/show";
+        return REDIRECT_ACCOUNT_SHOW;
     }
 }

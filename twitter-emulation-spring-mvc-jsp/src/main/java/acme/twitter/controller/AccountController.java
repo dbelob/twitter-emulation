@@ -32,6 +32,23 @@ import java.util.List;
 public class AccountController {
     private static final Logger log = LoggerFactory.getLogger(AccountController.class);
 
+    private static final String ACCOUNT_FORM = "accountForm";
+    private static final String DELETE_ACCOUNT_FORM = "deleteAccountForm";
+    private static final String PROFILE_FORM = "profileForm";
+    private static final String REGISTRATION_FORM = "registrationForm";
+    private static final String SEARCH_FORM = "searchForm";
+
+    private static final String FORWARD_ACCOUNT_TWEETS = "forward:/account/tweets";
+
+    private static final String REDIRECT_ACCOUNT_PROFILE = "redirect:/account/profile";
+    private static final String REDIRECT_ACCOUNT_SHOW = "redirect:/account/show";
+    private static final String REDIRECT_LOGIN = "redirect:/login";
+    private static final String REDIRECT_LOGOUT = "redirect:/logout";
+
+    private static final String TITLE_ATTRIBUTE_CODE = "title";
+    private static final String SEARCH_ACCOUNT_LIST_ATTRIBUTE_CODE = "searchAccountList";
+    private static final String COPYRIGHT_DATE_ATTRIBUTE_CODE = "copyrightDate";
+
     private final AccountService accountService;
     private final TweetService tweetService;
     private final FollowerService followerService;
@@ -56,7 +73,7 @@ public class AccountController {
     public String showRegistrationForm(Model model) {
         model.addAttribute(new AccountForm());
 
-        return "registrationForm";
+        return REGISTRATION_FORM;
     }
 
     /**
@@ -71,17 +88,17 @@ public class AccountController {
             @Valid AccountForm accountForm,
             Errors errors) {
         if (errors.hasErrors()) {
-            return "registrationForm";
+            return REGISTRATION_FORM;
         }
 
         try {
             accountService.add(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
-            return "redirect:/login";
+            return REDIRECT_LOGIN;
         } catch (AccountExistsException e) {
             errors.reject("account.exists", messageSourceAccessor.getMessage("account.exists"));
 
-            return "registrationForm";
+            return REGISTRATION_FORM;
         }
     }
 
@@ -98,7 +115,7 @@ public class AccountController {
         Account account = accountService.findByUsername(principal.getName());
         model.addAttribute(new AccountForm(account.getUsername(), account.getDescription()));
 
-        return "profileForm";
+        return PROFILE_FORM;
     }
 
     /**
@@ -108,7 +125,7 @@ public class AccountController {
      */
     @PostMapping(value = "/profile", params = "cancel")
     public String cancelProfile() {
-        return "redirect:/account/show";
+        return REDIRECT_ACCOUNT_SHOW;
     }
 
     /**
@@ -123,12 +140,12 @@ public class AccountController {
             @Valid AccountForm accountForm,
             Errors errors) {
         if (errors.hasErrors()) {
-            return "profileForm";
+            return PROFILE_FORM;
         }
 
         accountService.update(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
-        return "redirect:/account/show";
+        return REDIRECT_ACCOUNT_SHOW;
     }
 
     /**
@@ -138,7 +155,7 @@ public class AccountController {
      */
     @GetMapping("/delete")
     public String showDeleteAccountForm() {
-        return "deleteAccountForm";
+        return DELETE_ACCOUNT_FORM;
     }
 
     /**
@@ -148,7 +165,7 @@ public class AccountController {
      */
     @PostMapping(value = "/delete", params = "cancel")
     public String cancelDelete() {
-        return "redirect:/account/profile";
+        return REDIRECT_ACCOUNT_PROFILE;
     }
 
     /**
@@ -161,7 +178,7 @@ public class AccountController {
     public String processDelete(Principal principal) {
         accountService.delete(principal.getName());
 
-        return "redirect:/logout";
+        return REDIRECT_LOGOUT;
     }
 
     /**
@@ -172,7 +189,7 @@ public class AccountController {
      */
     @GetMapping("/show")
     public String showAccountForm(Principal principal) {
-        return "redirect:/account/show/" + principal.getName();
+        return String.format("%s/%s", REDIRECT_ACCOUNT_SHOW, principal.getName());
     }
 
     /**
@@ -197,7 +214,7 @@ public class AccountController {
 
         // Forward for unauthorized or other account
         if ((principal == null) || !username.equals(principal.getName())) {
-            return "forward:/account/tweets/" + username;
+            return String.format("%s/%s", FORWARD_ACCOUNT_TWEETS, username);
         }
 
         Account account = accountService.findByUsername(username);
@@ -208,9 +225,9 @@ public class AccountController {
         model.addAttribute(accountStatistics);
         model.addAttribute(tweets);
         model.addAttribute(new SearchForm());
-        model.addAttribute("copyrightDate", new Date());
+        model.addAttribute(COPYRIGHT_DATE_ATTRIBUTE_CODE, new Date());
 
-        return "accountForm";
+        return ACCOUNT_FORM;
     }
 
     /**
@@ -230,7 +247,7 @@ public class AccountController {
             Model model,
             Principal principal) throws AccountNotExistsException {
         if (errors.hasErrors()) {
-            return "redirect:/account/show";
+            return REDIRECT_ACCOUNT_SHOW;
         }
 
         Account account = accountService.findByUsername(principal.getName());
@@ -239,11 +256,11 @@ public class AccountController {
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
-        model.addAttribute("title", "Search Result");
-        model.addAttribute("searchAccountList", accounts);
-        model.addAttribute("copyrightDate", new Date());
+        model.addAttribute(TITLE_ATTRIBUTE_CODE, "Search Result");
+        model.addAttribute(SEARCH_ACCOUNT_LIST_ATTRIBUTE_CODE, accounts);
+        model.addAttribute(COPYRIGHT_DATE_ATTRIBUTE_CODE, new Date());
 
-        return "searchForm";
+        return SEARCH_FORM;
     }
 
     /**
@@ -268,12 +285,12 @@ public class AccountController {
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
-        model.addAttribute("title", "Tweets");
+        model.addAttribute(TITLE_ATTRIBUTE_CODE, "Tweets");
         model.addAttribute(tweets);
         model.addAttribute(new SearchForm());
-        model.addAttribute("copyrightDate", new Date());
+        model.addAttribute(COPYRIGHT_DATE_ATTRIBUTE_CODE, new Date());
 
-        return "accountForm";
+        return ACCOUNT_FORM;
     }
 
     /**
@@ -298,12 +315,12 @@ public class AccountController {
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
-        model.addAttribute("title", "Following");
-        model.addAttribute("searchAccountList", accounts);
+        model.addAttribute(TITLE_ATTRIBUTE_CODE, "Following");
+        model.addAttribute(SEARCH_ACCOUNT_LIST_ATTRIBUTE_CODE, accounts);
         model.addAttribute(new SearchForm());
-        model.addAttribute("copyrightDate", new Date());
+        model.addAttribute(COPYRIGHT_DATE_ATTRIBUTE_CODE, new Date());
 
-        return "searchForm";
+        return SEARCH_FORM;
     }
 
     /**
@@ -328,12 +345,12 @@ public class AccountController {
 
         model.addAttribute(account);
         model.addAttribute(accountStatistics);
-        model.addAttribute("title", "Followers");
-        model.addAttribute("searchAccountList", accounts);
+        model.addAttribute(TITLE_ATTRIBUTE_CODE, "Followers");
+        model.addAttribute(SEARCH_ACCOUNT_LIST_ATTRIBUTE_CODE, accounts);
         model.addAttribute(new SearchForm());
-        model.addAttribute("copyrightDate", new Date());
+        model.addAttribute(COPYRIGHT_DATE_ATTRIBUTE_CODE, new Date());
 
-        return "searchForm";
+        return SEARCH_FORM;
     }
 
     private AccountStatistics getAccountStatistics(String whoUsername, String whomUsername) {
@@ -362,7 +379,7 @@ public class AccountController {
 
         followerService.add(whoAccount.getUsername(), whomAccount.getUsername());
 
-        return "redirect:/account/show/" + username;
+        return String.format("%s/%s", REDIRECT_ACCOUNT_SHOW, username);
     }
 
     /**
@@ -382,11 +399,11 @@ public class AccountController {
 
         followerService.delete(whoAccount.getUsername(), whomAccount.getUsername());
 
-        return "redirect:/account/show/" + username;
+        return String.format("%s/%s", REDIRECT_ACCOUNT_SHOW, username);
     }
 
     @ExceptionHandler(AccountNotExistsException.class)
     public String handleAccountNotExistException() {
-        return "redirect:/account/show";
+        return REDIRECT_ACCOUNT_SHOW;
     }
 }
