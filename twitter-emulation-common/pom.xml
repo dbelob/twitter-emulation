@@ -4,7 +4,7 @@
     <parent>
         <groupId>acme.twitter-emulation</groupId>
         <artifactId>twitter-emulation-parent</artifactId>
-        <version>1.0.437</version>
+        <version>1.0.438-SNAPSHOT</version>
     </parent>
 
     <artifactId>twitter-emulation-common</artifactId>
