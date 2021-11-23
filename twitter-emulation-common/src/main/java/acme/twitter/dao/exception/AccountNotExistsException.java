@@ -1,4 +1,4 @@
 package acme.twitter.dao.exception;
 
-public class AccountNotExistsException extends Exception {
+public class AccountNotExistsException extends AccountException {
 }
