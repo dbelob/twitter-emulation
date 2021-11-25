@@ -1,7 +1,12 @@
 server:
   servlet:
     register-default-servlet: true
+
 oracle:
   url: "jdbc:oracle:thin:@acme.com:1521:sid"
   username: "te"
   password: "password"
+
+springdoc:
+  packages-to-scan: "acme.twitter.controller"
+  paths-to-match: "/api/**"
