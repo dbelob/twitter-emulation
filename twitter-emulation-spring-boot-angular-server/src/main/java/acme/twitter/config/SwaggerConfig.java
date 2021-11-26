@@ -10,7 +10,7 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI springOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("TwitterEmulation API43")
+                .info(new Info().title("TwitterEmulation API")
                         .description("Twitter emulation application")
                         .version("v1.0.0"));
     }
