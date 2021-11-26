@@ -1,5 +1,6 @@
 package acme.twitter.controller;
 
+import acme.twitter.dao.exception.AccountException;
 import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotAllowedException;
 import acme.twitter.dao.exception.AccountNotExistsException;
@@ -17,7 +18,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
             AccountNotExistsException.class,
             AccountNotAllowedException.class
     })
-    public final ResponseEntity<Object> handleCustomException(Exception ex, WebRequest request) throws Exception {
+    public final ResponseEntity<Object> handleCustomException(AccountException ex, WebRequest request) throws AccountException {
         String customMessage = null;
 
         if (ex instanceof AccountExistsException) {

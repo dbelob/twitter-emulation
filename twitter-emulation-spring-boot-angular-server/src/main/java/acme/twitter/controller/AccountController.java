@@ -11,7 +11,6 @@ import acme.twitter.service.FollowerService;
 import acme.twitter.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -20,12 +19,12 @@ import java.util.List;
 /**
  * Account controller.
  */
-@Controller
+@RestController
 @RequestMapping("/api/account")
 public class AccountController {
-    private AccountService accountService;
-    private TweetService tweetService;
-    private FollowerService followerService;
+    private final AccountService accountService;
+    private final TweetService tweetService;
+    private final FollowerService followerService;
 
     @Autowired
     public AccountController(AccountService accountService, TweetService tweetService, FollowerService followerService) {
@@ -35,7 +34,6 @@ public class AccountController {
     }
 
     @GetMapping("/accounts/{username}")
-    @ResponseBody
     public AccountDto getAccount(@PathVariable String username, Principal principal) throws AccountNotExistsException {
         Account account = accountService.findByUsername(username);
         String password = ((principal != null) && username.equals(principal.getName())) ? account.getPassword() : null;
@@ -71,7 +69,6 @@ public class AccountController {
     }
 
     @GetMapping("/accounts")
-    @ResponseBody
     public List<AccountDto> getAccounts(@RequestParam(required = false) String usernamePart) {
         List<Account> accounts = accountService.findByUsernamePart(usernamePart);
 
@@ -79,7 +76,6 @@ public class AccountController {
     }
 
     @GetMapping("/statistics/{username}")
-    @ResponseBody
     public AccountStatisticsDto getStatistics(@PathVariable String username, Principal principal) throws AccountNotExistsException {
         String whoUsername = (principal != null) ? principal.getName() : username;
         String whomUsername = username;

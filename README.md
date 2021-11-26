@@ -207,7 +207,8 @@ in several ways:
 * [H2 Database Console](http://localhost:8082)
 * Swagger:
   * [Swagger UI](http://localhost:8080/swagger-ui.html)  
-  * [Swagger JSON](http://localhost:8080/v2/api-docs)  
+  * [Swagger JSON](http://localhost:8080/v3/api-docs)
+  * [Swagger YAML](http://localhost:8080/v3/api-docs.yaml)
 
 ## Frameworks and libraries
 

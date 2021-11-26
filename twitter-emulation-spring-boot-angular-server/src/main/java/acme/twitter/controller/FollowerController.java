@@ -7,7 +7,6 @@ import acme.twitter.service.AccountService;
 import acme.twitter.service.FollowerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -16,11 +15,11 @@ import java.util.List;
 /**
  * Follower controller.
  */
-@Controller
+@RestController
 @RequestMapping("/api/follower")
 public class FollowerController {
-    private FollowerService followerService;
-    private AccountService accountService;
+    private final FollowerService followerService;
+    private final AccountService accountService;
 
     @Autowired
     public FollowerController(FollowerService followerService,
@@ -30,7 +29,6 @@ public class FollowerController {
     }
 
     @GetMapping("/following/{username}")
-    @ResponseBody
     public List<AccountDto> getFollowing(@PathVariable String username) {
         List<Account> accounts = followerService.findFollowingByUsername(username);
 
@@ -38,7 +36,6 @@ public class FollowerController {
     }
 
     @GetMapping("/followers/{username}")
-    @ResponseBody
     public List<AccountDto> getFollowers(@PathVariable String username) {
         List<Account> accounts = followerService.findFollowersByUsername(username);
 

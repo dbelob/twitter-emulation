@@ -8,7 +8,6 @@ import acme.twitter.service.AccountService;
 import acme.twitter.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -17,7 +16,7 @@ import java.util.List;
 /**
  * Tweet controller.
  */
-@Controller
+@RestController
 @RequestMapping("/api/tweet")
 public class TweetController {
     private final TweetService tweetService;
@@ -30,7 +29,6 @@ public class TweetController {
     }
 
     @GetMapping("/tweets/{username}")
-    @ResponseBody
     public List<TweetDto> getTweets(@PathVariable String username) throws AccountNotExistsException {
         Account account = accountService.findByUsername(username);
         List<Tweet> tweets = tweetService.findByAccount(account);
@@ -45,7 +43,6 @@ public class TweetController {
     }
 
     @GetMapping("/timeline")
-    @ResponseBody
     public List<TweetDto> getTimeline(Principal principal) throws AccountNotExistsException {
         Account account = accountService.findByUsername(principal.getName());
         List<Tweet> tweets = tweetService.findTimelineByAccount(account);
