@@ -44,8 +44,10 @@
             **/acme/twitter/config/**/*,
             **/acme/twitter/domain/**/*,
             **/acme/twitter/dto/**/*,
-            **/*Exception.java
+            **/*Exception.java,
+            twitter-emulation-spring-mvc-jsp/**/*
         </sonar.coverage.exclusions>
+        <sonar.cpd.exclusions>twitter-emulation-spring-mvc-jsp/**/*</sonar.cpd.exclusions>
     </properties>
 
     <modules>
@@ -108,6 +110,7 @@
                         <exclude>acme/twitter/domain/**/*</exclude>
                         <exclude>acme/twitter/dto/**/*</exclude>
                         <exclude>**/*Exception.java</exclude>
+                        <exclude>twitter-emulation-spring-mvc-jsp/**/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
