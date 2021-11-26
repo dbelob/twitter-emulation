@@ -110,7 +110,6 @@
                         <exclude>acme/twitter/domain/**/*</exclude>
                         <exclude>acme/twitter/dto/**/*</exclude>
                         <exclude>**/*Exception.java</exclude>
-                        <exclude>twitter-emulation-spring-mvc-jsp/**/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
