@@ -49,7 +49,10 @@
             twitter-emulation-spring-boot-admin/**/*,
             twitter-emulation-spring-mvc-jsp/**/*
         </sonar.coverage.exclusions>
-        <sonar.cpd.exclusions>twitter-emulation-spring-mvc-jsp/**/*</sonar.cpd.exclusions>
+        <sonar.cpd.exclusions>
+            **/acme/twitter/config/**/*,
+            twitter-emulation-spring-mvc-jsp/**/*
+        </sonar.cpd.exclusions>
     </properties>
 
     <modules>
