@@ -127,7 +127,7 @@
             <artifactId>springdoc-openapi-security</artifactId>
         </dependency>
 
-        <!-- Testing -->
+        <!-- Tests -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

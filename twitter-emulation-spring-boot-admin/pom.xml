@@ -57,13 +57,6 @@
             <artifactId>spring-boot-admin-starter-server</artifactId>
             <version>${spring-boot-admin.version}</version>
         </dependency>
-
-        <!-- Testing -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
