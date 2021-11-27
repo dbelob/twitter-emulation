@@ -22,6 +22,7 @@
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
         <war.plugin.version>3.3.2</war.plugin.version>
 
+        <allure-junit5.version>2.16.1</allure-junit5.version>
         <hamcrest.version>2.2</hamcrest.version>
         <hibernate-validator.version>7.0.1.Final</hibernate-validator.version>
         <h2.version>1.4.200</h2.version>
@@ -231,7 +232,7 @@
                 <version>${sl4j.version}</version>
             </dependency>
 
-            <!-- Testing -->
+            <!-- Tests -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -260,6 +261,12 @@
                 <groupId>org.glassfish</groupId>
                 <artifactId>javax.el</artifactId>
                 <version>${javax.el.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-junit5</artifactId>
+                <version>${allure-junit5.version}</version>
                 <scope>test</scope>
             </dependency>
 
