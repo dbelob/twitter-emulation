@@ -2,9 +2,9 @@ package acme.twitter.controller;
 
 import acme.twitter.App;
 import acme.twitter.dto.AccountDto;
-import org.junit.After;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +13,6 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import javax.servlet.http.Cookie;
@@ -26,7 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringRunner.class)
+@DisplayName("AccountController class integration tests")
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         classes = App.class)
@@ -41,7 +40,7 @@ public class AccountControllerIntegrationTest {
     @Autowired
     private DataSource dataSource;
 
-    @After
+    @AfterEach
     public void tearDown() throws SQLException {
         TestUtils.executeSqlScript(dataSource.getConnection(), "/clean-h2.sql");
         TestUtils.executeSqlScript(dataSource.getConnection(), "/data-h2.sql");
@@ -50,7 +49,7 @@ public class AccountControllerIntegrationTest {
     @Test
     public void whenGetAccount_thenReturnJson() throws Exception {
         mvc.perform(get("/api/account/accounts/jsmith")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -63,10 +62,10 @@ public class AccountControllerIntegrationTest {
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         mvc.perform(post("/api/account/accounts")
-                .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.toJson(jsmith)))
+                        .header(csrfToken.getHeaderName(), csrfToken.getToken())
+                        .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(JsonUtil.toJson(jsmith)))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
@@ -77,11 +76,11 @@ public class AccountControllerIntegrationTest {
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         mvc.perform(put("/api/account/accounts/jsmith")
-                .with(user("jsmith"))
-                .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.toJson(jsmith)))
+                        .with(user("jsmith"))
+                        .header(csrfToken.getHeaderName(), csrfToken.getToken())
+                        .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(JsonUtil.toJson(jsmith)))
                 .andDo(print())
                 .andExpect(status().isOk());
     }

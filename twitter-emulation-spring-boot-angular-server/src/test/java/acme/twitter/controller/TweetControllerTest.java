@@ -4,8 +4,8 @@ import acme.twitter.domain.Account;
 import acme.twitter.domain.Tweet;
 import acme.twitter.service.AccountService;
 import acme.twitter.service.TweetService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 import org.mockito.internal.verification.VerificationModeFactory;
@@ -16,7 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfToken;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import javax.servlet.http.Cookie;
@@ -32,7 +31,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
+@DisplayName("TweetController tests")
 @WebMvcTest(TweetController.class)
 public class TweetControllerTest {
     private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
@@ -63,7 +62,7 @@ public class TweetControllerTest {
         BDDMockito.given(tweetService.findByAccount(jsmith)).willReturn(Arrays.asList(jsmithTweet0, jsmithTweet1, jsmithTweet2, jsmithTweet3, jsmithTweet4, jsmithTweet5));
 
         mvc.perform(get("/api/tweet/tweets/jsmith")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(6)))
                 .andExpect(jsonPath("$[0].text", is("Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.")))
@@ -91,11 +90,11 @@ public class TweetControllerTest {
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         mvc.perform(post("/api/tweet/tweets")
-                .with(user("jsmith"))
-                .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(tweet.getText()))
+                        .with(user("jsmith"))
+                        .header(csrfToken.getHeaderName(), csrfToken.getToken())
+                        .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(tweet.getText()))
                 .andExpect(status().isOk());
         Mockito.verify(tweetService, VerificationModeFactory.times(1)).add("jsmith", tweet.getText());
         Mockito.reset(tweetService);
@@ -113,8 +112,8 @@ public class TweetControllerTest {
         BDDMockito.given(tweetService.findTimelineByAccount(jsmith)).willReturn(Arrays.asList(jdoeTweet0, jsmithTweet0, jsmithTweet1));
 
         mvc.perform(get("/api/tweet/timeline")
-                .with(user("jsmith"))
-                .contentType(MediaType.APPLICATION_JSON))
+                        .with(user("jsmith"))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(jsonPath("$[0].text", is("Some people care too much. I think it's called love.")))

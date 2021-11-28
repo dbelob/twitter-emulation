@@ -23,7 +23,6 @@
         <war.plugin.version>3.3.2</war.plugin.version>
 
         <allure-junit5.version>2.16.1</allure-junit5.version>
-        <hamcrest.version>2.2</hamcrest.version>
         <hibernate-validator.version>7.0.1.Final</hibernate-validator.version>
         <h2.version>1.4.200</h2.version>
         <javax.el.version>3.0.0</javax.el.version>
@@ -33,7 +32,6 @@
         <jstl.version>1.2</jstl.version>
         <junit.version>4.13.2</junit.version>
         <logback.version>1.2.7</logback.version>
-        <mockito.version>4.1.0</mockito.version>
         <ojdbc8.version>21.3.0.0</ojdbc8.version>
         <sl4j.version>1.7.32</sl4j.version>
         <spring-boot.version>2.6.0</spring-boot.version>
@@ -237,18 +235,6 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>${mockito.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest</artifactId>
-                <version>${hamcrest.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
