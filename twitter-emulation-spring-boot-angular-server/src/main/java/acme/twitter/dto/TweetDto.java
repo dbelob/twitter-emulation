@@ -4,16 +4,15 @@ import acme.twitter.domain.Tweet;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Tweet DTO.
  */
 public class TweetDto {
-    private String username;
-    private String description;
-    private String text;
-    private Date date;
+    private final String username;
+    private final String description;
+    private final String text;
+    private final Date date;
 
     public TweetDto(String username, String description, String text, Date date) {
         this.username = username;
@@ -45,6 +44,6 @@ public class TweetDto {
                         t.getAccount().getDescription(),
                         t.getText(),
                         t.getDate()))
-                .collect(Collectors.toList());
+                .toList();
     }
 }

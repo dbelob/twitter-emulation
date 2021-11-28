@@ -4,7 +4,6 @@ import acme.twitter.domain.AbstractAccount;
 import acme.twitter.domain.Account;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Account DTO.
@@ -25,6 +24,6 @@ public class AccountDto extends AbstractAccount {
     public static List<AccountDto> convertToDto(List<Account> accounts) {
         return accounts.stream()
                 .map(a -> new AccountDto(a.getUsername(), a.getDescription()))
-                .collect(Collectors.toList());
+                .toList();
     }
 }

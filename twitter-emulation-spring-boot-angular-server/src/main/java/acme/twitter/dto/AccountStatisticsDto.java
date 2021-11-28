@@ -4,12 +4,12 @@ package acme.twitter.dto;
  * Account statistics DTO.
  */
 public class AccountStatisticsDto {
-    private String username;
-    private String description;
-    private int tweetsCount;
-    private int followingCount;
-    private int followersCount;
-    private boolean follow;
+    private final String username;
+    private final String description;
+    private final int tweetsCount;
+    private final int followingCount;
+    private final int followersCount;
+    private final boolean follow;
 
     public AccountStatisticsDto(String username, String description, int tweetsCount, int followingCount, int followersCount, boolean follow) {
         this.username = username;
