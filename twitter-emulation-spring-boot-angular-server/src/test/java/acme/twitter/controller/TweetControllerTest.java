@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("TweetController tests")
 @WebMvcTest(TweetController.class)
-public class TweetControllerTest {
+class TweetControllerTest {
     private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
 
     @Autowired
@@ -49,7 +49,7 @@ public class TweetControllerTest {
     private AccountService accountService;
 
     @Test
-    public void whenGetTweets_thenReturnJsonArray() throws Exception {
+    void whenGetTweets_thenReturnJsonArray() throws Exception {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         Tweet jsmithTweet0 = new Tweet(jsmith, "Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.", new Date());
         Tweet jsmithTweet1 = new Tweet(jsmith, "Duo suas molestiae ea, ex sit rebum voluptua. Graeci mandamus ad mei, harum rationibus qui at. Ut vel fabellas deserunt senserit.", new Date());
@@ -84,7 +84,7 @@ public class TweetControllerTest {
     }
 
     @Test
-    public void whenPostTweet_thenCreateTweet() throws Exception {
+    void whenPostTweet_thenCreateTweet() throws Exception {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         Tweet tweet = new Tweet(jsmith, "Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.", new Date());
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
@@ -101,7 +101,7 @@ public class TweetControllerTest {
     }
 
     @Test
-    public void whenGetTimeline_thenReturnJsonArray() throws Exception {
+    void whenGetTimeline_thenReturnJsonArray() throws Exception {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         Account jdoe = new Account(2, "jdoe", "password", "John Doe");
         Tweet jsmithTweet0 = new Tweet(jsmith, "Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.", new Date());

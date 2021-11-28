@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         classes = App.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("development")
-public class AccountControllerIntegrationTest {
+class AccountControllerIntegrationTest {
     private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
 
     @Autowired
@@ -47,7 +47,7 @@ public class AccountControllerIntegrationTest {
     }
 
     @Test
-    public void whenGetAccount_thenReturnJson() throws Exception {
+    void whenGetAccount_thenReturnJson() throws Exception {
         mvc.perform(get("/api/account/accounts/jsmith")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -57,7 +57,7 @@ public class AccountControllerIntegrationTest {
     }
 
     @Test
-    public void whenPostAccount_thenCreateAccount() throws Exception {
+    void whenPostAccount_thenCreateAccount() throws Exception {
         AccountDto jsmith = new AccountDto("user", "password", "User");
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
@@ -71,7 +71,7 @@ public class AccountControllerIntegrationTest {
     }
 
     @Test
-    public void whenPutAccount_thenUpdateAccount() throws Exception {
+    void whenPutAccount_thenUpdateAccount() throws Exception {
         AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 

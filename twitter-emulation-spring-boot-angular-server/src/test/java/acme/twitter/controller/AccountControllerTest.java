@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("AccountController class tests")
 @WebMvcTest(AccountController.class)
-public class AccountControllerTest {
+class AccountControllerTest {
     private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
 
     @Autowired
@@ -52,7 +52,7 @@ public class AccountControllerTest {
     private FollowerService followerService;
 
     @Test
-    public void whenGetAccount_thenReturnJson() throws Exception {
+    void whenGetAccount_thenReturnJson() throws Exception {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         BDDMockito.given(accountService.findByUsername("jsmith")).willReturn(jsmith);
 
@@ -65,7 +65,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void whenPostAccount_thenCreateAccount() throws Exception {
+    void whenPostAccount_thenCreateAccount() throws Exception {
         AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
@@ -80,7 +80,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void whenPutAccount_thenUpdateAccount() throws Exception {
+    void whenPutAccount_thenUpdateAccount() throws Exception {
         AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
@@ -96,7 +96,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void whenDeleteAccount_thenDeleteAccount() throws Exception {
+    void whenDeleteAccount_thenDeleteAccount() throws Exception {
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         mvc.perform(delete("/api/account/accounts/jsmith")
@@ -110,7 +110,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void whenValidPart_thenAccountsShouldBeFound() throws Exception {
+    void whenValidPart_thenAccountsShouldBeFound() throws Exception {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         Account jdoe = new Account(2, "jdoe", "password", "John Doe");
         BDDMockito.given(accountService.findByUsernamePart("j")).willReturn(Arrays.asList(jsmith, jdoe));
@@ -127,7 +127,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void whenInvalidPart_thenAccountsShouldNotBeFound() throws Exception {
+    void whenInvalidPart_thenAccountsShouldNotBeFound() throws Exception {
         BDDMockito.given(accountService.findByUsernamePart("unknown")).willReturn(Collections.emptyList());
 
         mvc.perform(get("/api/account/accounts")
@@ -140,7 +140,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void whenGetStatistics_thenReturnJson() throws Exception {
+    void whenGetStatistics_thenReturnJson() throws Exception {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         BDDMockito.given(accountService.findByUsername("jsmith")).willReturn(jsmith);
         BDDMockito.given(tweetService.countByUsername("jsmith")).willReturn(6);

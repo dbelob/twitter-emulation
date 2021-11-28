@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("FollowerController tests")
 @WebMvcTest(FollowerController.class)
-public class FollowerControllerTest {
+class FollowerControllerTest {
     private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
 
     @Autowired
@@ -47,7 +47,7 @@ public class FollowerControllerTest {
     private AccountService accountService;
 
     @Test
-    public void whenGetFollowing_thenReturnJsonArray() throws Exception {
+    void whenGetFollowing_thenReturnJsonArray() throws Exception {
         Account jdoe = new Account(1, "jdoe", "password", "John Doe");
         Account rroe = new Account(2, "rroe", "password", "Richard Roe");
 
@@ -64,7 +64,7 @@ public class FollowerControllerTest {
     }
 
     @Test
-    public void whenGetFollowers_thenReturnJsonArray() throws Exception {
+    void whenGetFollowers_thenReturnJsonArray() throws Exception {
         Account jdoe = new Account(1, "jdoe", "password", "John Doe");
 
         BDDMockito.given(followerService.findFollowersByUsername("jsmith")).willReturn(Collections.singletonList(jdoe));
@@ -79,7 +79,7 @@ public class FollowerControllerTest {
     }
 
     @Test
-    public void whenPostFollowing_thenCreateFollowing() throws Exception {
+    void whenPostFollowing_thenCreateFollowing() throws Exception {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         Account rroe = new Account(2, "rroe", "password", "Richard Roe");
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
@@ -98,7 +98,7 @@ public class FollowerControllerTest {
     }
 
     @Test
-    public void whenDeleteFollowing_thenDeleteFollowing() throws Exception {
+    void whenDeleteFollowing_thenDeleteFollowing() throws Exception {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         Account rroe = new Account(2, "rroe", "password", "Richard Roe");
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
