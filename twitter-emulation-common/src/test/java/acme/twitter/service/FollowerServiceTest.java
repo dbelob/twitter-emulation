@@ -2,23 +2,26 @@ package acme.twitter.service;
 
 import acme.twitter.dao.FollowerDao;
 import acme.twitter.domain.Account;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.internal.verification.VerificationModeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@RunWith(SpringRunner.class)
+import static org.junit.jupiter.api.Assertions.*;
+
+@DisplayName("FollowerService class tests")
+@ExtendWith(SpringExtension.class)
 public class FollowerServiceTest {
     @TestConfiguration
     static class FollowerServiceTestContextConfiguration {
@@ -37,7 +40,7 @@ public class FollowerServiceTest {
     @Autowired
     private FollowerService followerService;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         Account jdoe = new Account(1, "jdoe", "password", "John Doe");
         Account rroe = new Account(2, "rroe", "password", "Richard Roe");
@@ -52,18 +55,18 @@ public class FollowerServiceTest {
 
     @Test
     public void whenValidName_thenShouldBeReturnCountFollowing() {
-        Assert.assertEquals(2, followerService.countFollowingByUsername("jsmith"));
+        assertEquals(2, followerService.countFollowingByUsername("jsmith"));
     }
 
     @Test
     public void whenValidName_thenShouldBeReturnCountFollowers() {
-        Assert.assertEquals(1, followerService.countFollowersByUsername("jsmith"));
+        assertEquals(1, followerService.countFollowersByUsername("jsmith"));
     }
 
     @Test
     public void whenValidNames_thenRecordShouldExist() {
-        Assert.assertTrue(followerService.isExist("jsmith", "jdoe"));
-        Assert.assertFalse(followerService.isExist("jdoe", "rroe"));
+        assertTrue(followerService.isExist("jsmith", "jdoe"));
+        assertFalse(followerService.isExist("jdoe", "rroe"));
     }
 
     @Test
@@ -84,16 +87,16 @@ public class FollowerServiceTest {
     public void whenValidName_thenFollowingShouldBeFound() {
         List<Account> accounts = followerService.findFollowingByUsername("jsmith");
 
-        Assert.assertEquals(2, accounts.size());
-        Assert.assertEquals("jdoe", accounts.get(0).getUsername());
-        Assert.assertEquals("rroe", accounts.get(1).getUsername());
+        assertEquals(2, accounts.size());
+        assertEquals("jdoe", accounts.get(0).getUsername());
+        assertEquals("rroe", accounts.get(1).getUsername());
     }
 
     @Test
     public void whenValidName_thenFollowersShouldBeFound() {
         List<Account> accounts = followerService.findFollowersByUsername("jsmith");
 
-        Assert.assertEquals(1, accounts.size());
-        Assert.assertEquals("jdoe", accounts.get(0).getUsername());
+        assertEquals(1, accounts.size());
+        assertEquals("jdoe", accounts.get(0).getUsername());
     }
 }
