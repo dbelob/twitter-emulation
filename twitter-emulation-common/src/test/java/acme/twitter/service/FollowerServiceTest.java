@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("FollowerService class tests")
 @ExtendWith(SpringExtension.class)
-public class FollowerServiceTest {
+class FollowerServiceTest {
     @TestConfiguration
     static class FollowerServiceTestContextConfiguration {
         @MockBean
@@ -54,37 +54,37 @@ public class FollowerServiceTest {
     }
 
     @Test
-    public void whenValidName_thenShouldBeReturnCountFollowing() {
+    void whenValidName_thenShouldBeReturnCountFollowing() {
         assertEquals(2, followerService.countFollowingByUsername("jsmith"));
     }
 
     @Test
-    public void whenValidName_thenShouldBeReturnCountFollowers() {
+    void whenValidName_thenShouldBeReturnCountFollowers() {
         assertEquals(1, followerService.countFollowersByUsername("jsmith"));
     }
 
     @Test
-    public void whenValidNames_thenRecordShouldExist() {
+    void whenValidNames_thenRecordShouldExist() {
         assertTrue(followerService.isExist("jsmith", "jdoe"));
         assertFalse(followerService.isExist("jdoe", "rroe"));
     }
 
     @Test
-    public void whenAdded_thenShouldBeRunAdd() {
+    void whenAdded_thenShouldBeRunAdd() {
         followerService.add("jdoe", "rroe");
         Mockito.verify(followerDao, VerificationModeFactory.times(1)).add("jdoe", "rroe");
         Mockito.reset(followerDao);
     }
 
     @Test
-    public void whenDeleted_thenShouldBeRunDelete() {
+    void whenDeleted_thenShouldBeRunDelete() {
         followerService.delete("jsmith", "jdoe");
         Mockito.verify(followerDao, VerificationModeFactory.times(1)).delete("jsmith", "jdoe");
         Mockito.reset(followerDao);
     }
 
     @Test
-    public void whenValidName_thenFollowingShouldBeFound() {
+    void whenValidName_thenFollowingShouldBeFound() {
         List<Account> accounts = followerService.findFollowingByUsername("jsmith");
 
         assertEquals(2, accounts.size());
@@ -93,7 +93,7 @@ public class FollowerServiceTest {
     }
 
     @Test
-    public void whenValidName_thenFollowersShouldBeFound() {
+    void whenValidName_thenFollowersShouldBeFound() {
         List<Account> accounts = followerService.findFollowersByUsername("jsmith");
 
         assertEquals(1, accounts.size());

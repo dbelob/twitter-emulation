@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("AccountService class tests")
 @ExtendWith(SpringExtension.class)
-public class AccountServiceTest {
+class AccountServiceTest {
     @TestConfiguration
     static class AccountServiceTestContextConfiguration {
         @MockBean
@@ -69,21 +69,21 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void whenAdded_thenShouldBeRunAdd() throws AccountExistsException {
+    void whenAdded_thenShouldBeRunAdd() throws AccountExistsException {
         accountService.add("user", "qwerty", "Description");
         Mockito.verify(accountDao, VerificationModeFactory.times(1)).add("user", "qwerty", "Description");
         Mockito.reset(accountDao);
     }
 
     @Test
-    public void whenUpdated_thenShouldBeRunUpdate() {
+    void whenUpdated_thenShouldBeRunUpdate() {
         accountService.update("jsmith", "12345", "Description");
         Mockito.verify(accountDao, VerificationModeFactory.times(1)).update("jsmith", "12345", "Description");
         Mockito.reset(accountDao);
     }
 
     @Test
-    public void whenDeleted_thenShouldBeRunDeleteThrice() {
+    void whenDeleted_thenShouldBeRunDeleteThrice() {
         accountService.delete("alone");
         Mockito.verify(tweetDao, VerificationModeFactory.times(1)).deleteAll("alone");
         Mockito.verify(followerDao, VerificationModeFactory.times(1)).deleteAll("alone");
@@ -94,7 +94,7 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void whenValidName_thenAccountShouldBeFound() throws AccountNotExistsException {
+    void whenValidName_thenAccountShouldBeFound() throws AccountNotExistsException {
         Account account = accountService.findByUsername("jsmith");
 
         assertEquals("jsmith", account.getUsername());
@@ -103,12 +103,12 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void whenInvalidName_thenAccountShouldNotBeFound() throws AccountNotExistsException {
+    void whenInvalidName_thenAccountShouldNotBeFound() throws AccountNotExistsException {
         assertThrows(AccountNotExistsException.class, () -> accountService.findByUsername("unknown"));
     }
 
     @Test
-    public void whenValidPart_thenAccountsShouldBeFound() {
+    void whenValidPart_thenAccountsShouldBeFound() {
         List<Account> accounts = accountService.findByUsernamePart("j");
 
         assertEquals(2, accounts.size());
@@ -117,7 +117,7 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void whenInvalidPart_thenAccountsShouldNotBeFound() {
+    void whenInvalidPart_thenAccountsShouldNotBeFound() {
         List<Account> accounts = accountService.findByUsernamePart("unknown");
 
         assertEquals(0, accounts.size());
