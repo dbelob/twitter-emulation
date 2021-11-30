@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 public class H2TestSupport implements TestSupport {
-    private EmbeddedDatabase database;
+    private final EmbeddedDatabase database;
 
     public H2TestSupport() {
         database = new EmbeddedDatabaseBuilder()

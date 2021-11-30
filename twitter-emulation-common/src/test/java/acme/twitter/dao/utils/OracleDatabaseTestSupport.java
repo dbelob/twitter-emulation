@@ -13,8 +13,8 @@ public class OracleDatabaseTestSupport implements TestSupport {
         Locale.setDefault(Locale.ENGLISH);
     }
 
-    private OracleContainer oracleContainer;
-    private DataSource dataSource;
+    private final OracleContainer oracleContainer;
+    private final DataSource dataSource;
 
     public OracleDatabaseTestSupport() throws SQLException {
         oracleContainer = new OracleContainer();

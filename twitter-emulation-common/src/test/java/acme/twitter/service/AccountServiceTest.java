@@ -103,7 +103,7 @@ class AccountServiceTest {
     }
 
     @Test
-    void whenInvalidName_thenAccountShouldNotBeFound() throws AccountNotExistsException {
+    void whenInvalidName_thenAccountShouldNotBeFound() {
         assertThrows(AccountNotExistsException.class, () -> accountService.findByUsername("unknown"));
     }
 
