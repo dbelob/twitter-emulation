@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("TweetService class tests")
 @ExtendWith(SpringExtension.class)
-public class TweetServiceTest {
+class TweetServiceTest {
     @TestConfiguration
     static class TweetServiceTestContextConfiguration {
         @MockBean
@@ -60,7 +60,7 @@ public class TweetServiceTest {
     }
 
     @Test
-    public void whenValidAccount_thenTweetsShouldBeFound() {
+    void whenValidAccount_thenTweetsShouldBeFound() {
         List<Tweet> tweets = tweetService.findByAccount(new Account(1L, "jsmith", "password", "John Smith"));
 
         assertEquals(6, tweets.size());
@@ -91,7 +91,7 @@ public class TweetServiceTest {
     }
 
     @Test
-    public void whenValidAccount_thenTimelineShouldBeFound() {
+    void whenValidAccount_thenTimelineShouldBeFound() {
         List<Tweet> tweets = tweetService.findTimelineByAccount(new Account(1L, "jsmith", "password", "John Smith"));
 
         assertEquals(3, tweets.size());
@@ -110,14 +110,14 @@ public class TweetServiceTest {
     }
 
     @Test
-    public void whenAdded_thenShouldBeRunAdd() {
+    void whenAdded_thenShouldBeRunAdd() {
         tweetService.add("rroe", "Tweet text");
         Mockito.verify(tweetDao, VerificationModeFactory.times(1)).add("rroe", "Tweet text");
         Mockito.reset(tweetDao);
     }
 
     @Test
-    public void whenValidName_thenShouldBeReturnCount() {
+    void whenValidName_thenShouldBeReturnCount() {
         assertEquals(6, tweetService.countByUsername("jsmith"));
     }
 }
