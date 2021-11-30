@@ -24,7 +24,7 @@
 
         <allure-junit5.version>2.16.1</allure-junit5.version>
         <hibernate-validator.version>7.0.1.Final</hibernate-validator.version>
-        <h2.version>1.4.200</h2.version>
+        <h2.version>2.0.202</h2.version>
         <javax.el.version>3.0.0</javax.el.version>
         <javax.servlet.jsp-api>2.3.3</javax.servlet.jsp-api>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
