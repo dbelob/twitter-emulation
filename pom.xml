@@ -41,7 +41,10 @@
             **/acme/twitter/web/*Form.java,
             **/acme/twitter/web/validation/PasswordsMatch.java,
             **/*Exception.java,
-            **/*ExceptionHandler.java
+            **/*ExceptionHandler.java,
+            twitter-emulation-spring-boot-admin/**/*,
+            twitter-emulation-spring-boot-jsp/**/*,
+            twitter-emulation-spring-mvc-jsp/**/*
         </sonar.coverage.exclusions>
         <sonar.cpd.exclusions>
             **/acme/twitter/config/**/*,
