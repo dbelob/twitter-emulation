@@ -38,10 +38,10 @@
             **/acme/twitter/config/**/*,
             **/acme/twitter/domain/**/*,
             **/acme/twitter/dto/**/*,
-            **/acme/twitter/web/*Form.java,
-            **/acme/twitter/web/validation/PasswordsMatch.java,
-            **/*Exception.java,
-            **/*ExceptionHandler.java,
+            **/acme/twitter/web/*Form.*,
+            **/acme/twitter/web/validation/PasswordsMatch.*,
+            **/*Exception.*,
+            **/*ExceptionHandler.*,
             twitter-emulation-spring-boot-admin/**/*,
             twitter-emulation-spring-boot-jsp/**/*,
             twitter-emulation-spring-mvc-jsp/**/*
@@ -115,10 +115,10 @@
                         <exclude>acme/twitter/config/**/*</exclude>
                         <exclude>acme/twitter/domain/**/*</exclude>
                         <exclude>acme/twitter/dto/**/*</exclude>
-                        <exclude>acme/twitter/web/*Form.java</exclude>
-                        <exclude>acme/twitter/web/validation/PasswordsMatch.java</exclude>
-                        <exclude>**/*Exception.java</exclude>
-                        <exclude>**/*ExceptionHandler.java</exclude>
+                        <exclude>acme/twitter/web/*Form.*</exclude>
+                        <exclude>acme/twitter/web/validation/PasswordsMatch.*</exclude>
+                        <exclude>**/*Exception.*</exclude>
+                        <exclude>**/*ExceptionHandler.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
