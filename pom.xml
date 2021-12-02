@@ -42,6 +42,7 @@
             **/acme/twitter/web/validation/PasswordsMatch.*,
             **/*Exception.*,
             **/*ExceptionHandler.*,
+            **/*RestErrorAttributes.*,
             twitter-emulation-spring-boot-admin/**/*,
             twitter-emulation-spring-boot-jsp/**/*,
             twitter-emulation-spring-mvc-jsp/**/*
@@ -119,6 +120,7 @@
                         <exclude>acme/twitter/web/validation/PasswordsMatch.*</exclude>
                         <exclude>**/*Exception.*</exclude>
                         <exclude>**/*ExceptionHandler.*</exclude>
+                        <exclude>**/*RestErrorAttributes.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
