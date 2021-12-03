@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Repository
 public class JdbcTweetDao implements TweetDao {
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
     public JdbcTweetDao(JdbcTemplate jdbcTemplate) {

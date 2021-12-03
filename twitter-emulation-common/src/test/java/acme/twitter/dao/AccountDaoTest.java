@@ -51,6 +51,8 @@ public abstract class AccountDaoTest {
         assertEquals("user", account.getUsername());
         assertEquals("qwerty", account.getPassword());
         assertEquals("Description", account.getDescription());
+
+        assertThrows(AccountExistsException.class, () -> accountDao.add("user", "qwerty", "Description"));
     }
 
     @Test

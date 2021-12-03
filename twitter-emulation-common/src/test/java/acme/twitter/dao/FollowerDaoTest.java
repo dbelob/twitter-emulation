@@ -58,6 +58,8 @@ public abstract class FollowerDaoTest {
 
     @Test
     public void addTest() {
+        assertFalse(followerDao.isExist("jdoe", "rroe"));
+
         followerDao.add("jdoe", "rroe");
 
         assertTrue(followerDao.isExist("jdoe", "rroe"));
@@ -65,9 +67,22 @@ public abstract class FollowerDaoTest {
 
     @Test
     public void deleteTest() {
+        assertTrue(followerDao.isExist("jsmith", "jdoe"));
+
         followerDao.delete("jsmith", "jdoe");
 
         assertFalse(followerDao.isExist("jsmith", "jdoe"));
+    }
+
+    @Test
+    void deleteAll() {
+        assertTrue(followerDao.isExist("jsmith", "jdoe"));
+        assertTrue(followerDao.isExist("jsmith", "rroe"));
+
+        followerDao.deleteAll("jsmith");
+
+        assertFalse(followerDao.isExist("jsmith", "jdoe"));
+        assertFalse(followerDao.isExist("jsmith", "rroe"));
     }
 
     @Test

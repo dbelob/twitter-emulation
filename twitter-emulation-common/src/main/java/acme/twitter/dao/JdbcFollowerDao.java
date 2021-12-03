@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Repository
 public class JdbcFollowerDao implements FollowerDao {
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
     public JdbcFollowerDao(JdbcTemplate jdbcTemplate) {
