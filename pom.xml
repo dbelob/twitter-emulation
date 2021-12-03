@@ -40,6 +40,7 @@
             **/acme/twitter/dto/**/*,
             **/acme/twitter/web/*Form.*,
             **/acme/twitter/web/validation/PasswordsMatch.*,
+            **/acme/twitter/App.*,
             **/*Exception.*,
             **/*ExceptionHandler.*,
             **/*RestErrorAttributes.*,
@@ -118,6 +119,7 @@
                         <exclude>acme/twitter/dto/**/*</exclude>
                         <exclude>acme/twitter/web/*Form.*</exclude>
                         <exclude>acme/twitter/web/validation/PasswordsMatch.*</exclude>
+                        <exclude>acme/twitter/App.*</exclude>
                         <exclude>**/*Exception.*</exclude>
                         <exclude>**/*ExceptionHandler.*</exclude>
                         <exclude>**/*RestErrorAttributes.*</exclude>
