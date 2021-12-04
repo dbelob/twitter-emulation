@@ -1,5 +1,6 @@
 package acme.twitter.controller;
 
+import acme.twitter.dao.exception.AccountNotAllowedException;
 import acme.twitter.domain.Account;
 import acme.twitter.dto.AccountDto;
 import acme.twitter.service.AccountService;
@@ -32,6 +33,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
@@ -114,20 +116,44 @@ class AccountControllerTest {
         Mockito.reset(accountService);
     }
 
-    @Test
-    void whenPutAccount_thenUpdateAccount() throws Exception {
-        AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
-        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @DisplayName("replaceAccount method tests")
+    class ReplaceAccountTest {
+        private Stream<Arguments> data() {
+            return Stream.of(
+                    arguments("jsmith", "jsmith", null),
+                    arguments("jdoe", null, AccountNotAllowedException.class),
+                    arguments("jdoe", "jsmith", AccountNotAllowedException.class),
+                    arguments("jsmith", "jdoe", AccountNotAllowedException.class)
+            );
+        }
 
-        mvc.perform(put("/api/account/accounts/jsmith")
-                        .with(user("jsmith"))
-                        .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                        .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonUtil.toJson(jsmith)))
-                .andExpect(status().isOk());
-        Mockito.verify(accountService, VerificationModeFactory.times(1)).update("jsmith", "password", "John Smith");
-        Mockito.reset(accountService);
+        @ParameterizedTest
+        @MethodSource("data")
+        void replaceAccount(String username, String principalUsername, Class<Exception> expectedException) throws Exception {
+            AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
+            CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
+
+            MockHttpServletRequestBuilder requestBuilder = put(String.format("/api/account/accounts/%s", username))
+                    .header(csrfToken.getHeaderName(), csrfToken.getToken())
+                    .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(JsonUtil.toJson(jsmith));
+            if (principalUsername != null) {
+                requestBuilder.with(user(principalUsername));
+            }
+
+            if (expectedException == null) {
+                mvc.perform(requestBuilder)
+                        .andExpect(status().isOk());
+                Mockito.verify(accountService, VerificationModeFactory.times(1)).update("jsmith", "password", "John Smith");
+                Mockito.reset(accountService);
+            } else {
+                assertThatThrownBy(() -> mvc.perform(requestBuilder))
+                        .hasCauseInstanceOf(expectedException);
+            }
+        }
     }
 
     @Test
