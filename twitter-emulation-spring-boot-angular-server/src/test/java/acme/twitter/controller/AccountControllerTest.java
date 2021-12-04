@@ -1,5 +1,6 @@
 package acme.twitter.controller;
 
+import acme.twitter.dao.exception.AccountNotAllowedException;
 import acme.twitter.domain.Account;
 import acme.twitter.dto.AccountDto;
 import acme.twitter.service.AccountService;
@@ -32,6 +33,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
@@ -114,34 +116,78 @@ class AccountControllerTest {
         Mockito.reset(accountService);
     }
 
-    @Test
-    void whenPutAccount_thenUpdateAccount() throws Exception {
-        AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
-        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @DisplayName("replaceAccount method tests")
+    class ReplaceAccountTest {
+        private Stream<Arguments> data() {
+            return Stream.of(
+                    arguments("jsmith", "jsmith", null),
+                    arguments("jdoe", null, AccountNotAllowedException.class),
+                    arguments("jdoe", "jsmith", AccountNotAllowedException.class),
+                    arguments("jsmith", "jdoe", AccountNotAllowedException.class)
+            );
+        }
 
-        mvc.perform(put("/api/account/accounts/jsmith")
-                        .with(user("jsmith"))
-                        .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                        .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonUtil.toJson(jsmith)))
-                .andExpect(status().isOk());
-        Mockito.verify(accountService, VerificationModeFactory.times(1)).update("jsmith", "password", "John Smith");
-        Mockito.reset(accountService);
+        @ParameterizedTest
+        @MethodSource("data")
+        void replaceAccount(String username, String principalUsername, Class<Exception> expectedException) throws Exception {
+            AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
+            CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
+
+            MockHttpServletRequestBuilder requestBuilder = put(String.format("/api/account/accounts/%s", username))
+                    .header(csrfToken.getHeaderName(), csrfToken.getToken())
+                    .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(JsonUtil.toJson(jsmith));
+            if (principalUsername != null) {
+                requestBuilder.with(user(principalUsername));
+            }
+
+            if (expectedException == null) {
+                mvc.perform(requestBuilder)
+                        .andExpect(status().isOk());
+                Mockito.verify(accountService, VerificationModeFactory.times(1)).update("jsmith", "password", "John Smith");
+                Mockito.reset(accountService);
+            } else {
+                assertThatThrownBy(() -> mvc.perform(requestBuilder))
+                        .hasCauseInstanceOf(expectedException);
+            }
+        }
     }
 
-    @Test
-    void whenDeleteAccount_thenDeleteAccount() throws Exception {
-        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @DisplayName("deleteAccount method tests")
+    class DeleteAccountTest {
+        private Stream<Arguments> data() {
+            return Stream.of(
+                    arguments("jsmith", "jsmith", null),
+                    arguments("jsmith", "jdoe", AccountNotAllowedException.class)
+            );
+        }
 
-        mvc.perform(delete("/api/account/accounts/jsmith")
-                        .with(user("jsmith"))
-                        .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                        .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-        Mockito.verify(accountService, VerificationModeFactory.times(1)).delete("jsmith");
-        Mockito.reset(accountService);
+        @ParameterizedTest
+        @MethodSource("data")
+        void deleteAccount(String username, String principalUsername, Class<Exception> expectedException) throws Exception {
+            CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
+
+            MockHttpServletRequestBuilder requestBuilder = delete(String.format("/api/account/accounts/%s", username))
+                    .with(user(principalUsername))
+                    .header(csrfToken.getHeaderName(), csrfToken.getToken())
+                    .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
+                    .contentType(MediaType.APPLICATION_JSON);
+
+            if (expectedException == null) {
+                mvc.perform(requestBuilder)
+                        .andExpect(status().isOk());
+                Mockito.verify(accountService, VerificationModeFactory.times(1)).delete("jsmith");
+                Mockito.reset(accountService);
+            } else {
+                assertThatThrownBy(() -> mvc.perform(requestBuilder))
+                        .hasCauseInstanceOf(expectedException);
+            }
+        }
     }
 
     @Test
@@ -174,32 +220,54 @@ class AccountControllerTest {
         Mockito.reset(accountService);
     }
 
-    @Test
-    void whenGetStatistics_thenReturnJson() throws Exception {
-        Account jsmith = new Account(1, "jsmith", "password", "John Smith");
-        BDDMockito.given(accountService.findByUsername("jsmith")).willReturn(jsmith);
-        BDDMockito.given(tweetService.countByUsername("jsmith")).willReturn(6);
-        BDDMockito.given(followerService.countFollowingByUsername("jsmith")).willReturn(2);
-        BDDMockito.given(followerService.countFollowersByUsername("jsmith")).willReturn(1);
-        BDDMockito.given(followerService.isExist("jsmith", "jsmith")).willReturn(false);
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @DisplayName("getStatistics method tests")
+    class GetStatisticsTest {
+        private Stream<Arguments> data() {
+            return Stream.of(
+                    arguments("jsmith", false),
+                    arguments(null, false),
+                    arguments("jdoe", true)
+            );
+        }
 
-        mvc.perform(get("/api/account/statistics/jsmith")
-                        .with(user("jsmith"))
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.username", is("jsmith")))
-                .andExpect(jsonPath("$.description", is("John Smith")))
-                .andExpect(jsonPath("$.tweetsCount", is(6)))
-                .andExpect(jsonPath("$.followingCount", is(2)))
-                .andExpect(jsonPath("$.followersCount", is(1)))
-                .andExpect(jsonPath("$.follow", is(false)));
-        Mockito.verify(accountService, VerificationModeFactory.times(1)).findByUsername("jsmith");
-        Mockito.verify(tweetService, VerificationModeFactory.times(1)).countByUsername("jsmith");
-        Mockito.verify(followerService, VerificationModeFactory.times(1)).countFollowingByUsername("jsmith");
-        Mockito.verify(followerService, VerificationModeFactory.times(1)).countFollowersByUsername("jsmith");
-        Mockito.verify(followerService, VerificationModeFactory.times(1)).isExist("jsmith", "jsmith");
-        Mockito.reset(accountService);
-        Mockito.reset(tweetService);
-        Mockito.reset(followerService);
+        @ParameterizedTest
+        @MethodSource("data")
+        void getStatistics(String principalUsername, boolean expected) throws Exception {
+            Account jsmith = new Account(1, "jsmith", "password", "John Smith");
+            BDDMockito.given(accountService.findByUsername("jsmith")).willReturn(jsmith);
+            BDDMockito.given(tweetService.countByUsername("jsmith")).willReturn(6);
+            BDDMockito.given(followerService.countFollowingByUsername("jsmith")).willReturn(2);
+            BDDMockito.given(followerService.countFollowersByUsername("jsmith")).willReturn(1);
+            BDDMockito.given(followerService.isExist("jsmith", "jsmith")).willReturn(false);
+            BDDMockito.given(followerService.isExist("jdoe", "jsmith")).willReturn(true);
+
+            MockHttpServletRequestBuilder requestBuilder = get("/api/account/statistics/jsmith")
+                    .contentType(MediaType.APPLICATION_JSON);
+
+            if (principalUsername != null) {
+                requestBuilder
+                        .with(user(principalUsername));
+            }
+
+            mvc.perform(requestBuilder)
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.username", is("jsmith")))
+                    .andExpect(jsonPath("$.description", is("John Smith")))
+                    .andExpect(jsonPath("$.tweetsCount", is(6)))
+                    .andExpect(jsonPath("$.followingCount", is(2)))
+                    .andExpect(jsonPath("$.followersCount", is(1)))
+                    .andExpect(jsonPath("$.follow", is(expected)));
+            Mockito.verify(accountService, VerificationModeFactory.times(1)).findByUsername("jsmith");
+            Mockito.verify(tweetService, VerificationModeFactory.times(1)).countByUsername("jsmith");
+            Mockito.verify(followerService, VerificationModeFactory.times(1)).countFollowingByUsername("jsmith");
+            Mockito.verify(followerService, VerificationModeFactory.times(1)).countFollowersByUsername("jsmith");
+            Mockito.verify(followerService, VerificationModeFactory.times(1)).isExist(
+                    (principalUsername != null) ? principalUsername : "jsmith", "jsmith");
+            Mockito.reset(accountService);
+            Mockito.reset(tweetService);
+            Mockito.reset(followerService);
+        }
     }
 }
