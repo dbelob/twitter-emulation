@@ -6,7 +6,12 @@ import acme.twitter.service.AccountService;
 import acme.twitter.service.FollowerService;
 import acme.twitter.service.TweetService;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 import org.mockito.internal.verification.VerificationModeFactory;
@@ -18,14 +23,18 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import javax.servlet.http.Cookie;
 import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -51,17 +60,43 @@ class AccountControllerTest {
     @MockBean
     private FollowerService followerService;
 
-    @Test
-    void whenGetAccount_thenReturnJson() throws Exception {
-        Account jsmith = new Account(1, "jsmith", "password", "John Smith");
-        BDDMockito.given(accountService.findByUsername("jsmith")).willReturn(jsmith);
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @DisplayName("getAccount method tests")
+    class GetAccountTest {
+        private Stream<Arguments> data() {
+            return Stream.of(
+                    arguments("jsmith", null, null),
+                    arguments("jsmith", "jdoe", null),
+                    arguments("jsmith", "jsmith", "password")
+            );
+        }
 
-        mvc.perform(get("/api/account/accounts/jsmith")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.username", is("jsmith")));
-        Mockito.verify(accountService, VerificationModeFactory.times(1)).findByUsername("jsmith");
-        Mockito.reset(accountService);
+        @ParameterizedTest
+        @MethodSource("data")
+        void getAccount(String username, String principalUsername, String expectedPassword) throws Exception {
+            Account jsmith = new Account(1, "jsmith", "password", "John Smith");
+            BDDMockito.given(accountService.findByUsername("jsmith")).willReturn(jsmith);
+
+            MockHttpServletRequestBuilder requestBuilder = get(String.format("/api/account/accounts/%s", username))
+                    .contentType(MediaType.APPLICATION_JSON);
+            if (principalUsername != null) {
+                requestBuilder.with(user(principalUsername));
+            }
+
+            ResultActions resultActions = mvc.perform(requestBuilder)
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.username", is("jsmith")));
+            if (expectedPassword != null) {
+                resultActions
+                        .andExpect(jsonPath("$.password", is(expectedPassword)));
+            } else {
+                resultActions
+                        .andExpect(jsonPath("$.password").doesNotExist());
+            }
+            Mockito.verify(accountService, VerificationModeFactory.times(1)).findByUsername("jsmith");
+            Mockito.reset(accountService);
+        }
     }
 
     @Test
