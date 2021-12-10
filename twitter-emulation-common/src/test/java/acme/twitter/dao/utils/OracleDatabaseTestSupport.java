@@ -3,12 +3,16 @@ package acme.twitter.dao.utils;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.testcontainers.containers.OracleContainer;
+import org.testcontainers.utility.DockerImageName;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.Locale;
 
 public class OracleDatabaseTestSupport implements TestSupport {
+    private static final DockerImageName DOCKER_IMAGE_NAME = DockerImageName.parse("gvenzl/oracle-xe");
+    private static final String DOCKER_IMAGE_TAG = "18.4.0-slim";
+
     static {
         Locale.setDefault(Locale.ENGLISH);
     }
@@ -17,7 +21,7 @@ public class OracleDatabaseTestSupport implements TestSupport {
     private final DataSource dataSource;
 
     public OracleDatabaseTestSupport() throws SQLException {
-        oracleContainer = new OracleContainer();
+        oracleContainer = new OracleContainer(DOCKER_IMAGE_NAME.withTag(DOCKER_IMAGE_TAG));
         oracleContainer.start();
 
         HikariConfig config = new HikariConfig();
