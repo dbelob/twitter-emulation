@@ -31,7 +31,7 @@
         <ojdbc8.version>21.3.0.0</ojdbc8.version>
         <spring-boot.version>2.6.1</spring-boot.version>
         <spring-boot-admin.version>2.5.4</spring-boot-admin.version>
-        <springdoc-openapi.version>1.5.13</springdoc-openapi.version>
+        <springdoc-openapi.version>1.6.0</springdoc-openapi.version>
         <testcontainers.version>1.16.2</testcontainers.version>
 
         <sonar.coverage.exclusions>
