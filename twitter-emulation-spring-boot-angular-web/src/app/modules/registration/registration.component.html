@@ -16,30 +16,30 @@
       </ul>
     </div>
 
-    <div class="form-group">
-      <label for="username">Username:</label>
+    <div class="mb-3">
+      <label for="username" class="form-label">Username:</label>
       <input type="text"
              class="form-control" id="username" name="username"
              [(ngModel)]="credentials.username"
              required minlength="1" maxlength="16"
              appAutofocus/>
     </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password:</label>
       <input type="password"
              class="form-control" id="password" name="password"
              [(ngModel)]="credentials.password"
              required minlength="5" maxlength="25"/>
     </div>
-    <div class="form-group">
-      <label for="confirmation">Confirmation:</label>
+    <div class="mb-3">
+      <label for="confirmation" class="form-label">Confirmation:</label>
       <input type="password"
              class="form-control" id="confirmation" name="confirmation"
              [(ngModel)]="credentials.passwordConfirmation"
              required minlength="5" maxlength="25" appValidateEqual="password"/>
     </div>
-    <div class="form-group">
-      <label for="description">Description:</label>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description:</label>
       <input type="text"
              class="form-control" id="description" name="description"
              [(ngModel)]="credentials.description"
