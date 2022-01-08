@@ -1,5 +1,5 @@
 <div class="card p-3 bg-light">
-  <div class="row font-weight-bold">
+  <div class="row fw-bold">
     <div class="col-12" id="description">
       {{accountStatistics.description}}
     </div>
@@ -9,26 +9,26 @@
       @{{accountStatistics.username}}
     </div>
   </div>
-  <div class="row">
-    <div class="col-4">
-      <td class="small"><a class="font-weight-bold" [routerLink]="['/account', 'tweets', accountStatistics.username]">Tweets</a></td>
+  <div class="row mt-1">
+    <div class="col-4 small">
+      <a class="fw-bold" [routerLink]="['/account', 'tweets', accountStatistics.username]">Tweets</a>
     </div>
-    <div class="col-4">
-      <td class="small"><a class="font-weight-bold" [routerLink]="['/account', 'following', accountStatistics.username]">Following</a></td>
+    <div class="col-4 small">
+      <a class="fw-bold" [routerLink]="['/account', 'following', accountStatistics.username]">Following</a>
     </div>
-    <div class="col-4">
-      <td class="small"><a class="font-weight-bold" [routerLink]="['/account', 'followers', accountStatistics.username]">Followers</a></td>
+    <div class="col-4 small">
+      <a class="fw-bold" [routerLink]="['/account', 'followers', accountStatistics.username]">Followers</a>
     </div>
   </div>
   <div class="row">
-    <div class="col-4">
-      <td class="small"><a class="font-weight-bold" [routerLink]="['/account', 'tweets', accountStatistics.username]">{{accountStatistics.tweetsCount}}</a></td>
+    <div class="col-4 small">
+      <a class="fw-bold" [routerLink]="['/account', 'tweets', accountStatistics.username]">{{accountStatistics.tweetsCount}}</a>
     </div>
-    <div class="col-4">
-      <td class="small"><a class="font-weight-bold" [routerLink]="['/account', 'following', accountStatistics.username]">{{accountStatistics.followingCount}}</a></td>
+    <div class="col-4 small">
+      <a class="fw-bold" [routerLink]="['/account', 'following', accountStatistics.username]">{{accountStatistics.followingCount}}</a>
     </div>
-    <div class="col-4">
-      <td class="small"><a class="font-weight-bold" [routerLink]="['/account', 'followers', accountStatistics.username]">{{accountStatistics.followersCount}}</a></td>
+    <div class="col-4 small">
+      <a class="fw-bold" [routerLink]="['/account', 'followers', accountStatistics.username]">{{accountStatistics.followersCount}}</a>
     </div>
   </div>
 </div>
