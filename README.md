@@ -226,6 +226,12 @@ in several ways:
 * [Jasmine](https://jasmine.github.io) (*JavaScript* unit testing)
 * [Protractor](https://www.protractortest.org) (end-to-end testing for *Angular*)
 
+## CI/CD
+
+* [GitHub Actions](https://github.com/features/actions) (automation of workflows)
+* [Dependabot](https://github.com/dependabot) (automated dependency updates)
+* [Mergify](https://mergify.com) (automated merging of pull requests)
+
 ## Tools
 
 * [ToDoList 7.1.5+](http://www.abstractspoon.com) (planning)
@@ -234,4 +240,4 @@ in several ways:
 
 ## Article
 
-See [Habr](https://habr.com/ru/company/jugru/blog/453468/) (Russian)
+See [Habr](https://habr.com/ru/company/jugru/blog/453468/) (in Russian)
