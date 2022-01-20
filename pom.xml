@@ -32,7 +32,7 @@
         <spring-boot.version>2.6.2</spring-boot.version>
         <spring-boot-admin.version>2.6.1</spring-boot-admin.version>
         <springdoc-openapi.version>1.6.4</springdoc-openapi.version>
-        <testcontainers.version>1.16.2</testcontainers.version>
+        <testcontainers.version>1.16.3</testcontainers.version>
 
         <sonar.coverage.exclusions>
             **/acme/twitter/config/**/*,
