@@ -1,7 +1,8 @@
-package acme.twitter.controller;
+package acme.twitter;
 
-import acme.twitter.App;
 import acme.twitter.dto.AccountDto;
+import acme.twitter.util.JsonUtil;
+import acme.twitter.util.TestUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

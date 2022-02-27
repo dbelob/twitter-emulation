@@ -58,9 +58,12 @@
         <module>twitter-emulation-common</module>
         <module>twitter-emulation-spring-mvc-jsp</module>
         <module>twitter-emulation-spring-boot-jsp</module>
+        <module>twitter-emulation-spring-boot-common-server</module>
         <module>twitter-emulation-spring-boot-angular-server</module>
         <module>twitter-emulation-spring-boot-angular-web</module>
         <module>twitter-emulation-spring-boot-admin</module>
+        <module>twitter-emulation-spring-boot-react-server</module>
+<!--        <module>twitter-emulation-spring-boot-react-web</module>-->
     </modules>
 
     <build>
