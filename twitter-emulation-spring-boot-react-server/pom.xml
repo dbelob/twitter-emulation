@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>acme.twitter-emulation</groupId>
+        <artifactId>twitter-emulation-parent</artifactId>
+        <version>1.0.537-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>twitter-emulation-spring-boot-react-server</artifactId>
+    <packaging>war</packaging>
+    <name>TwitterEmulation Spring Boot, React (Server)</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <executable>true</executable>
+                    <mainClass>acme.twitter.App</mainClass>
+                    <profiles>
+                        <profile>${spring.profiles.active}</profile>
+                    </profiles>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-resources-plugin</artifactId>-->
+<!--                <version>${resources.plugin.version}</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>copy-resources</id>-->
+<!--                        <phase>validate</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>copy-resources</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <outputDirectory>${project.build.directory}/classes/static/</outputDirectory>-->
+<!--                            <resources>-->
+<!--                                <resource>-->
+<!--                                    <directory>${project.parent.basedir}/twitter-emulation-spring-boot-react-web/target/classes/static/-->
+<!--                                    </directory>-->
+<!--                                </resource>-->
+<!--                            </resources>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>acme.twitter-emulation</groupId>
+            <artifactId>twitter-emulation-spring-boot-common-server</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>acme.twitter-emulation</groupId>-->
+<!--            <artifactId>twitter-emulation-spring-boot-react-web</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+    </dependencies>
+</project>
