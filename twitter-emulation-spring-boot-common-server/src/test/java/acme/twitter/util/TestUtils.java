@@ -1,4 +1,4 @@
-package acme.twitter.controller;
+package acme.twitter.util;
 
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.support.EncodedResource;
@@ -19,6 +19,10 @@ public class TestUtils {
      * @param separator  statement separator
      */
     public static void executeSqlScript(Connection connection, String fileName, String separator) {
+        System.out.println("fileName: " + fileName);
+        System.out.println("TestUtils.class.getResourceAsStream(fileName): " + TestUtils.class.getResourceAsStream(fileName));
+        System.out.println("TestUtils.class.getResourceAsStream(/clean-h2.sql): " + TestUtils.class.getResourceAsStream("/clean-h2.sql"));
+
         ScriptUtils.executeSqlScript(
                 connection,
                 new EncodedResource(new InputStreamResource(Objects.requireNonNull(TestUtils.class.getResourceAsStream(fileName)))),
