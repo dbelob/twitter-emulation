@@ -63,7 +63,7 @@
         <module>twitter-emulation-spring-boot-angular-web</module>
         <module>twitter-emulation-spring-boot-admin</module>
         <module>twitter-emulation-spring-boot-react-server</module>
-<!--        <module>twitter-emulation-spring-boot-react-web</module>-->
+        <module>twitter-emulation-spring-boot-react-web</module>
     </modules>
 
     <build>
