@@ -11,11 +11,11 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^13.2.6",
+    "@angular/animations": "^13.3.0",
     "@angular/common": "^13.2.6",
-    "@angular/compiler": "^13.2.0",
+    "@angular/compiler": "^13.3.0",
     "@angular/core": "^13.2.6",
-    "@angular/forms": "^13.2.6",
+    "@angular/forms": "^13.3.0",
     "@angular/platform-browser": "^13.2.6",
     "@angular/platform-browser-dynamic": "^13.3.0",
     "@angular/router": "^13.2.6",
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.3.0",
-    "@angular/cli": "^13.2.6",
+    "@angular/cli": "^13.3.0",
     "@angular/compiler-cli": "^13.3.0",
     "@angular/language-service": "^13.3.0",
     "@types/jasmine": "^4.0.0",
