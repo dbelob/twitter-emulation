@@ -8,9 +8,12 @@
     <name>TwitterEmulation Parent</name>
 
     <properties>
+        <app.finalName>twitter-emulation</app.finalName>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.javaVersion>17</project.build.javaVersion>
 
+        <assembly.plugin.version>3.3.0</assembly.plugin.version>
         <clean.plugin.version>3.1.0</clean.plugin.version>
         <compiler.plugin.version>3.10.1</compiler.plugin.version>
         <frontend.plugin.version>1.12.1</frontend.plugin.version>
@@ -64,6 +67,7 @@
         <module>twitter-emulation-spring-boot-admin</module>
         <module>twitter-emulation-spring-boot-react-server</module>
         <module>twitter-emulation-spring-boot-react-web</module>
+        <module>twitter-emulation-distrib</module>
     </modules>
 
     <build>
