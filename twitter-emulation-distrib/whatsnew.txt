@@ -1,0 +1,4 @@
+Twitter Emulation
+
+Version 1.0.0 - July 9, 2020
+* First release.
