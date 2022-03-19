@@ -156,7 +156,7 @@ in several ways:
 
 1. Run:
 
-    `runme.bat` (*Windows*)
+    `runme.bat` (*Windows*)  
     `runme.sh` (*macOS* or *Linux*)
 
 1. Access the running web application at:
