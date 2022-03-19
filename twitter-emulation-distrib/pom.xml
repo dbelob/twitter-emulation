@@ -12,6 +12,11 @@
     <packaging>pom</packaging>
     <name>TwitterEmulation Distribution</name>
 
+    <properties>
+        <angular-app.finalName>${app.finalName}-angular</angular-app.finalName>
+        <react-app.finalName>${app.finalName}-react</react-app.finalName>
+    </properties>
+
     <build>
         <finalName>${app.finalName}-${project.version}</finalName>
         <plugins>
@@ -21,20 +26,37 @@
                 <version>${assembly.plugin.version}</version>
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
-                    <finalName>${app.finalName}-${project.version}</finalName>
-                    <descriptors>
-                        <descriptor>assembly.xml</descriptor>
-                    </descriptors>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>make-assembly</id>
+                        <id>make-assembly-angular</id>
                         <!-- This is used for inheritance merges -->
                         <phase>package</phase>
                         <!-- Append to the packaging phase. -->
                         <goals>
                             <goal>single</goal>
                         </goals>
+                        <configuration>
+                            <finalName>${angular-app.finalName}-${project.version}</finalName>
+                            <descriptors>
+                                <descriptor>assembly-angular.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>make-assembly-react</id>
+                        <!-- This is used for inheritance merges -->
+                        <phase>package</phase>
+                        <!-- Append to the packaging phase. -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>${react-app.finalName}-${project.version}</finalName>
+                            <descriptors>
+                                <descriptor>assembly-react.xml</descriptor>
+                            </descriptors>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

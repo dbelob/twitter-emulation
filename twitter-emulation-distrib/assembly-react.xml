@@ -4,7 +4,7 @@
         <format>zip</format>
     </formats>
     <includeBaseDirectory>true</includeBaseDirectory>
-    <baseDirectory>${app.finalName}-${project.version}</baseDirectory>
+    <baseDirectory>${react-app.finalName}-${project.version}</baseDirectory>
     <dependencySets>
         <dependencySet>
             <unpack>false</unpack>
@@ -12,7 +12,7 @@
             <outputFileNameMapping>${artifact.build.finalName}.${artifact.extension}</outputFileNameMapping>
             <useProjectArtifact>false</useProjectArtifact>
             <includes>
-                <include>acme.twitter-emulation:twitter-emulation-spring-boot-angular-server</include>
+                <include>acme.twitter-emulation:twitter-emulation-spring-boot-react-server</include>
             </includes>
         </dependencySet>
     </dependencySets>
