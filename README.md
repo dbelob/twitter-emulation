@@ -132,6 +132,39 @@ in several ways:
 
 1. Log in with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
 
+#### Method 3
+
+1. From the command line with *Maven* (in the root directory):
+
+    `mvn clean package -DskipTests`
+
+1. Change directory:
+
+    `cd twitter-emulation-distrib/target`
+
+1. Find distribution file:
+
+    `twitter-emulation-angular-<version>.zip`
+
+1. Extract files from ZIP, for example:
+
+    `unzip twitter-emulation-angular-<version>.zip`
+
+1. Change directory:
+
+    `cd twitter-emulation-angular-<version>`
+
+1. Run:
+
+    `runme.bat` (*Windows*)
+    `runme.sh` (*macOS* or *Linux*)
+
+1. Access the running web application at:
+
+    http://localhost:8080
+
+1. Log in with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
+
 ## Monitoring
 
 1. Change directory:
