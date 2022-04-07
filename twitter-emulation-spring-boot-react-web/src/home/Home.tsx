@@ -10,10 +10,6 @@ export interface HomeState {
 }
 
 export default class Home extends Component<HomeProps, HomeState> {
-    constructor(props: HomeProps) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="container p-0">

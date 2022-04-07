@@ -8,10 +8,6 @@ export interface AccountState {
 }
 
 export default class Account extends Component<AccountProps, AccountState> {
-    constructor(props: AccountProps) {
-        super(props);
-    }
-
     render() {
         return (
             <Home>
