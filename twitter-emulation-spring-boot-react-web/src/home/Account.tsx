@@ -1,4 +1,5 @@
 import { Component } from "react";
+import Home from "./Home";
 
 export interface AccountProps {
 }
@@ -13,7 +14,9 @@ export default class Account extends Component<AccountProps, AccountState> {
 
     render() {
         return (
-            <div>Account</div>
+            <Home>
+                <div>Account</div>
+            </Home>
         );
     }
 }

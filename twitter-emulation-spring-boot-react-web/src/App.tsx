@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, Route, Routes } from "react-router-dom";
 import './App.css';
-import Account from "./Account";
+import Account from "./home/Account";
 
 function App() {
     return (
