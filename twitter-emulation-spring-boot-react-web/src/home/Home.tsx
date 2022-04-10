@@ -1,13 +1,13 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import AccountInfo from "./AccountInfo";
 import Follow from "./Follow";
 import TopBar from "./TopBar";
 
-export interface HomeProps {
-}
+type HomeProps = {
+    children: React.ReactNode;
+};
 
-export interface HomeState {
-}
+type HomeState = {};
 
 export default class Home extends Component<HomeProps, HomeState> {
     render() {

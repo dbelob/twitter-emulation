@@ -1,10 +1,8 @@
 import { Component } from "react";
 
-export interface AccountInfoProps {
-}
+type AccountInfoProps = {};
 
-export interface AccountInfoState {
-}
+type AccountInfoState = {};
 
 export default class AccountInfo extends Component<AccountInfoProps, AccountInfoState> {
     render() {

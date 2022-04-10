@@ -1,10 +1,8 @@
 import { Component } from "react";
 
-export interface FollowProps {
-}
+type FollowProps = {};
 
-export interface FollowState {
-}
+type FollowState = {};
 
 export default class Follow extends Component<FollowProps, FollowState> {
     render() {
