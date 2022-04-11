@@ -12,7 +12,7 @@ export class TopBarComponent {
   @Input('userState')
   userState: UserState;
 
-  private searchText: string;
+  public searchText: string;
 
   constructor(private authenticationService: AuthenticationService, private router: Router) {
   }

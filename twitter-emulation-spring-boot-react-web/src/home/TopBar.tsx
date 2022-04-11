@@ -18,7 +18,12 @@ export default class TopBar extends Component<TopBarProps, TopBarState> {
                     <Link to="/account/show" className="btn btn-link m-0" role="button">Main</Link>
                 </div>
                 <div className="col-6 p-1">
-                    Search accounts...
+                    <div className="input-group mt-1">
+                        <input type="search" className="form-control" id="searchText" name="searchText" placeholder="Search accounts..."/>
+                        <div className="input-group-append">
+                            <button className="btn btn-primary">Search</button>
+                        </div>
+                    </div>
                 </div>
                 <div className="col-3 p-1">
                     <Link to="/tweet">
