@@ -3,7 +3,7 @@
 
     <groupId>acme.twitter-emulation</groupId>
     <artifactId>twitter-emulation-parent</artifactId>
-    <version>1.0.606-SNAPSHOT</version>
+    <version>1.0.609-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>TwitterEmulation Parent</name>
 
@@ -32,9 +32,9 @@
         <javax.el-api.version>3.0.0</javax.el-api.version>
         <jstl.version>1.2</jstl.version>
         <ojdbc8.version>21.5.0.0</ojdbc8.version>
-        <spring-boot.version>2.6.6</spring-boot.version>
+        <spring-boot.version>2.6.7</spring-boot.version>
         <spring-boot-admin.version>2.6.6</spring-boot-admin.version>
-        <springdoc-openapi.version>1.6.7</springdoc-openapi.version>
+        <springdoc-openapi.version>1.6.8</springdoc-openapi.version>
         <testcontainers.version>1.17.1</testcontainers.version>
 
         <sonar.coverage.exclusions>
