@@ -1,28 +1,43 @@
-import React, { Component } from 'react';
-import { format } from 'date-fns'
+import { Component } from 'react';
 import { Tweet } from '../common/Tweet';
-import { Link } from "react-router-dom";
+import Home from "./Home";
+import TweetList from "./TweetList";
 
-type TweetsProps = {
+type TweetsProps = {};
+
+type TweetsState = {
     tweets: Tweet[];
 };
 
-type TweetsState = {};
-
 export default class Tweets extends Component<TweetsProps, TweetsState> {
+    constructor(props: TweetsProps) {
+        super(props);
+
+        // TODO: change
+        this.state = {
+            tweets: [
+                new Tweet(
+                    0,
+                    'jsmith',
+                    'John Smith',
+                    'Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.',
+                    new Date('2022-04-22T19:15:59')),
+                new Tweet
+                (
+                    1,
+                    'jsmith',
+                    'John Smith',
+                    'Duo suas molestiae ea, ex sit rebum voluptua. Graeci mandamus ad mei, harum rationibus qui at. Ut vel fabellas deserunt senserit.',
+                    new Date('2022-04-22T17:45:25'))
+            ]
+        };
+    }
+
     render() {
         return (
-            this.props.tweets.map(tweet =>
-                <div className="card m-0 p-1 bg-light">
-                    <h6>
-                        <Link to={`/account/show/${tweet.username}`} className="fw-bold">{tweet.description}</Link> @{tweet.username}
-                        <span className="badge rounded-pill bg-primary float-end">
-                            {(tweet.date) ? format(tweet.date, 'dd.MM.yyyy HH:mm:ss') : null}
-                        </span>
-                    </h6>
-                    <div className="card-text bg-white p-1">{tweet.text}</div>
-                </div>
-            )
+            <Home>
+                <TweetList title={'Tweets'} tweets={this.state.tweets}/>
+            </Home>
         );
     }
 }
