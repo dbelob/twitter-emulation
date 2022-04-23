@@ -11,7 +11,7 @@ import { ValidationService } from "../../shared/services/validation.service";
 })
 export class RegistrationComponent {
   public formSubmitted: boolean = false;
-  public credentials = {username: '', password: '', passwordConfirmation: '', description: ''};
+  public credentials = {id: undefined, username: '', password: '', passwordConfirmation: '', description: ''};
 
   constructor(private accountService: AccountService, private validationService: ValidationService, private router: Router) {
   }
@@ -22,6 +22,7 @@ export class RegistrationComponent {
     if (form.valid) {
       this.accountService.addAccount(
         new Account(
+          this.credentials.id,
           this.credentials.username,
           this.credentials.password,
           this.credentials.description))

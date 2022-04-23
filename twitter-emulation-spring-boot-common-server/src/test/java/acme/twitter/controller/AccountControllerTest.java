@@ -104,7 +104,7 @@ class AccountControllerTest {
 
     @Test
     void whenPostAccount_thenCreateAccount() throws Exception {
-        AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
+        AccountDto jsmith = new AccountDto(0, "jsmith", "password", "John Smith");
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         mvc.perform(post("/api/account/accounts")
@@ -133,7 +133,7 @@ class AccountControllerTest {
         @ParameterizedTest
         @MethodSource("data")
         void replaceAccount(String username, String principalUsername, Class<Exception> expectedException) throws Exception {
-            AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
+            AccountDto jsmith = new AccountDto(0, "jsmith", "password", "John Smith");
             CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
             MockHttpServletRequestBuilder requestBuilder = put(String.format("/api/account/accounts/%s", username))
