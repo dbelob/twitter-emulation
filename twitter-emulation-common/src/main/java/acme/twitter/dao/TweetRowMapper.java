@@ -27,7 +27,9 @@ public class TweetRowMapper implements RowMapper<Tweet> {
                         resultSet.getString("password"),
                         resultSet.getString("description"));
 
-        return new Tweet(tweetAccount,
+        return new Tweet(
+                resultSet.getLong("tweet_id"),
+                tweetAccount,
                 resultSet.getString("text"),
                 resultSet.getTimestamp("time"));
     }

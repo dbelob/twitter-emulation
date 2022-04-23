@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Service
 public class FollowerServiceImpl implements FollowerService {
-    private FollowerDao followerDao;
+    private final FollowerDao followerDao;
 
     @Autowired
     public FollowerServiceImpl(FollowerDao followerDao) {

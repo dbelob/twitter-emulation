@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Service
 public class TweetServiceImpl implements TweetService {
-    private TweetDao tweetDao;
+    private final TweetDao tweetDao;
 
     @Autowired
     public TweetServiceImpl(TweetDao tweetDao) {

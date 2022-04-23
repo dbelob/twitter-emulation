@@ -17,9 +17,9 @@ import java.util.List;
  */
 @Service
 public class AccountServiceImpl implements AccountService {
-    private AccountDao accountDao;
-    private TweetDao tweetDao;
-    private FollowerDao followerDao;
+    private final AccountDao accountDao;
+    private final TweetDao tweetDao;
+    private final FollowerDao followerDao;
 
     @Autowired
     public AccountServiceImpl(AccountDao accountDao, TweetDao tweetDao, FollowerDao followerDao) {
