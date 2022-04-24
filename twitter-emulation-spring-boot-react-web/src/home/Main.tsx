@@ -3,14 +3,14 @@ import Home from "./Home";
 import TweetList from './TweetList';
 import { Tweet } from '../common/Tweet';
 
-type AccountProps = {};
+type MainProps = {};
 
-type AccountState = {
+type MainState = {
     tweets: Tweet[];
 };
 
-export default class Account extends Component<AccountProps, AccountState> {
-    constructor(props: AccountProps) {
+export default class Main extends Component<MainProps, MainState> {
+    constructor(props: MainProps) {
         super(props);
 
         // TODO: change
