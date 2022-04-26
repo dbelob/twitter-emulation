@@ -1,15 +1,18 @@
 import { Component } from 'react';
-import Home from "./Home";
+import Home from './Home';
 import TweetList from './TweetList';
 import { Tweet } from '../common/Tweet';
+import ReactUtils from '../common/ReactUtils';
 
-type MainProps = {};
+type MainProps = {
+    params: any;
+};
 
 type MainState = {
     tweets: Tweet[];
 };
 
-export default class Main extends Component<MainProps, MainState> {
+class Main extends Component<MainProps, MainState> {
     constructor(props: MainProps) {
         super(props);
 
@@ -38,6 +41,17 @@ export default class Main extends Component<MainProps, MainState> {
         };
     }
 
+    componentDidMount() {
+        let {user} = this.props.params;
+        this.fetchData(user);
+
+        console.log('user: ' + user);
+    }
+
+    fetchData = (user: string | undefined) => {
+        // TODO: implement
+    };
+
     render() {
         return (
             <Home>
@@ -46,3 +60,5 @@ export default class Main extends Component<MainProps, MainState> {
         );
     }
 }
+
+export default ReactUtils.withParams(Main);
