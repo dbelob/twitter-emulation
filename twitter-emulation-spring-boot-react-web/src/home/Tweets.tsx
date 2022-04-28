@@ -2,35 +2,36 @@ import { Component } from 'react';
 import { Tweet } from '../common/Tweet';
 import Home from "./Home";
 import TweetList from "./TweetList";
+import { TweetDataSource } from "../common/TweetDataSource";
+import ReactUtils from "../common/ReactUtils";
 
-type TweetsProps = {};
+type TweetsProps = {
+    params: any;
+};
 
 type TweetsState = {
     tweets: Tweet[];
 };
 
-export default class Tweets extends Component<TweetsProps, TweetsState> {
+class Tweets extends Component<TweetsProps, TweetsState> {
+    private dataSource;
+
     constructor(props: TweetsProps) {
         super(props);
 
-        // TODO: change
+        this.dataSource = new TweetDataSource();
         this.state = {
-            tweets: [
-                new Tweet(
-                    0,
-                    'jsmith',
-                    'John Smith',
-                    'Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.',
-                    new Date('2022-04-22T19:15:59')),
-                new Tweet
-                (
-                    1,
-                    'jsmith',
-                    'John Smith',
-                    'Duo suas molestiae ea, ex sit rebum voluptua. Graeci mandamus ad mei, harum rationibus qui at. Ut vel fabellas deserunt senserit.',
-                    new Date('2022-04-22T17:45:25'))
-            ]
+            tweets: []
         };
+    }
+
+    componentDidMount() {
+        let {user} = this.props.params;
+
+        this.dataSource.getTweets(user)
+            .subscribe(response => {
+                this.setState({tweets: response.data});
+            });
     }
 
     render() {
@@ -41,3 +42,5 @@ export default class Tweets extends Component<TweetsProps, TweetsState> {
         );
     }
 }
+
+export default ReactUtils.withParams(Tweets);
