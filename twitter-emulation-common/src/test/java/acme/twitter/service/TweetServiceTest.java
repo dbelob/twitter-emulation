@@ -46,13 +46,13 @@ class TweetServiceTest {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         Account jdoe = new Account(2, "jdoe", "password", "John Doe");
 
-        Tweet jsmithTweet0 = new Tweet(jsmith, "Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.", new Date());
-        Tweet jsmithTweet1 = new Tweet(jsmith, "Duo suas molestiae ea, ex sit rebum voluptua. Graeci mandamus ad mei, harum rationibus qui at. Ut vel fabellas deserunt senserit.", new Date());
-        Tweet jsmithTweet2 = new Tweet(jsmith, "Vel eros vero cu, at vis animal ceteros. Veritus invidunt postulant qui ne. Mel latine patrioque necessitatibus id, ius ne adhuc maluisset.", new Date());
-        Tweet jsmithTweet3 = new Tweet(jsmith, "No per viderer invidunt consequat, vix ei probo oratio luptatum, quo stet graece an. Has in nemore partiendo.", new Date());
-        Tweet jsmithTweet4 = new Tweet(jsmith, "Decore ocurreret te vis, eligendi scaevola no vel. Brute hendrerit duo ne. Molestie percipitur adversarium quo ut.", new Date());
-        Tweet jsmithTweet5 = new Tweet(jsmith, "At nobis voluptaria sed, quo at eius laudem gloriatur, ne sapientem salutandi pro. Erat quaeque electram vim at.", new Date());
-        Tweet jdoeTweet0 = new Tweet(jdoe, "Some people care too much. I think it's called love.", new Date());
+        Tweet jsmithTweet0 = new Tweet(0, jsmith, "Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.", new Date());
+        Tweet jsmithTweet1 = new Tweet(1, jsmith, "Duo suas molestiae ea, ex sit rebum voluptua. Graeci mandamus ad mei, harum rationibus qui at. Ut vel fabellas deserunt senserit.", new Date());
+        Tweet jsmithTweet2 = new Tweet(2, jsmith, "Vel eros vero cu, at vis animal ceteros. Veritus invidunt postulant qui ne. Mel latine patrioque necessitatibus id, ius ne adhuc maluisset.", new Date());
+        Tweet jsmithTweet3 = new Tweet(3, jsmith, "No per viderer invidunt consequat, vix ei probo oratio luptatum, quo stet graece an. Has in nemore partiendo.", new Date());
+        Tweet jsmithTweet4 = new Tweet(4, jsmith, "Decore ocurreret te vis, eligendi scaevola no vel. Brute hendrerit duo ne. Molestie percipitur adversarium quo ut.", new Date());
+        Tweet jsmithTweet5 = new Tweet(5, jsmith, "At nobis voluptaria sed, quo at eius laudem gloriatur, ne sapientem salutandi pro. Erat quaeque electram vim at.", new Date());
+        Tweet jdoeTweet0 = new Tweet(6, jdoe, "Some people care too much. I think it's called love.", new Date());
 
         Mockito.when(tweetDao.findByAccount(jsmith)).thenReturn(Arrays.asList(jsmithTweet0, jsmithTweet1, jsmithTweet2, jsmithTweet3, jsmithTweet4, jsmithTweet5));
         Mockito.when(tweetDao.findTimelineByAccount(jsmith)).thenReturn(Arrays.asList(jdoeTweet0, jsmithTweet0, jsmithTweet1));

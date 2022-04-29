@@ -59,7 +59,7 @@ class AccountControllerIntegrationTest {
 
     @Test
     void whenPostAccount_thenCreateAccount() throws Exception {
-        AccountDto jsmith = new AccountDto("user", "password", "User");
+        AccountDto jsmith = new AccountDto(0, "user", "password", "User");
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         mvc.perform(post("/api/account/accounts")
@@ -73,7 +73,7 @@ class AccountControllerIntegrationTest {
 
     @Test
     void whenPutAccount_thenUpdateAccount() throws Exception {
-        AccountDto jsmith = new AccountDto("jsmith", "password", "John Smith");
+        AccountDto jsmith = new AccountDto(0, "jsmith", "password", "John Smith");
         CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         mvc.perform(put("/api/account/accounts/jsmith")

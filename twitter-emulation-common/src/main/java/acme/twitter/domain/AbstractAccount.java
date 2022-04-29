@@ -3,14 +3,24 @@ package acme.twitter.domain;
 import java.util.Objects;
 
 public abstract class AbstractAccount {
+    private long id;
     private String username;
     private String password;
     private String description;
 
-    protected AbstractAccount(String username, String password, String description) {
+    protected AbstractAccount(long id, String username, String password, String description) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.description = description;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -40,13 +50,12 @@ public abstract class AbstractAccount {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AbstractAccount account = (AbstractAccount) o;
-        return Objects.equals(username, account.username);
+        if (!(o instanceof AbstractAccount that)) return false;
+        return getId() == that.getId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username);
+        return Objects.hash(getId());
     }
 }

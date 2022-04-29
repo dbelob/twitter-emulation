@@ -8,10 +8,11 @@ import java.util.List;
 /**
  * Tweet DTO.
  */
-public record TweetDto(String username, String description, String text, Date date) {
+public record TweetDto(long id, String username, String description, String text, Date date) {
     public static List<TweetDto> convertToDto(List<Tweet> tweets) {
         return tweets.stream()
                 .map(t -> new TweetDto(
+                        t.getId(),
                         t.getAccount().getUsername(),
                         t.getAccount().getDescription(),
                         t.getText(),

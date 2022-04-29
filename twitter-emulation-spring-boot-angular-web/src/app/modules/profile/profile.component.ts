@@ -13,7 +13,7 @@ import { User } from "../../shared/models/user.model";
 })
 export class ProfileComponent {
   public formSubmitted: boolean = false;
-  public credentials = {username: '', password: '', passwordConfirmation: '', description: ''};
+  public credentials = {id: undefined, username: '', password: '', passwordConfirmation: '', description: ''};
   private user: User = new User();
 
   constructor(private authenticationService: AuthenticationService, private accountService: AccountService, private validationService: ValidationService, private router: Router) {
@@ -23,6 +23,7 @@ export class ProfileComponent {
 
         accountService.getAccount(this.user.name)
           .subscribe(data => {
+            this.credentials.id = data.id;
             this.credentials.username = data.username;
             this.credentials.password = data.password;
             this.credentials.passwordConfirmation = data.password;
@@ -38,6 +39,7 @@ export class ProfileComponent {
       this.accountService.saveAccount(
         this.user.name,
         new Account(
+          this.credentials.id,
           this.credentials.username,
           this.credentials.password,
           this.credentials.description))

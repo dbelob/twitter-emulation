@@ -38,7 +38,7 @@ public class AccountController {
         Account account = accountService.findByUsername(username);
         String password = ((principal != null) && username.equals(principal.getName())) ? account.getPassword() : null;
 
-        return new AccountDto(account.getUsername(), password, account.getDescription());
+        return new AccountDto(account.getId(), account.getUsername(), password, account.getDescription());
     }
 
     @PostMapping("/accounts")

@@ -10,20 +10,20 @@ import java.util.List;
  */
 public class AccountDto extends AbstractAccount {
     public AccountDto() {
-        super(null, null, null);
+        super(0, null, null, null);
     }
 
-    public AccountDto(String username, String password, String description) {
-        super(username, password, description);
+    public AccountDto(long id, String username, String password, String description) {
+        super(id, username, password, description);
     }
 
-    public AccountDto(String username, String description) {
-        super(username, null, description);
+    public AccountDto(long id, String username, String description) {
+        super(id, username, null, description);
     }
 
     public static List<AccountDto> convertToDto(List<Account> accounts) {
         return accounts.stream()
-                .map(a -> new AccountDto(a.getUsername(), a.getDescription()))
+                .map(a -> new AccountDto(a.getId(), a.getUsername(), a.getDescription()))
                 .toList();
     }
 }
