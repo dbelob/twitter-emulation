@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { resolve } from 'inversify-react';
 import Home from './Home';
 import TweetList from './TweetList';
 import { Tweet } from '../common/Tweet';
@@ -14,12 +15,12 @@ type MainState = {
 };
 
 class Main extends Component<MainProps, MainState> {
-    private dataSource;
+    @resolve(TweetDataSource)
+    private readonly dataSource!: TweetDataSource;
 
     constructor(props: MainProps) {
         super(props);
 
-        this.dataSource = new TweetDataSource();
         this.state = {
             tweets: []
         };

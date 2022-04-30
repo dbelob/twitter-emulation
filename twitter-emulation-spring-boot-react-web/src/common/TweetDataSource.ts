@@ -1,8 +1,10 @@
 import { Axios, AxiosObservable } from 'axios-observable';
 import dateTransformer from 'axios-date-reviver'
 import { catchError } from 'rxjs';
+import { injectable } from 'inversify';
 import { Tweet } from './Tweet';
 
+@injectable()
 export class TweetDataSource {
     private baseUrl = '/api/tweet';
 
