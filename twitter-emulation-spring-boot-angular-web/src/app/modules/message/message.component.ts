@@ -7,7 +7,7 @@ import { Message } from "./message.model";
   templateUrl: "message.component.html",
 })
 export class MessageComponent {
-  private lastMessage: Message;
+  public lastMessage: Message;
   @Input() private autoHide = false;
   @Input() private hidingTime = 10;
 

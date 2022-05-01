@@ -2,11 +2,16 @@ import { Axios, AxiosObservable } from 'axios-observable';
 import dateTransformer from 'axios-date-reviver'
 import { catchError } from 'rxjs';
 import { injectable } from 'inversify';
+import { resolve } from 'inversify-react';
 import { Tweet } from './Tweet';
+import { MessageService } from './MessageService';
 
 @injectable()
 export class TweetDataSource {
-    private baseUrl = '/api/tweet';
+    private readonly baseUrl = '/api/tweet';
+
+    @resolve(MessageService)
+    private readonly messageService!: MessageService;
 
     constructor() {
         Axios.defaults.transformResponse = [dateTransformer]
@@ -16,9 +21,7 @@ export class TweetDataSource {
         return Axios.get(`${this.baseUrl}/tweets/${username}`)
             .pipe(
                 catchError((response: Response) => {
-                    // TODO: use messageService
-                    console.log('getTweets error, response: ' + JSON.stringify(response));
-                    // this.messageService.reportMessage(response);
+                    this.messageService.reportMessage(response);
                     throw response;
                 })
             );
@@ -28,9 +31,7 @@ export class TweetDataSource {
         return Axios.get(`${this.baseUrl}/timeline`)
             .pipe(
                 catchError((response: Response) => {
-                    // TODO: use messageService
-                    console.log('getTimeline error, response: ' + JSON.stringify(response));
-                    // this.messageService.reportMessage(response);
+                    this.messageService.reportMessage(response);
                     throw response;
                 })
             );

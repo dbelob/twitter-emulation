@@ -7,9 +7,11 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';
+import { MessageService } from './common/MessageService';
 import { TweetDataSource } from './common/TweetDataSource';
 
 const iocContainer = new Container();
+iocContainer.bind(MessageService).toSelf().inSingletonScope();
 iocContainer.bind(TweetDataSource).toSelf().inSingletonScope();
 
 const container = document.getElementById('root');
