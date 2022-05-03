@@ -1,33 +1,38 @@
 import { Component } from 'react';
+import { resolve } from 'inversify-react';
 import Home from './Home';
+import AccountList from './AccountList';
 import { Account } from '../common/Account';
-import AccountList from "./AccountList";
+import { FollowerDataSource } from '../common/FollowerDataSource';
+import ReactUtils from '../common/ReactUtils';
 
-type FollowingProps = {};
+type FollowingProps = {
+    params: any;
+};
 
 type FollowingState = {
     accounts: Account[];
 };
 
-export default class Following extends Component<FollowingProps, FollowingState> {
+class Following extends Component<FollowingProps, FollowingState> {
+    @resolve(FollowerDataSource)
+    private readonly followerDataSource!: FollowerDataSource;
+
     constructor(props: FollowingProps) {
         super(props);
 
-        // TODO: change
         this.state = {
-            accounts: [
-                new Account(
-                    1,
-                    'jdoe',
-                    'password',
-                    'John Doe'),
-                new Account(
-                    2,
-                    'rroe',
-                    'password',
-                    'Richard Roe'),
-            ]
+            accounts: []
         };
+    }
+
+    componentDidMount() {
+        let {user} = this.props.params;
+
+        this.followerDataSource.getFollowing(user)
+            .subscribe(response => {
+                this.setState({accounts: response.data});
+            });
     }
 
     render() {
@@ -38,3 +43,5 @@ export default class Following extends Component<FollowingProps, FollowingState>
         );
     }
 }
+
+export default ReactUtils.withParams(Following);
