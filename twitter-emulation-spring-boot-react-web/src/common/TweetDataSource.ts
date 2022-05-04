@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { Axios, AxiosObservable } from 'axios-observable';
 import { catchError } from 'rxjs';
 import { inject, injectable } from 'inversify';
@@ -14,7 +15,7 @@ export class TweetDataSource {
     getTweets(username: string): AxiosObservable<Tweet[]> {
         return Axios.get(`${this.baseUrl}/tweets/${username}`)
             .pipe(
-                catchError(err => {
+                catchError((err: AxiosError) => {
                     this.messageService.reportMessage(err.response);
                     throw err;
                 })
@@ -24,7 +25,7 @@ export class TweetDataSource {
     getTimeline(): AxiosObservable<Tweet[]> {
         return Axios.get(`${this.baseUrl}/timeline`)
             .pipe(
-                catchError(err => {
+                catchError((err: AxiosError) => {
                     this.messageService.reportMessage(err.response);
                     throw err;
                 })

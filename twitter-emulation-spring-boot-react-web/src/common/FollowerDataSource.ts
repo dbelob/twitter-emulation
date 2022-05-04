@@ -1,8 +1,9 @@
+import { AxiosError } from 'axios';
 import { Axios, AxiosObservable } from 'axios-observable';
 import { catchError } from 'rxjs';
 import { inject, injectable } from 'inversify';
-import { MessageService } from './MessageService';
 import { Account } from './Account';
+import { MessageService } from './MessageService';
 
 @injectable()
 export class FollowerDataSource {
@@ -14,7 +15,7 @@ export class FollowerDataSource {
     getFollowing(username: string): AxiosObservable<Account[]> {
         return Axios.get(`${this.baseUrl}/following/${username}`)
             .pipe(
-                catchError(err => {
+                catchError((err: AxiosError) => {
                     this.messageService.reportMessage(err.response);
                     throw err;
                 })
@@ -24,7 +25,7 @@ export class FollowerDataSource {
     getFollowers(username: string): AxiosObservable<Account[]> {
         return Axios.get(`${this.baseUrl}/followers/${username}`)
             .pipe(
-                catchError(err => {
+                catchError((err: AxiosError) => {
                     this.messageService.reportMessage(err.response);
                     throw err;
                 })

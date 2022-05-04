@@ -1,4 +1,5 @@
 import { Observable, Subject } from 'rxjs';
+import { AxiosResponse } from 'axios';
 import { injectable } from 'inversify';
 import { Message } from './Message';
 
@@ -6,7 +7,7 @@ import { Message } from './Message';
 export class MessageService {
     private subject = new Subject<Message>();
 
-    reportMessage(parameter: Message | Response) {
+    reportMessage(parameter: Message | AxiosResponse | undefined) {
         let msg = (parameter instanceof Message) ?
             parameter :
             new Message(MessageService.getMessageText(parameter), new Date(), true);
@@ -18,18 +19,22 @@ export class MessageService {
         return this.subject;
     }
 
-    private static getMessageText(response: Response): string {
-        // @ts-ignore
-        let error = response['error'];
+    private static getMessageText(response?: AxiosResponse): string {
+        if (response) {
+            // @ts-ignore
+            let error = response['error'];
 
-        if (error) {
-            let customMessage = error['customMessage'];
+            if (error) {
+                let customMessage = error['customMessage'];
 
-            if (customMessage) {
-                return customMessage;
+                if (customMessage) {
+                    return customMessage;
+                }
             }
-        }
 
-        return `Network Error: ${response.statusText} (${response.status})`;
+            return `Network Error: ${response.statusText} (${response.status})`;
+        } else {
+            return 'Unknown Error';
+        }
     }
 }
