@@ -7,9 +7,17 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';
+import { FollowerDataSource } from './common/FollowerDataSource';
+import { MessageService } from './common/MessageService';
 import { TweetDataSource } from './common/TweetDataSource';
+import { Axios } from 'axios-observable';
+import dateTransformer from 'axios-date-reviver';
+
+Axios.defaults.transformResponse = [dateTransformer]
 
 const iocContainer = new Container();
+iocContainer.bind(FollowerDataSource).toSelf().inSingletonScope();
+iocContainer.bind(MessageService).toSelf().inSingletonScope();
 iocContainer.bind(TweetDataSource).toSelf().inSingletonScope();
 
 const container = document.getElementById('root');

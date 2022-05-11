@@ -16,7 +16,7 @@ type MainState = {
 
 class Main extends Component<MainProps, MainState> {
     @resolve(TweetDataSource)
-    private readonly dataSource!: TweetDataSource;
+    private readonly tweetDataSource!: TweetDataSource;
 
     constructor(props: MainProps) {
         super(props);
@@ -27,7 +27,7 @@ class Main extends Component<MainProps, MainState> {
     }
 
     componentDidMount() {
-        this.dataSource.getTimeline()
+        this.tweetDataSource.getTimeline()
             .subscribe(response => {
                 this.setState({tweets: response.data});
             });
