@@ -9,7 +9,7 @@
     "@types/jest": "^27.5.0",
     "@types/node": "^17.0.33",
     "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.3",
+    "@types/react-dom": "^18.0.4",
     "axios": "^0.27.2",
     "axios-date-reviver": "^1.0.0-beta.2",
     "axios-observable": "^1.4.0",
