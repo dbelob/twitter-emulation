@@ -57,7 +57,7 @@ public class JdbcTweetDao implements TweetDao {
     public void add(String username, String text) {
         jdbcTemplate.update(
                 "insert into tweet (account_id, text, time)" +
-                        "select account_id, ?, sysdate " +
+                        "select account_id, ?, current_timestamp " +
                         "from account " +
                         "where username = ?",
                 text, username);
