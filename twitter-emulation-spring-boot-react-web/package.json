@@ -41,7 +41,7 @@
       "no-unused-vars": [
         "error",
         {
-          "varsIgnorePattern": ["inject", "injectable", "resolve"]
+          "varsIgnorePattern": "(inject|injectable|resolve)"
         }
       ]
     }
