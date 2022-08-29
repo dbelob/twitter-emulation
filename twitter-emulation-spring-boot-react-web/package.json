@@ -36,15 +36,7 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ],
-    "rules": {
-      "no-unused-vars": [
-        "error",
-        {
-          "varsIgnorePattern": "(inject|injectable|resolve)"
-        }
-      ]
-    }
+    ]
   },
   "browserslist": {
     "production": [
