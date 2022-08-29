@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { AxiosError } from 'axios';
 import { Axios, AxiosObservable } from 'axios-observable';
 import { catchError } from 'rxjs';
@@ -6,7 +7,6 @@ import { Account } from './Account';
 import { MessageService } from './MessageService';
 
 @injectable()
-// eslint-disable-next-line no-unused-vars
 export class FollowerDataSource {
     private readonly baseUrl = '/api/follower';
 

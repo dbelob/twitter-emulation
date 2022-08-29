@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Component } from 'react';
 import { resolve } from 'inversify-react';
 import { Tweet } from '../common/Tweet';

@@ -1,10 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { Observable, Subject } from 'rxjs';
 import { AxiosResponse } from 'axios';
 import { injectable } from 'inversify';
 import { Message } from './Message';
 
 @injectable()
-// eslint-disable-next-line no-unused-vars
 export class MessageService {
     private subject = new Subject<Message>();
 
