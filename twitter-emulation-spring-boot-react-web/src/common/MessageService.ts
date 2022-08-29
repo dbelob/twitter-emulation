@@ -4,6 +4,7 @@ import { injectable } from 'inversify';
 import { Message } from './Message';
 
 @injectable()
+// eslint-disable-next-line no-unused-vars
 export class MessageService {
     private subject = new Subject<Message>();
 
