@@ -38,7 +38,12 @@
       "react-app/jest"
     ],
     "rules": {
-      "no-unused-vars": 1
+      "no-unused-vars": [
+        "error",
+        {
+          "varsIgnorePattern": "(inject|injectable|resolve)"
+        }
+      ]
     }
   },
   "browserslist": {
