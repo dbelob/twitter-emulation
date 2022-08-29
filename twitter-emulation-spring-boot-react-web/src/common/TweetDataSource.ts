@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { AxiosError } from 'axios';
 import { Axios, AxiosObservable } from 'axios-observable';
 import { catchError } from 'rxjs';

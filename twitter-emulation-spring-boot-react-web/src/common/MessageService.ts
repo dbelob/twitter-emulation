@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Observable, Subject } from 'rxjs';
 import { AxiosResponse } from 'axios';
 import { injectable } from 'inversify';

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 export class AccountStatistics {
     constructor(
         public username?: string,
