@@ -3,7 +3,7 @@
 
     <groupId>acme.twitter-emulation</groupId>
     <artifactId>twitter-emulation-parent</artifactId>
-    <version>1.0.785</version>
+    <version>1.0.785-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>TwitterEmulation Parent</name>
 
