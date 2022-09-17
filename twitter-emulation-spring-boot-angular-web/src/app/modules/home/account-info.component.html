@@ -1,12 +1,19 @@
 <div class="card p-3 bg-light">
-  <div class="row fw-bold">
-    <div class="col-12" id="description">
-      {{accountStatistics.description}}
-    </div>
-  </div>
   <div class="row">
-    <div class="col-12" id="username">
-      @{{accountStatistics.username}}
+    <div class="col">
+      <div class="row fw-bold">
+        <div class="col-12" id="description">
+          {{accountStatistics.description}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12" id="username">
+          @{{accountStatistics.username}}
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isFollowVisible()" class="col-auto">
+      <button class="btn btn-primary m-0">Follow</button>
     </div>
   </div>
   <div class="row mt-1">

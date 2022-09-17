@@ -11,4 +11,9 @@ export class AccountInfoComponent {
 
   constructor() {
   }
+
+  isFollowVisible(): boolean {
+    // TODO: implement
+    return false;
+  }
 }
