@@ -12,8 +12,9 @@
         </div>
       </div>
     </div>
-    <div *ngIf="isFollowVisible()" class="col-auto">
-      <button class="btn btn-primary m-0">Follow</button>
+    <div *ngIf="isFollowVisible()" class="col-auto" id="buttons">
+      <button *ngIf="!accountStatistics.follow" class="btn btn-primary m-0" (click)="follow()" id="follow">Follow</button>
+      <button *ngIf="accountStatistics.follow" class="btn btn-primary m-0" (click)="unfollow()" id="unfollow">Unfollow</button>
     </div>
   </div>
   <div class="row mt-1">
