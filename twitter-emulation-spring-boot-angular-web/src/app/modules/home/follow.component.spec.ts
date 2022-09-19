@@ -1,13 +1,12 @@
+import { Component, DebugElement, ViewChild } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
-import { Component, DebugElement, ViewChild } from "@angular/core";
-import { By } from "@angular/platform-browser";
-import { HttpClientModule } from "@angular/common/http";
-import { MessageService } from "../message/message.service";
-import { RouterTestingModule } from "@angular/router/testing";
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MessageService } from '../message/message.service';
 import { FollowComponent } from './follow.component';
-import { UserState } from "../../shared/models/user-state.model";
-import { AccountStatistics } from "../../shared/models/account-statistics.model";
+import { UserState } from '../../shared/models/user-state.model';
+import { AccountStatistics } from '../../shared/models/account-statistics.model';
 
 @Component({
   template: `
