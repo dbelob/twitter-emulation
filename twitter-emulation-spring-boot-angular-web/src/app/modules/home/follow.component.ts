@@ -37,4 +37,8 @@ export class FollowComponent {
   isFollowVisible(): boolean {
     return this.userState.isAuthenticated() && (this.userState.authenticatedUserName !== this.userState.selectedUserName);
   }
+
+  isStateVisible(): boolean {
+    return this.userState.isAuthenticated();
+  }
 }
