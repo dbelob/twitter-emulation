@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 import { UserState } from "../../shared/models/user-state.model";
 
 @Component({
-  selector: 'app-follow',
-  templateUrl: './follow.component.html'
+  selector: 'app-status-info',
+  templateUrl: './status-info.component.html'
 })
-export class FollowComponent {
+export class StatusInfoComponent {
   @Input('userState')
   userState: UserState;
 

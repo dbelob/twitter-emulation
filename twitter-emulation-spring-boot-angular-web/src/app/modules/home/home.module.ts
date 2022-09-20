@@ -5,8 +5,8 @@ import { RouterModule } from "@angular/router";
 import { Subject } from "rxjs";
 import { AccountComponent } from "./account.component";
 import { AccountInfoComponent } from "./account-info.component";
-import { FollowComponent } from "./follow.component";
 import { SearchComponent } from "./search.component";
+import { StatusInfoComponent } from "./status-info.component";
 import { TopBarComponent } from "./top-bar.component";
 import { MessageModule } from "../message/message.module";
 import { HomeComponent } from "./home.component";
@@ -22,7 +22,6 @@ import { HomeResolver } from "./home.resolver";
   declarations: [
     AccountComponent,
     AccountInfoComponent,
-    FollowComponent,
     HomeComponent,
     HomeAccountComponent,
     HomeTweetsComponent,
@@ -30,6 +29,7 @@ import { HomeResolver } from "./home.resolver";
     FollowingComponent,
     FollowersComponent,
     SearchComponent,
+    StatusInfoComponent,
     TopBarComponent
   ],
   imports: [

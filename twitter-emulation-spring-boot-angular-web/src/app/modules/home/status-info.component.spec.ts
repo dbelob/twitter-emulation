@@ -3,36 +3,36 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MessageService } from '../message/message.service';
-import { FollowComponent } from './follow.component';
+import { StatusInfoComponent } from './status-info.component';
 import { UserState } from '../../shared/models/user-state.model';
 
 @Component({
   template: `
-    <app-follow [userState]="userState"></app-follow>`
+    <app-status-info [userState]="userState"></app-status-info>`
 })
 class TestComponent {
   public userState: UserState = new UserState();
 
-  @ViewChild(FollowComponent, {static: true})
-  followComponent: FollowComponent;
+  @ViewChild(StatusInfoComponent, {static: true})
+  statusInfoComponent: StatusInfoComponent;
 }
 
-describe('FollowComponent', () => {
+describe('StatusInfoComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
-  let component: FollowComponent;
+  let component: StatusInfoComponent;
   let debugElement: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [FollowComponent, TestComponent],
+      declarations: [StatusInfoComponent, TestComponent],
       providers: [MessageService]
     }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance.followComponent;
-    debugElement = fixture.debugElement.query(By.directive(FollowComponent));
+    component = fixture.componentInstance.statusInfoComponent;
+    debugElement = fixture.debugElement.query(By.directive(StatusInfoComponent));
     fixture.detectChanges();
   });
 
