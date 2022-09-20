@@ -1,8 +1,4 @@
 <div class="card p-3 bg-light">
-  <div *ngIf="isFollowVisible()" class="row m-1" id="buttons">
-    <button *ngIf="!accountStatistics.follow" class="btn btn-primary m-0" (click)="follow()" id="follow">Follow</button>
-    <button *ngIf="accountStatistics.follow" class="btn btn-primary m-0" (click)="unfollow()" id="unfollow">Unfollow</button>
-  </div>
   <div *ngIf="isStateVisible()" class="row m-1" id="state">
     <div class="col">
       Logged in as <span class="fw-bold">{{userState.authenticatedUserName}}</span>

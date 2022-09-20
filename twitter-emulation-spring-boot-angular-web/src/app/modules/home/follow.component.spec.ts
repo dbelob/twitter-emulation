@@ -1,21 +1,17 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
 import { MessageService } from '../message/message.service';
 import { FollowComponent } from './follow.component';
 import { UserState } from '../../shared/models/user-state.model';
-import { AccountStatistics } from '../../shared/models/account-statistics.model';
 
 @Component({
   template: `
-    <app-follow [userState]="userState" [accountStatistics]="accountStatistics"></app-follow>`
+    <app-follow [userState]="userState"></app-follow>`
 })
 class TestComponent {
   public userState: UserState = new UserState();
-  public accountStatistics: AccountStatistics = new AccountStatistics();
 
   @ViewChild(FollowComponent, {static: true})
   followComponent: FollowComponent;
@@ -29,7 +25,6 @@ describe('FollowComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [FollowComponent, TestComponent],
-      imports: [HttpClientModule, RouterTestingModule],
       providers: [MessageService]
     }).compileComponents();
   }));
