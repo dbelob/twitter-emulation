@@ -1,6 +1,7 @@
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+
 import { Component, DebugElement, ViewChild } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MessageService } from '../message/message.service';
@@ -47,48 +48,21 @@ describe('FollowComponent', () => {
   it('receives the user state through input property', () => {
     expect(component.userState.authenticatedUserName).toBeUndefined();
     expect(component.userState.selectedUserName).toBeUndefined();
-    expect(component.isFollowVisible()).toBe(false);
-    expect(debugElement.query(By.css("div[id=buttons]"))).toBeNull();
+    expect(component.isStateVisible()).toBe(false);
+    expect(debugElement.query(By.css("div[id=state]"))).toBeNull();
 
     component.userState = new UserState('jsmith', 'jsmith');
     fixture.detectChanges();
     expect(component.userState.authenticatedUserName).toBe('jsmith');
     expect(component.userState.selectedUserName).toBe('jsmith');
-    expect(component.isFollowVisible()).toBe(false);
-    expect(debugElement.query(By.css("div[id=buttons]"))).toBeNull();
+    expect(component.isStateVisible()).toBe(true);
+    expect(debugElement.query(By.css("div[id=state]"))).not.toBeNull();
 
     component.userState = new UserState('jsmith', 'jdoe');
     fixture.detectChanges();
     expect(component.userState.authenticatedUserName).toBe('jsmith');
     expect(component.userState.selectedUserName).toBe('jdoe');
-    expect(component.isFollowVisible()).toBe(true);
-    expect(debugElement.query(By.css("div[id=buttons]"))).not.toBeNull();
-  });
-
-  it('receives the account statistics through input property', () => {
-    expect(component.userState.authenticatedUserName).toBeUndefined();
-    expect(component.userState.selectedUserName).toBeUndefined();
-    expect(component.accountStatistics.follow).toBeUndefined();
-    expect(debugElement.query(By.css("button[id=follow]"))).toBeNull();
-    expect(debugElement.query(By.css("button[id=unfollow]"))).toBeNull();
-
-    component.accountStatistics = new AccountStatistics(undefined, undefined, undefined, undefined, undefined, true);
-    fixture.detectChanges();
-    expect(component.accountStatistics.follow).toBe(true);
-    expect(debugElement.query(By.css("button[id=follow]"))).toBeNull();
-    expect(debugElement.query(By.css("button[id=unfollow]"))).toBeNull();
-
-    component.userState = new UserState('jsmith', 'jdoe');
-    fixture.detectChanges();
-    expect(component.userState.authenticatedUserName).toBe('jsmith');
-    expect(component.userState.selectedUserName).toBe('jdoe');
-    expect(debugElement.query(By.css("button[id=follow]"))).toBeNull();
-    expect(debugElement.query(By.css("button[id=unfollow]"))).not.toBeNull();
-
-    component.accountStatistics = new AccountStatistics(undefined, undefined, undefined, undefined, undefined, false);
-    fixture.detectChanges();
-    expect(component.accountStatistics.follow).toBe(false);
-    expect(debugElement.query(By.css("button[id=follow]"))).not.toBeNull();
-    expect(debugElement.query(By.css("button[id=unfollow]"))).toBeNull();
+    expect(component.isStateVisible()).toBe(true);
+    expect(debugElement.query(By.css("div[id=state]"))).not.toBeNull();
   });
 });

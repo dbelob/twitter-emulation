@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { Observable, Subject } from 'rxjs';
+import { MessageService } from './message.service';
 import { MessageComponent } from './message.component';
-import { MessageService } from "./message.service";
-import { Message } from "./message.model";
-import { Observable, Subject } from "rxjs";
-import { DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
+import { Message } from './message.model';
 
 class MockMessageService {
   private subject = new Subject<Message>();
