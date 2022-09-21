@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import AccountInfo from './AccountInfo';
-import Follow from './Follow';
+import StatusInfo from './StatusInfo';
 import TopBar from './TopBar';
 import MessageText from '../message/MessageText';
 import { AccountStatistics } from '../common/AccountStatistics';
+import { UserState } from "../common/UserState";
 
 type HomeProps = {
     children: React.ReactNode;
 };
 
 type HomeState = {
+    userState: UserState;
     accountStatistics: AccountStatistics;
 };
 
@@ -19,6 +21,9 @@ export default class Home extends Component<HomeProps, HomeState> {
 
         // TODO: change
         this.state = {
+            userState: new UserState(
+                'jsmith',
+                'jsmith'),
             accountStatistics: new AccountStatistics(
                 'jsmith',
                 'John Smith',
@@ -38,7 +43,7 @@ export default class Home extends Component<HomeProps, HomeState> {
                         <MessageText autoHide={true}></MessageText>
                     </div>
                 </div>
-                <TopBar/>
+                <TopBar userState={this.state.userState}/>
                 <div className="row text-black m-0">
                     <div className="col-3 p-1">
                         <AccountInfo accountStatistics={this.state.accountStatistics}/>
@@ -47,7 +52,7 @@ export default class Home extends Component<HomeProps, HomeState> {
                         {this.props.children}
                     </div>
                     <div className="col-3 p-1">
-                        <Follow/>
+                        <StatusInfo userState={this.state.userState}/>
                     </div>
                 </div>
             </div>
