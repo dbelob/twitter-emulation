@@ -12,7 +12,7 @@ export class UserState {
   }
 
   isAuthenticated(): boolean {
-    return (this.authenticatedUserName != undefined);
+    return (this.authenticatedUserName !== undefined);
   }
 }
 
