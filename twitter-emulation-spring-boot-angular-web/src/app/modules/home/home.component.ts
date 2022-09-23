@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { AccountStatistics } from "../../shared/models/account-statistics.model";
 import { AccountService } from "../../shared/services/account.service";
@@ -8,12 +8,15 @@ import { USER_STATE, UserState } from "../../shared/models/user-state.model";
   selector: 'app-home',
   templateUrl: './home.component.html'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   public userState: UserState = new UserState();
   public accountStatistics: AccountStatistics = new AccountStatistics();
 
-  constructor(protected accountService: AccountService, @Inject(USER_STATE) userStateObservable: Observable<UserState>) {
-    userStateObservable.subscribe((userState) => {
+  constructor(protected accountService: AccountService, @Inject(USER_STATE) private userStateObservable: Observable<UserState>) {
+  }
+
+  ngOnInit(): void {
+    this.userStateObservable.subscribe((userState) => {
       this.userState = userState;
       const dataUserName = userState.getDataUserName();
 
