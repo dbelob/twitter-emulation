@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { format } from 'date-fns';
-import { UserState } from '../common/UserState';
+import { UserState } from '../common/models/UserState';
 
 type StatusInfoProps = {
     userState: UserState;

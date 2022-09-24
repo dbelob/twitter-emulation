@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { resolve } from 'inversify-react';
 import { MessageService } from '../common/MessageService';
-import { Message } from '../common/Message';
+import { Message } from '../common/models/Message';
 
 type MessageTextProps = {
     autoHide: boolean;

@@ -2,18 +2,18 @@ import { AxiosError } from 'axios';
 import { Axios, AxiosObservable } from 'axios-observable';
 import { catchError } from 'rxjs';
 import { inject, injectable } from 'inversify';
-import { Account } from './Account';
-import { MessageService } from './MessageService';
+import { Tweet } from '../models/Tweet';
+import { MessageService } from '../MessageService';
 
 @injectable()
-export class FollowerDataSource {
-    private readonly baseUrl = '/api/follower';
+export class TweetDataSource {
+    private readonly baseUrl = '/api/tweet';
 
     @inject(MessageService)
     private readonly messageService!: MessageService;
 
-    getFollowing(username: string): AxiosObservable<Account[]> {
-        return Axios.get(`${this.baseUrl}/following/${username}`)
+    getTweets(username: string): AxiosObservable<Tweet[]> {
+        return Axios.get(`${this.baseUrl}/tweets/${username}`)
             .pipe(
                 catchError((err: AxiosError) => {
                     this.messageService.reportMessage(err.response);
@@ -22,8 +22,8 @@ export class FollowerDataSource {
             );
     }
 
-    getFollowers(username: string): AxiosObservable<Account[]> {
-        return Axios.get(`${this.baseUrl}/followers/${username}`)
+    getTimeline(): AxiosObservable<Tweet[]> {
+        return Axios.get(`${this.baseUrl}/timeline`)
             .pipe(
                 catchError((err: AxiosError) => {
                     this.messageService.reportMessage(err.response);

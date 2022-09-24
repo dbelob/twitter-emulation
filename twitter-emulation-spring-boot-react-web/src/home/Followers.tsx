@@ -2,8 +2,8 @@ import { Component } from 'react';
 import { resolve } from 'inversify-react';
 import Home from './Home';
 import AccountList from './AccountList';
-import { Account } from '../common/Account';
-import { FollowerDataSource } from '../common/FollowerDataSource';
+import { Account } from '../common/models/Account';
+import { FollowerDataSource } from '../common/datasources/FollowerDataSource';
 import ReactUtils from '../common/ReactUtils';
 
 type FollowersProps = {

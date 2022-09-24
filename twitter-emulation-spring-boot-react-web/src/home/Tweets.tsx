@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import { resolve } from 'inversify-react';
-import { Tweet } from '../common/Tweet';
+import { Tweet } from '../common/models/Tweet';
 import Home from './Home';
 import TweetList from './TweetList';
-import { TweetDataSource } from '../common/TweetDataSource';
+import { TweetDataSource } from '../common/datasources/TweetDataSource';
 import ReactUtils from '../common/ReactUtils';
 
 type TweetsProps = {

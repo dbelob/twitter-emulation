@@ -7,15 +7,17 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';
-import { FollowerDataSource } from './common/FollowerDataSource';
+import { FollowerDataSource } from './common/datasources/FollowerDataSource';
 import { MessageService } from './common/MessageService';
-import { TweetDataSource } from './common/TweetDataSource';
+import { TweetDataSource } from './common/datasources/TweetDataSource';
 import { Axios } from 'axios-observable';
 import dateTransformer from 'axios-date-reviver';
+import { AccountDataSource } from "./common/datasources/AccountDataSource";
 
 Axios.defaults.transformResponse = [dateTransformer]
 
 const iocContainer = new Container();
+iocContainer.bind(AccountDataSource).toSelf().inSingletonScope();
 iocContainer.bind(FollowerDataSource).toSelf().inSingletonScope();
 iocContainer.bind(MessageService).toSelf().inSingletonScope();
 iocContainer.bind(TweetDataSource).toSelf().inSingletonScope();

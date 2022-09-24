@@ -3,8 +3,10 @@ import AccountInfo from './AccountInfo';
 import StatusInfo from './StatusInfo';
 import TopBar from './TopBar';
 import MessageText from '../message/MessageText';
-import { AccountStatistics } from '../common/AccountStatistics';
-import { UserState } from "../common/UserState";
+import { AccountStatistics } from '../common/models/AccountStatistics';
+import { UserState } from '../common/models/UserState';
+import { AccountDataSource } from '../common/datasources/AccountDataSource';
+import { resolve } from "inversify-react";
 
 type HomeProps = {
     children: React.ReactNode;
@@ -16,6 +18,9 @@ type HomeState = {
 };
 
 export default class Home extends Component<HomeProps, HomeState> {
+    @resolve(AccountDataSource)
+    private readonly accountDataSource!: AccountDataSource;
+
     constructor(props: HomeProps) {
         super(props);
 
@@ -24,15 +29,19 @@ export default class Home extends Component<HomeProps, HomeState> {
             userState: new UserState(
                 'jsmith',
                 'jsmith'),
-            accountStatistics: new AccountStatistics(
-                'jsmith',
-                'John Smith',
-                6,
-                2,
-                1,
-                false
-            )
+            accountStatistics: new AccountStatistics()
         };
+    }
+
+    componentDidMount() {
+        const dataUserName = this.state.userState.getDataUserName();
+
+        if (dataUserName) {
+            this.accountDataSource.getAccountStatistics(dataUserName)
+                .subscribe(response => {
+                    this.setState({accountStatistics: response.data});
+                });
+        }
     }
 
     render() {
@@ -46,7 +55,7 @@ export default class Home extends Component<HomeProps, HomeState> {
                 <TopBar userState={this.state.userState}/>
                 <div className="row text-black m-0">
                     <div className="col-3 p-1">
-                        <AccountInfo accountStatistics={this.state.accountStatistics}/>
+                        <AccountInfo userState={this.state.userState} accountStatistics={this.state.accountStatistics}/>
                     </div>
                     <div className="col-6 p-1">
                         {this.props.children}

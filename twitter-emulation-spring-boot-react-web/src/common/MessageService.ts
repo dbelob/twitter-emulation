@@ -1,7 +1,7 @@
 import { Observable, Subject } from 'rxjs';
 import { AxiosResponse } from 'axios';
 import { injectable } from 'inversify';
-import { Message } from './Message';
+import { Message } from './models/Message';
 
 @injectable()
 export class MessageService {
