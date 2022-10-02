@@ -9,23 +9,23 @@ function useAuth() {
 }
 
 function AuthProvider({children}: { children: React.ReactNode }) {
-    let [user, setUser] = React.useState<any>(null);
+    let [username, setUsername] = React.useState<any>(null);
 
-    let signin = (newUser: string, callback: VoidFunction) => {
+    let signin = (newUsername: string, password: string, callback: VoidFunction) => {
         return fakeAuthProvider.signin(() => {
-            setUser(newUser);
+            setUsername(newUsername);
             callback();
         });
     };
 
     let signout = (callback: VoidFunction) => {
         return fakeAuthProvider.signout(() => {
-            setUser(null);
+            setUsername(null);
             callback();
         });
     };
 
-    let value = {user, signin, signout};
+    let value = {username, signin, signout};
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
