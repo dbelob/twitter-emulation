@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Account } from '../common/Account';
+import { Account } from '../common/models/Account';
 import { Link } from "react-router-dom";
 
 type AccountListProps = {

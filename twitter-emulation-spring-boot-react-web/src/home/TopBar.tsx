@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { UserState } from '../common/UserState';
+import { UserState } from '../common/models/UserState';
 
 type TopBarProps = {
     userState: UserState;

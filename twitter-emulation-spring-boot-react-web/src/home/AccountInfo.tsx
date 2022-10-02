@@ -1,8 +1,10 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { AccountStatistics } from '../common/AccountStatistics';
+import { AccountStatistics } from '../common/models/AccountStatistics';
+import { UserState } from '../common/models/UserState';
 
 type AccountInfoProps = {
+    userState: UserState;
     accountStatistics: AccountStatistics;
 };
 

@@ -2,9 +2,9 @@ import { Component } from 'react';
 import { resolve } from 'inversify-react';
 import Home from './Home';
 import TweetList from './TweetList';
-import { Tweet } from '../common/Tweet';
+import { Tweet } from '../common/models/Tweet';
 import ReactUtils from '../common/ReactUtils';
-import { TweetDataSource } from '../common/TweetDataSource';
+import { TweetDataSource } from '../common/datasources/TweetDataSource';
 
 type MainProps = {
     params: any;

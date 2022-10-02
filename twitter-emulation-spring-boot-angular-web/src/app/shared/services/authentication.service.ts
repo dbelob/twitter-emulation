@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, finalize, map } from "rxjs/operators";
-import { Observable, of } from "rxjs";
-import { MessageService } from "../../modules/message/message.service";
-import { User } from "../models/user.model";
+import { catchError, finalize, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { Buffer } from 'buffer';
+import { MessageService } from '../../modules/message/message.service';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class AuthenticationService {
@@ -15,7 +16,7 @@ export class AuthenticationService {
 
   authenticate(credentials, success?: () => void, error?: () => void): Observable<boolean> {
     const headers = new HttpHeaders(credentials ? {
-      authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
+      authorization: 'Basic ' + Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64')
     } : {});
 
     return this.http.get(`${this.baseUrl}/user`, {headers: headers})
