@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, finalize, map } from "rxjs/operators";
-import { Observable, of } from "rxjs";
-import { MessageService } from "../../modules/message/message.service";
-import { User } from "../models/user.model";
+import { catchError, finalize, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { MessageService } from '../../modules/message/message.service';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class AuthenticationService {
