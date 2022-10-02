@@ -1,5 +1,6 @@
 import { AxiosError, AxiosRequestHeaders } from 'axios';
 import { Axios } from 'axios-observable';
+import {Buffer} from 'buffer';
 import { inject, injectable } from 'inversify';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -15,7 +16,7 @@ export class AuthenticationDataSource {
 
     authenticate(credentials: any, success?: () => void, error?: () => void): Observable<boolean> {
         const headers: AxiosRequestHeaders = credentials ? {
-            authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
+            authorization: 'Basic ' + Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64')
         } : {};
 
         return Axios.get(`${this.baseUrl}/user`, {headers})

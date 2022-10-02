@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useInjection } from 'inversify-react';
 import { AuthContextType } from './AuthContextType';
 import { fakeAuthProvider } from './FakeAuthProvider';
+import { AuthenticationDataSource } from '../datasources/AuthenticationDataSource';
 
 let AuthContext = React.createContext<AuthContextType>(null!);
 
@@ -9,13 +11,14 @@ function useAuth() {
 }
 
 function AuthProvider({children}: { children: React.ReactNode }) {
-    let [username, setUsername] = React.useState<any>(null);
+    const [username, setUsername] = useState<any>(null);
+    const authenticationDataSource = useInjection(AuthenticationDataSource);
 
     let signin = (newUsername: string, password: string, callback: VoidFunction) => {
-        return fakeAuthProvider.signin(() => {
+        return authenticationDataSource.authenticate({username: newUsername, password},() => {
             setUsername(newUsername);
             callback();
-        });
+        }).subscribe();
     };
 
     let signout = (callback: VoidFunction) => {

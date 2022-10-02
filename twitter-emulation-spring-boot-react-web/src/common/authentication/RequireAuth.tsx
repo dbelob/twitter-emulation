@@ -2,8 +2,8 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './AuthProvider';
 
 function RequireAuth({children}: { children: JSX.Element }) {
-    let auth = useAuth();
-    let location = useLocation();
+    const auth = useAuth();
+    const location = useLocation();
 
     if (!auth.username) {
         // Redirect them to the /login page, but save the current location they were
