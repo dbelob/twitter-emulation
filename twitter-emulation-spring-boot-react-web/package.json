@@ -19,7 +19,7 @@
     "axios": "^0.27.2",
     "axios-date-reviver": "^1.0.0-beta.2",
     "axios-observable": "^1.5.0",
-    "bootstrap": "^5.2.1",
+    "bootstrap": "^5.2.2",
     "buffer": "^6.0.3",
     "date-fns": "^2.29.3",
     "inversify": "^6.0.1",
