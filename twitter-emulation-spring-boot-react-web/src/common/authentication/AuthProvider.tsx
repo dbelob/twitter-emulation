@@ -3,7 +3,7 @@ import { useInjection } from 'inversify-react';
 import { AuthContextType } from './AuthContextType';
 import { AuthenticationDataSource } from '../datasources/AuthenticationDataSource';
 
-let AuthContext = React.createContext<AuthContextType>(null!);
+const AuthContext = React.createContext<AuthContextType>(null!);
 
 function useAuth() {
     return React.useContext(AuthContext);
