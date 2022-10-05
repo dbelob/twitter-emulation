@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import AuthProvider from './common/authentication/AuthProvider';
 import RequireAuth from './common/authentication/RequireAuth';
+import AnonymousMain from './home/AnonymousMain';
 import Main from './home/Main';
 import Tweets from './home/Tweets';
 import Following from './home/Following';
@@ -23,7 +24,7 @@ function App() {
                 <Route path="account/register" element={<Registration/>}/>
                 <Route path="account/show/:user" element={<Main/>}/>
                 <Route path="account/show" element={
-                    <RequireAuth><Main/></RequireAuth>}/>
+                    <RequireAuth><AnonymousMain/></RequireAuth>}/>
                 <Route path="account/tweets/:user" element={<Tweets/>}/>
                 <Route path="account/following/:user" element={<Following/>}/>
                 <Route path="account/followers/:user" element={<Followers/>}/>
