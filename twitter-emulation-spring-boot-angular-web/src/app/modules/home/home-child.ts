@@ -41,5 +41,5 @@ export abstract class HomeChild {
   }
 
   getData(username: string) {
-  };
+  }
 }
