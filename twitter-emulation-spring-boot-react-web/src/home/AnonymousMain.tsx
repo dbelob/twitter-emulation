@@ -17,9 +17,7 @@ export default class AnonymousMain extends Component<AnonymousMainProps, Anonymo
     constructor(props: AnonymousMainProps) {
         super(props);
 
-        this.state = {
-            userState: undefined
-        };
+        this.state = {};
     }
 
     componentDidMount() {

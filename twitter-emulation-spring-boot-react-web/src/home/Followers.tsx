@@ -1,20 +1,26 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { resolve } from 'inversify-react';
 import Home from './Home';
 import AccountList from './AccountList';
 import { Account } from '../common/models/Account';
-import { FollowerDataSource } from '../common/datasources/FollowerDataSource';
 import ReactUtils from '../common/ReactUtils';
+import { UserState } from '../common/models/UserState';
+import { AuthenticationDataSource } from '../common/datasources/AuthenticationDataSource';
+import { FollowerDataSource } from '../common/datasources/FollowerDataSource';
 
 type FollowersProps = {
     params: any;
 };
 
 type FollowersState = {
+    userState?: UserState;
     accounts: Account[];
 };
 
 class Followers extends Component<FollowersProps, FollowersState> {
+    @resolve(AuthenticationDataSource)
+    private readonly authenticationDataSource!: AuthenticationDataSource;
+
     @resolve(FollowerDataSource)
     private readonly followerDataSource!: FollowerDataSource;
 
@@ -27,19 +33,37 @@ class Followers extends Component<FollowersProps, FollowersState> {
     }
 
     componentDidMount() {
-        let {user} = this.props.params;
+        this.authenticationDataSource.getUser()
+            .subscribe(userResponse => {
+                this.getData(userResponse.data?.name);
+            });
+    }
+
+    getData(authenticatedUserName?: string) {
+        const {user} = this.props.params;
 
         this.followerDataSource.getFollowers(user)
             .subscribe(response => {
-                this.setState({accounts: response.data});
+                this.setState({
+                    userState: new UserState(authenticatedUserName, user),
+                    accounts: response.data
+                });
             });
     }
 
     render() {
         return (
-            <Home>
-                <AccountList title={'Followers'} accounts={this.state.accounts}></AccountList>
-            </Home>
+            <>
+                {
+                    (this.state.userState) ?
+                        <Home userState={this.state.userState}>
+                            <AccountList title={'Followers'} accounts={this.state.accounts}></AccountList>
+                        </Home> :
+                        <div className="text-center">
+                            Loading...
+                        </div>
+                }
+            </>
         );
     }
 }
