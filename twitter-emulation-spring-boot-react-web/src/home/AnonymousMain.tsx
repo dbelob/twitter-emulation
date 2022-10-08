@@ -23,19 +23,12 @@ export default class AnonymousMain extends Component<AnonymousMainProps, Anonymo
     }
 
     componentDidMount() {
-        this.authenticationDataSource.authenticate(undefined, () => {
-                this.authenticationDataSource.getUser()
-                    .subscribe(response => {
-                        this.setState({
-                            userState: new UserState(response.data.name, undefined)
-                        });
-                    });
-            },
-            () => {
+        this.authenticationDataSource.getUser()
+            .subscribe(response => {
                 this.setState({
-                    userState: new UserState(undefined, undefined)
+                    userState: new UserState(response.data?.name, undefined)
                 });
-            }).subscribe();
+            });
     }
 
     render() {

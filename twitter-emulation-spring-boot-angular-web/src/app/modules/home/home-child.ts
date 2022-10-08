@@ -1,7 +1,7 @@
-import { ActivatedRoute, Router, UrlSegment } from "@angular/router";
-import { Observer } from "rxjs";
-import { AuthenticationService } from "../../shared/services/authentication.service";
-import { UserState } from "../../shared/models/user-state.model";
+import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
+import { Observer } from 'rxjs';
+import { AuthenticationService } from '../../shared/services/authentication.service';
+import { UserState } from '../../shared/models/user-state.model';
 
 export abstract class HomeChild {
   public title: string;
@@ -12,15 +12,10 @@ export abstract class HomeChild {
       const selectedUserName = params['user'];
       const url = activatedRoute.snapshot.url;
 
-      this.authenticationService.authenticate(undefined, () => {
-          this.authenticationService.getUser()
-            .subscribe(authenticatedUser => {
-              this.apply(url, authenticatedUser.name, selectedUserName);
-            });
-        },
-        () => {
-          this.apply(url, undefined, selectedUserName);
-        }).subscribe();
+      this.authenticationService.getUser()
+        .subscribe(authenticatedUser => {
+          this.apply(url, authenticatedUser?.name, selectedUserName);
+        });
     });
   }
 
