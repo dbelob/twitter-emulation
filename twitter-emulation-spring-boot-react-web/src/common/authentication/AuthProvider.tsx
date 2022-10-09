@@ -13,7 +13,7 @@ function AuthProvider({children}: { children: React.ReactNode }) {
     const [username, setUsername] = useState<any>(null);
     const authenticationDataSource = useInjection(AuthenticationDataSource);
 
-    let signin = (newUsername: string, password: string, successCallback: VoidFunction, errorCallback: VoidFunction) => {
+    const login = (newUsername: string, password: string, successCallback: VoidFunction, errorCallback: VoidFunction) => {
         return authenticationDataSource.authenticate({username: newUsername, password}, () => {
             setUsername(newUsername);
             successCallback();
@@ -22,14 +22,14 @@ function AuthProvider({children}: { children: React.ReactNode }) {
         }).subscribe();
     };
 
-    let signout = (callback: VoidFunction) => {
+    const logout = (callback: VoidFunction) => {
         return authenticationDataSource.logout(() => {
             setUsername(null);
             callback();
         });
     };
 
-    let value = {username, signin, signout};
+    const value = {username, login, logout};
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
