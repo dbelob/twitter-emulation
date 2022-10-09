@@ -9,11 +9,11 @@ import { AccountDataSource } from '../common/datasources/AccountDataSource';
 import { resolve } from "inversify-react";
 
 type HomeProps = {
+    userState: UserState;
     children: React.ReactNode;
 };
 
 type HomeState = {
-    userState: UserState;
     accountStatistics: AccountStatistics;
 };
 
@@ -26,15 +26,12 @@ export default class Home extends Component<HomeProps, HomeState> {
 
         // TODO: change
         this.state = {
-            userState: new UserState(
-                'jsmith',
-                'jsmith'),
             accountStatistics: new AccountStatistics()
         };
     }
 
     componentDidMount() {
-        const dataUserName = this.state.userState.getDataUserName();
+        const dataUserName = this.props.userState.getDataUserName();
 
         if (dataUserName) {
             this.accountDataSource.getAccountStatistics(dataUserName)
@@ -52,16 +49,16 @@ export default class Home extends Component<HomeProps, HomeState> {
                         <MessageText autoHide={true}></MessageText>
                     </div>
                 </div>
-                <TopBar userState={this.state.userState}/>
+                <TopBar userState={this.props.userState}/>
                 <div className="row text-black m-0">
                     <div className="col-3 p-1">
-                        <AccountInfo userState={this.state.userState} accountStatistics={this.state.accountStatistics}/>
+                        <AccountInfo userState={this.props.userState} accountStatistics={this.state.accountStatistics}/>
                     </div>
                     <div className="col-6 p-1">
                         {this.props.children}
                     </div>
                     <div className="col-3 p-1">
-                        <StatusInfo userState={this.state.userState}/>
+                        <StatusInfo userState={this.props.userState}/>
                     </div>
                 </div>
             </div>

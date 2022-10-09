@@ -1,20 +1,26 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { resolve } from 'inversify-react';
 import { Tweet } from '../common/models/Tweet';
 import Home from './Home';
 import TweetList from './TweetList';
-import { TweetDataSource } from '../common/datasources/TweetDataSource';
 import ReactUtils from '../common/ReactUtils';
+import { UserState } from "../common/models/UserState";
+import { TweetDataSource } from '../common/datasources/TweetDataSource';
+import { AuthenticationDataSource } from '../common/datasources/AuthenticationDataSource';
 
 type TweetsProps = {
     params: any;
 };
 
 type TweetsState = {
+    userState?: UserState;
     tweets: Tweet[];
 };
 
 class Tweets extends Component<TweetsProps, TweetsState> {
+    @resolve(AuthenticationDataSource)
+    private readonly authenticationDataSource!: AuthenticationDataSource;
+
     @resolve(TweetDataSource)
     private readonly tweetDataSource!: TweetDataSource;
 
@@ -27,19 +33,37 @@ class Tweets extends Component<TweetsProps, TweetsState> {
     }
 
     componentDidMount() {
-        let {user} = this.props.params;
+        this.authenticationDataSource.getUser()
+            .subscribe(response => {
+                this.getData(response?.name);
+            });
+    }
+
+    getData(authenticatedUserName?: string) {
+        const {user} = this.props.params;
 
         this.tweetDataSource.getTweets(user)
             .subscribe(response => {
-                this.setState({tweets: response.data});
+                this.setState({
+                    userState: new UserState(authenticatedUserName, user),
+                    tweets: response.data
+                });
             });
     }
 
     render() {
         return (
-            <Home>
-                <TweetList title={'Tweets'} tweets={this.state.tweets}/>
-            </Home>
+            <>
+                {
+                    (this.state.userState) ?
+                        <Home userState={this.state.userState}>
+                            <TweetList title={'Tweets'} tweets={this.state.tweets}/>
+                        </Home> :
+                        <div className="text-center">
+                            Loading...
+                        </div>
+                }
+            </>
         );
     }
 }

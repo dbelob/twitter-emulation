@@ -1,10 +1,11 @@
 import { AxiosError, AxiosRequestHeaders } from 'axios';
 import { Axios } from 'axios-observable';
-import {Buffer} from 'buffer';
+import { Buffer } from 'buffer';
 import { inject, injectable } from 'inversify';
-import { Observable, of } from 'rxjs';
+import { finalize, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { MessageService } from '../MessageService';
+import { User } from '../models/User';
 
 @injectable()
 export class AuthenticationDataSource {
@@ -43,6 +44,29 @@ export class AuthenticationDataSource {
                         error();
                     }
                     return of(false)
+                })
+            );
+    }
+
+    logout(callback?: () => void) {
+        Axios.post('/logout')
+            .pipe(
+                finalize(() => {
+                    this.authenticated = false;
+                    if (callback) {
+                        callback();
+                    }
+                })
+            ).subscribe();
+    }
+
+    getUser(): Observable<User> {
+        return Axios.get(`${this.baseUrl}/user`)
+            .pipe(
+                map(response => response.data),
+                catchError((err: AxiosError) => {
+                    this.messageService.reportMessage(err.response);
+                    throw err;
                 })
             );
     }

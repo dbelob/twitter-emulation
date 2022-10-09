@@ -1,12 +1,15 @@
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../common/authentication/AuthProvider';
 
 export default function Login() {
-    let navigate = useNavigate();
-    let location = useLocation();
-    let auth = useAuth();
+    const [error, setError] = useState(false);
+    const [logout, setLogout] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const auth = useAuth();
 
-    let from = location.state?.from?.pathname || "/";
+    const from = location.state?.from?.pathname || "/";
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -15,7 +18,7 @@ export default function Login() {
         let username = formData.get("username") as string;
         let password = formData.get("password") as string;
 
-        auth.signin(username, password, () => {
+        auth.login(username, password, () => {
             // Send them back to the page they tried to visit when they were
             // redirected to the login page. Use { replace: true } so we don't create
             // another entry in the history stack for the login page.  This means that
@@ -23,14 +26,25 @@ export default function Login() {
             // won't end up back on the login page, which is also really nice for the
             // user experience.
             navigate(from, {replace: true});
+        }, () => {
+            setError(true);
         });
     }
 
-    // TODO: implement
     return (
         <div className="container-dialog p-2">
             <h3 className="bg-info p-1 text-white text-center rounded">Log in</h3>
 
+            {error &&
+                <div className="alert alert-danger text-center">
+                    Failed to login.
+                </div>
+            }
+            {logout &&
+                <div className="alert alert-success text-center">
+                    You have been logged out.
+                </div>
+            }
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="username" className="form-label">Username:</label>

@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { resolve } from 'inversify-react';
 import { UserState } from '../common/models/UserState';
+import { AuthenticationDataSource } from '../common/datasources/AuthenticationDataSource';
 
 type TopBarProps = {
     userState: UserState;
@@ -9,9 +11,14 @@ type TopBarProps = {
 type TopBarState = {};
 
 export default class TopBar extends Component<TopBarProps, TopBarState> {
-    logout() {
-        //TODO: implement
-        console.log('logout()');
+    @resolve(AuthenticationDataSource)
+    private readonly authenticationDataSource!: AuthenticationDataSource;
+
+    logout = () => {
+        this.authenticationDataSource.logout(() => {
+            //TODO: implement
+            console.log('logout()');
+        });
     }
 
     render() {
