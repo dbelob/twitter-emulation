@@ -15,16 +15,16 @@ function AuthProvider({children}: { children: React.ReactNode }) {
     const [loading, setLoading] = useState(false);
     const authenticationDataSource = useInjection(AuthenticationDataSource);
 
-    const restoreUsername = async () => {
-        setLoading(true);
-
-        const user = await firstValueFrom(authenticationDataSource.getUser());
-
-        setUsername(user?.name);
-        setLoading(false);
-    }
-
     useEffect(() => {
+            const restoreUsername = async () => {
+                setLoading(true);
+
+                const user = await firstValueFrom(authenticationDataSource.getUser());
+
+                setUsername(user?.name);
+                setLoading(false);
+            };
+
             restoreUsername();
         }, []
     );
