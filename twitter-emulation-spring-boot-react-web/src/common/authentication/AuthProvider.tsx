@@ -16,18 +16,18 @@ function AuthProvider({children}: { children: React.ReactNode }) {
     const authenticationDataSource = useInjection(AuthenticationDataSource);
 
     useEffect(() => {
-            const restoreUsername = async () => {
-                setLoading(true);
+        const restoreUsername = async () => {
+            setLoading(true);
 
-                const user = await firstValueFrom(authenticationDataSource.getUser());
+            const user = await firstValueFrom(authenticationDataSource.getUser());
 
-                setUsername(user?.name);
-                setLoading(false);
-            };
+            setUsername(user?.name);
+            setLoading(false);
+        };
 
-            restoreUsername();
-        }, []
-    );
+        restoreUsername();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const login = (newUsername: string, password: string, successCallback: VoidFunction, errorCallback: VoidFunction) => {
         return authenticationDataSource.authenticate({username: newUsername, password}, () => {
