@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { firstValueFrom } from 'rxjs';
 import { useInjection } from 'inversify-react';
 import { AuthContextType } from './AuthContextType';
 import { AuthenticationDataSource } from '../datasources/AuthenticationDataSource';
@@ -11,7 +12,22 @@ function useAuth() {
 
 function AuthProvider({children}: { children: React.ReactNode }) {
     const [username, setUsername] = useState<any>(null);
+    const [loading, setLoading] = useState(false);
     const authenticationDataSource = useInjection(AuthenticationDataSource);
+
+    const restoreUsername = async () => {
+        setLoading(true);
+
+        const user = await firstValueFrom(authenticationDataSource.getUser());
+
+        setUsername(user?.name);
+        setLoading(false);
+    }
+
+    useEffect(() => {
+            restoreUsername();
+        }, []
+    );
 
     const login = (newUsername: string, password: string, successCallback: VoidFunction, errorCallback: VoidFunction) => {
         return authenticationDataSource.authenticate({username: newUsername, password}, () => {
@@ -29,7 +45,7 @@ function AuthProvider({children}: { children: React.ReactNode }) {
         });
     };
 
-    const value = {username, login, logout};
+    const value = {username, loading, login, logout};
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

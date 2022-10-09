@@ -1,5 +1,5 @@
 import { AxiosError, AxiosRequestHeaders } from 'axios';
-import { Axios, AxiosObservable } from 'axios-observable';
+import { Axios } from 'axios-observable';
 import { Buffer } from 'buffer';
 import { inject, injectable } from 'inversify';
 import { finalize, Observable, of } from 'rxjs';
@@ -60,9 +60,10 @@ export class AuthenticationDataSource {
             ).subscribe();
     }
 
-    getUser(): AxiosObservable<User> {
+    getUser(): Observable<User> {
         return Axios.get(`${this.baseUrl}/user`)
             .pipe(
+                map(response => response.data),
                 catchError((err: AxiosError) => {
                     this.messageService.reportMessage(err.response);
                     throw err;

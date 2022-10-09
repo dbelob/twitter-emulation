@@ -34,8 +34,8 @@ class Followers extends Component<FollowersProps, FollowersState> {
 
     componentDidMount() {
         this.authenticationDataSource.getUser()
-            .subscribe(userResponse => {
-                this.getData(userResponse.data?.name);
+            .subscribe(response => {
+                this.getData(response?.name);
             });
     }
 

@@ -34,8 +34,8 @@ class Main extends Component<MainProps, MainState> {
 
     componentDidMount() {
         this.authenticationDataSource.getUser()
-            .subscribe(userResponse => {
-                this.getData(userResponse.data?.name);
+            .subscribe(response => {
+                this.getData(response?.name);
             });
     }
 
