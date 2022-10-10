@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { resolve } from 'inversify-react';
 import AccountInfo from './AccountInfo';
 import StatusInfo from './StatusInfo';
 import TopBar from './TopBar';
@@ -6,14 +7,13 @@ import MessageText from '../message/MessageText';
 import { AccountStatistics } from '../common/models/AccountStatistics';
 import { UserState } from '../common/models/UserState';
 import { AccountDataSource } from '../common/datasources/AccountDataSource';
-import { resolve } from "inversify-react";
 
 type HomeProps = {
-    userState: UserState;
     children: React.ReactNode;
 };
 
 type HomeState = {
+    userState: UserState;
     accountStatistics: AccountStatistics;
 };
 
@@ -26,12 +26,13 @@ export default class Home extends Component<HomeProps, HomeState> {
 
         // TODO: change
         this.state = {
+            userState: new UserState('jsmith', 'jsmith'),
             accountStatistics: new AccountStatistics()
         };
     }
 
     componentDidMount() {
-        const dataUserName = this.props.userState.getDataUserName();
+        const dataUserName = this.state.userState.getDataUserName();
 
         if (dataUserName) {
             this.accountDataSource.getAccountStatistics(dataUserName)
@@ -49,16 +50,16 @@ export default class Home extends Component<HomeProps, HomeState> {
                         <MessageText autoHide={true}></MessageText>
                     </div>
                 </div>
-                <TopBar userState={this.props.userState}/>
+                <TopBar userState={this.state.userState}/>
                 <div className="row text-black m-0">
                     <div className="col-3 p-1">
-                        <AccountInfo userState={this.props.userState} accountStatistics={this.state.accountStatistics}/>
+                        <AccountInfo userState={this.state.userState} accountStatistics={this.state.accountStatistics}/>
                     </div>
                     <div className="col-6 p-1">
                         {this.props.children}
                     </div>
                     <div className="col-3 p-1">
-                        <StatusInfo userState={this.props.userState}/>
+                        <StatusInfo userState={this.state.userState}/>
                     </div>
                 </div>
             </div>

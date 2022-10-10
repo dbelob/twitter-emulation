@@ -50,7 +50,7 @@ export default class Search extends Component<SearchProps, SearchState> {
             <>
                 {
                     (this.state.userState) ?
-                        <Home userState={this.state.userState}>
+                        <Home>
                             <AccountList title={'Search Result'} accounts={this.state.accounts}></AccountList>
                         </Home> :
                         <div className="text-center">

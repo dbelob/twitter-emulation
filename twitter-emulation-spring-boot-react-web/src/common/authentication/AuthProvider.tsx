@@ -12,7 +12,7 @@ function useAuth() {
 
 function AuthProvider({children}: { children: React.ReactNode }) {
     const [username, setUsername] = useState<any>(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const authenticationDataSource = useInjection(AuthenticationDataSource);
 
     useEffect(() => {

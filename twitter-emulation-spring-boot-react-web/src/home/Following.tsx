@@ -56,7 +56,7 @@ class Following extends Component<FollowingProps, FollowingState> {
             <>
                 {
                     (this.state.userState) ?
-                        <Home userState={this.state.userState}>
+                        <Home>
                             <AccountList title={'Following'} accounts={this.state.accounts}></AccountList>
                         </Home> :
                         <div className="text-center">

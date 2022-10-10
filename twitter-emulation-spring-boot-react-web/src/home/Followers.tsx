@@ -56,7 +56,7 @@ class Followers extends Component<FollowersProps, FollowersState> {
             <>
                 {
                     (this.state.userState) ?
-                        <Home userState={this.state.userState}>
+                        <Home>
                             <AccountList title={'Followers'} accounts={this.state.accounts}></AccountList>
                         </Home> :
                         <div className="text-center">

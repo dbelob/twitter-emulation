@@ -1,71 +1,52 @@
-import React, { Component } from 'react';
-import { resolve } from 'inversify-react';
+import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { firstValueFrom } from 'rxjs';
+import { useInjection } from 'inversify-react';
 import Home from './Home';
 import TweetList from './TweetList';
 import { Tweet } from '../common/models/Tweet';
 import ReactUtils from '../common/ReactUtils';
-import { UserState } from '../common/models/UserState';
-import { AuthenticationDataSource } from '../common/datasources/AuthenticationDataSource';
 import { TweetDataSource } from '../common/datasources/TweetDataSource';
+import { useAuth } from '../common/authentication/AuthProvider';
+import Loading from './Loading';
 
 type MainProps = {
     params: any;
 };
 
-type MainState = {
-    userState?: UserState;
-    tweets: Tweet[];
-};
+function Main(props: MainProps) {
+    const initialTweets: Tweet[] = [];
+    const [tweets, setTweets] = useState(initialTweets);
+    const auth = useAuth();
+    const tweetDataSource = useInjection(TweetDataSource);
 
-class Main extends Component<MainProps, MainState> {
-    @resolve(AuthenticationDataSource)
-    private readonly authenticationDataSource!: AuthenticationDataSource;
+    useEffect(() => {
+        const loadTweets = async () => {
+            const tweets = await firstValueFrom(tweetDataSource.getTimeline());
 
-    @resolve(TweetDataSource)
-    private readonly tweetDataSource!: TweetDataSource;
-
-    constructor(props: MainProps) {
-        super(props);
-
-        this.state = {
-            tweets: []
+            setTweets(tweets);
         };
-    }
 
-    componentDidMount() {
-        this.authenticationDataSource.getUser()
-            .subscribe(response => {
-                this.getData(response?.name);
-            });
-    }
+        loadTweets();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    getData(authenticatedUserName?: string) {
-        const {user} = this.props.params;
+    const {user} = props.params;
 
-        this.tweetDataSource.getTimeline()
-            .subscribe(response => {
-                this.setState({
-                    userState: new UserState(authenticatedUserName, user),
-                    tweets: response.data
-                });
-            });
-    }
-
-    render() {
-        return (
-            <>
-                {
-                    (this.state.userState) ?
-                        <Home userState={this.state.userState}>
-                            <TweetList tweets={this.state.tweets}/>
-                        </Home> :
-                        <div className="text-center">
-                            Loading...
-                        </div>
-                }
-            </>
-        );
-    }
+    return (
+        <>
+            {
+                auth.loading ?
+                    <Loading/> :
+                    ((user !== auth.username) ?
+                            <Navigate to={`/account/tweets/${user}`} replace/> :
+                            <Home>
+                                <TweetList tweets={tweets}/>
+                            </Home>
+                    )
+            }
+        </>
+    );
 }
 
 export default ReactUtils.withParams(Main);

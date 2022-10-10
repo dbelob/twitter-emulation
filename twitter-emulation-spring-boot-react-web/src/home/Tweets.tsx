@@ -56,7 +56,7 @@ class Tweets extends Component<TweetsProps, TweetsState> {
             <>
                 {
                     (this.state.userState) ?
-                        <Home userState={this.state.userState}>
+                        <Home>
                             <TweetList title={'Tweets'} tweets={this.state.tweets}/>
                         </Home> :
                         <div className="text-center">
