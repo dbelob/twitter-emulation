@@ -26,7 +26,6 @@ function AuthProvider({children}: { children: React.ReactNode }) {
         };
 
         restoreUsername();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const login = (newUsername: string, password: string, successCallback: VoidFunction, errorCallback: VoidFunction) => {

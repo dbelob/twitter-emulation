@@ -15,8 +15,7 @@ type MainProps = {
 };
 
 function Main(props: MainProps) {
-    const initialTweets: Tweet[] = [];
-    const [tweets, setTweets] = useState(initialTweets);
+    const [tweets, setTweets] = useState<Tweet[]>([]);
     const auth = useAuth();
     const tweetDataSource = useInjection(TweetDataSource);
 
@@ -28,7 +27,6 @@ function Main(props: MainProps) {
         };
 
         loadTweets();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const {user} = props.params;
@@ -40,7 +38,7 @@ function Main(props: MainProps) {
                     <Loading/> :
                     ((user !== auth.username) ?
                             <Navigate to={`/account/tweets/${user}`} replace/> :
-                            <Home>
+                            <Home username={user}>
                                 <TweetList tweets={tweets}/>
                             </Home>
                     )
