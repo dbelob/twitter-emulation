@@ -1,10 +1,10 @@
+import { catchError, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AxiosError } from 'axios';
 import { Axios, AxiosObservable } from 'axios-observable';
-import { catchError, Observable } from 'rxjs';
 import { inject, injectable } from 'inversify';
 import { Tweet } from '../models/Tweet';
 import { MessageService } from '../MessageService';
-import { map } from 'rxjs/operators';
 
 @injectable()
 export class TweetDataSource {

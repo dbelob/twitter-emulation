@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { firstValueFrom } from 'rxjs';
 import { useInjection } from 'inversify-react';
-import Home from './Home';
-import TweetList from './TweetList';
+import { useAuth } from '../common/authentication/AuthProvider';
 import { Tweet } from '../common/models/Tweet';
 import ReactUtils from '../common/ReactUtils';
 import { TweetDataSource } from '../common/datasources/TweetDataSource';
-import { useAuth } from '../common/authentication/AuthProvider';
+import Home from './Home';
 import Loading from './Loading';
+import TweetList from './TweetList';
 
 type MainProps = {
     params: any;
