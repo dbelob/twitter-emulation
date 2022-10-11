@@ -2,9 +2,11 @@
   <h5 class="fw-bold">{{title}}</h5>
   <table>
     <tr *ngFor="let account of accounts">
-      <td>
-        <a class="fw-bold" [routerLink]="['/account', 'show', account.username]">{{account.description}}</a> @{{account.username}}
-      </td>
+      <tbody>
+        <td>
+          <a class="fw-bold" [routerLink]="['/account', 'show', account.username]">{{account.description}}</a> @{{account.username}}
+        </td>
+      </tbody>
     </tr>
   </table>
 </app-home>
