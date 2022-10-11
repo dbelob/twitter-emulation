@@ -17,7 +17,6 @@ type HomeProps = {
 };
 
 export default function Home(props: HomeProps) {
-    const [userState, setUserState] = useState<UserState>(new UserState());
     const [accountStatistics, setAccountStatistics] = useState<AccountStatistics>(new AccountStatistics());
     const auth = useAuth();
     const accountDataSource = useInjection(AccountDataSource);
@@ -35,7 +34,7 @@ export default function Home(props: HomeProps) {
     if (auth.loading) {
         return <Loading/>;
     } else {
-        setUserState(new UserState(auth.username, props.username));
+        const userState = new UserState(auth.username, props.username);
 
         return (
             <div className="container p-0">
