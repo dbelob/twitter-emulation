@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { BooleanParam, useQueryParam, withDefault } from 'use-query-params';
 import { useAuth } from '../common/authentication/AuthProvider';
 
 export default function Login() {
     const [error, setError] = useState(false);
-    const [logout, setLogout] = useState(false);
+    const [logout, setLogout] = useQueryParam('logout', withDefault(BooleanParam, false));
     const navigate = useNavigate();
     const location = useLocation();
     const auth = useAuth();
