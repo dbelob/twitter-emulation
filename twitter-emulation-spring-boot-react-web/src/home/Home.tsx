@@ -1,47 +1,41 @@
-import React, { Component } from 'react';
-import AccountInfo from './AccountInfo';
-import StatusInfo from './StatusInfo';
-import TopBar from './TopBar';
+import React, { useEffect, useState } from 'react';
+import { firstValueFrom } from 'rxjs';
+import { useInjection } from 'inversify-react';
 import MessageText from '../message/MessageText';
 import { AccountStatistics } from '../common/models/AccountStatistics';
 import { UserState } from '../common/models/UserState';
+import { useAuth } from '../common/authentication/AuthProvider';
 import { AccountDataSource } from '../common/datasources/AccountDataSource';
-import { resolve } from "inversify-react";
+import AccountInfo from './AccountInfo';
+import Loading from './Loading';
+import StatusInfo from './StatusInfo';
+import TopBar from './TopBar';
 
 type HomeProps = {
-    userState: UserState;
+    username: string;
     children: React.ReactNode;
 };
 
-type HomeState = {
-    accountStatistics: AccountStatistics;
-};
+export default function Home(props: HomeProps) {
+    const [accountStatistics, setAccountStatistics] = useState<AccountStatistics>(new AccountStatistics());
+    const auth = useAuth();
+    const accountDataSource = useInjection(AccountDataSource);
 
-export default class Home extends Component<HomeProps, HomeState> {
-    @resolve(AccountDataSource)
-    private readonly accountDataSource!: AccountDataSource;
+    useEffect(() => {
+        const loadAccountStatistics = async () => {
+            const accountStatistics = await firstValueFrom(accountDataSource.getAccountStatistics(props.username));
 
-    constructor(props: HomeProps) {
-        super(props);
-
-        // TODO: change
-        this.state = {
-            accountStatistics: new AccountStatistics()
+            setAccountStatistics(accountStatistics);
         };
-    }
 
-    componentDidMount() {
-        const dataUserName = this.props.userState.getDataUserName();
+        loadAccountStatistics();
+    }, []);
 
-        if (dataUserName) {
-            this.accountDataSource.getAccountStatistics(dataUserName)
-                .subscribe(response => {
-                    this.setState({accountStatistics: response.data});
-                });
-        }
-    }
+    if (auth.loading) {
+        return <Loading/>;
+    } else {
+        const userState = new UserState(auth.username, props.username);
 
-    render() {
         return (
             <div className="container p-0">
                 <div className="row m-0">
@@ -49,16 +43,16 @@ export default class Home extends Component<HomeProps, HomeState> {
                         <MessageText autoHide={true}></MessageText>
                     </div>
                 </div>
-                <TopBar userState={this.props.userState}/>
+                <TopBar userState={userState}/>
                 <div className="row text-black m-0">
                     <div className="col-3 p-1">
-                        <AccountInfo userState={this.props.userState} accountStatistics={this.state.accountStatistics}/>
+                        <AccountInfo userState={userState} accountStatistics={accountStatistics}/>
                     </div>
                     <div className="col-6 p-1">
-                        {this.props.children}
+                        {props.children}
                     </div>
                     <div className="col-3 p-1">
-                        <StatusInfo userState={this.props.userState}/>
+                        <StatusInfo userState={userState}/>
                     </div>
                 </div>
             </div>

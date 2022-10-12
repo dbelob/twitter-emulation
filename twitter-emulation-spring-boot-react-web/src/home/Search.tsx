@@ -1,63 +1,36 @@
-import React, { Component } from 'react';
-import { resolve } from 'inversify-react';
+import React, { useEffect, useState } from 'react';
+import { firstValueFrom } from 'rxjs';
+import { useInjection } from 'inversify-react';
+import { useAuth } from '../common/authentication/AuthProvider';
 import { Account } from '../common/models/Account';
 import { AccountDataSource } from '../common/datasources/AccountDataSource';
 import Home from './Home';
 import AccountList from './AccountList';
-import { UserState } from '../common/models/UserState';
-import { AuthenticationDataSource } from '../common/datasources/AuthenticationDataSource';
+import Loading from './Loading';
 
 type SearchProps = {};
 
-type SearchState = {
-    userState?: UserState;
-    accounts: Account[];
-};
+export default function Search(props: SearchProps) {
+    const [accounts, setAccounts] = useState<Account[]>([]);
+    const auth = useAuth();
+    const accountDataSource = useInjection(AccountDataSource);
 
-export default class Search extends Component<SearchProps, SearchState> {
-    @resolve(AuthenticationDataSource)
-    private readonly authenticationDataSource!: AuthenticationDataSource;
-
-    @resolve(AccountDataSource)
-    private readonly accountDataSource!: AccountDataSource;
-
-    constructor(props: SearchProps) {
-        super(props);
-
-        this.state = {
-            accounts: []
+    useEffect(() => {
+        const loadAccounts = async () => {
+            // TODO: change
+            const accounts = await firstValueFrom(accountDataSource.getAccounts(''));
         };
-    }
 
-    componentDidMount() {
-        this.authenticationDataSource.getUser()
-            .subscribe(response => {
-                this.getData(response?.name);
-            });
-    }
+        loadAccounts();
+    }, []);
 
-    getData(authenticatedUserName?: string) {
-        // TODO: implement
-        this.setState({
-            userState: new UserState(authenticatedUserName, authenticatedUserName),
-            // accounts: response.data
-        });
-    }
-
-    // TODO: implement
-    render() {
+    if (auth.loading) {
+        return <Loading/>;
+    } else {
         return (
-            <>
-                {
-                    (this.state.userState) ?
-                        <Home userState={this.state.userState}>
-                            <AccountList title={'Search Result'} accounts={this.state.accounts}></AccountList>
-                        </Home> :
-                        <div className="text-center">
-                            Loading...
-                        </div>
-                }
-            </>
+            <Home username={auth.username}>
+                <AccountList title={'Search Result'} accounts={accounts}></AccountList>
+            </Home>
         );
     }
 }

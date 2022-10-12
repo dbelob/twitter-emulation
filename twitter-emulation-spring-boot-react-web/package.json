@@ -31,6 +31,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.7",
     "typescript": "^4.8.4",
+    "use-query-params": "^2.1.1",
     "web-vitals": "^3.0.3"
   },
   "eslintConfig": {
@@ -39,7 +40,9 @@
       "react-app/jest"
     ],
     "rules": {
-      "@typescript-eslint/no-unused-vars": "off"
+      "@typescript-eslint/no-unused-vars": "off",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "off"
     }
   },
   "browserslist": {

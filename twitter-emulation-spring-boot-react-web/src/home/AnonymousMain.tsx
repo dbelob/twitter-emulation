@@ -1,45 +1,18 @@
-import React, { Component } from 'react';
-import { resolve } from 'inversify-react';
-import { UserState } from '../common/models/UserState';
-import { AuthenticationDataSource } from '../common/datasources/AuthenticationDataSource';
-import { Navigate } from "react-router-dom";
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../common/authentication/AuthProvider';
+import Loading from './Loading';
 
-type AnonymousMainProps = {}
+export default function AnonymousMain() {
+    const auth = useAuth();
 
-type AnonymousState = {
-    userState?: UserState;
-}
-
-export default class AnonymousMain extends Component<AnonymousMainProps, AnonymousState> {
-    @resolve(AuthenticationDataSource)
-    private readonly authenticationDataSource!: AuthenticationDataSource;
-
-    constructor(props: AnonymousMainProps) {
-        super(props);
-
-        this.state = {};
-    }
-
-    componentDidMount() {
-        this.authenticationDataSource.getUser()
-            .subscribe(response => {
-                this.setState({
-                    userState: new UserState(response?.name, undefined)
-                });
-            });
-    }
-
-    render() {
-        return (
-            <>
-                {
-                    (this.state.userState) ?
-                        <Navigate to={`/account/show/${this.state.userState.authenticatedUserName}`} replace/> :
-                        <div className="text-center">
-                            Loading...
-                        </div>
-                }
-            </>
-        );
-    }
+    return (
+        <>
+            {
+                auth.loading ?
+                    <Loading/> :
+                    <Navigate to={`/account/show/${auth.username}`} replace/>
+            }
+        </>
+    );
 }

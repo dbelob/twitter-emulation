@@ -15,11 +15,15 @@ export default class AccountList extends Component<AccountListProps, AccountList
             <>
                 <h5 className="fw-bold">{this.props.title}</h5>
                 <table>
-                    {this.props.accounts.map(account =>
-                        <tr>
-                            <Link to={`/account/show/${account.username}`} className="fw-bold">{account.description}</Link> @{account.username}
-                        </tr>
-                    )}
+                    <tbody>
+                        {this.props.accounts.map(account =>
+                            <tr key={account.username}>
+                                <td>
+                                    <Link to={`/account/show/${account.username}`} className="fw-bold">{account.description}</Link> @{account.username}
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
                 </table>
             </>
         );
