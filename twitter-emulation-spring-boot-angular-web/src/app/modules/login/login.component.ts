@@ -13,7 +13,7 @@ export class LoginComponent {
 
   constructor(private authenticationService: AuthenticationService, private router: Router, route: ActivatedRoute) {
     route.queryParams.subscribe(params => {
-      this.logout = params["logout"] || false;
+      this.logout = (params["logout"] === '1');
     });
   }
 
