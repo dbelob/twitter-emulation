@@ -15,7 +15,7 @@ export default function TopBar(props: TopBarProps) {
         authenticationDataSource.logout(() => {
             navigate({
                 pathname: '/login',
-                search: '?logout=true'
+                search: '?logout=1'
             });
         });
     }

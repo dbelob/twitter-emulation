@@ -20,7 +20,7 @@ export class SearchComponent extends HomeAccountComponent {
 
   getData(username: string) {
     this.activatedRoute.queryParams.subscribe(params => {
-      let searchText = params["searchText"];
+      const searchText = params["searchText"];
 
       this.accountService.getAccounts(searchText)
         .subscribe(data => {

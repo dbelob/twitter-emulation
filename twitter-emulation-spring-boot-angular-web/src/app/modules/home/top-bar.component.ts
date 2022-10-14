@@ -33,7 +33,7 @@ export class TopBarComponent {
     this.authenticationService.logout(() => {
       this.router.navigate(['/login'], {
         queryParams: {
-          "logout": true
+          "logout": 1
         }
       });
     });
