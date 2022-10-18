@@ -9,20 +9,20 @@ import { Axios } from 'axios-observable';
 import dateTransformer from 'axios-date-reviver';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';
-import { FollowerDataSource } from './common/datasources/FollowerDataSource';
+import { FollowerService } from './common/services/FollowerService';
 import { MessageService } from './message/MessageService';
-import { TweetDataSource } from './common/datasources/TweetDataSource';
-import { AccountDataSource } from './common/datasources/AccountDataSource';
-import { AuthenticationDataSource } from './common/datasources/AuthenticationDataSource';
+import { TweetService } from './common/services/TweetService';
+import { AccountService } from './common/services/AccountService';
+import { AuthenticationService } from './common/services/AuthenticationService';
 
 Axios.defaults.transformResponse = [dateTransformer]
 
 const iocContainer = new Container();
-iocContainer.bind(AccountDataSource).toSelf().inSingletonScope();
-iocContainer.bind(AuthenticationDataSource).toSelf().inSingletonScope();
-iocContainer.bind(FollowerDataSource).toSelf().inSingletonScope();
+iocContainer.bind(AccountService).toSelf().inSingletonScope();
+iocContainer.bind(AuthenticationService).toSelf().inSingletonScope();
+iocContainer.bind(FollowerService).toSelf().inSingletonScope();
 iocContainer.bind(MessageService).toSelf().inSingletonScope();
-iocContainer.bind(TweetDataSource).toSelf().inSingletonScope();
+iocContainer.bind(TweetService).toSelf().inSingletonScope();
 
 const container = document.getElementById('root');
 const root = createRoot(container!);

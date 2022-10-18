@@ -1,14 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useInjection } from 'inversify-react';
 import { UserState } from '../common/models/UserState';
-import { AuthenticationDataSource } from '../common/datasources/AuthenticationDataSource';
+import { AuthenticationService } from '../common/services/AuthenticationService';
 
 type TopBarProps = {
     userState: UserState;
 }
 
 export default function TopBar(props: TopBarProps) {
-    const authenticationDataSource = useInjection(AuthenticationDataSource);
+    const authenticationDataSource = useInjection(AuthenticationService);
     const navigate = useNavigate();
 
     function logout() {

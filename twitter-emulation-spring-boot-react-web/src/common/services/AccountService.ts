@@ -8,7 +8,7 @@ import { AccountStatistics } from '../models/AccountStatistics';
 import { MessageService } from '../../message/MessageService';
 
 @injectable()
-export class AccountDataSource {
+export class AccountService {
     private readonly baseUrl = '/api/account';
 
     @inject(MessageService)

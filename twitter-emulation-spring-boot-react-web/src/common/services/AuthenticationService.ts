@@ -8,7 +8,7 @@ import { MessageService } from '../../message/MessageService';
 import { User } from '../models/User';
 
 @injectable()
-export class AuthenticationDataSource {
+export class AuthenticationService {
     private readonly baseUrl = '/api/authentication';
     private authenticated = false;
 

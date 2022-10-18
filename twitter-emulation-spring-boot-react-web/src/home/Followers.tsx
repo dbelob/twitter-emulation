@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { resolve } from 'inversify-react';
 import ReactUtils from '../common/ReactUtils';
 import { Account } from '../common/models/Account';
-import { FollowerDataSource } from '../common/datasources/FollowerDataSource';
+import { FollowerService } from '../common/services/FollowerService';
 import AccountList from './AccountList';
 import Home from './Home';
 
@@ -15,8 +15,8 @@ type FollowersState = {
 };
 
 class Followers extends Component<FollowersProps, FollowersState> {
-    @resolve(FollowerDataSource)
-    private readonly followerDataSource!: FollowerDataSource;
+    @resolve(FollowerService)
+    private readonly followerDataSource!: FollowerService;
 
     constructor(props: FollowersProps) {
         super(props);

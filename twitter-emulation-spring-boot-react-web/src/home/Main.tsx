@@ -5,7 +5,7 @@ import { useInjection } from 'inversify-react';
 import { useAuth } from '../common/authentication/AuthProvider';
 import { Tweet } from '../common/models/Tweet';
 import ReactUtils from '../common/ReactUtils';
-import { TweetDataSource } from '../common/datasources/TweetDataSource';
+import { TweetService } from '../common/services/TweetService';
 import Home from './Home';
 import Loading from './Loading';
 import TweetList from './TweetList';
@@ -17,7 +17,7 @@ type MainProps = {
 function Main(props: MainProps) {
     const [tweets, setTweets] = useState<Tweet[]>([]);
     const auth = useAuth();
-    const tweetDataSource = useInjection(TweetDataSource);
+    const tweetDataSource = useInjection(TweetService);
 
     useEffect(() => {
         const loadTweets = async () => {

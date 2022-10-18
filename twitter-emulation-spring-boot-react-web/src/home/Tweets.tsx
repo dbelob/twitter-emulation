@@ -4,7 +4,7 @@ import { Tweet } from '../common/models/Tweet';
 import Home from './Home';
 import TweetList from './TweetList';
 import ReactUtils from '../common/ReactUtils';
-import { TweetDataSource } from '../common/datasources/TweetDataSource';
+import { TweetService } from '../common/services/TweetService';
 
 type TweetsProps = {
     params: any;
@@ -15,8 +15,8 @@ type TweetsState = {
 };
 
 class Tweets extends Component<TweetsProps, TweetsState> {
-    @resolve(TweetDataSource)
-    private readonly tweetDataSource!: TweetDataSource;
+    @resolve(TweetService)
+    private readonly tweetDataSource!: TweetService;
 
     constructor(props: TweetsProps) {
         super(props);
