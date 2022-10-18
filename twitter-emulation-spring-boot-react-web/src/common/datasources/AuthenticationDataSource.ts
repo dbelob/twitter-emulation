@@ -4,7 +4,7 @@ import { Buffer } from 'buffer';
 import { inject, injectable } from 'inversify';
 import { finalize, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { MessageService } from '../MessageService';
+import { MessageService } from '../../message/MessageService';
 import { User } from '../models/User';
 
 @injectable()

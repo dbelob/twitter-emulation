@@ -3,7 +3,7 @@ import { Axios, AxiosObservable } from 'axios-observable';
 import { catchError } from 'rxjs';
 import { inject, injectable } from 'inversify';
 import { Account } from '../models/Account';
-import { MessageService } from '../MessageService';
+import { MessageService } from '../../message/MessageService';
 
 @injectable()
 export class FollowerDataSource {

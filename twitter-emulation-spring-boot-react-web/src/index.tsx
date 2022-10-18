@@ -10,7 +10,7 @@ import dateTransformer from 'axios-date-reviver';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';
 import { FollowerDataSource } from './common/datasources/FollowerDataSource';
-import { MessageService } from './common/MessageService';
+import { MessageService } from './message/MessageService';
 import { TweetDataSource } from './common/datasources/TweetDataSource';
 import { AccountDataSource } from './common/datasources/AccountDataSource';
 import { AuthenticationDataSource } from './common/datasources/AuthenticationDataSource';
