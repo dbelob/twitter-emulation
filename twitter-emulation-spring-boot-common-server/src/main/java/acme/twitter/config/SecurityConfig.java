@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 @Configuration
@@ -38,7 +39,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().authenticated()
                     .and()
                 .csrf()
-                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                    .and()
+                .logout(logout -> logout
+                        .logoutUrl("/api/authentication/logout")
+                        .logoutSuccessHandler((request, response, authentication) ->
+                                response.setStatus(HttpServletResponse.SC_OK))
+                );
     }
 
     @Override

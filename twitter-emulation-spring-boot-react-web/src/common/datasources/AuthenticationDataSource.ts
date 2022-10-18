@@ -49,7 +49,7 @@ export class AuthenticationDataSource {
     }
 
     logout(callback?: () => void) {
-        Axios.post('/logout')
+        Axios.post(`${this.baseUrl}/logout`)
             .pipe(
                 finalize(() => {
                     this.authenticated = false;

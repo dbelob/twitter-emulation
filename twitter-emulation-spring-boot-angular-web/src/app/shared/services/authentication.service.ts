@@ -48,7 +48,7 @@ export class AuthenticationService {
   }
 
   logout(callback?: () => void) {
-    this.http.post('logout', {})
+    this.http.post(`${this.baseUrl}/logout`, {})
       .pipe(
         finalize(() => {
           this.authenticated = false;
