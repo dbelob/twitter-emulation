@@ -10,14 +10,14 @@ export default function Login() {
     const location = useLocation();
     const auth = useAuth();
 
-    const from = location.state?.from?.pathname || "/";
+    const from = location.state?.from?.pathname || '/';
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
         let formData = new FormData(event.currentTarget);
-        let username = formData.get("username") as string;
-        let password = formData.get("password") as string;
+        let username = formData.get('username') as string;
+        let password = formData.get('password') as string;
 
         auth.login(username, password, () => {
             // Send them back to the page they tried to visit when they were
