@@ -5,7 +5,7 @@ import MessageText from '../message/MessageText';
 import { AccountStatistics } from '../common/models/AccountStatistics';
 import { UserState } from '../common/models/UserState';
 import { useAuth } from '../common/authentication/AuthProvider';
-import { AccountDataSource } from '../common/datasources/AccountDataSource';
+import { AccountService } from '../common/services/AccountService';
 import AccountInfo from './AccountInfo';
 import Loading from './Loading';
 import StatusInfo from './StatusInfo';
@@ -19,7 +19,7 @@ type HomeProps = {
 export default function Home(props: HomeProps) {
     const [accountStatistics, setAccountStatistics] = useState<AccountStatistics>(new AccountStatistics());
     const auth = useAuth();
-    const accountDataSource = useInjection(AccountDataSource);
+    const accountDataSource = useInjection(AccountService);
 
     useEffect(() => {
         const loadAccountStatistics = async () => {

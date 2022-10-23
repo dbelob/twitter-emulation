@@ -4,10 +4,10 @@ import { AxiosError } from 'axios';
 import { Axios, AxiosObservable } from 'axios-observable';
 import { inject, injectable } from 'inversify';
 import { Tweet } from '../models/Tweet';
-import { MessageService } from '../MessageService';
+import { MessageService } from '../../message/MessageService';
 
 @injectable()
-export class TweetDataSource {
+export class TweetService {
     private readonly baseUrl = '/api/tweet';
 
     @inject(MessageService)
