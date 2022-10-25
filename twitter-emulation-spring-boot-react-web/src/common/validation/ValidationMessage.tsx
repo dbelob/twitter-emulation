@@ -13,10 +13,9 @@ export class ValidationMessage extends Component<ValidationMessageProps, Validat
     context!: ContextType<typeof ValidationContext>;
 
     render() {
-        return this.context.getMessagesForField(this.props.field).map(err =>
-            <div className="small bg-danger text-white mt-1 p-1"
-                 key={err}>
-                {err}
+        return this.context.getMessagesForField(this.props.field).map(error =>
+            <div className="small bg-danger text-white rounded mt-1 p-1" key={error}>
+                {error}
             </div>
         )
     }

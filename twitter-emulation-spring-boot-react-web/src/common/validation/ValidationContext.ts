@@ -1,5 +1,6 @@
 import React from 'react';
 
 export const ValidationContext = React.createContext({
-    getMessagesForField: (field: string) => []
+    getMessagesForField: (field: string) => [],
+    getMessagesForFields: () => []
 });

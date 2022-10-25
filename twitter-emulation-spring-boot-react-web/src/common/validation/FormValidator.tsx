@@ -15,6 +15,7 @@ type FormValidatorState = {
     dirty: any;
     formSubmitted: boolean;
     getMessagesForField: any;
+    getMessagesForFields: any;
 };
 
 export class FormValidator extends Component<FormValidatorProps, FormValidatorState> {
@@ -25,7 +26,8 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
             errors: {},
             dirty: {},
             formSubmitted: false,
-            getMessagesForField: this.getMessagesForField
+            getMessagesForField: this.getMessagesForField,
+            getMessagesForFields: this.getMessagesForFields
         }
     }
 
@@ -74,7 +76,13 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
 
     getMessagesForField = (field: string) => {
         return (this.state.formSubmitted || this.state.dirty[field]) ?
-            this.state.errors[field] || [] : []
+            this.state.errors[field] || [] : [];
+    }
+
+    getMessagesForFields = () => {
+        return (this.state.formSubmitted) ?
+            // TODO: return all errors
+            this.state.errors['username'] || [] : [];
     }
 
     render() {
