@@ -77,12 +77,12 @@ export default class Registration extends Component<RegistrationProps, Registrat
                         <ValidationMessage field="password"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="confirmation" className="form-label">Confirmation:</label>
+                        <label htmlFor="passwordConfirmation" className="form-label">Confirmation:</label>
                         <input type="password"
-                               className="form-control" id="confirmation" name="confirmation"
+                               className="form-control" id="passwordConfirmation" name="passwordConfirmation"
                                value={this.state.passwordConfirmation}
                                onChange={this.updateFormValue}/>
-                        <ValidationMessage field="confirmation"/>
+                        <ValidationMessage field="passwordConfirmation"/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="description" className="form-label">Description:</label>

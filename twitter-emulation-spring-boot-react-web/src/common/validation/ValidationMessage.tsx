@@ -9,7 +9,8 @@ type ValidationMessageState = {}
 
 export class ValidationMessage extends Component<ValidationMessageProps, ValidationMessageState> {
     static contextType = ValidationContext;
-    declare context: ContextType<typeof ValidationContext>;
+    // declare context: ContextType<typeof ValidationContext>;
+    context!: ContextType<typeof ValidationContext>;
 
     render() {
         return this.context.getMessagesForField(this.props.field).map(err =>
