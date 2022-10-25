@@ -6,7 +6,7 @@ type FormValidatorProps = {
     data: any;
     rules: any;
     submit: any;
-    validateForm: any;
+    validateForm: (data: any) => string[];
     children: React.ReactNode;
 };
 

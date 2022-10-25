@@ -1,10 +1,8 @@
 import { ChangeEvent, Component } from 'react';
 import { FormValidator } from '../common/validation/FormValidator';
-import { ValidateForm } from '../common/validation/WholeFormValidateForm';
 import { ValidationMessage } from '../common/validation/ValidationMessage';
 
-type RegistrationProps = {
-};
+type RegistrationProps = {};
 
 type RegistrationState = {
     username: string;
@@ -56,9 +54,9 @@ export default class Registration extends Component<RegistrationProps, Registrat
 
                 <FormValidator data={this.state} rules={this.rules}
                                submit={this.submit}
-                               validateForm={ValidateForm}>
+                               validateForm={() => []}>
                     <ValidationMessage field="form"/>
-                    
+
                     <div className="mb-3">
                         <label htmlFor="username" className="form-label">Username:</label>
                         <input type="text"
