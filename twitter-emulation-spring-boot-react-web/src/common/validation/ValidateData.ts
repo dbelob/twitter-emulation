@@ -18,16 +18,22 @@ export function ValidateData(data: any, rules: any) {
                 }
 
                 if (!validator.isEmpty(data[field])) {
-                    if (rules[field].minlength
-                        && !validator.isLength(val, rules[field].minlength)) {
+                    if (rules[field].minlength && !validator.isLength(val, {min: rules[field].minlength})) {
                         fieldErrors.push(`A ${field} must be at least ${rules[field].minlength} characters`);
                     }
+
+                    if (rules[field].maxlength && !validator.isLength(val, {max: rules[field].maxlength})) {
+                        fieldErrors.push(`A ${field} must be no more than ${rules[field].maxlength} characters`);
+                    }
+
                     if (rules[field].alpha && !validator.isAlpha(val)) {
                         fieldErrors.push("Enter only letters");
                     }
+
                     if (rules[field].email && !validator.isEmail(val)) {
                         fieldErrors.push(`You must enter a valid email address in ${field}`);
                     }
+
                     if (rules[field].equals && !validator.equals(val, data[rules[field].equals])) {
                         fieldErrors.push(`A ${field} and ${rules[field].equals} must be the same`);
                     }
