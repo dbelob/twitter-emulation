@@ -9,7 +9,7 @@ type RegistrationProps = {
 type RegistrationState = {
     username: string;
     password: string;
-    passwordConfirmation: string;
+    confirmation: string;
     description: string;
 };
 
@@ -22,14 +22,14 @@ export default class Registration extends Component<RegistrationProps, Registrat
         this.state = {
             username: '',
             password: '',
-            passwordConfirmation: '',
+            confirmation: '',
             description: ''
         };
 
         this.rules = {
             username: {required: true, minlength: 1, maxlength: 16},
-            password: {required: true, minlength: 5, maxlength: 25, equals: 'passwordConfirmation'},
-            passwordConfirmation: {required: true, minlength: 5, maxlength: 25, equals: 'password'},
+            password: {required: true, minlength: 5, maxlength: 25},
+            confirmation: {required: true, minlength: 5, maxlength: 25, equals: 'password'},
             description: {required: true, minlength: 2, maxlength: 30}
         };
     }
@@ -77,12 +77,12 @@ export default class Registration extends Component<RegistrationProps, Registrat
                         <ValidationMessage field="password"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="passwordConfirmation" className="form-label">Confirmation:</label>
+                        <label htmlFor="confirmation" className="form-label">Confirmation:</label>
                         <input type="password"
-                               className="form-control" id="passwordConfirmation" name="passwordConfirmation"
-                               value={this.state.passwordConfirmation}
+                               className="form-control" id="confirmation" name="confirmation"
+                               value={this.state.confirmation}
                                onChange={this.updateFormValue}/>
-                        <ValidationMessage field="passwordConfirmation"/>
+                        <ValidationMessage field="confirmation"/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="description" className="form-label">Description:</label>

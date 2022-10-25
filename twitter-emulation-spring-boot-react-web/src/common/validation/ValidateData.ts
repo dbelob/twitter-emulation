@@ -10,27 +10,26 @@ export function ValidateData(data: any, rules: any) {
 
             if (rules[field].true) {
                 if (!val) {
-                    fieldErrors.push("Must be checked");
+                    fieldErrors.push(`You must checked a ${field}`);
                 }
             } else {
                 if (rules[field].required && validator.isEmpty(val)) {
-                    fieldErrors.push("Value required");
+                    fieldErrors.push(`You must enter a ${field}`);
                 }
 
                 if (!validator.isEmpty(data[field])) {
                     if (rules[field].minlength
                         && !validator.isLength(val, rules[field].minlength)) {
-                        fieldErrors.push(`Enter at least ${rules[field].minlength} characters`);
+                        fieldErrors.push(`A ${field} must be at least ${rules[field].minlength} characters`);
                     }
                     if (rules[field].alpha && !validator.isAlpha(val)) {
                         fieldErrors.push("Enter only letters");
                     }
                     if (rules[field].email && !validator.isEmail(val)) {
-                        fieldErrors.push("Enter a valid email address");
+                        fieldErrors.push(`You must enter a valid email address in ${field}`);
                     }
-                    if (rules[field].equals
-                        && !validator.equals(val, data[rules[field].equals])) {
-                        fieldErrors.push("Values don't match");
+                    if (rules[field].equals && !validator.equals(val, data[rules[field].equals])) {
+                        fieldErrors.push(`A ${field} and ${rules[field].equals} must be the same`);
                     }
                 }
             }
