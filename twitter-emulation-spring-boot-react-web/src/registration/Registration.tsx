@@ -1,7 +1,10 @@
 import { ChangeEvent, Component } from 'react';
+import { Link } from 'react-router-dom';
+import { resolve } from 'inversify-react';
 import { FormValidator } from '../common/validation/FormValidator';
 import { ValidationMessages } from '../common/validation/ValidationMessages';
-import { Link } from 'react-router-dom';
+import { AccountService } from '../common/services/AccountService';
+import { Account } from '../common/models/Account';
 
 type RegistrationProps = {};
 
@@ -13,6 +16,9 @@ type RegistrationState = {
 };
 
 export default class Registration extends Component<RegistrationProps, RegistrationState> {
+    @resolve(AccountService)
+    private readonly accountService!: AccountService;
+
     private rules: any;
 
     constructor(props: RegistrationProps) {
@@ -44,8 +50,16 @@ export default class Registration extends Component<RegistrationProps, Registrat
     }
 
     submit = (data: any) => {
-        // TODO: implement
-        console.log('Registration data: ' + JSON.stringify(data));
+        this.accountService.addAccount(
+            new Account(
+                undefined,
+                this.state.username,
+                this.state.password,
+                this.state.description))
+            .subscribe(data => {
+                // TODO: implement
+                console.log('Registration data: ' + JSON.stringify(data));
+            });
     }
 
     render() {
