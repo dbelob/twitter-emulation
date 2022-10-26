@@ -6,8 +6,10 @@ type FormValidatorProps = {
     data: any;
     rules: any;
     submit: any;
+    submitButtonTitle: string;
     validateForm: (data: any) => string[];
     children: React.ReactNode;
+    rightButtons: React.ReactNode;
 };
 
 type FormValidatorState = {
@@ -20,7 +22,8 @@ type FormValidatorState = {
 
 export class FormValidator extends Component<FormValidatorProps, FormValidatorState> {
     static defaultProps = {
-        validateForm: () => []
+        validateForm: () => [],
+        rightButtons: null
     }
 
     constructor(props: FormValidatorProps) {
@@ -75,7 +78,7 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
 
     getButtonClasses() {
         return this.state.formSubmitted && !this.formValid
-            ? "btn-danger" : "btn-primary";
+            ? "btn-secondary" : "btn-primary";
     }
 
     getMessagesForField = (field: string) => {
@@ -112,11 +115,12 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
                 </div>
             </ValidationContext.Provider>
             <div className="text-center">
-                <button className={`btn ${this.getButtonClasses()}`}
+                <button className={`btn m-1 ${this.getButtonClasses()}`}
                         onClick={this.handleClick}
                         disabled={this.state.formSubmitted && !this.formValid}>
-                    Submit
+                    {this.props.submitButtonTitle}
                 </button>
+                {this.props.rightButtons}
             </div>
         </>
     }

@@ -1,6 +1,7 @@
 import { ChangeEvent, Component } from 'react';
 import { FormValidator } from '../common/validation/FormValidator';
 import { ValidationMessages } from '../common/validation/ValidationMessages';
+import { Link } from 'react-router-dom';
 
 type RegistrationProps = {};
 
@@ -53,7 +54,11 @@ export default class Registration extends Component<RegistrationProps, Registrat
                 <h3 className="bg-info p-1 text-white text-center rounded">Registration</h3>
 
                 <FormValidator data={this.state} rules={this.rules}
-                               submit={this.submit}>
+                               submit={this.submit} submitButtonTitle={'Register'}
+                               rightButtons={
+                                   <Link to="/login">
+                                       <button className="btn btn-link m-1" id="register">Log in</button>
+                                   </Link>}>
                     <ValidationMessages/>
 
                     <div className="mb-3">
