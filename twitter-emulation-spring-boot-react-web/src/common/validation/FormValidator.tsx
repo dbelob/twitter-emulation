@@ -80,9 +80,24 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
     }
 
     getMessagesForFields = () => {
-        return (this.state.formSubmitted) ?
-            // TODO: return all errors
-            this.state.errors['username'] || [] : [];
+        if (this.state.formSubmitted) {
+            const result: string[] = [];
+            const fields = ['form'];
+
+            fields.push(...Object.keys(this.state.errors));
+
+            fields.forEach(field => {
+                const fieldErrors = this.state.errors[field];
+
+                if (fieldErrors && (fieldErrors.length > 0)) {
+                    result.push(...fieldErrors);
+                }
+            });
+
+            return result;
+        } else {
+            return [];
+        }
     }
 
     render() {

@@ -57,7 +57,6 @@ export default class Registration extends Component<RegistrationProps, Registrat
                                submit={this.submit}
                                validateForm={() => []}>
                     <ValidationMessages/>
-                    <ValidationMessage field="form"/>
 
                     <div className="mb-3">
                         <label htmlFor="username" className="form-label">Username:</label>
@@ -66,7 +65,6 @@ export default class Registration extends Component<RegistrationProps, Registrat
                                value={this.state.username}
                                onChange={this.updateFormValue}
                                autoFocus/>
-                        <ValidationMessage field="username"/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password:</label>
@@ -74,7 +72,6 @@ export default class Registration extends Component<RegistrationProps, Registrat
                                className="form-control" id="password" name="password"
                                value={this.state.password}
                                onChange={this.updateFormValue}/>
-                        <ValidationMessage field="password"/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="confirmation" className="form-label">Confirmation:</label>
@@ -82,7 +79,6 @@ export default class Registration extends Component<RegistrationProps, Registrat
                                className="form-control" id="confirmation" name="confirmation"
                                value={this.state.confirmation}
                                onChange={this.updateFormValue}/>
-                        <ValidationMessage field="confirmation"/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="description" className="form-label">Description:</label>
@@ -90,7 +86,6 @@ export default class Registration extends Component<RegistrationProps, Registrat
                                className="form-control" id="description" name="description"
                                value={this.state.description}
                                onChange={this.updateFormValue}/>
-                        <ValidationMessage field="description"/>
                     </div>
                 </FormValidator>
             </div>
