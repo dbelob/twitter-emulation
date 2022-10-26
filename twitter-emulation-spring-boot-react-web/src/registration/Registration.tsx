@@ -1,6 +1,5 @@
 import { ChangeEvent, Component } from 'react';
 import { FormValidator } from '../common/validation/FormValidator';
-import { ValidationMessage } from '../common/validation/ValidationMessage';
 import { ValidationMessages } from '../common/validation/ValidationMessages';
 
 type RegistrationProps = {};
@@ -54,8 +53,7 @@ export default class Registration extends Component<RegistrationProps, Registrat
                 <h3 className="bg-info p-1 text-white text-center rounded">Registration</h3>
 
                 <FormValidator data={this.state} rules={this.rules}
-                               submit={this.submit}
-                               validateForm={() => []}>
+                               submit={this.submit}>
                     <ValidationMessages/>
 
                     <div className="mb-3">

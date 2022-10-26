@@ -19,6 +19,10 @@ type FormValidatorState = {
 };
 
 export class FormValidator extends Component<FormValidatorProps, FormValidatorState> {
+    static defaultProps = {
+        validateForm: () => []
+    }
+
     constructor(props: FormValidatorProps) {
         super(props);
 
@@ -101,7 +105,7 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
     }
 
     render() {
-        return <React.Fragment>
+        return <>
             <ValidationContext.Provider value={this.state}>
                 <div onChange={this.handleChange}>
                     {this.props.children}
@@ -114,6 +118,6 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
                     Submit
                 </button>
             </div>
-        </React.Fragment>
+        </>
     }
 }
