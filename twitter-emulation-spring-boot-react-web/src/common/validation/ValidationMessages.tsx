@@ -3,7 +3,6 @@ import { ValidationContext } from './ValidationContext';
 
 export class ValidationMessages extends Component {
     static contextType = ValidationContext;
-    // declare context: ContextType<typeof ValidationContext>;
     context!: ContextType<typeof ValidationContext>;
 
     render() {
