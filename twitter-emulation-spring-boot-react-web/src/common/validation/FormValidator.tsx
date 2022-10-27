@@ -77,8 +77,17 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
     }
 
     getButtonClasses() {
-        return this.state.formSubmitted && !this.formValid
-            ? "btn-secondary" : "btn-primary";
+        return (this.state.formSubmitted && !this.formValid) ? 'btn-secondary' : 'btn-primary';
+    }
+
+    getFieldClasses = (field: string) => {
+        let result = this.state.errors[field] ? 'rt-invalid' : 'rt-valid';
+
+        if (this.state.dirty[field]) {
+            result += ' rt-dirty';
+        }
+
+        return result;
     }
 
     getMessagesForField = (field: string) => {
