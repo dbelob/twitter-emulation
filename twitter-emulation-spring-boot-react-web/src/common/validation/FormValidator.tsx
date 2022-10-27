@@ -107,6 +107,23 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
         }
     }
 
+    keyDownHandler = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+
+            // Call submit function
+            this.handleClick(event);
+        }
+    };
+
+    componentDidMount() {
+        document.addEventListener('keydown', this.keyDownHandler);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.keyDownHandler);
+    }
+
     render() {
         return <>
             <ValidationContext.Provider value={this.state}>
