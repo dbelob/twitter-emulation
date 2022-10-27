@@ -40,12 +40,9 @@ export default class Registration extends Component<RegistrationProps, Registrat
     }
 
     updateFormValue = (event: ChangeEvent<HTMLInputElement>) => {
-        const name = event.target.name;
-        const value = event.target.value;
-
         this.setState(prevState => ({
             ...prevState,
-            [name]: value
+            [event.target.name]: event.target.value
         }));
     }
 
