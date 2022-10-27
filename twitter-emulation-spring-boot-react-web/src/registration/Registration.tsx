@@ -1,5 +1,5 @@
-import { ChangeEvent, Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { ChangeEvent, Component } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import { resolve } from 'inversify-react';
 import { FormValidator } from '../common/validation/FormValidator';
 import { ValidationMessages } from '../common/validation/ValidationMessages';
@@ -13,6 +13,7 @@ type RegistrationState = {
     password: string;
     confirmation: string;
     description: string;
+    isSubmit: boolean;
 };
 
 export default class Registration extends Component<RegistrationProps, RegistrationState> {
@@ -28,7 +29,8 @@ export default class Registration extends Component<RegistrationProps, Registrat
             username: '',
             password: '',
             confirmation: '',
-            description: ''
+            description: '',
+            isSubmit: false
         };
 
         this.rules = {
@@ -54,55 +56,60 @@ export default class Registration extends Component<RegistrationProps, Registrat
                 this.state.password,
                 this.state.description))
             .subscribe(data => {
-                // TODO: implement
-                console.log('Registration data: ' + JSON.stringify(data));
+                this.setState({
+                    isSubmit: true
+                });
             });
     }
 
     render() {
         return (
-            <div className="container-dialog p-2">
-                <h3 className="bg-info p-1 text-white text-center rounded">Registration</h3>
+            <>
+                {this.state.isSubmit ? <Navigate to="/login"/> :
+                    <div className="container-dialog p-2">
+                        <h3 className="bg-info p-1 text-white text-center rounded">Registration</h3>
 
-                <FormValidator data={this.state} rules={this.rules}
-                               submit={this.submit} submitButtonTitle={'Register'}
-                               rightButtons={
-                                   <Link to="/login">
-                                       <button className="btn btn-link m-1" id="register">Log in</button>
-                                   </Link>}>
-                    <ValidationMessages/>
+                        <FormValidator data={this.state} rules={this.rules}
+                                       submit={this.submit} submitButtonTitle={'Register'}
+                                       rightButtons={
+                                           <Link to="/login">
+                                               <button className="btn btn-link m-1" id="register">Log in</button>
+                                           </Link>}>
+                            <ValidationMessages/>
 
-                    <div className="mb-3">
-                        <label htmlFor="username" className="form-label">Username:</label>
-                        <input type="text"
-                               className="form-control" id="username" name="username"
-                               value={this.state.username}
-                               onChange={this.updateFormValue}
-                               autoFocus/>
+                            <div className="mb-3">
+                                <label htmlFor="username" className="form-label">Username:</label>
+                                <input type="text"
+                                       className="form-control" id="username" name="username"
+                                       value={this.state.username}
+                                       onChange={this.updateFormValue}
+                                       autoFocus/>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="password" className="form-label">Password:</label>
+                                <input type="password"
+                                       className="form-control" id="password" name="password"
+                                       value={this.state.password}
+                                       onChange={this.updateFormValue}/>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="confirmation" className="form-label">Confirmation:</label>
+                                <input type="password"
+                                       className="form-control" id="confirmation" name="confirmation"
+                                       value={this.state.confirmation}
+                                       onChange={this.updateFormValue}/>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="description" className="form-label">Description:</label>
+                                <input type="text"
+                                       className="form-control" id="description" name="description"
+                                       value={this.state.description}
+                                       onChange={this.updateFormValue}/>
+                            </div>
+                        </FormValidator>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Password:</label>
-                        <input type="password"
-                               className="form-control" id="password" name="password"
-                               value={this.state.password}
-                               onChange={this.updateFormValue}/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="confirmation" className="form-label">Confirmation:</label>
-                        <input type="password"
-                               className="form-control" id="confirmation" name="confirmation"
-                               value={this.state.confirmation}
-                               onChange={this.updateFormValue}/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="description" className="form-label">Description:</label>
-                        <input type="text"
-                               className="form-control" id="description" name="description"
-                               value={this.state.description}
-                               onChange={this.updateFormValue}/>
-                    </div>
-                </FormValidator>
-            </div>
+                }
+            </>
         );
     }
 }
