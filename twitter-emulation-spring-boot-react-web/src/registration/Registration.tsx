@@ -2,6 +2,7 @@ import React, { ChangeEvent, Component } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { resolve } from 'inversify-react';
 import { FormValidator } from '../common/validation/FormValidator';
+import { ValidatableInput } from '../common/validation/ValidatableInput';
 import { ValidationFieldClasses } from '../common/validation/ValidationFieldClasses';
 import { ValidationMessages } from '../common/validation/ValidationMessages';
 import { AccountService } from '../common/services/AccountService';
@@ -80,35 +81,35 @@ export default class Registration extends Component<RegistrationProps, Registrat
 
                             <div className="mb-3">
                                 <label htmlFor="username" className="form-label">Username:</label>
-                                <input type="text"
-                                       className="form-control" id="username" name="username"
-                                       value={this.state.username}
-                                       onChange={this.updateFormValue}
-                                       autoFocus/>
+                                <ValidatableInput type="text"
+                                                  className="form-control" id="username" name="username"
+                                                  value={this.state.username}
+                                                  onChange={this.updateFormValue}
+                                                  autoFocus={true}/>
                             </div>
                             <ValidationFieldClasses field={'username'}/>
                             <div className="mb-3">
                                 <label htmlFor="password" className="form-label">Password:</label>
-                                <input type="password"
-                                       className="form-control" id="password" name="password"
-                                       value={this.state.password}
-                                       onChange={this.updateFormValue}/>
+                                <ValidatableInput type="password"
+                                                  className="form-control" id="password" name="password"
+                                                  value={this.state.password}
+                                                  onChange={this.updateFormValue}/>
                             </div>
                             <ValidationFieldClasses field={'password'}/>
                             <div className="mb-3">
                                 <label htmlFor="confirmation" className="form-label">Confirmation:</label>
-                                <input type="password"
-                                       className="form-control" id="confirmation" name="confirmation"
-                                       value={this.state.confirmation}
-                                       onChange={this.updateFormValue}/>
+                                <ValidatableInput type="password"
+                                                  className="form-control" id="confirmation" name="confirmation"
+                                                  value={this.state.confirmation}
+                                                  onChange={this.updateFormValue}/>
                             </div>
                             <ValidationFieldClasses field={'confirmation'}/>
                             <div className="mb-3">
                                 <label htmlFor="description" className="form-label">Description:</label>
-                                <input type="text"
-                                       className="form-control" id="description" name="description"
-                                       value={this.state.description}
-                                       onChange={this.updateFormValue}/>
+                                <ValidatableInput type="text"
+                                                  className="form-control" id="description" name="description"
+                                                  value={this.state.description}
+                                                  onChange={this.updateFormValue}/>
                             </div>
                             <ValidationFieldClasses field={'description'}/>
                         </FormValidator>

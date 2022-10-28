@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+input.rt-dirty.rt-invalid, textarea.rt-dirty.rt-invalid {
+  border: 2px solid #ff0000;
+}
+
+input.rt-dirty.rt-valid, textarea.rt-dirty.rt-valid {
+  border: 2px solid #6bc502;
+}
