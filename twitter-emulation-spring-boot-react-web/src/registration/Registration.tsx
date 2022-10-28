@@ -3,7 +3,6 @@ import { Link, Navigate } from 'react-router-dom';
 import { resolve } from 'inversify-react';
 import { FormValidator } from '../common/validation/FormValidator';
 import { ValidatableInput } from '../common/validation/ValidatableInput';
-import { ValidationFieldClasses } from '../common/validation/ValidationFieldClasses';
 import { ValidationMessages } from '../common/validation/ValidationMessages';
 import { AccountService } from '../common/services/AccountService';
 import { Account } from '../common/models/Account';
@@ -87,7 +86,6 @@ export default class Registration extends Component<RegistrationProps, Registrat
                                                   onChange={this.updateFormValue}
                                                   autoFocus={true}/>
                             </div>
-                            <ValidationFieldClasses field={'username'}/>
                             <div className="mb-3">
                                 <label htmlFor="password" className="form-label">Password:</label>
                                 <ValidatableInput type="password"
@@ -95,7 +93,6 @@ export default class Registration extends Component<RegistrationProps, Registrat
                                                   value={this.state.password}
                                                   onChange={this.updateFormValue}/>
                             </div>
-                            <ValidationFieldClasses field={'password'}/>
                             <div className="mb-3">
                                 <label htmlFor="confirmation" className="form-label">Confirmation:</label>
                                 <ValidatableInput type="password"
@@ -103,7 +100,6 @@ export default class Registration extends Component<RegistrationProps, Registrat
                                                   value={this.state.confirmation}
                                                   onChange={this.updateFormValue}/>
                             </div>
-                            <ValidationFieldClasses field={'confirmation'}/>
                             <div className="mb-3">
                                 <label htmlFor="description" className="form-label">Description:</label>
                                 <ValidatableInput type="text"
@@ -111,7 +107,6 @@ export default class Registration extends Component<RegistrationProps, Registrat
                                                   value={this.state.description}
                                                   onChange={this.updateFormValue}/>
                             </div>
-                            <ValidationFieldClasses field={'description'}/>
                         </FormValidator>
                     </div>
                 }
