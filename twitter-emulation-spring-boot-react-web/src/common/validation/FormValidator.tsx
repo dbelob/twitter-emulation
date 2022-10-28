@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ValidateData } from './ValidateData';
+import { validateData } from './ValidateData';
 import { ValidationContext } from './ValidationContext';
 
 type FormValidatorProps = {
@@ -18,6 +18,7 @@ type FormValidatorState = {
     formSubmitted: boolean;
     getMessagesForField: any;
     getMessagesForFields: any;
+    getFieldClasses: any
 };
 
 export class FormValidator extends Component<FormValidatorProps, FormValidatorState> {
@@ -34,12 +35,13 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
             dirty: {},
             formSubmitted: false,
             getMessagesForField: this.getMessagesForField,
-            getMessagesForFields: this.getMessagesForFields
+            getMessagesForFields: this.getMessagesForFields,
+            getFieldClasses: this.getFieldClasses
         }
     }
 
     static getDerivedStateFromProps(props: FormValidatorProps, state: FormValidatorState) {
-        state.errors = ValidateData(props.data, props.rules);
+        state.errors = validateData(props.data, props.rules);
 
         if (state.formSubmitted && Object.keys(state.errors).length === 0) {
             let formErrors = props.validateForm(props.data);
@@ -81,7 +83,8 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
     }
 
     getFieldClasses = (field: string) => {
-        let result = this.state.errors[field] ? 'rt-invalid' : 'rt-valid';
+        let result = (this.state.formSubmitted || this.state.dirty[field]) && this.state.errors[field] ?
+            'rt-invalid' : 'rt-valid';
 
         if (this.state.dirty[field]) {
             result += ' rt-dirty';

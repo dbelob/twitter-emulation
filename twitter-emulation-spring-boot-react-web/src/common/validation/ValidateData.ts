@@ -1,6 +1,6 @@
 import validator from 'validator';
 
-export function ValidateData(data: any, rules: any) {
+export function validateData(data: any, rules: any) {
     const errors: any = {};
 
     Object.keys(data).forEach(field => {
