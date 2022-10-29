@@ -18,7 +18,9 @@ type FormValidatorState = {
     formSubmitted: boolean;
     getMessagesForField: any;
     getMessagesForFields: any;
-    getFieldClasses: any
+    getFieldClasses: any,
+    isFormSubmitted: any,
+    isFormValid: any
 };
 
 export class FormValidator extends Component<FormValidatorProps, FormValidatorState> {
@@ -36,7 +38,9 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
             formSubmitted: false,
             getMessagesForField: this.getMessagesForField,
             getMessagesForFields: this.getMessagesForFields,
-            getFieldClasses: this.getFieldClasses
+            getFieldClasses: this.getFieldClasses,
+            isFormSubmitted: this.isFormSubmitted,
+            isFormValid: this.isFormValid
         }
     }
 
@@ -117,6 +121,14 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
         } else {
             return [];
         }
+    }
+
+    isFormSubmitted = () => {
+        return this.state.formSubmitted;
+    }
+
+    isFormValid = () => {
+        return this.formValid;
     }
 
     keyDownHandler = (event: KeyboardEvent) => {

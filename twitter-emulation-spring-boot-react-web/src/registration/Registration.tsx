@@ -6,6 +6,7 @@ import { ValidatableInput } from '../common/validation/ValidatableInput';
 import { ValidationMessages } from '../common/validation/ValidationMessages';
 import { AccountService } from '../common/services/AccountService';
 import { Account } from '../common/models/Account';
+import NonValidationMessageText from '../message/NonValidationMessageText';
 
 type RegistrationProps = {};
 
@@ -76,6 +77,7 @@ export default class Registration extends Component<RegistrationProps, Registrat
                                            <Link to="/login">
                                                <button className="btn btn-link m-1" id="register">Log in</button>
                                            </Link>}>
+                            <NonValidationMessageText/>
                             <ValidationMessages/>
 
                             <div className="mb-3">
