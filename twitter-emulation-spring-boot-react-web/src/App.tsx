@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { QueryParamProvider } from 'use-query-params';
 import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
-import './App.css';
+import './App.scss';
 import AuthProvider from './common/authentication/AuthProvider';
 import RequireAuth from './common/authentication/RequireAuth';
 import AnonymousMain from './home/AnonymousMain';
