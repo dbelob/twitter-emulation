@@ -21,11 +21,10 @@ export class MessageService {
 
     private static getMessageText(response?: AxiosResponse): string {
         if (response) {
-            // @ts-ignore
-            let error = response['error'];
+            let data = response.data;
 
-            if (error) {
-                let customMessage = error['customMessage'];
+            if (data) {
+                let customMessage = data['customMessage'];
 
                 if (customMessage) {
                     return customMessage;

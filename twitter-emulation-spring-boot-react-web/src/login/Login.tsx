@@ -15,9 +15,9 @@ export default function Login() {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        let formData = new FormData(event.currentTarget);
-        let username = formData.get('username') as string;
-        let password = formData.get('password') as string;
+        const formData = new FormData(event.currentTarget);
+        const username = formData.get('username') as string;
+        const password = formData.get('password') as string;
 
         auth.login(username, password, () => {
             // Send them back to the page they tried to visit when they were

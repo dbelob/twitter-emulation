@@ -6,8 +6,7 @@
       <app-message></app-message>
     </div>
 
-    <div class="alert alert-danger"
-         *ngIf="formSubmitted && form.invalid">
+    <div class="alert alert-danger" *ngIf="formSubmitted && form.invalid">
       There are problems with the form
       <ul>
         <li *ngFor="let error of getFormValidationMessages(form)">
@@ -35,7 +34,7 @@
       <label for="confirmation" class="form-label">Confirmation:</label>
       <input type="password"
              class="form-control" id="confirmation" name="confirmation"
-             [(ngModel)]="credentials.passwordConfirmation"
+             [(ngModel)]="credentials.confirmation"
              required minlength="5" maxlength="25" appValidateEqual="password"/>
     </div>
     <div class="mb-3">

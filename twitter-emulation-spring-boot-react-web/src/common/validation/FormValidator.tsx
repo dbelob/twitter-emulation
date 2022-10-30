@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { ValidateData } from './ValidateData';
+import { validateData } from './ValidateData';
 import { ValidationContext } from './ValidationContext';
 
 type FormValidatorProps = {
     data: any;
     rules: any;
     submit: any;
-    validateForm: any;
+    submitButtonTitle: string;
+    validateForm: (data: any) => string[];
     children: React.ReactNode;
+    rightButtons: React.ReactNode;
 };
 
 type FormValidatorState = {
@@ -15,9 +17,18 @@ type FormValidatorState = {
     dirty: any;
     formSubmitted: boolean;
     getMessagesForField: any;
+    getMessagesForFields: any;
+    getFieldClasses: any,
+    isFormSubmitted: any,
+    isFormValid: any
 };
 
 export class FormValidator extends Component<FormValidatorProps, FormValidatorState> {
+    static defaultProps = {
+        validateForm: () => [],
+        rightButtons: null
+    }
+
     constructor(props: FormValidatorProps) {
         super(props);
 
@@ -25,12 +36,16 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
             errors: {},
             dirty: {},
             formSubmitted: false,
-            getMessagesForField: this.getMessagesForField
+            getMessagesForField: this.getMessagesForField,
+            getMessagesForFields: this.getMessagesForFields,
+            getFieldClasses: this.getFieldClasses,
+            isFormSubmitted: this.isFormSubmitted,
+            isFormValid: this.isFormValid
         }
     }
 
     static getDerivedStateFromProps(props: FormValidatorProps, state: FormValidatorState) {
-        state.errors = ValidateData(props.data, props.rules);
+        state.errors = validateData(props.data, props.rules);
 
         if (state.formSubmitted && Object.keys(state.errors).length === 0) {
             let formErrors = props.validateForm(props.data);
@@ -68,29 +83,86 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
     }
 
     getButtonClasses() {
-        return this.state.formSubmitted && !this.formValid
-            ? "btn-danger" : "btn-primary";
+        return (this.state.formSubmitted && !this.formValid) ? 'btn-secondary' : 'btn-primary';
+    }
+
+    getFieldClasses = (field: string) => {
+        let result = (this.state.formSubmitted || this.state.dirty[field]) && this.state.errors[field] ?
+            'rt-invalid' : 'rt-valid';
+
+        if (this.state.dirty[field]) {
+            result += ' rt-dirty';
+        }
+
+        return result;
     }
 
     getMessagesForField = (field: string) => {
         return (this.state.formSubmitted || this.state.dirty[field]) ?
-            this.state.errors[field] || [] : []
+            this.state.errors[field] || [] : [];
+    }
+
+    getMessagesForFields = () => {
+        if (this.state.formSubmitted) {
+            const result: string[] = [];
+            const fields = ['form'];
+
+            fields.push(...Object.keys(this.state.errors));
+
+            fields.forEach(field => {
+                const fieldErrors = this.state.errors[field];
+
+                if (fieldErrors && (fieldErrors.length > 0)) {
+                    result.push(...fieldErrors);
+                }
+            });
+
+            return result;
+        } else {
+            return [];
+        }
+    }
+
+    isFormSubmitted = () => {
+        return this.state.formSubmitted;
+    }
+
+    isFormValid = () => {
+        return this.formValid;
+    }
+
+    keyDownHandler = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+
+            // Call submit function
+            this.handleClick(event);
+        }
+    };
+
+    componentDidMount() {
+        document.addEventListener('keydown', this.keyDownHandler);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.keyDownHandler);
     }
 
     render() {
-        return <React.Fragment>
+        return <>
             <ValidationContext.Provider value={this.state}>
                 <div onChange={this.handleChange}>
                     {this.props.children}
                 </div>
             </ValidationContext.Provider>
             <div className="text-center">
-                <button className={`btn ${this.getButtonClasses()}`}
+                <button className={`btn m-1 ${this.getButtonClasses()}`}
                         onClick={this.handleClick}
                         disabled={this.state.formSubmitted && !this.formValid}>
-                    Submit
+                    {this.props.submitButtonTitle}
                 </button>
+                {this.props.rightButtons}
             </div>
-        </React.Fragment>
+        </>
     }
 }
