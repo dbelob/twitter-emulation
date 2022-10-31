@@ -23,6 +23,16 @@ export class TweetService {
             );
     }
 
+    tweet(text: string): AxiosObservable<string> {
+        return Axios.post<string>(`${this.baseUrl}/tweets`, text)
+            .pipe(
+                catchError((err: AxiosError) => {
+                    this.messageService.reportMessage(err.response);
+                    throw err;
+                })
+            );
+    }
+
     getTimeline(): Observable<Tweet[]> {
         return Axios.get(`${this.baseUrl}/timeline`)
             .pipe(

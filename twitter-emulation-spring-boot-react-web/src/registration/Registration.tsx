@@ -22,7 +22,7 @@ export default class Registration extends Component<RegistrationProps, Registrat
     @resolve(AccountService)
     private readonly accountService!: AccountService;
 
-    private rules: any;
+    private readonly rules: any;
 
     constructor(props: RegistrationProps) {
         super(props);
