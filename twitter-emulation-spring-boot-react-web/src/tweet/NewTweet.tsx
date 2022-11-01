@@ -59,6 +59,7 @@ export default class NewTweet extends Component<NewTweetProps, NewTweetState> {
 
                         <FormValidator data={this.state} rules={this.rules}
                                        submit={this.submit} submitButtonTitle={'Tweet'}
+                                       submitUsingEnter={false}
                                        rightButtons={
                                            <Link to="/account/show">
                                                <button className="btn btn-secondary m-1" id="register">Cancel</button>

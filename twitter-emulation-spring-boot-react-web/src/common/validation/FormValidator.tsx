@@ -10,6 +10,7 @@ type FormValidatorProps = {
     validateForm: (data: any) => string[];
     children: React.ReactNode;
     rightButtons: React.ReactNode;
+    submitUsingEnter: boolean;
 };
 
 type FormValidatorState = {
@@ -26,7 +27,8 @@ type FormValidatorState = {
 export class FormValidator extends Component<FormValidatorProps, FormValidatorState> {
     static defaultProps = {
         validateForm: () => [],
-        rightButtons: null
+        rightButtons: null,
+        submitUsingEnter: true
     }
 
     constructor(props: FormValidatorProps) {
@@ -141,11 +143,15 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
     };
 
     componentDidMount() {
-        document.addEventListener('keydown', this.keyDownHandler);
+        if (this.props.submitUsingEnter) {
+            document.addEventListener('keydown', this.keyDownHandler);
+        }
     }
 
     componentWillUnmount() {
-        document.removeEventListener('keydown', this.keyDownHandler);
+        if (this.props.submitUsingEnter) {
+            document.removeEventListener('keydown', this.keyDownHandler);
+        }
     }
 
     render() {
