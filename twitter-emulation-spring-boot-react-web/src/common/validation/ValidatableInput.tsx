@@ -9,6 +9,7 @@ type ValidatableInputProps = {
     value: string;
     onChange: any;
     autoFocus: boolean;
+    readOnly: boolean;
 }
 
 type ValidatableInputState = {}
@@ -19,14 +20,15 @@ export class ValidatableInput extends Component<ValidatableInputProps, Validatab
 
     public static defaultProps = {
         className: '',
-        autoFocus: false
+        autoFocus: false,
+        readOnly: false
     };
 
     render() {
         const contextClassNames = this.context.getFieldClasses(this.props.name);
 
         return <input type={this.props.type} className={`${this.props.className} ${contextClassNames}`}
-                      id={this.props.id} name={this.props.name} value={this.props.value}
+                      id={this.props.id} name={this.props.name} value={this.props.value} readOnly={this.props.readOnly}
                       onChange={this.props.onChange} autoFocus={this.props.autoFocus}/>;
     }
 }
