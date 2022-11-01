@@ -24,7 +24,13 @@ export class TweetService {
     }
 
     tweet(text: string): AxiosObservable<string> {
-        return Axios.post<string>(`${this.baseUrl}/tweets`, text)
+        const config = {
+            headers: {
+                'Content-Type': 'text/plain'
+            }
+        };
+
+        return Axios.post<string>(`${this.baseUrl}/tweets`, text, config)
             .pipe(
                 catchError((err: AxiosError) => {
                     this.messageService.reportMessage(err.response);
