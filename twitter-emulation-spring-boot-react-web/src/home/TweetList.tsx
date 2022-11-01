@@ -23,7 +23,7 @@ export default class TweetList extends Component<TweetListProps, TweetListState>
                                 {tweet.date && format(tweet.date, 'dd.MM.yyyy HH:mm:ss')}
                             </span>
                         </h6>
-                        <div className="card-text bg-white p-1">{tweet.text}</div>
+                        <div className="card-text bg-white p-1 tweet">{tweet.text}</div>
                     </div>
                 )}
             </>
