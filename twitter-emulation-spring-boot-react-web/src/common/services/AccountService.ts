@@ -45,6 +45,16 @@ export class AccountService {
             );
     }
 
+    deleteAccount(username: string): AxiosObservable<Account> {
+        return Axios.delete<Account>(`${this.baseUrl}/accounts/${username}`)
+            .pipe(
+                catchError((err: AxiosError) => {
+                    this.messageService.reportMessage(err.response);
+                    throw err;
+                })
+            );
+    }
+
     getAccounts(usernamePart: string): Observable<Account[]> {
         // TODO: implement
         return of([]);

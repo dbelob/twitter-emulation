@@ -100,10 +100,10 @@ export default class Profile extends Component<ProfileProps, ProfileState> {
                                        rightButtons={
                                            <>
                                                <Link to="/account/show">
-                                                   <button className="btn btn-secondary m-1" id="register">Cancel</button>
+                                                   <button className="btn btn-secondary m-1" id="cancel">Cancel</button>
                                                </Link>
                                                <Link to="/account/delete">
-                                                   <button className="btn btn-link m-1" id="register">Delete</button>
+                                                   <button className="btn btn-link m-1">Delete</button>
                                                </Link>
                                            </>}>
                             <NonValidationMessageText/>

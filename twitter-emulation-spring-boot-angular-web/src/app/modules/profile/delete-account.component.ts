@@ -22,7 +22,7 @@ export class DeleteAccountComponent {
       .subscribe(data => {
         this.router.navigate(['/login'], {
           queryParams: {
-            "logout": true
+            "logout": 1
           }
         });
       });
