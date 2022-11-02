@@ -7,10 +7,12 @@ import { ValidationMessages } from '../common/validation/ValidationMessages';
 import { AccountService } from '../common/services/AccountService';
 import { AuthenticationService } from '../common/services/AuthenticationService';
 import NonValidationMessageText from '../message/NonValidationMessageText';
+import { Account } from '../common/models/Account';
 
 type ProfileProps = {};
 
 type ProfileState = {
+    id?: number,
     username: string;
     password: string;
     confirmation: string;
@@ -31,6 +33,7 @@ export default class Profile extends Component<ProfileProps, ProfileState> {
         super(props);
 
         this.state = {
+            id: undefined,
             username: '',
             password: '',
             confirmation: '',
@@ -53,11 +56,37 @@ export default class Profile extends Component<ProfileProps, ProfileState> {
         }));
     }
 
+    componentDidMount() {
+        this.authenticationService.getUser()
+            .subscribe(user => {
+                if (user.name) {
+                    this.accountService.getAccount(user.name)
+                        .subscribe(account => {
+                            this.setState({
+                                id: account.id,
+                                username: (account.username) ? account.username : '',
+                                password: (account.password) ? account.password : '',
+                                confirmation: (account.password) ? account.password : '',
+                                description: (account.description) ? account.description : ''
+                            });
+                        });
+                }
+            });
+    }
+
     submit = (data: any) => {
-        // TODO: implement
-        this.setState({
-            isSubmit: true
-        });
+        this.accountService.saveAccount(
+            this.state.username,
+            new Account(
+                this.state.id,
+                this.state.username,
+                this.state.password,
+                this.state.description))
+            .subscribe(data => {
+                this.setState({
+                    isSubmit: true
+                });
+            });
     }
 
     render() {

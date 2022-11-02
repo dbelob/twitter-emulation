@@ -24,6 +24,27 @@ export class AccountService {
             );
     }
 
+    getAccount(username: string): Observable<Account> {
+        return Axios.get(`${this.baseUrl}/accounts/${username}`)
+            .pipe(
+                map(response => response.data),
+                catchError((err: AxiosError) => {
+                    this.messageService.reportMessage(err.response);
+                    throw err;
+                })
+            );
+    }
+
+    saveAccount(username: string, account: Account): AxiosObservable<Account> {
+        return Axios.put(`${this.baseUrl}/accounts/${username}`, account)
+            .pipe(
+                catchError((err: AxiosError) => {
+                    this.messageService.reportMessage(err.response);
+                    throw err;
+                })
+            );
+    }
+
     getAccounts(usernamePart: string): Observable<Account[]> {
         // TODO: implement
         return of([]);
