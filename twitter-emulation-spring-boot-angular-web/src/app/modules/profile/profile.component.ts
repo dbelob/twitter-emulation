@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NgForm } from "@angular/forms";
-import { Router } from "@angular/router";
-import { Account } from "../../shared/models/account.model";
-import { AuthenticationService } from "../../shared/services/authentication.service";
-import { AccountService } from "../../shared/services/account.service";
-import { ValidationService } from "../../shared/services/validation.service";
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Account } from '../../shared/models/account.model';
+import { AuthenticationService } from '../../shared/services/authentication.service';
+import { AccountService } from '../../shared/services/account.service';
+import { ValidationService } from '../../shared/services/validation.service';
 
 @Component({
   selector: 'app-profile',
