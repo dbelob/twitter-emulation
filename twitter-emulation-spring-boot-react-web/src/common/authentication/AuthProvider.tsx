@@ -13,13 +13,13 @@ function useAuth() {
 function AuthProvider({children}: { children: React.ReactNode }) {
     const [username, setUsername] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-    const authenticationDataSource = useInjection(AuthenticationService);
+    const authenticationService = useInjection(AuthenticationService);
 
     useEffect(() => {
         const restoreUsername = async () => {
             setLoading(true);
 
-            const user = await firstValueFrom(authenticationDataSource.getUser());
+            const user = await firstValueFrom(authenticationService.getUser());
 
             setUsername(user?.name);
             setLoading(false);
@@ -29,7 +29,7 @@ function AuthProvider({children}: { children: React.ReactNode }) {
     }, []);
 
     const login = (newUsername: string, password: string, successCallback: VoidFunction, errorCallback: VoidFunction) => {
-        return authenticationDataSource.authenticate({username: newUsername, password}, () => {
+        return authenticationService.authenticate({username: newUsername, password}, () => {
             setUsername(newUsername);
             successCallback();
         }, () => {
@@ -38,7 +38,7 @@ function AuthProvider({children}: { children: React.ReactNode }) {
     };
 
     const logout = (callback: VoidFunction) => {
-        return authenticationDataSource.logout(() => {
+        return authenticationService.logout(() => {
             setUsername(null);
             callback();
         });

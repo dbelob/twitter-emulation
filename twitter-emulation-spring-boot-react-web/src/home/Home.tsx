@@ -19,11 +19,11 @@ type HomeProps = {
 export default function Home(props: HomeProps) {
     const [accountStatistics, setAccountStatistics] = useState<AccountStatistics>(new AccountStatistics());
     const auth = useAuth();
-    const accountDataSource = useInjection(AccountService);
+    const accountService = useInjection(AccountService);
 
     useEffect(() => {
         const loadAccountStatistics = async () => {
-            const accountStatistics = await firstValueFrom(accountDataSource.getAccountStatistics(props.username));
+            const accountStatistics = await firstValueFrom(accountService.getAccountStatistics(props.username));
 
             setAccountStatistics(accountStatistics);
         };

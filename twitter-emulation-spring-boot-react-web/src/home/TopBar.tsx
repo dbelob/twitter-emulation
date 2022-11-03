@@ -8,11 +8,11 @@ type TopBarProps = {
 }
 
 export default function TopBar(props: TopBarProps) {
-    const authenticationDataSource = useInjection(AuthenticationService);
+    const authenticationService = useInjection(AuthenticationService);
     const navigate = useNavigate();
 
     function logout() {
-        authenticationDataSource.logout(() => {
+        authenticationService.logout(() => {
             navigate({
                 pathname: '/login',
                 search: '?logout=1'
