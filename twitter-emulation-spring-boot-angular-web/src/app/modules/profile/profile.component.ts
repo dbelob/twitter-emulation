@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Account } from '../../shared/models/account.model';
 import { AuthenticationService } from '../../shared/services/authentication.service';
 import { AccountService } from '../../shared/services/account.service';
-import { ValidationService } from '../../shared/services/validation.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +13,7 @@ export class ProfileComponent {
   public formSubmitted: boolean = false;
   public credentials = {id: undefined, username: '', password: '', confirmation: '', description: ''};
 
-  constructor(private authenticationService: AuthenticationService, private accountService: AccountService, private validationService: ValidationService, private router: Router) {
+  constructor(private authenticationService: AuthenticationService, private accountService: AccountService, private router: Router) {
     authenticationService.getUser()
       .subscribe(user => {
         accountService.getAccount(user.name)
@@ -43,9 +42,5 @@ export class ProfileComponent {
           this.router.navigate(['/account', 'show', this.credentials.username]);
         });
     }
-  }
-
-  getFormValidationMessages(form: NgForm): string[] {
-    return this.validationService.getFormValidationMessages(form);
   }
 }

@@ -3,16 +3,7 @@
 
   <form novalidate #form="ngForm">
     <app-non-validation-message [isFormSubmitted]="formSubmitted" [isFormValid]="form.invalid"></app-non-validation-message>
-
-    <div class="alert alert-danger"
-         *ngIf="formSubmitted && form.invalid">
-      There are problems with the form
-      <ul>
-        <li *ngFor="let error of getFormValidationMessages(form)">
-          {{error}}
-        </li>
-      </ul>
-    </div>
+    <app-validation-messages [isFormSubmitted]="formSubmitted" [form]="form"></app-validation-messages>
 
     <div class="mb-3">
       <label for="username" class="form-label">Username:</label>

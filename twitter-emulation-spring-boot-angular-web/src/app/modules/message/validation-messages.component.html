@@ -1,0 +1,8 @@
+<div class="alert alert-danger" *ngIf="isFormSubmitted && form.invalid">
+  There are problems with the form
+  <ul>
+    <li *ngFor="let error of getFormValidationMessages(form)">
+      {{error}}
+    </li>
+  </ul>
+</div>

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { NgForm } from "@angular/forms";
-import { Router } from "@angular/router";
-import { Account } from "../../shared/models/account.model";
-import { AccountService } from "../../shared/services/account.service";
-import { ValidationService } from "../../shared/services/validation.service";
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Account } from '../../shared/models/account.model';
+import { AccountService } from '../../shared/services/account.service';
 
 @Component({
   selector: 'app-registration',
@@ -13,7 +12,7 @@ export class RegistrationComponent {
   public formSubmitted: boolean = false;
   public credentials = {id: undefined, username: '', password: '', confirmation: '', description: ''};
 
-  constructor(private accountService: AccountService, private validationService: ValidationService, private router: Router) {
+  constructor(private accountService: AccountService, private router: Router) {
   }
 
   submitForm(form: NgForm) {
@@ -30,9 +29,5 @@ export class RegistrationComponent {
           this.router.navigateByUrl('/login');
         });
     }
-  }
-
-  getFormValidationMessages(form: NgForm): string[] {
-    return this.validationService.getFormValidationMessages(form);
   }
 }
