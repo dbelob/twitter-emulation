@@ -3,7 +3,7 @@
     <button class="btn btn-link m-0" routerLink="/account/show">Main</button>
   </div>
   <div class="col-6 p-1">
-    <form role="form" novalidate #form="ngForm" (ngSubmit)="search(form)">
+    <form role="form" novalidate (ngSubmit)="search()">
       <div class="input-group mt-1">
         <input type="search" class="form-control" id="searchText" name="searchText" [(ngModel)]="searchText" placeholder="Search accounts..."/>
         <div class="input-group-append">
@@ -18,6 +18,7 @@
     <button class="btn btn-link m-1" (click)="logout()">Logout</button>
   </div>
 </div>
+
 <div *ngIf="!userState.isAuthenticated()" class="row m-0">
   <div class="col-3 p-1">
   </div>
