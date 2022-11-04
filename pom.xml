@@ -25,7 +25,7 @@
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
         <war.plugin.version>3.3.2</war.plugin.version>
 
-        <allure-junit5.version>2.19.0</allure-junit5.version>
+        <allure-junit5.version>2.20.0</allure-junit5.version>
         <javax.el.version>3.0.0</javax.el.version>
         <javax.servlet.jsp-api>2.3.3</javax.servlet.jsp-api>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
