@@ -31,4 +31,24 @@ export class FollowerService {
                 })
             );
     }
+
+    follow(username: string): AxiosObservable<string> {
+        return Axios.post<string>(`${this.baseUrl}/following/${username}`, {})
+            .pipe(
+                catchError((err: AxiosError) => {
+                    this.messageService.reportMessage(err.response);
+                    throw err;
+                })
+            )
+    }
+
+    unfollow(username: string): AxiosObservable<string> {
+        return Axios.delete<string>(`${this.baseUrl}/following/${username}`, {})
+            .pipe(
+                catchError((err: AxiosError) => {
+                    this.messageService.reportMessage(err.response);
+                    throw err;
+                })
+            )
+    }
 }

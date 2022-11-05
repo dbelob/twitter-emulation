@@ -4,6 +4,7 @@ import { resolve } from 'inversify-react';
 import { AccountStatistics } from '../common/models/AccountStatistics';
 import { UserState } from '../common/models/UserState';
 import { AccountService } from '../common/services/AccountService';
+import { FollowerService } from '../common/services/FollowerService';
 
 type AccountInfoProps = {
     userState: UserState;
@@ -17,6 +18,9 @@ export default class AccountInfo extends Component<AccountInfoProps, AccountInfo
     @resolve(AccountService)
     private readonly accountService!: AccountService;
 
+    @resolve(FollowerService)
+    private readonly followerService!: FollowerService;
+
     constructor(props: AccountInfoProps) {
         super(props);
 
@@ -25,7 +29,7 @@ export default class AccountInfo extends Component<AccountInfoProps, AccountInfo
         };
     }
 
-    componentDidMount() {
+    loadAccountStatistics() {
         const username = this.props.userState.getDataUserName();
 
         if (username) {
@@ -39,18 +43,60 @@ export default class AccountInfo extends Component<AccountInfoProps, AccountInfo
         }
     }
 
+    componentDidMount() {
+        this.loadAccountStatistics();
+    }
+
+    follow = () => {
+        if (this.props.userState.selectedUserName) {
+            this.followerService.follow(this.props.userState.selectedUserName)
+                .subscribe(data => {
+                        this.loadAccountStatistics();
+                    }
+                );
+        }
+    }
+
+    unfollow = () => {
+        if (this.props.userState.selectedUserName) {
+            this.followerService.unfollow(this.props.userState.selectedUserName)
+                .subscribe(data => {
+                        this.loadAccountStatistics();
+                    }
+                );
+        }
+    }
+
+    isFollowVisible(): boolean {
+        return this.props.userState.isAuthenticated() && (this.props.userState.authenticatedUserName !== this.props.userState.selectedUserName);
+    }
+
     render() {
         return (
             <div className="card p-3 bg-light">
-                <div className="row fw-bold">
-                    <div className="col-12" id="description">
-                        {this.state.accountStatistics.description}
-                    </div>
-                </div>
                 <div className="row">
-                    <div className="col-12" id="username">
-                        @{this.state.accountStatistics.username}
+                    <div className="col">
+                        <div className="row fw-bold">
+                            <div className="col-12" id="description">
+                                {this.state.accountStatistics.description}
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-12" id="username">
+                                @{this.state.accountStatistics.username}
+                            </div>
+                        </div>
                     </div>
+                    {this.isFollowVisible() ?
+                        <div className="col-auto" id="buttons">
+                            {
+                                this.state.accountStatistics.follow ?
+                                    <button className="btn btn-primary m-0" onClick={this.unfollow} id="unfollow">Unfollow</button> :
+                                    <button className="btn btn-primary m-0" onClick={this.follow} id="follow">Follow</button>
+                            }
+                        </div> :
+                        null
+                    }
                 </div>
                 <div className="row mt-1">
                     <div className="col-4 small">
