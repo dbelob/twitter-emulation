@@ -87,15 +87,14 @@ export default class AccountInfo extends Component<AccountInfoProps, AccountInfo
                             </div>
                         </div>
                     </div>
-                    {this.isFollowVisible() ?
+                    {this.isFollowVisible() &&
                         <div className="col-auto" id="buttons">
                             {
                                 this.state.accountStatistics.follow ?
                                     <button className="btn btn-primary m-0" onClick={this.unfollow} id="unfollow">Unfollow</button> :
                                     <button className="btn btn-primary m-0" onClick={this.follow} id="follow">Follow</button>
                             }
-                        </div> :
-                        null
+                        </div>
                     }
                 </div>
                 <div className="row mt-1">
