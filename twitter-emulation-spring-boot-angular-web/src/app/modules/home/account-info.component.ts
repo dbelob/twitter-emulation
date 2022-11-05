@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChange, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserState } from '../../shared/models/user-state.model';
-import { AccountStatistics } from "../../shared/models/account-statistics.model";
-import { FollowerService } from "../../shared/services/follower.service";
+import { AccountStatistics } from '../../shared/models/account-statistics.model';
+import { AccountService } from '../../shared/services/account.service';
+import { FollowerService } from '../../shared/services/follower.service';
 
 @Component({
   selector: 'app-account-info',
@@ -12,10 +13,29 @@ export class AccountInfoComponent {
   @Input('userState')
   userState: UserState;
 
-  @Input('accountStatistics')
-  accountStatistics: AccountStatistics;
+  public accountStatistics: AccountStatistics = new AccountStatistics();
 
-  constructor(private followerService: FollowerService, private router: Router) {
+  constructor(private accountService: AccountService, private followerService: FollowerService, private router: Router) {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const userStateChange: SimpleChange = changes.userState;
+
+    // User state
+    if (userStateChange) {
+      const currentUserState: UserState = userStateChange.currentValue;
+
+      if (currentUserState) {
+        const username = currentUserState.getDataUserName();
+
+        if (username) {
+          this.accountService.getAccountStatistics(username)
+            .subscribe(data => {
+              this.accountStatistics = data;
+            });
+        }
+      }
+    }
   }
 
   follow() {
