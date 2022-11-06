@@ -1,5 +1,4 @@
 import { Component, Input, SimpleChange, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
 import { UserState } from '../../shared/models/user-state.model';
 import { AccountStatistics } from '../../shared/models/account-statistics.model';
 import { AccountService } from '../../shared/services/account.service';
@@ -15,7 +14,18 @@ export class AccountInfoComponent {
 
   public accountStatistics: AccountStatistics = new AccountStatistics();
 
-  constructor(private accountService: AccountService, private followerService: FollowerService, private router: Router) {
+  constructor(private accountService: AccountService, private followerService: FollowerService) {
+  }
+
+  loadAccountStatistics(userState: UserState) {
+    const username = userState.getDataUserName();
+
+    if (username) {
+      this.accountService.getAccountStatistics(username)
+        .subscribe(data => {
+          this.accountStatistics = data;
+        });
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -26,14 +36,7 @@ export class AccountInfoComponent {
       const currentUserState: UserState = userStateChange.currentValue;
 
       if (currentUserState) {
-        const username = currentUserState.getDataUserName();
-
-        if (username) {
-          this.accountService.getAccountStatistics(username)
-            .subscribe(data => {
-              this.accountStatistics = data;
-            });
-        }
+        this.loadAccountStatistics(currentUserState);
       }
     }
   }
@@ -41,14 +44,14 @@ export class AccountInfoComponent {
   follow() {
     this.followerService.follow(this.userState.selectedUserName)
       .subscribe(data => {
-        this.router.navigate(['/account', 'show', this.userState.selectedUserName]);
+        this.loadAccountStatistics(this.userState);
       });
   }
 
   unfollow() {
     this.followerService.unfollow(this.userState.selectedUserName)
       .subscribe(data => {
-        this.router.navigate(['/account', 'show', this.userState.selectedUserName]);
+        this.loadAccountStatistics(this.userState);
       });
   }
 
