@@ -13,9 +13,10 @@ export class TweetService {
     @inject(MessageService)
     private readonly messageService!: MessageService;
 
-    getTweets(username: string): AxiosObservable<Tweet[]> {
+    getTweets(username: string): Observable<Tweet[]> {
         return Axios.get(`${this.baseUrl}/tweets/${username}`)
             .pipe(
+                map(response => response.data),
                 catchError((err: AxiosError) => {
                     this.messageService.reportMessage(err.response);
                     throw err;
