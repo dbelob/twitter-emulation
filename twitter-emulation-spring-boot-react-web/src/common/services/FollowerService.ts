@@ -24,9 +24,10 @@ export class FollowerService {
             );
     }
 
-    getFollowers(username: string): AxiosObservable<Account[]> {
+    getFollowers(username: string): Observable<Account[]> {
         return Axios.get(`${this.baseUrl}/followers/${username}`)
             .pipe(
+                map(response => response.data),
                 catchError((err: AxiosError) => {
                     this.messageService.reportMessage(err.response);
                     throw err;
