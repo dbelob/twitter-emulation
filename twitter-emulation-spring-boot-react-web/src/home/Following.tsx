@@ -16,7 +16,7 @@ type FollowingState = {
 
 class Following extends Component<FollowingProps, FollowingState> {
     @resolve(FollowerService)
-    private readonly followerDataSource!: FollowerService;
+    private readonly followerService!: FollowerService;
 
     constructor(props: FollowingProps) {
         super(props);
@@ -29,10 +29,10 @@ class Following extends Component<FollowingProps, FollowingState> {
     componentDidMount() {
         const {user} = this.props.params;
 
-        this.followerDataSource.getFollowing(user)
-            .subscribe(response => {
+        this.followerService.getFollowing(user)
+            .subscribe(data => {
                 this.setState({
-                    accounts: response.data
+                    accounts: data
                 });
             });
     }
