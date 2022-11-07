@@ -12,23 +12,23 @@ import { NotFoundComponent } from './modules/unknown/not-found.component';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { RegistrationComponent } from './modules/registration/registration.component';
 import { SearchComponent } from './modules/home/search.component';
-import { AuthenticationGuard } from "./shared/guards/authentication.guard";
+import { AuthenticationGuard } from './shared/guards/authentication.guard';
 import { AccountService } from './shared/services/account.service';
 import { AuthenticationService } from './shared/services/authentication.service';
 import { TweetService } from './shared/services/tweet.service';
 import { ValidationService } from './shared/services/validation.service';
-import { FollowerService } from "./shared/services/follower.service";
-import { HomeModule } from "./modules/home/home.module";
-import { LoginModule } from "./modules/login/login.module";
-import { MessageModule } from "./modules/message/message.module";
-import { ProfileModule } from "./modules/profile/profile.module";
-import { RegistrationModule } from "./modules/registration/registration.module";
-import { TweetModule } from "./modules/tweet/tweet.module";
-import { UnknownModule } from "./modules/unknown/unknown.module";
-import { TweetsComponent } from "./modules/home/tweets.component";
-import { FollowingComponent } from "./modules/home/following.component";
-import { FollowersComponent } from "./modules/home/followers.component";
-import { HomeResolver } from "./modules/home/home.resolver";
+import { FollowerService } from './shared/services/follower.service';
+import { HomeModule } from './modules/home/home.module';
+import { LoginModule } from './modules/login/login.module';
+import { MessageModule } from './modules/message/message.module';
+import { ProfileModule } from './modules/profile/profile.module';
+import { RegistrationModule } from './modules/registration/registration.module';
+import { TweetModule } from './modules/tweet/tweet.module';
+import { UnknownModule } from './modules/unknown/unknown.module';
+import { TweetsComponent } from './modules/home/tweets.component';
+import { FollowingComponent } from './modules/home/following.component';
+import { FollowersComponent } from './modules/home/followers.component';
+import { HomeResolver } from './modules/home/home.resolver';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {

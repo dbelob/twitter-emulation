@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { Message } from "./message.model";
-import { Observable, Subject } from "rxjs";
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { Message } from './message.model';
 
 @Injectable()
 export class MessageService {

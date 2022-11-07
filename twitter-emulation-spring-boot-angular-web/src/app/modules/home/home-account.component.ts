@@ -1,10 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
-import { Observer } from "rxjs";
-import { Account } from "../../shared/models/account.model";
-import { AuthenticationService } from "../../shared/services/authentication.service";
-import { HomeChild } from "./home-child";
-import { USER_STATE, UserState } from "../../shared/models/user-state.model";
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observer } from 'rxjs';
+import { Account } from '../../shared/models/account.model';
+import { AuthenticationService } from '../../shared/services/authentication.service';
+import { HomeChild } from './home-child';
+import { USER_STATE, UserState } from '../../shared/models/user-state.model';
 
 @Component({
   selector: 'app-home-account',

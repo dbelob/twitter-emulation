@@ -1,10 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
-import { AuthenticationService } from "../../shared/services/authentication.service";
-import { HomeAccountComponent } from "./home-account.component";
-import { Observer } from "rxjs";
-import { AccountService } from "../../shared/services/account.service";
-import { USER_STATE, UserState } from "../../shared/models/user-state.model";
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../../shared/services/authentication.service';
+import { HomeAccountComponent } from './home-account.component';
+import { Observer } from 'rxjs';
+import { AccountService } from '../../shared/services/account.service';
+import { USER_STATE, UserState } from '../../shared/models/user-state.model';
 
 @Component({
   selector: 'app-search',
