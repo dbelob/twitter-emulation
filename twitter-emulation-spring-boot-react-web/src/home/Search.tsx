@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { firstValueFrom } from 'rxjs';
 import { useInjection } from 'inversify-react';
+import { StringParam, useQueryParam } from 'use-query-params';
 import { useAuth } from '../common/authentication/AuthProvider';
 import { Account } from '../common/models/Account';
 import { AccountService } from '../common/services/AccountService';
@@ -12,17 +13,18 @@ type SearchProps = {};
 
 export default function Search(props: SearchProps) {
     const [accounts, setAccounts] = useState<Account[]>([]);
+    const [searchText, setSearchText] = useQueryParam('searchText', StringParam);
     const auth = useAuth();
-    const accountDataSource = useInjection(AccountService);
+    const accountService = useInjection(AccountService);
 
     useEffect(() => {
         const loadAccounts = async () => {
-            // TODO: change
-            const accounts = await firstValueFrom(accountDataSource.getAccounts(''));
+            const accounts = await firstValueFrom(accountService.getAccounts(searchText))
+            setAccounts(accounts);
         };
 
         loadAccounts();
-    }, []);
+    }, [searchText]);
 
     if (auth.loading) {
         return <Loading/>;

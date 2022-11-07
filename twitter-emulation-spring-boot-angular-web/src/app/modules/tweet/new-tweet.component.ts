@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NgForm } from "@angular/forms";
-import { Router } from "@angular/router";
-import { ValidationService } from "../../shared/services/validation.service";
-import { TweetService } from "../../shared/services/tweet.service";
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TweetService } from '../../shared/services/tweet.service';
 
 @Component({
   selector: 'app-new-tweet',
@@ -12,7 +11,7 @@ export class NewTweetComponent {
   public formSubmitted: boolean = false;
   public text: string;
 
-  constructor(private tweetService: TweetService, private validationService: ValidationService, private router: Router) {
+  constructor(private tweetService: TweetService, private router: Router) {
   }
 
   submitForm(form: NgForm) {
@@ -24,9 +23,5 @@ export class NewTweetComponent {
           this.router.navigateByUrl('/account/show');
         });
     }
-  }
-
-  getFormValidationMessages(form: NgForm): string[] {
-    return this.validationService.getFormValidationMessages(form);
   }
 }

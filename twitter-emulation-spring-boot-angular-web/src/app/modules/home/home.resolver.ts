@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
-import { Observable } from "rxjs";
-import { AccountStatistics } from "../../shared/models/account-statistics.model";
-import { AccountService } from "../../shared/services/account.service";
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AccountStatistics } from '../../shared/models/account-statistics.model';
+import { AccountService } from '../../shared/services/account.service';
 
 @Injectable()
 export class HomeResolver implements Resolve<AccountStatistics> {

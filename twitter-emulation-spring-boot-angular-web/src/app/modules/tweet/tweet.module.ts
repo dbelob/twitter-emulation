@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NewTweetComponent } from "./new-tweet.component";
-import { FormsModule } from "@angular/forms";
-import { MessageModule } from "../message/message.module";
-import { RouterModule } from "@angular/router";
-import { GeneralModule } from "../general/general.module";
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NewTweetComponent } from './new-tweet.component';
+import { MessageModule } from '../message/message.module';
+import { GeneralModule } from '../general/general.module';
 
 @NgModule({
   declarations: [

@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Router } from "@angular/router";
-import { NgForm } from "@angular/forms";
-import { UserState } from "../../shared/models/user-state.model";
-import { AuthenticationService } from "../../shared/services/authentication.service";
+import { Router } from '@angular/router';
+import { UserState } from '../../shared/models/user-state.model';
+import { AuthenticationService } from '../../shared/services/authentication.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -17,7 +16,7 @@ export class TopBarComponent {
   constructor(private authenticationService: AuthenticationService, private router: Router) {
   }
 
-  search(form: NgForm) {
+  search() {
     this.router.navigate(['/account/search'], {
       queryParams: {
         "searchText": this.searchText

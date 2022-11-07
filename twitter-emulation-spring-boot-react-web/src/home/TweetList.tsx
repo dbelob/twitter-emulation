@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { format } from 'date-fns'
 import { Tweet } from '../common/models/Tweet';
-import { Link } from "react-router-dom";
 
 type TweetListProps = {
     title?: string;

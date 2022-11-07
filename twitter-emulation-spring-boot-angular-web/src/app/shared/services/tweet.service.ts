@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { catchError } from "rxjs/operators";
-import { Tweet } from "../models/tweet.model";
-import { MessageService } from "../../modules/message/message.service";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Tweet } from '../models/tweet.model';
+import { MessageService } from '../../modules/message/message.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UserState } from "../../shared/models/user-state.model";
+import { UserState } from '../../shared/models/user-state.model';
 
 @Component({
   selector: 'app-status-info',

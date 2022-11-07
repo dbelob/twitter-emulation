@@ -16,7 +16,7 @@ type TweetsState = {
 
 class Tweets extends Component<TweetsProps, TweetsState> {
     @resolve(TweetService)
-    private readonly tweetDataSource!: TweetService;
+    private readonly tweetService!: TweetService;
 
     constructor(props: TweetsProps) {
         super(props);
@@ -29,10 +29,10 @@ class Tweets extends Component<TweetsProps, TweetsState> {
     componentDidMount() {
         const {user} = this.props.params;
 
-        this.tweetDataSource.getTweets(user)
-            .subscribe(response => {
+        this.tweetService.getTweets(user)
+            .subscribe(data => {
                 this.setState({
-                    tweets: response.data
+                    tweets: data
                 });
             });
     }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from "@angular/router";
-import { User } from "../../shared/models/user.model";
-import { AuthenticationService } from "../../shared/services/authentication.service";
-import { AccountService } from "../../shared/services/account.service";
+import { Router } from '@angular/router';
+import { User } from '../../shared/models/user.model';
+import { AuthenticationService } from '../../shared/services/authentication.service';
+import { AccountService } from '../../shared/services/account.service';
 
 @Component({
   selector: 'app-delete-account',
@@ -22,7 +22,7 @@ export class DeleteAccountComponent {
       .subscribe(data => {
         this.router.navigate(['/login'], {
           queryParams: {
-            "logout": true
+            "logout": 1
           }
         });
       });

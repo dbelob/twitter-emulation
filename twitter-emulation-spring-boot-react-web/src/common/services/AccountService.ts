@@ -1,4 +1,4 @@
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AxiosError } from 'axios';
 import { Axios, AxiosObservable } from 'axios-observable';
@@ -24,9 +24,52 @@ export class AccountService {
             );
     }
 
-    getAccounts(usernamePart: string): Observable<Account[]> {
-        // TODO: implement
-        return of([]);
+    getAccount(username: string): Observable<Account> {
+        return Axios.get(`${this.baseUrl}/accounts/${username}`)
+            .pipe(
+                map(response => response.data),
+                catchError((err: AxiosError) => {
+                    this.messageService.reportMessage(err.response);
+                    throw err;
+                })
+            );
+    }
+
+    saveAccount(username: string, account: Account): AxiosObservable<Account> {
+        return Axios.put(`${this.baseUrl}/accounts/${username}`, account)
+            .pipe(
+                catchError((err: AxiosError) => {
+                    this.messageService.reportMessage(err.response);
+                    throw err;
+                })
+            );
+    }
+
+    deleteAccount(username: string): AxiosObservable<Account> {
+        return Axios.delete<Account>(`${this.baseUrl}/accounts/${username}`)
+            .pipe(
+                catchError((err: AxiosError) => {
+                    this.messageService.reportMessage(err.response);
+                    throw err;
+                })
+            );
+    }
+
+    getAccounts(usernamePart: string | null | undefined): Observable<Account[]> {
+        const config = usernamePart ? {
+            params: {
+                'usernamePart': usernamePart
+            }
+        } : {};
+
+        return Axios.get<Account[]>(`${this.baseUrl}/accounts`, config)
+            .pipe(
+                map(response => response.data),
+                catchError((err: AxiosError) => {
+                    this.messageService.reportMessage(err.response);
+                    throw err;
+                })
+            );
     }
 
     getAccountStatistics(username: string): Observable<AccountStatistics> {

@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/dbelob/twitter-emulation/branch/master/graph/badge.svg)](https://codecov.io/gh/dbelob/twitter-emulation)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dbelob_twitter-emulation&metric=alert_status)](https://sonarcloud.io/dashboard?id=dbelob_twitter-emulation)
 
-# Twitter emulation in Java and Angular
+# Twitter emulation in Java and React/Angular
 
 ![Screenshot](/images/screenshot.png)
 
@@ -17,6 +17,7 @@ in several ways:
 
 1. *Spring MVC*, *JSP*
 1. *Spring Boot*, *JSP*
+1. *Spring Boot*, *React*
 1. *Spring Boot*, *Angular*
 
 ## Requirements
@@ -71,6 +72,97 @@ in several ways:
 1. Access the deployed web application at:
 
     http://localhost:8080
+
+1. Log in with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
+
+### Spring Boot, React
+
+#### Method 1
+
+1. From the command line with *Maven* (in the root directory):
+
+   `mvn clean install -Dmaven.test.skip=true`
+
+1. Change directory:
+
+   `cd twitter-emulation-spring-boot-react-server`
+
+1. From the command line run one of the commands with *Maven*:
+
+   `mvn spring-boot:run` (*H2*)  
+   `mvn spring-boot:run -P development` (*H2*)  
+   `mvn spring-boot:run -P production` (*Oracle Database*)  
+   (*Oracle Database* connection properties: `src/main/resources/application.yml`)
+
+1. Access the deployed web application at:
+
+   http://localhost:8080
+
+1. Log in with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
+
+#### Method 2
+
+1. Install *Node.js*
+
+1. Run to ensure that *npm* is working:
+
+   `npm -v`
+
+1. Change directory:
+
+   `cd twitter-emulation-spring-boot-react-server`
+
+1. From the command line run one of the commands with *Maven*:
+
+   `mvn spring-boot:run` (*H2*)  
+   `mvn spring-boot:run -P development` (*H2*)  
+   `mvn spring-boot:run -P production` (*Oracle Database*)  
+   (*Oracle Database* connection properties: `src/main/resources/application.yml`)
+
+1. Change directory:
+
+   `cd twitter-emulation-spring-boot-react-web`
+
+1. From the command line with *npm*:
+
+   `npm start`
+
+1. Access the deployed web application at:
+
+   http://localhost:3000
+
+1. Log in with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
+
+#### Method 3
+
+1. From the command line with *Maven* (in the root directory):
+
+   `mvn clean package -DskipTests`
+
+1. Change directory:
+
+   `cd twitter-emulation-distrib/target`
+
+1. Find distribution file:
+
+   `twitter-emulation-react-<version>.zip`
+
+1. Extract files from ZIP, for example:
+
+   `unzip twitter-emulation-react-<version>.zip`
+
+1. Change directory:
+
+   `cd twitter-emulation-react-<version>`
+
+1. Run:
+
+   `runme.bat` (*Windows*)  
+   `runme.sh` (*macOS* or *Linux*)
+
+1. Access the running web application at:
+
+   http://localhost:8080
 
 1. Log in with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
 
@@ -176,6 +268,10 @@ in several ways:
     `mvn spring-boot:run`
 
 1. Change directory:
+
+    `cd twitter-emulation-spring-boot-react-server`
+
+    or
 
     `cd twitter-emulation-spring-boot-angular-server`
 
