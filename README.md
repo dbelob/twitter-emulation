@@ -313,7 +313,7 @@ in several ways:
 
 ### Frontend unit testing
 
-#### [Jasmine](https://jasmine.github.io) tests
+#### Jasmine tests
 
 1. Change directory:
 
@@ -325,7 +325,7 @@ in several ways:
 
 ### Frontend end-to-end testing
 
-#### [Protractor](https://www.protractortest.org) tests
+#### Protractor tests
 
 1. Change directory:
 
