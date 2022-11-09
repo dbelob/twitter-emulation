@@ -305,13 +305,15 @@ in several ways:
 
 1. Change directory:
 
-    `cd twitter-emulation-spring-boot-angular-server`
+    `cd twitter-emulation-spring-boot-common-server`
 
 1. From the command line with *Maven*:
 
     `mvn test`  
 
 ### Frontend unit testing
+
+#### [Jasmine](https://jasmine.github.io) tests
 
 1. Change directory:
 
@@ -322,6 +324,8 @@ in several ways:
     `npm run test`
 
 ### Frontend end-to-end testing
+
+#### [Protractor](https://www.protractortest.org) tests
 
 1. Change directory:
 
