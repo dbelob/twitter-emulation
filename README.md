@@ -313,6 +313,16 @@ in several ways:
 
 ### Frontend unit testing
 
+#### Jest, React Testing Library tests
+
+1. Change directory:
+
+   `cd twitter-emulation-spring-boot-react-web`
+
+1. From the command line with *npm*:
+
+   `npm run test`
+
 #### Jasmine tests
 
 1. Change directory:
@@ -356,6 +366,8 @@ in several ways:
 * [JUnit](https://junit.org) (*Java* unit testing)
 * [Mockito](https://site.mockito.org) (mocking for unit tests in *Java*)
 * [TestContainers](https://www.testcontainers.org) (testing with [Docker](https://www.docker.com) containers)
+* [Jest](https://jestjs.io) (*JavaScript* unit testing)
+* [React Testing Library](https://testing-library.com/react) (*JavaScript* unit testing for *React*)
 * [Jasmine](https://jasmine.github.io) (*JavaScript* unit testing)
 * [Protractor](https://www.protractortest.org) (end-to-end testing for *Angular*)
 
