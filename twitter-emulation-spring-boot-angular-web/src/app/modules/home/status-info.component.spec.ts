@@ -7,8 +7,7 @@ import { StatusInfoComponent } from './status-info.component';
 import { UserState } from '../../shared/models/user-state.model';
 
 @Component({
-  template: `
-    <app-status-info [userState]="userState"></app-status-info>`
+  template: `<app-status-info [userState]="userState"></app-status-info>`
 })
 class TestComponent {
   public userState: UserState = new UserState();
@@ -52,6 +51,7 @@ describe('StatusInfoComponent', () => {
     expect(component.userState.selectedUserName).toBe('jsmith');
     expect(component.isStateVisible()).toBe(true);
     expect(debugElement.query(By.css("div[id=state]"))).not.toBeNull();
+    expect(debugElement.query(By.css("span[id=username]")).nativeElement.textContent).toContain('jsmith');
 
     component.userState = new UserState('jsmith', 'jdoe');
     fixture.detectChanges();
@@ -59,5 +59,6 @@ describe('StatusInfoComponent', () => {
     expect(component.userState.selectedUserName).toBe('jdoe');
     expect(component.isStateVisible()).toBe(true);
     expect(debugElement.query(By.css("div[id=state]"))).not.toBeNull();
+    expect(debugElement.query(By.css("span[id=username]")).nativeElement.textContent).toContain('jsmith');
   });
 });

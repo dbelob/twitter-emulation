@@ -9,8 +9,7 @@ import { AccountStatistics } from '../../shared/models/account-statistics.model'
 import { UserState } from '../../shared/models/user-state.model';
 
 @Component({
-  template: `
-    <app-account-info [userState]="userState" [accountStatistics]="accountStatistics"></app-account-info>`
+  template: `<app-account-info [userState]="userState" [accountStatistics]="accountStatistics"></app-account-info>`
 })
 class TestComponent {
   public userState: UserState = new UserState();
