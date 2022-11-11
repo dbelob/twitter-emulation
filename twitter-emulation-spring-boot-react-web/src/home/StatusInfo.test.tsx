@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import StatusInfo from './StatusInfo';
 import { UserState } from '../common/models/UserState';
 
@@ -12,11 +12,28 @@ describe('StatusInfoComponent', () => {
     });
 
     test('receives the user state through input property', () => {
-        const userState = new UserState();
+        let userState = new UserState();
+        const {rerender} = render(<StatusInfo userState={userState}/>);
+        expect(screen.queryByTestId('logged')).toBeNull();
 
-        render(<StatusInfo userState={userState}/>);
-        expect(screen.queryByTestId('state')).toBeNull();
-        
-        //TODO: implement
+        userState = new UserState('jsmith', 'jsmith');
+        rerender(<StatusInfo userState={userState}/>);
+        expect(screen.queryByTestId('logged')).not.toBeNull();
+        expect(within(screen.getByTestId('username')).getByText('jsmith')).toBeInTheDocument();
+
+        userState = new UserState('jsmith', 'jdoe');
+        rerender(<StatusInfo userState={userState}/>);
+        expect(screen.queryByTestId('logged')).not.toBeNull();
+        expect(within(screen.getByTestId('username')).getByText('jsmith')).toBeInTheDocument();
+
+        userState = new UserState('jdoe', 'jdoe');
+        rerender(<StatusInfo userState={userState}/>);
+        expect(screen.queryByTestId('logged')).not.toBeNull();
+        expect(within(screen.getByTestId('username')).getByText('jdoe')).toBeInTheDocument();
+
+        userState = new UserState('jdoe', 'jsmith');
+        rerender(<StatusInfo userState={userState}/>);
+        expect(screen.queryByTestId('logged')).not.toBeNull();
+        expect(within(screen.getByTestId('username')).getByText('jdoe')).toBeInTheDocument();
     });
 });
