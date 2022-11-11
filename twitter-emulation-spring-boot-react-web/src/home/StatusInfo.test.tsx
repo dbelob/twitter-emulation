@@ -15,6 +15,7 @@ describe('StatusInfoComponent', () => {
         let userState = new UserState();
         const {rerender} = render(<StatusInfo userState={userState}/>);
         expect(screen.queryByTestId('logged')).toBeNull();
+        expect(screen.queryByTestId('username')).toBeNull();
 
         userState = new UserState('jsmith', 'jsmith');
         rerender(<StatusInfo userState={userState}/>);

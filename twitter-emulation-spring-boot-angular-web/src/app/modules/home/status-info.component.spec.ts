@@ -44,6 +44,7 @@ describe('StatusInfoComponent', () => {
     expect(component.userState.selectedUserName).toBeUndefined();
     expect(component.isStateVisible()).toBe(false);
     expect(debugElement.query(By.css("div[id=logged]"))).toBeNull();
+    expect(debugElement.query(By.css("span[id=username]"))).toBeNull();
 
     component.userState = new UserState('jsmith', 'jsmith');
     fixture.detectChanges();
