@@ -2,14 +2,10 @@
   <div class="row">
     <div class="col">
       <div class="row fw-bold">
-        <div class="col-12" id="description">
-          {{accountStatistics.description}}
-        </div>
+        <div class="col-12" id="description">{{accountStatistics.description}}</div>
       </div>
       <div class="row">
-        <div class="col-12" id="username">
-          @{{accountStatistics.username}}
-        </div>
+        <div class="col-12" id="username">@{{accountStatistics.username}}</div>
       </div>
     </div>
     <div *ngIf="isFollowVisible()" class="col-auto" id="buttons">
@@ -30,13 +26,13 @@
   </div>
   <div class="row">
     <div class="col-4 small">
-      <a class="fw-bold" [routerLink]="['/account', 'tweets', accountStatistics.username]">{{accountStatistics.tweetsCount}}</a>
+      <a class="fw-bold" id="tweets" [routerLink]="['/account', 'tweets', accountStatistics.username]">{{accountStatistics.tweetsCount}}</a>
     </div>
     <div class="col-4 small">
-      <a class="fw-bold" [routerLink]="['/account', 'following', accountStatistics.username]">{{accountStatistics.followingCount}}</a>
+      <a class="fw-bold" id="following" [routerLink]="['/account', 'following', accountStatistics.username]">{{accountStatistics.followingCount}}</a>
     </div>
     <div class="col-4 small">
-      <a class="fw-bold" [routerLink]="['/account', 'followers', accountStatistics.username]">{{accountStatistics.followersCount}}</a>
+      <a class="fw-bold" id="followers" [routerLink]="['/account', 'followers', accountStatistics.username]">{{accountStatistics.followersCount}}</a>
     </div>
   </div>
 </div>

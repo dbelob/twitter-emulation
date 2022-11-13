@@ -70,12 +70,25 @@ describe('AccountInfoComponent', () => {
     expect(debugElement.query(By.css("div[id=username]")).nativeElement.textContent).toContain('@');
     expect(debugElement.query(By.css("div[id=description]")).nativeElement.textContent.trim()).toBe('');
 
-    component.accountStatistics = new AccountStatistics('jsmith', 'John Smith');
+    component.accountStatistics = new AccountStatistics('jsmith', 'John Smith', 6, 2, 1);
     fixture.detectChanges();
-    expect(component.accountStatistics.username).toBe('jsmith');
     expect(component.accountStatistics.description).toBe('John Smith');
-    expect(debugElement.query(By.css("div[id=username]")).nativeElement.textContent).toContain('@jsmith');
-    expect(debugElement.query(By.css("div[id=description]")).nativeElement.textContent).toContain('John Smith');
+    expect(component.accountStatistics.username).toBe('jsmith');
+    expect(debugElement.query(By.css("div[id=username]")).nativeElement.textContent).toEqual('@jsmith');
+    expect(debugElement.query(By.css("div[id=description]")).nativeElement.textContent).toEqual('John Smith');
+    expect(debugElement.query(By.css("a[id=tweets]")).nativeElement.textContent).toEqual('6');
+    expect(debugElement.query(By.css("a[id=following]")).nativeElement.textContent).toEqual('2');
+    expect(debugElement.query(By.css("a[id=followers]")).nativeElement.textContent).toEqual('1');
+
+    component.accountStatistics = new AccountStatistics('jdoe', 'John Doe', 3, 1, 1);
+    fixture.detectChanges();
+    expect(component.accountStatistics.username).toBe('jdoe');
+    expect(component.accountStatistics.description).toBe('John Doe');
+    expect(debugElement.query(By.css("div[id=username]")).nativeElement.textContent).toEqual('@jdoe');
+    expect(debugElement.query(By.css("div[id=description]")).nativeElement.textContent).toEqual('John Doe');
+    expect(debugElement.query(By.css("a[id=tweets]")).nativeElement.textContent).toEqual('3');
+    expect(debugElement.query(By.css("a[id=following]")).nativeElement.textContent).toEqual('1');
+    expect(debugElement.query(By.css("a[id=followers]")).nativeElement.textContent).toEqual('1');
   });
 
   it('receives the account statistics and user state through input property', () => {
