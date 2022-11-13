@@ -23,15 +23,15 @@ export default class StatusInfo extends Component<StatusInfoProps, StatusInfoSta
         return (
             <div className="card p-3 bg-light">
                 {this.props.userState.isAuthenticated() &&
-                    <div className="row m-1" id="state">
+                    <div className="row m-1" data-testid="logged">
                         <div className="col">
-                            Logged in as <span className="fw-bold">{this.props.userState.authenticatedUserName}</span>
+                            Logged in as <span data-testid="username" className="fw-bold">{this.props.userState.authenticatedUserName}</span>
                         </div>
                     </div>
                 }
                 <div className="row m-1">
                     <div className="col">
-                        &copy; Acme, {this.state.copyrightDate && format(this.state.copyrightDate, 'yyyy')}
+                        © Acme, {this.state.copyrightDate && format(this.state.copyrightDate, 'yyyy')}
                     </div>
                 </div>
             </div>

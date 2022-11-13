@@ -7,8 +7,7 @@ import { StatusInfoComponent } from './status-info.component';
 import { UserState } from '../../shared/models/user-state.model';
 
 @Component({
-  template: `
-    <app-status-info [userState]="userState"></app-status-info>`
+  template: `<app-status-info [userState]="userState"></app-status-info>`
 })
 class TestComponent {
   public userState: UserState = new UserState();
@@ -44,20 +43,39 @@ describe('StatusInfoComponent', () => {
     expect(component.userState.authenticatedUserName).toBeUndefined();
     expect(component.userState.selectedUserName).toBeUndefined();
     expect(component.isStateVisible()).toBe(false);
-    expect(debugElement.query(By.css("div[id=state]"))).toBeNull();
+    expect(debugElement.query(By.css("div[id=logged]"))).toBeNull();
+    expect(debugElement.query(By.css("span[id=username]"))).toBeNull();
 
     component.userState = new UserState('jsmith', 'jsmith');
     fixture.detectChanges();
     expect(component.userState.authenticatedUserName).toBe('jsmith');
     expect(component.userState.selectedUserName).toBe('jsmith');
     expect(component.isStateVisible()).toBe(true);
-    expect(debugElement.query(By.css("div[id=state]"))).not.toBeNull();
+    expect(debugElement.query(By.css("div[id=logged]"))).not.toBeNull();
+    expect(debugElement.query(By.css("span[id=username]")).nativeElement.textContent).toEqual('jsmith');
 
     component.userState = new UserState('jsmith', 'jdoe');
     fixture.detectChanges();
     expect(component.userState.authenticatedUserName).toBe('jsmith');
     expect(component.userState.selectedUserName).toBe('jdoe');
     expect(component.isStateVisible()).toBe(true);
-    expect(debugElement.query(By.css("div[id=state]"))).not.toBeNull();
+    expect(debugElement.query(By.css("div[id=logged]"))).not.toBeNull();
+    expect(debugElement.query(By.css("span[id=username]")).nativeElement.textContent).toEqual('jsmith');
+
+    component.userState = new UserState('jdoe', 'jdoe');
+    fixture.detectChanges();
+    expect(component.userState.authenticatedUserName).toBe('jdoe');
+    expect(component.userState.selectedUserName).toBe('jdoe');
+    expect(component.isStateVisible()).toBe(true);
+    expect(debugElement.query(By.css("div[id=logged]"))).not.toBeNull();
+    expect(debugElement.query(By.css("span[id=username]")).nativeElement.textContent).toEqual('jdoe');
+
+    component.userState = new UserState('jdoe', 'jsmith');
+    fixture.detectChanges();
+    expect(component.userState.authenticatedUserName).toBe('jdoe');
+    expect(component.userState.selectedUserName).toBe('jsmith');
+    expect(component.isStateVisible()).toBe(true);
+    expect(debugElement.query(By.css("div[id=logged]"))).not.toBeNull();
+    expect(debugElement.query(By.css("span[id=username]")).nativeElement.textContent).toEqual('jdoe');
   });
 });

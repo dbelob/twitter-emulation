@@ -1,7 +1,7 @@
 <div class="card p-3 bg-light">
-  <div *ngIf="isStateVisible()" class="row m-1" id="state">
+  <div *ngIf="isStateVisible()" class="row m-1" id="logged">
     <div class="col">
-      Logged in as <span class="fw-bold">{{userState.authenticatedUserName}}</span>
+      Logged in as <span id="username" class="fw-bold">{{userState.authenticatedUserName}}</span>
     </div>
   </div>
   <div class="row m-1">
