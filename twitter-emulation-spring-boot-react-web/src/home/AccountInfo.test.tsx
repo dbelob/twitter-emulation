@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
+import { act, cleanup, render, screen, within } from '@testing-library/react';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';
 import { rest } from 'msw'
@@ -25,6 +25,12 @@ describe('AccountInfoComponent', () => {
                 followersCount: 1, follow: false
             }))
         }),
+        rest.get('/api/account/statistics/jdoe', (req, res, ctx) => {
+            return res(ctx.json({
+                username: 'jdoe', description: 'John Doe', tweetsCount: 3, followingCount: 1,
+                followersCount: 1, follow: true
+            }))
+        }),
     )
 
     beforeAll(() => server.listen())
@@ -34,24 +40,42 @@ describe('AccountInfoComponent', () => {
     test('should create', async () => {
         const userState = new UserState('jsmith', 'jsmith');
 
-        render(
-            <Provider container={iocContainer}>
-                <BrowserRouter>
-                    <AccountInfo userState={userState}/>
-                </BrowserRouter>
-            </Provider>);
-        await expect(screen.getByText(/^@/)).toBeTruthy();
+        await act(() => {
+            render(
+                <Provider container={iocContainer}>
+                    <BrowserRouter>
+                        <AccountInfo userState={userState}/>
+                    </BrowserRouter>
+                </Provider>);
+        });
+        expect(screen.getByText(/^@/)).toBeTruthy();
     });
 
-    test('receives the user state through input property', () => {
-        //TODO: implement
-    });
+    test('receives the user state through input property', async () => {
+        let userState = new UserState('jsmith', 'jsmith');
+        await act(async () => {
+            render(
+                <Provider container={iocContainer}>
+                    <BrowserRouter>
+                        <AccountInfo userState={userState}/>
+                    </BrowserRouter>
+                </Provider>);
+        });
+        expect(within(screen.getByTestId('description')).getByText('John Smith')).toBeInTheDocument();
+        expect(within(screen.getByTestId('username')).getByText('@jsmith')).toBeInTheDocument();
 
-    test('receives the account statistics through input property', () => {
-        //TODO: implement
-    });
+        cleanup();
 
-    test('receives the account statistics and user state through input property', () => {
-        //TODO: implement
+        userState = new UserState('jsmith', 'jdoe');
+        await act(async () => {
+            render(
+                <Provider container={iocContainer}>
+                    <BrowserRouter>
+                        <AccountInfo userState={userState}/>
+                    </BrowserRouter>
+                </Provider>);
+        });
+        expect(within(screen.getByTestId('description')).getByText('John Doe')).toBeInTheDocument();
+        expect(within(screen.getByTestId('username')).getByText('@jdoe')).toBeInTheDocument();
     });
 });
