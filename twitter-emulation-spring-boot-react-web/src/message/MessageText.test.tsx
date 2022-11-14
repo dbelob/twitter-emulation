@@ -1,12 +1,8 @@
 import 'reflect-metadata';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { act, cleanup, render, screen, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import { Container } from 'inversify';
-import { Provider, resolve, useInjection } from 'inversify-react';
-import { rest } from 'msw'
-import { setupServer } from 'msw/node'
-import { UserState } from '../common/models/UserState';
+import { Provider } from 'inversify-react';
 import { MessageService } from './MessageService';
 import MessageText from './MessageText';
 import { Message } from '../common/models/Message';
@@ -26,7 +22,7 @@ describe('MessageTextComponent', () => {
 
     test('checks visibility', async () => {
         const messageService = iocContainer.get(MessageService)
-        
+
         render(
             <Provider container={iocContainer}>
                 <MessageText/>
