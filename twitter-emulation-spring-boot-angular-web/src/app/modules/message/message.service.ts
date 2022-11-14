@@ -7,7 +7,7 @@ export class MessageService {
   private subject = new Subject<Message>();
 
   reportMessage(parameter: Message | Response) {
-    let msg = (parameter instanceof Message) ?
+    const msg = (parameter instanceof Message) ?
       parameter :
       new Message(MessageService.getMessageText(parameter), new Date(), true);
 
@@ -19,10 +19,10 @@ export class MessageService {
   }
 
   private static getMessageText(response: Response): string {
-    let error = response['error'];
+    const error = response['error'];
 
     if (error) {
-      let customMessage = error['customMessage'];
+      const customMessage = error['customMessage'];
 
       if (customMessage) {
         return customMessage;
