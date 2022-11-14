@@ -8,7 +8,7 @@ export class MessageService {
     private subject = new Subject<Message>();
 
     reportMessage(parameter: Message | AxiosResponse | undefined) {
-        let msg = (parameter instanceof Message) ?
+        const msg = (parameter instanceof Message) ?
             parameter :
             new Message(MessageService.getMessageText(parameter), new Date(), true);
 
@@ -21,10 +21,10 @@ export class MessageService {
 
     private static getMessageText(response?: AxiosResponse): string {
         if (response) {
-            let data = response.data;
+            const data = response.data;
 
             if (data) {
-                let customMessage = data['customMessage'];
+                const customMessage = data['customMessage'];
 
                 if (customMessage) {
                     return customMessage;
