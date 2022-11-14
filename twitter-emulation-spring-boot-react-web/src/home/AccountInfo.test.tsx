@@ -31,6 +31,12 @@ describe('AccountInfoComponent', () => {
                 followersCount: 1, follow: true
             }))
         }),
+        rest.get('/api/account/statistics/rroe', (req, res, ctx) => {
+            return res(ctx.json({
+                username: 'rroe', description: 'Richard Roe', tweetsCount: 0, followingCount: 0,
+                followersCount: 1, follow: false
+            }))
+        }),
     )
 
     beforeAll(() => server.listen())
@@ -63,6 +69,12 @@ describe('AccountInfoComponent', () => {
         });
         expect(within(screen.getByTestId('description')).getByText('John Smith')).toBeInTheDocument();
         expect(within(screen.getByTestId('username')).getByText('@jsmith')).toBeInTheDocument();
+        expect(screen.queryByTestId('buttons')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('unfollow')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('follow')).not.toBeInTheDocument();
+        expect(within(screen.getByTestId('tweets')).getByText('6')).toBeInTheDocument();
+        expect(within(screen.getByTestId('following')).getByText('2')).toBeInTheDocument();
+        expect(within(screen.getByTestId('followers')).getByText('1')).toBeInTheDocument();
 
         cleanup();
 
@@ -77,5 +89,31 @@ describe('AccountInfoComponent', () => {
         });
         expect(within(screen.getByTestId('description')).getByText('John Doe')).toBeInTheDocument();
         expect(within(screen.getByTestId('username')).getByText('@jdoe')).toBeInTheDocument();
+        expect(screen.queryByTestId('buttons')).toBeInTheDocument();
+        expect(screen.queryByTestId('unfollow')).toBeInTheDocument();
+        expect(screen.queryByTestId('follow')).not.toBeInTheDocument();
+        expect(within(screen.getByTestId('tweets')).getByText('3')).toBeInTheDocument();
+        expect(within(screen.getByTestId('following')).getByText('1')).toBeInTheDocument();
+        expect(within(screen.getByTestId('followers')).getByText('1')).toBeInTheDocument();
+
+        cleanup();
+
+        userState = new UserState('jsmith', 'rroe');
+        await act(async () => {
+            render(
+                <Provider container={iocContainer}>
+                    <BrowserRouter>
+                        <AccountInfo userState={userState}/>
+                    </BrowserRouter>
+                </Provider>);
+        });
+        expect(within(screen.getByTestId('description')).getByText('Richard Roe')).toBeInTheDocument();
+        expect(within(screen.getByTestId('username')).getByText('@rroe')).toBeInTheDocument();
+        expect(screen.queryByTestId('buttons')).toBeInTheDocument();
+        expect(screen.queryByTestId('unfollow')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('follow')).toBeInTheDocument();
+        expect(within(screen.getByTestId('tweets')).getByText('0')).toBeInTheDocument();
+        expect(within(screen.getByTestId('following')).getByText('0')).toBeInTheDocument();
+        expect(within(screen.getByTestId('followers')).getByText('1')).toBeInTheDocument();
     });
 });

@@ -85,10 +85,9 @@ export default class AccountInfo extends Component<AccountInfoProps, AccountInfo
                     </div>
                     {this.isFollowVisible() &&
                         <div className="col-auto" data-testid="buttons">
-                            {
-                                this.state.accountStatistics.follow ?
-                                    <button className="btn btn-primary m-0" onClick={this.unfollow} data-testid="unfollow">Unfollow</button> :
-                                    <button className="btn btn-primary m-0" onClick={this.follow} data-testid="follow">Follow</button>
+                            {this.state.accountStatistics.follow ?
+                                <button className="btn btn-primary m-0" onClick={this.unfollow} data-testid="unfollow">Unfollow</button> :
+                                <button className="btn btn-primary m-0" onClick={this.follow} data-testid="follow">Follow</button>
                             }
                         </div>
                     }
@@ -112,17 +111,17 @@ export default class AccountInfo extends Component<AccountInfoProps, AccountInfo
                 </div>
                 <div className="row">
                     <div className="col-4 small">
-                        <Link to={`/account/tweets/${this.state.accountStatistics.username}`} className="fw-bold">
+                        <Link to={`/account/tweets/${this.state.accountStatistics.username}`} className="fw-bold" data-testid="tweets">
                             {this.state.accountStatistics.tweetsCount}
                         </Link>
                     </div>
                     <div className="col-4 small">
-                        <Link to={`/account/following/${this.state.accountStatistics.username}`} className="fw-bold">
+                        <Link to={`/account/following/${this.state.accountStatistics.username}`} className="fw-bold" data-testid="following">
                             {this.state.accountStatistics.followingCount}
                         </Link>
                     </div>
                     <div className="col-4 small">
-                        <Link to={`/account/followers/${this.state.accountStatistics.username}`} className="fw-bold">
+                        <Link to={`/account/followers/${this.state.accountStatistics.username}`} className="fw-bold" data-testid="followers">
                             {this.state.accountStatistics.followersCount}
                         </Link>
                     </div>
