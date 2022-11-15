@@ -39,6 +39,7 @@
     "web-vitals": "^3.0.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.27.1",
     "msw": "^0.48.2"
   },
   "eslintConfig": {
