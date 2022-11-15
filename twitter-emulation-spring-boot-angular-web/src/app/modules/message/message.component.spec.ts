@@ -23,7 +23,7 @@ describe('MessagesComponent', () => {
   let fixture: ComponentFixture<MessageComponent>;
   let component: MessageComponent;
   let messageService: MessageService;
-  let mockMessageService = new MockMessageService();
+  const mockMessageService = new MockMessageService();
   let debugElement: DebugElement;
   let bindingElement: HTMLDivElement;
 
