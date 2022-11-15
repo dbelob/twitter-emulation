@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import React from 'react';
+import { Observable, Subject } from 'rxjs';
 import { act, render, screen, within } from '@testing-library/react';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';
@@ -7,9 +8,21 @@ import { MessageService } from './MessageService';
 import MessageText from './MessageText';
 import { Message } from '../common/models/Message';
 
+class MockMessageService extends MessageService {
+    private subj = new Subject<Message>();
+
+    reportMessage(msg: Message) {
+        this.subj.next(msg);
+    }
+
+    get messages(): Observable<Message> {
+        return this.subj;
+    }
+}
+
 describe('MessageTextComponent', () => {
     const iocContainer = new Container();
-    iocContainer.bind(MessageService).toSelf().inSingletonScope();
+    iocContainer.bind(MessageService).to(MockMessageService).inSingletonScope();
 
     test('should create', () => {
         render(
@@ -67,7 +80,6 @@ describe('MessageTextComponent', () => {
         await act(async () => {
             messageService.reportMessage(undefined);
         });
-        expect(screen.queryByTestId('message')).toBeInTheDocument();
-        expect(within(screen.getByTestId('message')).getByText('Unknown Error')).toBeInTheDocument();
+        expect(screen.queryByTestId('message')).not.toBeInTheDocument();
     });
 });
