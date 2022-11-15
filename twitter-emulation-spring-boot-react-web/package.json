@@ -38,6 +38,9 @@
     "validator": "^13.7.0",
     "web-vitals": "^3.0.4"
   },
+  "devDependencies": {
+    "msw": "^0.48.2"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -60,8 +63,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "msw": "^0.48.2"
   }
 }
