@@ -56,7 +56,7 @@ export default class MessageText extends Component<MessageTextProps, MessageText
         return (
             <>
                 {this.isVisible() &&
-                    <div className={`alert alert-info text-center ${this.state.lastMessage?.error && 'alert-danger'}`}>
+                    <div data-testid="message" className={`alert alert-info text-center ${this.state.lastMessage?.error && 'alert-danger'}`}>
                         {this.state.lastMessage?.text}
                     </div>}
             </>

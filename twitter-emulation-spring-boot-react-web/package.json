@@ -5,7 +5,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test-ct": "playwright test -c playwright-ct.config.ts"
   },
   "private": true,
   "dependencies": {
@@ -38,6 +39,11 @@
     "validator": "^13.7.0",
     "web-vitals": "^3.0.4"
   },
+  "devDependencies": {
+    "@playwright/experimental-ct-react": "^1.27.1",
+    "@playwright/test": "^1.27.1",
+    "msw": "^0.48.2"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -60,8 +66,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "msw": "^0.48.2"
   }
 }
