@@ -42,7 +42,7 @@
   "devDependencies": {
     "@playwright/experimental-ct-react": "^1.27.1",
     "@playwright/test": "^1.27.1",
-    "msw": "^0.48.2"
+    "msw": "^0.48.3"
   },
   "eslintConfig": {
     "extends": [
