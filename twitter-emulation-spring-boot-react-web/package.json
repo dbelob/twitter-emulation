@@ -6,7 +6,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test-ct": "playwright test -c playwright-ct.config.ts"
+    "e2e": "playwright test -c playwright-ct.config.ts"
   },
   "private": true,
   "dependencies": {
