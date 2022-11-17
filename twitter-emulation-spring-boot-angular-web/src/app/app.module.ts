@@ -61,7 +61,7 @@ const routes: Routes = [
     AppComponent
   ],
   imports: [
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(routes, {}),
     BrowserModule,
     HttpClientModule,
     HomeModule,
