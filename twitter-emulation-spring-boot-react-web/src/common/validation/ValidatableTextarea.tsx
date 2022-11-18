@@ -15,7 +15,7 @@ type ValidatableTextareaState = {}
 
 export class ValidatableTextarea extends Component<ValidatableTextareaProps, ValidatableTextareaState> {
     static contextType = ValidationContext;
-    context!: ContextType<typeof ValidationContext>;
+    declare context: ContextType<typeof ValidationContext>;
 
     public static defaultProps = {
         className: '',

@@ -4,7 +4,7 @@ import MessageText from './MessageText';
 
 export default class NonValidationMessageText extends Component {
     static contextType = ValidationContext;
-    context!: ContextType<typeof ValidationContext>;
+    declare context: ContextType<typeof ValidationContext>;
 
     render() {
         return (

@@ -3,7 +3,7 @@ import { ValidationContext } from './ValidationContext';
 
 export class ValidationMessages extends Component {
     static contextType = ValidationContext;
-    context!: ContextType<typeof ValidationContext>;
+    declare context: ContextType<typeof ValidationContext>;
 
     render() {
         const errors: string[] = this.context.getMessagesForFields();

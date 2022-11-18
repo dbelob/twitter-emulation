@@ -16,7 +16,7 @@ type ValidatableInputState = {}
 
 export class ValidatableInput extends Component<ValidatableInputProps, ValidatableInputState> {
     static contextType = ValidationContext;
-    context!: ContextType<typeof ValidationContext>;
+    declare context: ContextType<typeof ValidationContext>;
 
     public static defaultProps = {
         className: '',
