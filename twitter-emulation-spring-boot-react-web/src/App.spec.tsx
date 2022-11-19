@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import { expect, test } from '@playwright/experimental-ct-react';
-import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { Container } from 'inversify';
