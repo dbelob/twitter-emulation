@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
     "target": "es5",
     "lib": [
       "dom",
@@ -20,6 +19,9 @@
     "isolatedModules": true,
 //    "noEmit": true,
     "jsx": "react-jsx",
+    "types": ["reflect-metadata"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
 
 //    "target": "ESNext",
 //    "module": "commonjs",
