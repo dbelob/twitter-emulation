@@ -44,7 +44,7 @@
     "@craco/craco": "^7.0.0",
     "@playwright/experimental-ct-react": "^1.28.0",
     "@playwright/test": "^1.28.0",
-    "msw": "^0.48.3"
+    "msw": "^0.49.0"
   },
   "eslintConfig": {
     "extends": [
