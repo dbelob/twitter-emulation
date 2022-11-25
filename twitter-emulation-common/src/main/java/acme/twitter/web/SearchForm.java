@@ -1,6 +1,6 @@
 package acme.twitter.web;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * Search form.

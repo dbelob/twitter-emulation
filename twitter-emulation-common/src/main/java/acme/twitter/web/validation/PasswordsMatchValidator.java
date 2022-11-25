@@ -1,9 +1,8 @@
 package acme.twitter.web.validation;
 
 import acme.twitter.web.AccountForm;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class PasswordsMatchValidator implements ConstraintValidator<PasswordsMatch, AccountForm> {
     @Override

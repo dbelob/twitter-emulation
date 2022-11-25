@@ -7,6 +7,7 @@ import acme.twitter.service.AccountService;
 import acme.twitter.service.FollowerService;
 import acme.twitter.service.TweetService;
 import acme.twitter.util.JsonUtil;
+import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
-import javax.servlet.http.Cookie;
 import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.Collections;

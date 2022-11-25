@@ -1,5 +1,6 @@
 package acme.twitter.config;
 
+import jakarta.validation.constraints.NotNull;
 import oracle.jdbc.pool.OracleDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -8,7 +9,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-import javax.validation.constraints.NotNull;
 import java.sql.SQLException;
 
 @Configuration

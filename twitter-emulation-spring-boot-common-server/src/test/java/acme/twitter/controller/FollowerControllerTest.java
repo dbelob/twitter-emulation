@@ -3,6 +3,7 @@ package acme.twitter.controller;
 import acme.twitter.domain.Account;
 import acme.twitter.service.AccountService;
 import acme.twitter.service.FollowerService;
+import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
@@ -17,7 +18,6 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.web.servlet.MockMvc;
 
-import javax.servlet.http.Cookie;
 import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.Collections;
