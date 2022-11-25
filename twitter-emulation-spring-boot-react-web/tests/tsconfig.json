@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
     "target": "es5",
     "lib": [
       "dom",
@@ -18,8 +17,11 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+//    "noEmit": true,
     "jsx": "react-jsx",
+    "types": ["reflect-metadata"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
 
 //    "target": "ESNext",
 //    "module": "commonjs",
@@ -28,5 +30,8 @@
   },
   "include": [
     "../src"
+  ],
+  "exclude": [
+    "../src/**/*.test.tsx"
   ]
 }

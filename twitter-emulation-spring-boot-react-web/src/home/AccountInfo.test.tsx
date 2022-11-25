@@ -36,8 +36,8 @@ describe('AccountInfoComponent', () => {
                 username: 'rroe', description: 'Richard Roe', tweetsCount: 0, followingCount: 0,
                 followersCount: 1, follow: false
             }))
-        }),
-    )
+        })
+    );
 
     beforeAll(() => server.listen())
     afterEach(() => server.resetHandlers())
