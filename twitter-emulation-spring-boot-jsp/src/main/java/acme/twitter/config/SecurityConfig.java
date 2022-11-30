@@ -1,19 +1,22 @@
 package acme.twitter.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
     private final DataSource dataSource;
 
     @Autowired
@@ -21,27 +24,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.dataSource = dataSource;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .formLogin()
                 .loginPage("/login")
-            .and()
+                .and()
             .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Support GET for logout with CSRF
-            .and()
+                .and()
             .httpBasic()
-            .and()
-            .authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/account/register").permitAll()
-                .antMatchers("/account/show").authenticated()
-                .antMatchers("/account/show/**").permitAll()
-                .antMatchers("/account/tweets/**").permitAll()
-                .antMatchers("/account/following/**").permitAll()
-                .antMatchers("/account/followers/**").permitAll()
-                .antMatchers("/css/**").permitAll()
-                .anyRequest().authenticated();
+                .and()
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(antMatcher("/login")).permitAll()
+                        .requestMatchers(antMatcher("/account/register")).permitAll()
+                        .requestMatchers(antMatcher("/account/show")).permitAll()
+                        .requestMatchers(antMatcher("/account/show/**")).permitAll()
+                        .requestMatchers(antMatcher("/account/tweets/**")).permitAll()
+                        .requestMatchers(antMatcher("/account/following/**")).permitAll()
+                        .requestMatchers(antMatcher("/account/followers/**")).permitAll()
+                        .requestMatchers(antMatcher("/css/**")).permitAll()
+                        .anyRequest().authenticated()
+                );
+
+        return http.build();
     }
 
     @Override

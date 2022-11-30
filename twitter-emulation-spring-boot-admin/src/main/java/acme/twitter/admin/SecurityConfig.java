@@ -8,6 +8,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 @Configuration
 public class SecurityConfig {
     private final String adminContextPath;
@@ -23,11 +25,11 @@ public class SecurityConfig {
         successHandler.setDefaultTargetUrl(adminContextPath + "/");
 
         http
-                .authorizeHttpRequests()
-                    .antMatchers(adminContextPath + "/assets/**").permitAll() // <1>
-                    .antMatchers(adminContextPath + "/login").permitAll()
-                    .anyRequest().authenticated() // <2>
-                    .and()
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(antMatcher(adminContextPath + "/assets/**")).permitAll() // <1>
+                        .requestMatchers(antMatcher(adminContextPath + "/login")).permitAll()
+                        .anyRequest().authenticated() // <2>
+                )
                 .formLogin().loginPage(adminContextPath + "/login").successHandler(successHandler)
                     .and() // <3>
                 .logout().logoutUrl(adminContextPath + "/logout")
@@ -36,11 +38,11 @@ public class SecurityConfig {
                     .and() // <4>
                 .csrf()
                     .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // <5>
-                    .ignoringAntMatchers(
-                        adminContextPath + "/instances", // <6>
-                        adminContextPath + "/actuator/**" // <7>
+                    .ignoringRequestMatchers(
+                            antMatcher(adminContextPath + "/instances"), // <6>
+                            antMatcher(adminContextPath + "/actuator/**") // <7>
                 );
-        
+
         return http.build();
     }
 }

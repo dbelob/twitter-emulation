@@ -1,21 +1,24 @@
 package acme.twitter.config;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
-import jakarta.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
     private final DataSource dataSource;
 
     @Autowired
@@ -23,21 +26,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.dataSource = dataSource;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .httpBasic()
-                    .and()
-                .authorizeRequests()
-                    .antMatchers("/index.html", "/", "/login").permitAll()
-                    .antMatchers("/api/account/accounts/**").permitAll()
-                    .antMatchers("/api/account/statistics/**").permitAll()
-                    .antMatchers("/api/authentication/user").permitAll()
-                    .antMatchers("/api/follower/following/**").permitAll()
-                    .antMatchers("/api/follower/followers/**").permitAll()
-                    .antMatchers("/api/tweet/tweets/**").permitAll()
-                    .anyRequest().authenticated()
-                    .and()
+                .and()
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(antMatcher("/index.html"), antMatcher("/"), antMatcher("/login")).permitAll()
+                        .requestMatchers(antMatcher("/api/account/accounts/**")).permitAll()
+                        .requestMatchers(antMatcher("/api/account/statistics/**")).permitAll()
+                        .requestMatchers(antMatcher("/api/authentication/user")).permitAll()
+                        .requestMatchers(antMatcher("/api/follower/following/**")).permitAll()
+                        .requestMatchers(antMatcher("/api/follower/followers/**")).permitAll()
+                        .requestMatchers(antMatcher("/api/tweet/tweets/**")).permitAll()
+                        .anyRequest().authenticated()
+                )
                 .csrf()
                     .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                     .and()
@@ -46,11 +49,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .logoutSuccessHandler((request, response, authentication) ->
                                 response.setStatus(HttpServletResponse.SC_OK))
                 );
+
+        return http.build();
     }
 
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/*.js");
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers(antMatcher("/*.js"));
     }
 
     @Override
