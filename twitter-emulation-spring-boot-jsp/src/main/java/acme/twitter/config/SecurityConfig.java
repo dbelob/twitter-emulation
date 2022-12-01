@@ -1,12 +1,15 @@
 package acme.twitter.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -17,13 +20,6 @@ import static org.springframework.security.web.util.matcher.AntPathRequestMatche
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    private final DataSource dataSource;
-
-    @Autowired
-    public SecurityConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -50,14 +46,19 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, 'true' as enabled from account where username = ?")
-                .authoritiesByUsernameQuery("select username, 'ROLE_USER' as authority from account where username = ?")
-                .groupAuthoritiesByUsername("select 1 as id, 'GROUP_NAME' as group_name, 'ROLE_USER' as authority from account where username = ?")
-                .passwordEncoder(NoOpPasswordEncoder.getInstance());
+    @Bean
+    public UserDetailsManager users(DataSource dataSource) {
+        JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
+        PasswordEncoder passwordEncoder = NoOpPasswordEncoder.getInstance();
+        UserDetails userDetails = User.builder()
+                .passwordEncoder(passwordEncoder::encode)
+                .build();
+
+        userDetailsManager.setUsersByUsernameQuery("select username, password, 'true' as enabled from account where username = ?");
+        userDetailsManager.setAuthoritiesByUsernameQuery("select username, 'ROLE_USER' as authority from account where username = ?");
+        userDetailsManager.setGroupAuthoritiesByUsernameQuery("select 1 as id, 'GROUP_NAME' as group_name, 'ROLE_USER' as authority from account where username = ?");
+        userDetailsManager.createUser(userDetails);
+
+        return userDetailsManager;
     }
 }
