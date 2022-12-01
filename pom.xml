@@ -26,9 +26,9 @@
         <war.plugin.version>3.3.2</war.plugin.version>
 
         <allure-junit5.version>2.20.1</allure-junit5.version>
+        <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
         <javax.el.version>3.0.0</javax.el.version>
         <javax.servlet.jsp-api>2.3.3</javax.servlet.jsp-api>
-        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <javax.el-api.version>3.0.0</javax.el-api.version>
         <jstl.version>1.2</jstl.version>
         <ojdbc8.version>21.7.0.0</ojdbc8.version>
@@ -194,9 +194,9 @@
 
             <!-- JEE -->
             <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>${javax.servlet-api.version}</version>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>${jakarta.servlet-api.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
