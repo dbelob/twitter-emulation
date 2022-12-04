@@ -4,8 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -32,32 +30,32 @@ public class SecurityConfig {
             .httpBasic()
                 .and()
             .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers(antMatcher("/login")).permitAll()
-                    .requestMatchers(antMatcher("/account/register")).permitAll()
-                    .requestMatchers(antMatcher("/account/show")).permitAll()
-                    .requestMatchers(antMatcher("/account/show/**")).permitAll()
-                    .requestMatchers(antMatcher("/account/tweets/**")).permitAll()
-                    .requestMatchers(antMatcher("/account/following/**")).permitAll()
-                    .requestMatchers(antMatcher("/account/followers/**")).permitAll()
-                    .requestMatchers(antMatcher("/css/**")).permitAll()
-                    .anyRequest().authenticated()
+                .requestMatchers(antMatcher("/login")).permitAll()
+                .requestMatchers(antMatcher("/account/register")).permitAll()
+                .requestMatchers(antMatcher("/account/show")).permitAll()
+                .requestMatchers(antMatcher("/account/show/**")).permitAll()
+                .requestMatchers(antMatcher("/account/tweets/**")).permitAll()
+                .requestMatchers(antMatcher("/account/following/**")).permitAll()
+                .requestMatchers(antMatcher("/account/followers/**")).permitAll()
+                .requestMatchers(antMatcher("/css/**")).permitAll()
+                .anyRequest().authenticated()
             );
 
         return http.build();
     }
 
     @Bean
+    public static PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
+
+    @Bean
     public UserDetailsManager users(DataSource dataSource) {
         JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
-        PasswordEncoder passwordEncoder = NoOpPasswordEncoder.getInstance();
-        UserDetails userDetails = User.builder()
-                .passwordEncoder(passwordEncoder::encode)
-                .build();
 
         userDetailsManager.setUsersByUsernameQuery("select username, password, 'true' as enabled from account where username = ?");
         userDetailsManager.setAuthoritiesByUsernameQuery("select username, 'ROLE_USER' as authority from account where username = ?");
         userDetailsManager.setGroupAuthoritiesByUsernameQuery("select 1 as id, 'GROUP_NAME' as group_name, 'ROLE_USER' as authority from account where username = ?");
-        userDetailsManager.createUser(userDetails);
 
         return userDetailsManager;
     }
