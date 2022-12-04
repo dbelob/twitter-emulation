@@ -39,7 +39,9 @@
                             <value>${spring.profiles.active}</value>
                         </systemProperty>
                     </systemProperties>
-                    <jettyXml>etc/jetty.xml</jettyXml>
+                    <jettyXmls>
+                        <jettyXml>etc/jetty.xml</jettyXml>
+                    </jettyXmls>
                 </configuration>
             </plugin>
         </plugins>
