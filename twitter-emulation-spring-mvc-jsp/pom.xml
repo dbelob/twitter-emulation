@@ -4,7 +4,7 @@
     <parent>
         <groupId>acme.twitter-emulation</groupId>
         <artifactId>twitter-emulation-parent</artifactId>
-        <version>1.0.883-SNAPSHOT</version>
+        <version>1.0.885-SNAPSHOT</version>
     </parent>
 
     <artifactId>twitter-emulation-spring-mvc-jsp</artifactId>
