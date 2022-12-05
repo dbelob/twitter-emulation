@@ -33,7 +33,7 @@
         <jstl.version>1.2</jstl.version>
         <ojdbc8.version>21.7.0.0</ojdbc8.version>
         <spring-boot.version>2.7.5</spring-boot.version>
-        <spring-boot-admin.version>2.7.7</spring-boot-admin.version>
+        <spring-boot-admin.version>2.7.8</spring-boot-admin.version>
         <springdoc-openapi.version>1.6.13</springdoc-openapi.version>
         <testcontainers.version>1.17.6</testcontainers.version>
 
