@@ -3,7 +3,7 @@
 
     <groupId>acme.twitter-emulation</groupId>
     <artifactId>twitter-emulation-parent</artifactId>
-    <version>1.0.892-SNAPSHOT</version>
+    <version>1.0.893-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>TwitterEmulation Parent</name>
 
@@ -37,7 +37,7 @@
         <springdoc-openapi.version>1.6.13</springdoc-openapi.version>
         <testcontainers.version>1.17.6</testcontainers.version>
 
-        <node.version>v16.13.2</node.version>
+        <node.version>v18.12.1</node.version>
 
         <sonar.coverage.exclusions>
             **/acme/twitter/config/**/*,
