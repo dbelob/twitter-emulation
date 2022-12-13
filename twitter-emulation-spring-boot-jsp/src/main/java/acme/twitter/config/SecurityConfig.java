@@ -39,6 +39,9 @@ public class SecurityConfig {
                 .requestMatchers(antMatcher("/account/followers/**")).permitAll()
                 .requestMatchers(antMatcher("/css/**")).permitAll()
                 .anyRequest().authenticated()
+            )
+            .sessionManagement(sessions -> sessions
+                .requireExplicitAuthenticationStrategy(false)
             );
 
         return http.build();

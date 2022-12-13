@@ -41,6 +41,10 @@ public class SecurityConfig {
                     .ignoringRequestMatchers(
                             antMatcher(adminContextPath + "/instances"), // <6>
                             antMatcher(adminContextPath + "/actuator/**") // <7>
+                    )
+                    .and()
+                .sessionManagement(sessions -> sessions
+                    .requireExplicitAuthenticationStrategy(false)
                 );
 
         return http.build();

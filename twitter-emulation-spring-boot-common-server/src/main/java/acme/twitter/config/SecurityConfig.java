@@ -42,6 +42,9 @@ public class SecurityConfig {
                 .logoutUrl("/api/authentication/logout")
                 .logoutSuccessHandler((request, response, authentication) ->
                         response.setStatus(HttpServletResponse.SC_OK))
+            )
+            .sessionManagement(sessions -> sessions
+                .requireExplicitAuthenticationStrategy(false)
             );
 
         return http.build();
