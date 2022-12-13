@@ -1,5 +1,6 @@
 package acme.twitter.controller;
 
+import acme.twitter.config.SecurityConfig;
 import acme.twitter.domain.Account;
 import acme.twitter.service.AccountService;
 import acme.twitter.service.FollowerService;
@@ -12,6 +13,7 @@ import org.mockito.internal.verification.VerificationModeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
@@ -31,6 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("FollowerController tests")
 @WebMvcTest(FollowerController.class)
+@Import(SecurityConfig.class)
 class FollowerControllerTest {
     private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
 

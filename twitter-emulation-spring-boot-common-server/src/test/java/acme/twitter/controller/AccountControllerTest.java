@@ -1,5 +1,6 @@
 package acme.twitter.controller;
 
+import acme.twitter.config.SecurityConfig;
 import acme.twitter.dao.exception.AccountNotAllowedException;
 import acme.twitter.domain.Account;
 import acme.twitter.dto.AccountDto;
@@ -21,6 +22,7 @@ import org.mockito.internal.verification.VerificationModeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
@@ -45,6 +47,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("AccountController class tests")
 @WebMvcTest(AccountController.class)
+@Import(SecurityConfig.class)
 class AccountControllerTest {
     private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
 
@@ -248,8 +251,7 @@ class AccountControllerTest {
                     .contentType(MediaType.APPLICATION_JSON);
 
             if (principalUsername != null) {
-                requestBuilder
-                        .with(user(principalUsername));
+                requestBuilder.with(user(principalUsername));
             }
 
             mvc.perform(requestBuilder)
