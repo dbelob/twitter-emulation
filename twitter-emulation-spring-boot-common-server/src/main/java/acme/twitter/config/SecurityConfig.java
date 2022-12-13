@@ -25,24 +25,24 @@ public class SecurityConfig {
         http
             .httpBasic()
                 .and()
-                .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers(antMatcher("/index.html"), antMatcher("/"), antMatcher("/login")).permitAll()
-                    .requestMatchers(antMatcher("/api/account/accounts/**")).permitAll()
-                    .requestMatchers(antMatcher("/api/account/statistics/**")).permitAll()
-                    .requestMatchers(antMatcher("/api/authentication/user")).permitAll()
-                    .requestMatchers(antMatcher("/api/follower/following/**")).permitAll()
-                    .requestMatchers(antMatcher("/api/follower/followers/**")).permitAll()
-                    .requestMatchers(antMatcher("/api/tweet/tweets/**")).permitAll()
-                    .anyRequest().authenticated()
-                )
-                .csrf()
-                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                    .and()
-                .logout(logout -> logout
-                    .logoutUrl("/api/authentication/logout")
-                    .logoutSuccessHandler((request, response, authentication) ->
-                            response.setStatus(HttpServletResponse.SC_OK))
-                );
+            .authorizeHttpRequests(authorize -> authorize
+                .requestMatchers(antMatcher("/index.html"), antMatcher("/"), antMatcher("/login")).permitAll()
+                .requestMatchers(antMatcher("/api/account/accounts/**")).permitAll()
+                .requestMatchers(antMatcher("/api/account/statistics/**")).permitAll()
+                .requestMatchers(antMatcher("/api/authentication/user")).permitAll()
+                .requestMatchers(antMatcher("/api/follower/following/**")).permitAll()
+                .requestMatchers(antMatcher("/api/follower/followers/**")).permitAll()
+                .requestMatchers(antMatcher("/api/tweet/tweets/**")).permitAll()
+                .anyRequest().authenticated()
+            )
+            .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .and()
+            .logout(logout -> logout
+                .logoutUrl("/api/authentication/logout")
+                .logoutSuccessHandler((request, response, authentication) ->
+                        response.setStatus(HttpServletResponse.SC_OK))
+            );
 
         return http.build();
     }
