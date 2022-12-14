@@ -52,7 +52,7 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers(antMatcher("/*.js"));
+        return web -> web.ignoring().requestMatchers(antMatcher("/*.js"));
     }
 
     @Bean
