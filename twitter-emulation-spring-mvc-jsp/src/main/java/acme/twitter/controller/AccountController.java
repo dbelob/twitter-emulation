@@ -10,6 +10,7 @@ import acme.twitter.service.FollowerService;
 import acme.twitter.service.TweetService;
 import acme.twitter.web.AccountForm;
 import acme.twitter.web.SearchForm;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;

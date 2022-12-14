@@ -1,5 +1,6 @@
 package acme.twitter.controller;
 
+import acme.twitter.config.SecurityConfig;
 import acme.twitter.dao.exception.AccountNotAllowedException;
 import acme.twitter.domain.Account;
 import acme.twitter.dto.AccountDto;
@@ -20,15 +21,12 @@ import org.mockito.internal.verification.VerificationModeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
-import javax.servlet.http.Cookie;
 import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.Collections;
@@ -38,6 +36,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -45,9 +44,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("AccountController class tests")
 @WebMvcTest(AccountController.class)
+@Import(SecurityConfig.class)
 class AccountControllerTest {
-    private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
-
     @Autowired
     private MockMvc mvc;
 
@@ -105,13 +103,12 @@ class AccountControllerTest {
     @Test
     void whenPostAccount_thenCreateAccount() throws Exception {
         AccountDto jsmith = new AccountDto(0, "jsmith", "password", "John Smith");
-        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         mvc.perform(post("/api/account/accounts")
-                        .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                        .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonUtil.toJson(jsmith)))
+                        .content(JsonUtil.toJson(jsmith))
+                        .with(csrf())
+                )
                 .andExpect(status().isOk());
         Mockito.verify(accountService, VerificationModeFactory.times(1)).add("jsmith", "password", "John Smith");
         Mockito.reset(accountService);
@@ -134,13 +131,11 @@ class AccountControllerTest {
         @MethodSource("data")
         void replaceAccount(String username, String principalUsername, Class<Exception> expectedException) throws Exception {
             AccountDto jsmith = new AccountDto(0, "jsmith", "password", "John Smith");
-            CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
             MockHttpServletRequestBuilder requestBuilder = put(String.format("/api/account/accounts/%s", username))
-                    .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                    .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(JsonUtil.toJson(jsmith));
+                    .content(JsonUtil.toJson(jsmith))
+                    .with(csrf());
             if (principalUsername != null) {
                 requestBuilder.with(user(principalUsername));
             }
@@ -171,13 +166,10 @@ class AccountControllerTest {
         @ParameterizedTest
         @MethodSource("data")
         void deleteAccount(String username, String principalUsername, Class<Exception> expectedException) throws Exception {
-            CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
-
             MockHttpServletRequestBuilder requestBuilder = delete(String.format("/api/account/accounts/%s", username))
                     .with(user(principalUsername))
-                    .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                    .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
-                    .contentType(MediaType.APPLICATION_JSON);
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .with(csrf());
 
             if (expectedException == null) {
                 mvc.perform(requestBuilder)
@@ -248,8 +240,7 @@ class AccountControllerTest {
                     .contentType(MediaType.APPLICATION_JSON);
 
             if (principalUsername != null) {
-                requestBuilder
-                        .with(user(principalUsername));
+                requestBuilder.with(user(principalUsername));
             }
 
             mvc.perform(requestBuilder)

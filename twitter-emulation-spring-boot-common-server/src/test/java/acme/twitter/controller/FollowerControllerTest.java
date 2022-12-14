@@ -1,5 +1,6 @@
 package acme.twitter.controller;
 
+import acme.twitter.config.SecurityConfig;
 import acme.twitter.domain.Account;
 import acme.twitter.service.AccountService;
 import acme.twitter.service.FollowerService;
@@ -11,19 +12,17 @@ import org.mockito.internal.verification.VerificationModeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.web.servlet.MockMvc;
 
-import javax.servlet.http.Cookie;
 import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.Collections;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -31,9 +30,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("FollowerController tests")
 @WebMvcTest(FollowerController.class)
+@Import(SecurityConfig.class)
 class FollowerControllerTest {
-    private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
-
     @Autowired
     private MockMvc mvc;
 
@@ -82,16 +80,15 @@ class FollowerControllerTest {
     void whenPostFollowing_thenCreateFollowing() throws Exception {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         Account rroe = new Account(2, "rroe", "password", "Richard Roe");
-        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         BDDMockito.given(accountService.findByUsername("jsmith")).willReturn(jsmith);
         BDDMockito.given(accountService.findByUsername("rroe")).willReturn(rroe);
 
         mvc.perform(post("/api/follower/following/rroe")
                         .with(user("jsmith"))
-                        .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                        .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .with(csrf())
+                )
                 .andExpect(status().isOk());
         Mockito.verify(followerService, VerificationModeFactory.times(1)).add("jsmith", "rroe");
         Mockito.reset(followerService);
@@ -101,16 +98,15 @@ class FollowerControllerTest {
     void whenDeleteFollowing_thenDeleteFollowing() throws Exception {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         Account rroe = new Account(2, "rroe", "password", "Richard Roe");
-        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         BDDMockito.given(accountService.findByUsername("jsmith")).willReturn(jsmith);
         BDDMockito.given(accountService.findByUsername("rroe")).willReturn(rroe);
 
         mvc.perform(delete("/api/follower/following/rroe")
                         .with(user("jsmith"))
-                        .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                        .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .with(csrf())
+                )
                 .andExpect(status().isOk());
         Mockito.verify(followerService, VerificationModeFactory.times(1)).delete("jsmith", "rroe");
         Mockito.reset(followerService);

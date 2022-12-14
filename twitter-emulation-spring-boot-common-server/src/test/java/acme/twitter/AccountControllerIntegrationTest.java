@@ -10,17 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
-import javax.servlet.http.Cookie;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -33,8 +30,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("development")
 class AccountControllerIntegrationTest {
-    private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
-
     @Autowired
     private MockMvc mvc;
 
@@ -60,13 +55,12 @@ class AccountControllerIntegrationTest {
     @Test
     void whenPostAccount_thenCreateAccount() throws Exception {
         AccountDto jsmith = new AccountDto(0, "user", "password", "User");
-        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         mvc.perform(post("/api/account/accounts")
-                        .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                        .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonUtil.toJson(jsmith)))
+                        .content(JsonUtil.toJson(jsmith))
+                        .with(csrf())
+                )
                 .andDo(print())
                 .andExpect(status().isOk());
     }
@@ -74,14 +68,13 @@ class AccountControllerIntegrationTest {
     @Test
     void whenPutAccount_thenUpdateAccount() throws Exception {
         AccountDto jsmith = new AccountDto(0, "jsmith", "password", "John Smith");
-        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         mvc.perform(put("/api/account/accounts/jsmith")
                         .with(user("jsmith"))
-                        .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                        .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonUtil.toJson(jsmith)))
+                        .content(JsonUtil.toJson(jsmith))
+                        .with(csrf())
+                )
                 .andDo(print())
                 .andExpect(status().isOk());
     }

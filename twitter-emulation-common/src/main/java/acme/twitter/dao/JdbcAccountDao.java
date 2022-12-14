@@ -4,7 +4,7 @@ import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -30,7 +30,7 @@ public class JdbcAccountDao implements AccountDao {
                     "insert into account (username, password, description) " +
                             "values (?, ?, ?)",
                     username, password, description);
-        } catch (DuplicateKeyException e) {
+        } catch (DataIntegrityViolationException e) {
             throw new AccountExistsException();
         }
     }
