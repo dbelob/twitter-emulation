@@ -5,7 +5,6 @@ import acme.twitter.domain.Account;
 import acme.twitter.domain.Tweet;
 import acme.twitter.service.AccountService;
 import acme.twitter.service.TweetService;
-import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
@@ -16,9 +15,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.web.servlet.MockMvc;
 
 import javax.sql.DataSource;
@@ -27,6 +23,7 @@ import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -37,8 +34,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(TweetController.class)
 @Import(SecurityConfig.class)
 class TweetControllerTest {
-    private final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
-
     @Autowired
     private MockMvc mvc;
 
@@ -90,14 +85,13 @@ class TweetControllerTest {
     void whenPostTweet_thenCreateTweet() throws Exception {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         Tweet tweet = new Tweet(0, jsmith, "Lorem ipsum dolor sit amet, impetus iuvaret in nam. Inani tritani fierent ut vix, vim ut dolore animal. Nisl noster fabellas sed ei.", new Date());
-        CsrfToken csrfToken = new CookieCsrfTokenRepository().generateToken(new MockHttpServletRequest());
 
         mvc.perform(post("/api/tweet/tweets")
                         .with(user("jsmith"))
-                        .header(csrfToken.getHeaderName(), csrfToken.getToken())
-                        .cookie(new Cookie(CSRF_COOKIE_NAME, csrfToken.getToken()))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(tweet.getText()))
+                        .content(tweet.getText())
+                        .with(csrf())
+                )
                 .andExpect(status().isOk());
         Mockito.verify(tweetService, VerificationModeFactory.times(1)).add("jsmith", tweet.getText());
         Mockito.reset(tweetService);
