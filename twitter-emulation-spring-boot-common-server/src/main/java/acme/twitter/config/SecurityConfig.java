@@ -11,7 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.*;
 
 import javax.sql.DataSource;
 
@@ -35,9 +36,11 @@ public class SecurityConfig {
                 .requestMatchers(antMatcher("/api/tweet/tweets/**")).permitAll()
                 .anyRequest().authenticated()
             )
-            .csrf()
+            .csrf(csrf -> csrf
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .and()
+                .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
+            )
+            .addFilterAfter(new CookieCsrfFilter(), BasicAuthenticationFilter.class)
             .logout(logout -> logout
                 .logoutUrl("/api/authentication/logout")
                 .logoutSuccessHandler((request, response, authentication) ->
