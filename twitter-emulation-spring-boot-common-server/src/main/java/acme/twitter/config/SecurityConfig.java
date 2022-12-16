@@ -27,13 +27,9 @@ public class SecurityConfig {
             .httpBasic()
                 .and()
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(antMatcher("/index.html"), antMatcher("/"), antMatcher("/login")).permitAll()
-                .requestMatchers(antMatcher("/api/account/accounts/**")).permitAll()
-                .requestMatchers(antMatcher("/api/account/statistics/**")).permitAll()
-                .requestMatchers(antMatcher("/api/authentication/user")).permitAll()
-                .requestMatchers(antMatcher("/api/follower/following/**")).permitAll()
-                .requestMatchers(antMatcher("/api/follower/followers/**")).permitAll()
-                .requestMatchers(antMatcher("/api/tweet/tweets/**")).permitAll()
+                .requestMatchers("/index.html", "/", "/login", "/api/account/accounts/**",
+                        "/api/account/statistics/**", "/api/authentication/user", "/api/follower/following/**",
+                        "/api/follower/followers/**", "/api/tweet/tweets/**").permitAll()
                 .anyRequest().authenticated()
             )
             .csrf(csrf -> csrf
@@ -55,7 +51,7 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().requestMatchers(antMatcher("/*.js"));
+        return web -> web.ignoring().requestMatchers("/*.js");
     }
 
     @Bean

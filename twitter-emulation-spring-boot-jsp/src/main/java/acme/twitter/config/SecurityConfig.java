@@ -30,14 +30,8 @@ public class SecurityConfig {
             .httpBasic()
                 .and()
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(antMatcher("/login")).permitAll()
-                .requestMatchers(antMatcher("/account/register")).permitAll()
-                .requestMatchers(antMatcher("/account/show")).permitAll()
-                .requestMatchers(antMatcher("/account/show/**")).permitAll()
-                .requestMatchers(antMatcher("/account/tweets/**")).permitAll()
-                .requestMatchers(antMatcher("/account/following/**")).permitAll()
-                .requestMatchers(antMatcher("/account/followers/**")).permitAll()
-                .requestMatchers(antMatcher("/css/**")).permitAll()
+                .requestMatchers("/login", "/account/register", "/account/show", "/account/show/**",
+                        "/account/tweets/**", "/account/following/**", "/account/followers/**", "/css/**").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(sessions -> sessions
