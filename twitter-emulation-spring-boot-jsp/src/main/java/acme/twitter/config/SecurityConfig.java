@@ -13,8 +13,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
-import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -30,8 +28,8 @@ public class SecurityConfig {
             .httpBasic()
                 .and()
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/login", "/account/register", "/account/show", "/account/show/**",
-                        "/account/tweets/**", "/account/following/**", "/account/followers/**", "/css/**").permitAll()
+                .requestMatchers("/login", "/account/register", "/account/show/**", "/account/tweets/**",
+                        "/account/following/**", "/account/followers/**", "/css/**").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(sessions -> sessions
