@@ -196,12 +196,12 @@
             </dependency>
 
             <!-- JEE -->
-            <dependency>
-                <groupId>jakarta.servlet</groupId>
-                <artifactId>jakarta.servlet-api</artifactId>
-                <version>${jakarta.servlet-api.version}</version>
-                <scope>provided</scope>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>jakarta.servlet</groupId>-->
+<!--                <artifactId>jakarta.servlet-api</artifactId>-->
+<!--                <version>${jakarta.servlet-api.version}</version>-->
+<!--                <scope>provided</scope>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>jakarta.servlet.jsp</groupId>
                 <artifactId>jakarta.servlet.jsp-api</artifactId>
@@ -214,12 +214,12 @@
                 <version>${jakarta.el-api.version}</version>
                 <scope>provided</scope>
             </dependency>
-            <dependency>
-                <groupId>org.glassfish.web</groupId>
-                <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-                <version>${jakarta.servlet.jsp.jstl.version}</version>
-                <scope>provided</scope>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.glassfish.web</groupId>-->
+<!--                <artifactId>jakarta.servlet.jsp.jstl</artifactId>-->
+<!--                <version>${jakarta.servlet.jsp.jstl.version}</version>-->
+<!--                <scope>provided</scope>-->
+<!--            </dependency>-->
 
             <!-- Database -->
             <dependency>

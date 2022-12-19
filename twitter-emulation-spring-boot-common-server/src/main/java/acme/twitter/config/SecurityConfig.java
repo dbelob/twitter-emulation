@@ -16,8 +16,6 @@ import org.springframework.security.web.csrf.*;
 
 import javax.sql.DataSource;
 
-import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
