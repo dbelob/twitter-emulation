@@ -11,11 +11,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.*;
 
 import javax.sql.DataSource;
-
-import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -26,18 +25,16 @@ public class SecurityConfig {
             .httpBasic()
                 .and()
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(antMatcher("/index.html"), antMatcher("/"), antMatcher("/login")).permitAll()
-                .requestMatchers(antMatcher("/api/account/accounts/**")).permitAll()
-                .requestMatchers(antMatcher("/api/account/statistics/**")).permitAll()
-                .requestMatchers(antMatcher("/api/authentication/user")).permitAll()
-                .requestMatchers(antMatcher("/api/follower/following/**")).permitAll()
-                .requestMatchers(antMatcher("/api/follower/followers/**")).permitAll()
-                .requestMatchers(antMatcher("/api/tweet/tweets/**")).permitAll()
+                .requestMatchers("/index.html", "/", "/login", "/api/account/accounts/**",
+                        "/api/account/statistics/**", "/api/authentication/user", "/api/follower/following/**",
+                        "/api/follower/followers/**", "/api/tweet/tweets/**").permitAll()
                 .anyRequest().authenticated()
             )
-            .csrf()
+            .csrf(csrf -> csrf
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .and()
+                .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
+            )
+            .addFilterAfter(new CookieCsrfFilter(), BasicAuthenticationFilter.class)
             .logout(logout -> logout
                 .logoutUrl("/api/authentication/logout")
                 .logoutSuccessHandler((request, response, authentication) ->
@@ -52,7 +49,7 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().requestMatchers(antMatcher("/*.js"));
+        return web -> web.ignoring().requestMatchers("/*.js");
     }
 
     @Bean

@@ -26,8 +26,8 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(antMatcher(adminContextPath + "/assets/**")).permitAll() // <1>
-                        .requestMatchers(antMatcher(adminContextPath + "/login")).permitAll()
+                        .requestMatchers(adminContextPath + "/assets/**", // <1>
+                            adminContextPath + "/login").permitAll()
                         .anyRequest().authenticated() // <2>
                 )
                 .formLogin().loginPage(adminContextPath + "/login").successHandler(successHandler)
@@ -39,8 +39,8 @@ public class SecurityConfig {
                 .csrf()
                     .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // <5>
                     .ignoringRequestMatchers(
-                            antMatcher(adminContextPath + "/instances"), // <6>
-                            antMatcher(adminContextPath + "/actuator/**") // <7>
+                            adminContextPath + "/instances", // <6>
+                            adminContextPath + "/actuator/**" // <7>
                     )
                     .and()
                 .sessionManagement(sessions -> sessions
