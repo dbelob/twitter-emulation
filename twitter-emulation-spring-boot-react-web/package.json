@@ -5,9 +5,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject",
-    "pree2e": "tsc --incremental -p tests/tsconfig.json",
-    "e2e": "playwright test -c playwright-ct.config.ts"
+    "eject": "react-scripts eject"
   },
   "private": true,
   "dependencies": {
@@ -42,8 +40,6 @@
   },
   "devDependencies": {
     "@craco/craco": "^7.0.0",
-    "@playwright/experimental-ct-react": "^1.29.1",
-    "@playwright/test": "^1.29.1",
     "msw": "^0.49.2"
   },
   "eslintConfig": {
