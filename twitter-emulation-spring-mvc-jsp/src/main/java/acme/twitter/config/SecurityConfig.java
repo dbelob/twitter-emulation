@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .and()
             .authorizeHttpRequests(authorize -> authorize
                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+                .requestMatchers("/account/show").authenticated()
                 .requestMatchers("/login", "/account/register", "/account/show/**", "/account/tweets/**",
                         "/account/following/**", "/account/followers/**", "/css/**").permitAll()
                 .anyRequest().authenticated()
