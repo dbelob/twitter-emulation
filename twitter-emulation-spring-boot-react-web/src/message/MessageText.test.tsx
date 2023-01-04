@@ -46,7 +46,7 @@ describe('MessageTextComponent', () => {
         await act(async () => {
             messageService.reportMessage(new Message('Message', new Date(), true));
         });
-        expect(screen.queryByTestId('message')).toBeInTheDocument();
+        expect(screen.getByTestId('message')).toBeInTheDocument();
     });
 
     test('displays message text', async () => {
@@ -62,19 +62,19 @@ describe('MessageTextComponent', () => {
         await act(async () => {
             messageService.reportMessage(new Message('Message 1', new Date(), true));
         });
-        expect(screen.queryByTestId('message')).toBeInTheDocument();
+        expect(screen.getByTestId('message')).toBeInTheDocument();
         expect(within(screen.getByTestId('message')).getByText('Message 1')).toBeInTheDocument();
 
         await act(async () => {
             messageService.reportMessage(new Message('Message 2', new Date(), true));
         });
-        expect(screen.queryByTestId('message')).toBeInTheDocument();
+        expect(screen.getByTestId('message')).toBeInTheDocument();
         expect(within(screen.getByTestId('message')).getByText('Message 2')).toBeInTheDocument();
 
         await act(async () => {
             messageService.reportMessage(new Message('Message 3', new Date(), true));
         });
-        expect(screen.queryByTestId('message')).toBeInTheDocument();
+        expect(screen.getByTestId('message')).toBeInTheDocument();
         expect(within(screen.getByTestId('message')).getByText('Message 3')).toBeInTheDocument();
 
         await act(async () => {
