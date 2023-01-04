@@ -1,5 +1,6 @@
 package acme.twitter.config;
 
+import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,6 +29,7 @@ public class SecurityConfig {
             .httpBasic()
                 .and()
             .authorizeHttpRequests(authorize -> authorize
+                .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                 .requestMatchers("/login", "/account/register", "/account/show/**", "/account/tweets/**",
                         "/account/following/**", "/account/followers/**", "/css/**").permitAll()
                 .anyRequest().authenticated()
