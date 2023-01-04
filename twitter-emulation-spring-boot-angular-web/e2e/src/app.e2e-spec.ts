@@ -14,14 +14,14 @@ describe('App', () => {
   afterEach(() => mockServer.stop());
 
   it('should display login page', () => {
-    mockServer.forGet("/api/authentication/user").thenReply(200);
+    mockServer.forGet('/api/authentication/user').thenReply(200);
 
     page.navigateTo();
     expect(page.getTitleText()).toEqual('Log in');
   });
 
   it('should click button and display register page', () => {
-    mockServer.forGet("/api/authentication/user").thenReply(200);
+    mockServer.forGet('/api/authentication/user').thenReply(200);
 
     page.navigateTo();
     page.getButtonById('register').click();
@@ -29,7 +29,7 @@ describe('App', () => {
   });
 
   it('should switch to register page and go back', () => {
-    mockServer.forGet("/api/authentication/user").thenReply(200);
+    mockServer.forGet('/api/authentication/user').thenReply(200);
 
     page.navigateTo();
     page.getButtonById('register').click();
@@ -39,10 +39,10 @@ describe('App', () => {
   });
 
   it('should display home page', () => {
-    mockServer.forGet("/api/authentication/user").thenReply(200, '{\"name\": \"jsmith\"}');
-    mockServer.forGet("/api/account/statistics/jsmith").thenReply(200, '' +
+    mockServer.forGet('/api/authentication/user').thenReply(200, '{\"name\": \"jsmith\"}');
+    mockServer.forGet('/api/account/statistics/jsmith').thenReply(200, '' +
       '{"username":"jsmith","description":"John Smith","tweetsCount":6,"followingCount":2,"followersCount":1,"follow":false}');
-    mockServer.forGet("/api/tweet/timeline").thenReply(200,
+    mockServer.forGet('/api/tweet/timeline').thenReply(200,
       '[{"username":"jdoe","description":"John Doe","text":"Tweet Text","date":"2019-07-03T20:19:21.495+0000"}]');
 
     page.navigateTo();
@@ -51,15 +51,15 @@ describe('App', () => {
   });
 
   it('should switch to profile page and go back', () => {
-    mockServer.forGet("/api/authentication/user").thenReply(200, '{\"name\": \"jsmith\"}');
-    mockServer.forGet("/api/account/statistics/jsmith").thenReply(200,
+    mockServer.forGet('/api/authentication/user').thenReply(200, '{\"name\": \"jsmith\"}');
+    mockServer.forGet('/api/account/statistics/jsmith').thenReply(200,
       '{"username":"jsmith","description":"John Smith","tweetsCount":6,"followingCount":2,"followersCount":1,"follow":false}');
-    mockServer.forGet("/api/tweet/timeline").thenReply(200, '[' +
+    mockServer.forGet('/api/tweet/timeline').thenReply(200, '[' +
       '{"username":"jdoe","description":"John Doe","text":"Tweet Text 1","date":"2019-07-03T20:19:21.495+0000"},' +
       '{"username":"jsmith","description":"John Smith","text":"Tweet Text 2","date":"2019-07-03T20:19:21.489+0000"},' +
       '{"username":"jdoe","description":"John Doe","text":"Tweet Text 3","date":"2019-07-03T18:48:47.495+0000"}' +
       ']');
-    mockServer.forGet("/api/account/accounts/jsmith").thenReply(200, '{"username":"jsmith","password":"password","description":"John Smith"}');
+    mockServer.forGet('/api/account/accounts/jsmith').thenReply(200, '{"username":"jsmith","password":"password","description":"John Smith"}');
 
     page.navigateTo();
     expect(page.getDivByIdText('username')).toEqual('@jsmith');
