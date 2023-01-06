@@ -5,9 +5,9 @@ const titleSelector = 'h3';
 
 export const root = async (page: Page) => await page.$(rootSelector);
 
-export const getApplicationTitleText = async (page: Page) => await page.title();
+export const getPageTitleText = async (page: Page) => await page.title();
 
-export const getTitleText = async (page: Page) => {
+export const getPageHeaderText = async (page: Page) => {
     const app = await root(page);
 
     if (!app) {

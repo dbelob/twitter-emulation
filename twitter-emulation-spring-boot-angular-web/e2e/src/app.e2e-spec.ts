@@ -13,11 +13,18 @@ describe('App', () => {
   beforeEach(() => mockServer.start(8080));
   afterEach(() => mockServer.stop());
 
+  it('should open application', () => {
+    mockServer.forGet('/api/authentication/user').thenReply(200);
+
+    page.navigateTo();
+    expect(page.getPageTitleText()).toEqual('Twitter (Angular)');
+  });
+
   it('should display login page', () => {
     mockServer.forGet('/api/authentication/user').thenReply(200);
 
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Log in');
+    expect(page.getPageHeaderText()).toEqual('Log in');
   });
 
   it('should click button and display register page', () => {
@@ -25,7 +32,7 @@ describe('App', () => {
 
     page.navigateTo();
     page.getButtonById('register').click();
-    expect(page.getTitleText()).toEqual('Registration');
+    expect(page.getPageHeaderText()).toEqual('Registration');
   });
 
   it('should switch to register page and go back', () => {
@@ -33,9 +40,9 @@ describe('App', () => {
 
     page.navigateTo();
     page.getButtonById('register').click();
-    expect(page.getTitleText()).toEqual('Registration');
+    expect(page.getPageHeaderText()).toEqual('Registration');
     page.getButtonById('login').click();
-    expect(page.getTitleText()).toEqual('Log in');
+    expect(page.getPageHeaderText()).toEqual('Log in');
   });
 
   it('should display home page', () => {
@@ -65,7 +72,7 @@ describe('App', () => {
     expect(page.getDivByIdText('username')).toEqual('@jsmith');
     expect(page.getDivByIdText('description')).toEqual('John Smith');
     page.getButtonById('profile').click();
-    expect(page.getTitleText()).toEqual('Profile');
+    expect(page.getPageHeaderText()).toEqual('Profile');
     page.getButtonById('cancel').click();
     expect(page.getDivByIdText('username')).toEqual('@jsmith');
     expect(page.getDivByIdText('description')).toEqual('John Smith');
