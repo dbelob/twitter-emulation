@@ -1,11 +1,21 @@
 import puppeteer, { Browser, Page } from 'puppeteer';
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
 import { getApplicationTitleText, getTitleText } from './app.po';
 
 describe('App', () => {
     let browser: Browser;
     let page: Page;
 
+    const server = setupServer(
+        rest.get('/api/authentication/user', (req, res, ctx) => {
+            return res(ctx.status(200));
+        })
+    );
+
     beforeAll(async () => {
+        server.listen();
+
         browser = await puppeteer.launch({
             headless: true
         });
@@ -14,7 +24,12 @@ describe('App', () => {
         await page.goto('http://localhost:3000');
     }, 30_000);
 
-    afterAll(async () => await browser.close());
+    afterEach(() => server.resetHandlers());
+
+    afterAll(async () => {
+        await browser.close();
+        server.close();
+    });
 
     test('should open application', async () => {
         expect(await getApplicationTitleText(page)).toBe('Twitter (React)');
