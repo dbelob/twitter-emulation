@@ -1,7 +1,7 @@
 import puppeteer, { Browser, Page } from 'puppeteer';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import { getApplicationTitleText, getTitleText } from './app.po';
+import { getPageTitleText, getPageHeaderText } from './app.po';
 
 describe('App', () => {
     let browser: Browser;
@@ -21,7 +21,7 @@ describe('App', () => {
         });
         page = await browser.newPage();
 
-        await page.goto('http://localhost:3000');
+        await page.goto('http://127.0.0.1:3000');
     }, 30_000);
 
     afterEach(() => server.resetHandlers());
@@ -32,10 +32,10 @@ describe('App', () => {
     });
 
     test('should open application', async () => {
-        expect(await getApplicationTitleText(page)).toBe('Twitter (React)');
+        expect(await getPageTitleText(page)).toBe('Twitter (React)');
     });
 
     test('should display login page', async () => {
-        expect(await getTitleText(page)).toBe('Log in');
+        expect(await getPageHeaderText(page)).toBe('Log in');
     });
 });
