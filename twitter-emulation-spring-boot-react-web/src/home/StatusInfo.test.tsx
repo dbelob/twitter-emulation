@@ -19,22 +19,22 @@ describe('StatusInfoComponent', () => {
 
         userState = new UserState('jsmith', 'jsmith');
         rerender(<StatusInfo userState={userState}/>);
-        expect(screen.queryByTestId('logged')).not.toBeNull();
+        expect(screen.getByTestId('logged')).not.toBeNull();
         expect(within(screen.getByTestId('username')).getByText('jsmith')).toBeInTheDocument();
 
         userState = new UserState('jsmith', 'jdoe');
         rerender(<StatusInfo userState={userState}/>);
-        expect(screen.queryByTestId('logged')).not.toBeNull();
+        expect(screen.getByTestId('logged')).not.toBeNull();
         expect(within(screen.getByTestId('username')).getByText('jsmith')).toBeInTheDocument();
 
         userState = new UserState('jdoe', 'jdoe');
         rerender(<StatusInfo userState={userState}/>);
-        expect(screen.queryByTestId('logged')).not.toBeNull();
+        expect(screen.getByTestId('logged')).not.toBeNull();
         expect(within(screen.getByTestId('username')).getByText('jdoe')).toBeInTheDocument();
 
         userState = new UserState('jdoe', 'jsmith');
         rerender(<StatusInfo userState={userState}/>);
-        expect(screen.queryByTestId('logged')).not.toBeNull();
+        expect(screen.getByTestId('logged')).not.toBeNull();
         expect(within(screen.getByTestId('username')).getByText('jdoe')).toBeInTheDocument();
     });
 });

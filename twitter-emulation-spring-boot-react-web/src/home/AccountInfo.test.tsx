@@ -23,25 +23,25 @@ describe('AccountInfoComponent', () => {
             return res(ctx.json({
                 username: 'jsmith', description: 'John Smith', tweetsCount: 6, followingCount: 2,
                 followersCount: 1, follow: false
-            }))
+            }));
         }),
         rest.get('/api/account/statistics/jdoe', (req, res, ctx) => {
             return res(ctx.json({
                 username: 'jdoe', description: 'John Doe', tweetsCount: 3, followingCount: 1,
                 followersCount: 1, follow: true
-            }))
+            }));
         }),
         rest.get('/api/account/statistics/rroe', (req, res, ctx) => {
             return res(ctx.json({
                 username: 'rroe', description: 'Richard Roe', tweetsCount: 0, followingCount: 0,
                 followersCount: 1, follow: false
-            }))
+            }));
         })
     );
 
-    beforeAll(() => server.listen())
-    afterEach(() => server.resetHandlers())
-    afterAll(() => server.close())
+    beforeAll(() => server.listen());
+    afterEach(() => server.resetHandlers());
+    afterAll(() => server.close());
 
     test('should create', async () => {
         const userState = new UserState('jsmith', 'jsmith');
@@ -89,8 +89,8 @@ describe('AccountInfoComponent', () => {
         });
         expect(within(screen.getByTestId('description')).getByText('John Doe')).toBeInTheDocument();
         expect(within(screen.getByTestId('username')).getByText('@jdoe')).toBeInTheDocument();
-        expect(screen.queryByTestId('buttons')).toBeInTheDocument();
-        expect(screen.queryByTestId('unfollow')).toBeInTheDocument();
+        expect(screen.getByTestId('buttons')).toBeInTheDocument();
+        expect(screen.getByTestId('unfollow')).toBeInTheDocument();
         expect(screen.queryByTestId('follow')).not.toBeInTheDocument();
         expect(within(screen.getByTestId('tweets')).getByText('3')).toBeInTheDocument();
         expect(within(screen.getByTestId('following')).getByText('1')).toBeInTheDocument();
@@ -109,9 +109,9 @@ describe('AccountInfoComponent', () => {
         });
         expect(within(screen.getByTestId('description')).getByText('Richard Roe')).toBeInTheDocument();
         expect(within(screen.getByTestId('username')).getByText('@rroe')).toBeInTheDocument();
-        expect(screen.queryByTestId('buttons')).toBeInTheDocument();
+        expect(screen.getByTestId('buttons')).toBeInTheDocument();
         expect(screen.queryByTestId('unfollow')).not.toBeInTheDocument();
-        expect(screen.queryByTestId('follow')).toBeInTheDocument();
+        expect(screen.getByTestId('follow')).toBeInTheDocument();
         expect(within(screen.getByTestId('tweets')).getByText('0')).toBeInTheDocument();
         expect(within(screen.getByTestId('following')).getByText('0')).toBeInTheDocument();
         expect(within(screen.getByTestId('followers')).getByText('1')).toBeInTheDocument();
