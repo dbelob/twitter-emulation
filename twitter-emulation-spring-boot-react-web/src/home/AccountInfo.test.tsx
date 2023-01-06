@@ -23,25 +23,25 @@ describe('AccountInfoComponent', () => {
             return res(ctx.json({
                 username: 'jsmith', description: 'John Smith', tweetsCount: 6, followingCount: 2,
                 followersCount: 1, follow: false
-            }))
+            }));
         }),
         rest.get('/api/account/statistics/jdoe', (req, res, ctx) => {
             return res(ctx.json({
                 username: 'jdoe', description: 'John Doe', tweetsCount: 3, followingCount: 1,
                 followersCount: 1, follow: true
-            }))
+            }));
         }),
         rest.get('/api/account/statistics/rroe', (req, res, ctx) => {
             return res(ctx.json({
                 username: 'rroe', description: 'Richard Roe', tweetsCount: 0, followingCount: 0,
                 followersCount: 1, follow: false
-            }))
+            }));
         })
     );
 
-    beforeAll(() => server.listen())
-    afterEach(() => server.resetHandlers())
-    afterAll(() => server.close())
+    beforeAll(() => server.listen());
+    afterEach(() => server.resetHandlers());
+    afterAll(() => server.close());
 
     test('should create', async () => {
         const userState = new UserState('jsmith', 'jsmith');
