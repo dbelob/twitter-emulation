@@ -5,6 +5,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
+    "e2e": "cross-env BROWSER=none PORT=3000 start-server-and-test start http://127.0.0.1:3000 \\\"cd e2e && jest\\\"",
     "eject": "react-scripts eject"
   },
   "private": true,
