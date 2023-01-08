@@ -335,6 +335,16 @@ in several ways:
 
 ### Frontend end-to-end testing
 
+#### Puppeteer tests
+
+1. Change directory:
+
+   `cd twitter-emulation-spring-boot-react-web`
+
+1. From the command line with *npm*:
+
+   `npm run e2e`
+
 #### Protractor tests
 
 1. Change directory:
@@ -369,6 +379,7 @@ in several ways:
 * [Jest](https://jestjs.io) (*JavaScript* unit testing)
 * [React Testing Library](https://testing-library.com/react) (*JavaScript* unit testing for *React*)
 * [Jasmine](https://jasmine.github.io) (*JavaScript* unit testing)
+* [Puppeteer](https://pptr.dev) (*JavaScript* end-to-end testing)
 * [Protractor](https://www.protractortest.org) (end-to-end testing for *Angular*)
 
 ## CI/CD
