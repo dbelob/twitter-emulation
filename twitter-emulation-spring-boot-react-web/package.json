@@ -17,7 +17,7 @@
     "@types/node": "^18.11.19",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
-    "@types/validator": "^13.7.11",
+    "@types/validator": "^13.7.12",
     "axios": "^0.27.2",
     "axios-date-reviver": "^1.0.0-beta.2",
     "axios-observable": "^1.5.0",
