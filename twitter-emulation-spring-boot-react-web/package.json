@@ -49,7 +49,7 @@
     "jest-puppeteer": "^7.0.1",
     "msw": "^1.1.0",
     "puppeteer": "^19.7.2",
-    "start-server-and-test": "^1.15.5",
+    "start-server-and-test": "^2.0.0",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1"
   },
