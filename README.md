@@ -23,7 +23,7 @@ in several ways:
 ## Requirements
 
 * [JDK 17+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-* [Apache Maven 3.8.0+](https://maven.apache.org/download.cgi)
+* [Apache Maven 3.9.0+](https://maven.apache.org/download.cgi)
 * [Node.js 18.15.0+](https://nodejs.org) (optional)
 * [Docker](https://www.docker.com) (optional)
 
