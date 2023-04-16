@@ -31,8 +31,11 @@
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
-          },
+            "namedChunks": true,
+            "allowedCommonJsDependencies": [
+              "buffer"
+            ]
+          },,
           "configurations": {
             "production": {
               "fileReplacements": [
