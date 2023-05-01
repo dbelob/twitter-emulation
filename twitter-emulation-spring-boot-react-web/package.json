@@ -23,7 +23,7 @@
     "axios-observable": "^1.5.0",
     "bootstrap": "^5.2.3",
     "buffer": "^6.0.3",
-    "date-fns": "^2.29.3",
+    "date-fns": "^2.30.0",
     "http-proxy-middleware": "^2.0.6",
     "inversify": "^6.0.1",
     "inversify-react": "^1.1.0",
