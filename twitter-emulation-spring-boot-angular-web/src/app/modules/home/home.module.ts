@@ -16,7 +16,6 @@ import { TweetsComponent } from './tweets.component';
 import { FollowersComponent } from './followers.component';
 import { FollowingComponent } from './following.component';
 import { USER_STATE, UserState } from '../../shared/models/user-state.model';
-import { HomeResolver } from './home.resolver';
 
 @NgModule({
   declarations: [
@@ -38,7 +37,7 @@ import { HomeResolver } from './home.resolver';
     FormsModule,
     MessageModule
   ],
-  providers: [{provide: USER_STATE, useValue: new Subject<UserState>()}, HomeResolver]
+  providers: [{provide: USER_STATE, useValue: new Subject<UserState>()}]
 })
 export class HomeModule {
 }

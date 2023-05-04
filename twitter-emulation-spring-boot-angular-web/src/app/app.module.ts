@@ -12,7 +12,7 @@ import { NotFoundComponent } from './modules/unknown/not-found.component';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { RegistrationComponent } from './modules/registration/registration.component';
 import { SearchComponent } from './modules/home/search.component';
-import { AuthenticationGuard } from './shared/guards/authentication.guard';
+import { authenticationCanActivate } from './shared/guards/authentication.guard';
 import { AccountService } from './shared/services/account.service';
 import { AuthenticationService } from './shared/services/authentication.service';
 import { TweetService } from './shared/services/tweet.service';
@@ -28,7 +28,7 @@ import { UnknownModule } from './modules/unknown/unknown.module';
 import { TweetsComponent } from './modules/home/tweets.component';
 import { FollowingComponent } from './modules/home/following.component';
 import { FollowersComponent } from './modules/home/followers.component';
-import { HomeResolver } from './modules/home/home.resolver';
+import { homeResolve } from './modules/home/home.resolver';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -43,17 +43,17 @@ export class XhrInterceptor implements HttpInterceptor {
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'account/register', component: RegistrationComponent},
-  {path: 'account/show/:user', component: AccountComponent, resolve: {home: HomeResolver}},
-  {path: 'account/show', component: AccountComponent, canActivate: [AuthenticationGuard]},
-  {path: 'account/tweets/:user', component: TweetsComponent, resolve: {home: HomeResolver}},
-  {path: 'account/following/:user', component: FollowingComponent, resolve: {home: HomeResolver}},
-  {path: 'account/followers/:user', component: FollowersComponent, resolve: {home: HomeResolver}},
-  {path: 'account/profile', component: ProfileComponent, canActivate: [AuthenticationGuard]},
-  {path: 'account/delete', component: DeleteAccountComponent, canActivate: [AuthenticationGuard]},
-  {path: 'account/search', component: SearchComponent, canActivate: [AuthenticationGuard]},
-  {path: 'tweet', component: NewTweetComponent, canActivate: [AuthenticationGuard]},
+  {path: 'account/show/:user', component: AccountComponent, resolve: {home: homeResolve}},
+  {path: 'account/show', component: AccountComponent, canActivate: [authenticationCanActivate]},
+  {path: 'account/tweets/:user', component: TweetsComponent, resolve: {home: homeResolve}},
+  {path: 'account/following/:user', component: FollowingComponent, resolve: {home: homeResolve}},
+  {path: 'account/followers/:user', component: FollowersComponent, resolve: {home: homeResolve}},
+  {path: 'account/profile', component: ProfileComponent, canActivate: [authenticationCanActivate]},
+  {path: 'account/delete', component: DeleteAccountComponent, canActivate: [authenticationCanActivate]},
+  {path: 'account/search', component: SearchComponent, canActivate: [authenticationCanActivate]},
+  {path: 'tweet', component: NewTweetComponent, canActivate: [authenticationCanActivate]},
   {path: '', pathMatch: 'full', redirectTo: 'account/show'},
-  {path: "**", component: NotFoundComponent}
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
@@ -72,7 +72,7 @@ const routes: Routes = [
     TweetModule,
     UnknownModule
   ],
-  providers: [AccountService, AuthenticationService, AuthenticationGuard, TweetService, ValidationService, FollowerService, {
+  providers: [AccountService, AuthenticationService, TweetService, ValidationService, FollowerService, {
     provide: HTTP_INTERCEPTORS,
     useClass: XhrInterceptor,
     multi: true
