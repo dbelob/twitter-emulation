@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.javaVersion>17</project.build.javaVersion>
 
-        <assembly.plugin.version>3.5.0</assembly.plugin.version>
+        <assembly.plugin.version>3.6.0</assembly.plugin.version>
         <clean.plugin.version>3.2.0</clean.plugin.version>
         <compiler.plugin.version>3.11.0</compiler.plugin.version>
         <frontend.plugin.version>1.12.1</frontend.plugin.version>
