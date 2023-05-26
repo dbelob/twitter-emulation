@@ -32,7 +32,7 @@
     "@angular/cli": "^16.0.2",
     "@angular/compiler-cli": "^16.0.3",
     "@angular/language-service": "^16.0.3",
-    "@types/jasmine": "^4.3.1",
+    "@types/jasmine": "^4.3.2",
     "@types/jasminewd2": "^2.0.10",
     "@types/node": "^20.2.3",
     "ajv": "^8.12.0",
