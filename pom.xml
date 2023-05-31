@@ -35,7 +35,7 @@
         <spring-boot.version>3.1.0</spring-boot.version>
         <spring-boot-admin.version>3.0.4</spring-boot-admin.version>
         <springdoc-openapi.version>1.7.0</springdoc-openapi.version>
-        <testcontainers.version>1.18.1</testcontainers.version>
+        <testcontainers.version>1.18.2</testcontainers.version>
 
         <node.version>v18.16.0</node.version>
 
