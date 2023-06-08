@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * JDBC implementation of tweet DAO.
@@ -72,12 +73,13 @@ public class JdbcTweetDao implements TweetDao {
 
     @Override
     public int countByUsername(String username) {
-        return jdbcTemplate.queryForObject(
-                "select count(*) " +
-                        "from account a, tweet t " +
-                        "where a.account_id = t.account_id " +
-                        "  and a.username = ?",
-                Integer.class,
-                username);
+        return Objects.requireNonNull(
+                jdbcTemplate.queryForObject(
+                        "select count(*) " +
+                                "from account a, tweet t " +
+                                "where a.account_id = t.account_id " +
+                                "  and a.username = ?",
+                        Integer.class,
+                        username));
     }
 }
