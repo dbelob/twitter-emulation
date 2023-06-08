@@ -12,9 +12,12 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.security.web.csrf.*;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 
 import javax.sql.DataSource;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
@@ -22,27 +25,26 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .httpBasic()
-                .and()
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/index.html", "/", "/login", "/api/account/accounts/**",
-                        "/api/account/statistics/**", "/api/authentication/user", "/api/follower/following/**",
-                        "/api/follower/followers/**", "/api/tweet/tweets/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .csrf(csrf -> csrf
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
-            )
-            .addFilterAfter(new CookieCsrfFilter(), BasicAuthenticationFilter.class)
-            .logout(logout -> logout
-                .logoutUrl("/api/authentication/logout")
-                .logoutSuccessHandler((request, response, authentication) ->
-                        response.setStatus(HttpServletResponse.SC_OK))
-            )
-            .sessionManagement(sessions -> sessions
-                .requireExplicitAuthenticationStrategy(false)
-            );
+                .httpBasic(withDefaults())
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/index.html", "/", "/login", "/api/account/accounts/**",
+                                "/api/account/statistics/**", "/api/authentication/user", "/api/follower/following/**",
+                                "/api/follower/followers/**", "/api/tweet/tweets/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .csrf(csrf -> csrf
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
+                )
+                .addFilterAfter(new CookieCsrfFilter(), BasicAuthenticationFilter.class)
+                .logout(logout -> logout
+                        .logoutUrl("/api/authentication/logout")
+                        .logoutSuccessHandler((request, response, authentication) ->
+                                response.setStatus(HttpServletResponse.SC_OK))
+                )
+                .sessionManagement(sessions -> sessions
+                        .requireExplicitAuthenticationStrategy(false)
+                );
 
         return http.build();
     }

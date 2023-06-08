@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * JDBC implementation of follower DAO.
@@ -21,37 +22,40 @@ public class JdbcFollowerDao implements FollowerDao {
 
     @Override
     public int countFollowingByUsername(String username) {
-        return jdbcTemplate.queryForObject(
-                "select count(*) " +
-                        "from account a, follower f " +
-                        "where a.account_id = f.who_account_id " +
-                        "  and a.username = ?",
-                Integer.class,
-                username);
+        return Objects.requireNonNull(
+                jdbcTemplate.queryForObject(
+                        "select count(*) " +
+                                "from account a, follower f " +
+                                "where a.account_id = f.who_account_id " +
+                                "  and a.username = ?",
+                        Integer.class,
+                        username));
     }
 
     @Override
     public int countFollowersByUsername(String username) {
-        return jdbcTemplate.queryForObject(
-                "select count(*) " +
-                        "from account a, follower f " +
-                        "where a.account_id = f.whom_account_id " +
-                        "  and a.username = ?",
-                Integer.class,
-                username);
+        return Objects.requireNonNull(
+                jdbcTemplate.queryForObject(
+                        "select count(*) " +
+                                "from account a, follower f " +
+                                "where a.account_id = f.whom_account_id " +
+                                "  and a.username = ?",
+                        Integer.class,
+                        username));
     }
 
     @Override
     public boolean isExist(String whoUsername, String whomUsername) {
-        int count = jdbcTemplate.queryForObject(
-                "select count(*) " +
-                        "from account a1, account a2, follower f " +
-                        "where a1.account_id = f.who_account_id " +
-                        "  and a2.account_id = f.whom_account_id " +
-                        "  and a1.username = ? " +
-                        "  and a2.username = ?",
-                Integer.class,
-                whoUsername, whomUsername);
+        int count = Objects.requireNonNull(
+                jdbcTemplate.queryForObject(
+                        "select count(*) " +
+                                "from account a1, account a2, follower f " +
+                                "where a1.account_id = f.who_account_id " +
+                                "  and a2.account_id = f.whom_account_id " +
+                                "  and a1.username = ? " +
+                                "  and a2.username = ?",
+                        Integer.class,
+                        whoUsername, whomUsername));
 
         return (count > 0);
     }

@@ -8,7 +8,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
-import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 public class SecurityConfig {
@@ -27,24 +27,24 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(adminContextPath + "/assets/**", // <1>
-                            adminContextPath + "/login").permitAll()
+                                adminContextPath + "/login").permitAll()
                         .anyRequest().authenticated() // <2>
                 )
-                .formLogin().loginPage(adminContextPath + "/login").successHandler(successHandler)
-                    .and() // <3>
-                .logout().logoutUrl(adminContextPath + "/logout")
-                    .and()
-                .httpBasic()
-                    .and() // <4>
-                .csrf()
-                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // <5>
-                    .ignoringRequestMatchers(
-                            adminContextPath + "/instances", // <6>
-                            adminContextPath + "/actuator/**" // <7>
-                    )
-                    .and()
+                .formLogin(formLogin -> formLogin
+                        .loginPage(adminContextPath + "/login").successHandler(successHandler)) // <3>
+                .logout(logout -> logout
+                        .logoutUrl(adminContextPath + "/logout")
+                )
+                .httpBasic(withDefaults())
+                .csrf(csrf -> csrf
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // <5>
+                        .ignoringRequestMatchers(
+                                adminContextPath + "/instances", // <6>
+                                adminContextPath + "/actuator/**" // <7>
+                        )
+                )
                 .sessionManagement(sessions -> sessions
-                    .requireExplicitAuthenticationStrategy(false)
+                        .requireExplicitAuthenticationStrategy(false)
                 );
 
         return http.build();

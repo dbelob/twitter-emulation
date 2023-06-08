@@ -14,30 +14,31 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .formLogin()
-                .loginPage("/login")
-                .and()
-            .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Support GET for logout with CSRF
-                .and()
-            .httpBasic()
-                .and()
-            .authorizeHttpRequests(authorize -> authorize
-                .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                .requestMatchers("/account/show").authenticated()
-                .requestMatchers("/login", "/account/register", "/account/show/**", "/account/tweets/**",
-                        "/account/following/**", "/account/followers/**", "/css/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .sessionManagement(sessions -> sessions
-                .requireExplicitAuthenticationStrategy(false)
-            );
+                .formLogin(formLogin -> formLogin
+                        .loginPage("/login")
+                )
+                .logout(logout -> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Support GET for logout with CSRF
+                )
+                .httpBasic(withDefaults())
+                .authorizeHttpRequests(authorize -> authorize
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+                        .requestMatchers("/account/show").authenticated()
+                        .requestMatchers("/login", "/account/register", "/account/show/**", "/account/tweets/**",
+                                "/account/following/**", "/account/followers/**", "/css/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .sessionManagement(sessions -> sessions
+                        .requireExplicitAuthenticationStrategy(false)
+                );
 
         return http.build();
     }
