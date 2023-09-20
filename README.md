@@ -22,9 +22,9 @@ in several ways:
 
 ## Requirements
 
-* [JDK 17+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+* [JDK 17+](https://www.oracle.com/java/technologies/downloads/)
 * [Apache Maven 3.9.0+](https://maven.apache.org/download.cgi)
-* [Node.js 18.17.0+](https://nodejs.org) (optional)
+* [Node.js 18.18.0+](https://nodejs.org) (optional)
 * [Docker](https://www.docker.com) (optional)
 
 ## Running
