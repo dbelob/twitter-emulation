@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { act, cleanup, render, screen, within } from '@testing-library/react';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';
-import { rest } from 'msw'
+import { http, HttpResponse } from 'msw'
 import { setupServer } from 'msw/node'
 import AccountInfo from './AccountInfo';
 import { UserState } from '../common/models/UserState';
@@ -19,23 +19,23 @@ describe('AccountInfoComponent', () => {
     iocContainer.bind(MessageService).toSelf().inSingletonScope();
 
     const server = setupServer(
-        rest.get('/api/account/statistics/jsmith', (req, res, ctx) => {
-            return res(ctx.json({
+        http.get('/api/account/statistics/jsmith', ({ request, params, cookies }) => {
+            return HttpResponse.json({
                 username: 'jsmith', description: 'John Smith', tweetsCount: 6, followingCount: 2,
                 followersCount: 1, follow: false
-            }));
+            });
         }),
-        rest.get('/api/account/statistics/jdoe', (req, res, ctx) => {
-            return res(ctx.json({
+        http.get('/api/account/statistics/jdoe', ({ request, params, cookies }) => {
+            return HttpResponse.json({
                 username: 'jdoe', description: 'John Doe', tweetsCount: 3, followingCount: 1,
                 followersCount: 1, follow: true
-            }));
+            });
         }),
-        rest.get('/api/account/statistics/rroe', (req, res, ctx) => {
-            return res(ctx.json({
+        http.get('/api/account/statistics/rroe', ({ request, params, cookies }) => {
+            return HttpResponse.json({
                 username: 'rroe', description: 'Richard Roe', tweetsCount: 0, followingCount: 0,
                 followersCount: 1, follow: false
-            }));
+            });
         })
     );
 
@@ -46,6 +46,7 @@ describe('AccountInfoComponent', () => {
     test('should create', async () => {
         const userState = new UserState('jsmith', 'jsmith');
 
+        // eslint-disable-next-line testing-library/no-unnecessary-act
         await act(() => {
             render(
                 <Provider container={iocContainer}>
@@ -59,6 +60,7 @@ describe('AccountInfoComponent', () => {
 
     test('receives the user state through input property', async () => {
         let userState = new UserState('jsmith', 'jsmith');
+        // eslint-disable-next-line testing-library/no-unnecessary-act
         await act(async () => {
             render(
                 <Provider container={iocContainer}>
@@ -79,6 +81,7 @@ describe('AccountInfoComponent', () => {
         cleanup();
 
         userState = new UserState('jsmith', 'jdoe');
+        // eslint-disable-next-line testing-library/no-unnecessary-act
         await act(async () => {
             render(
                 <Provider container={iocContainer}>
@@ -99,6 +102,7 @@ describe('AccountInfoComponent', () => {
         cleanup();
 
         userState = new UserState('jsmith', 'rroe');
+        // eslint-disable-next-line testing-library/no-unnecessary-act
         await act(async () => {
             render(
                 <Provider container={iocContainer}>
