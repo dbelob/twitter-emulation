@@ -10,14 +10,14 @@ updates:
     directory: "/twitter-emulation-spring-boot-angular-web"
     schedule:
       interval: "daily"
-  - package-ecosystem: "npm"
-    directory: "/twitter-emulation-spring-boot-react-web"
-    schedule:
-      interval: "daily"
     groups:
       angular:
         patterns:
           - "@angular*"
+  - package-ecosystem: "npm"
+    directory: "/twitter-emulation-spring-boot-react-web"
+    schedule:
+      interval: "daily"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
