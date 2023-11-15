@@ -38,14 +38,16 @@ export class TweetService {
             });
     }
 
-    getTimeline(thenCallback: (response: AxiosResponse<Tweet[]>) => void) {
-        axios.get(`${this.baseUrl}/timeline`)
-            .then(response => {
-                thenCallback(response);
-            })
-            .catch((error: AxiosError) => {
+    async getTimeline(thenCallback: (response: AxiosResponse<Tweet[]>) => void) {
+        try {
+            const response = await axios.get(`${this.baseUrl}/timeline`);
+            thenCallback(response);
+        } catch (error) {
+            if (error instanceof AxiosError) {
                 this.messageService.reportMessage(error.response);
-                throw error;
-            });
+            }
+
+            throw error;
+        }
     }
 }
