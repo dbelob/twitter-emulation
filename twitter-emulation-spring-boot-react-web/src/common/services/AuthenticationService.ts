@@ -65,7 +65,7 @@ export class AuthenticationService {
             .pipe(
                 map(response => response.data),
                 catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
+                    this.messageService.reportMessage(err);
                     throw err;
                 })
             );

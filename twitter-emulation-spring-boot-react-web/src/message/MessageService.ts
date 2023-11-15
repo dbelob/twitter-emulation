@@ -1,5 +1,5 @@
 import { Observable, Subject } from 'rxjs';
-import { AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 import { injectable } from 'inversify';
 import { Message } from '../common/models/Message';
 
@@ -7,7 +7,7 @@ import { Message } from '../common/models/Message';
 export class MessageService {
     private subject = new Subject<Message>();
 
-    reportMessage(parameter: Message | AxiosResponse | undefined) {
+    reportMessage(parameter: any | undefined) {
         const msg = (parameter instanceof Message) ?
             parameter :
             new Message(MessageService.getMessageText(parameter), new Date(), true);
@@ -19,8 +19,9 @@ export class MessageService {
         return this.subject;
     }
 
-    private static getMessageText(response?: AxiosResponse): string {
-        if (response) {
+    private static getMessageText(error?: any): string {
+        if ((error instanceof AxiosError) && error.response) {
+            const response = error.response;
             const data = response.data;
 
             if (data) {

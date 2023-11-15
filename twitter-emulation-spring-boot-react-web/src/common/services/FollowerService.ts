@@ -18,7 +18,7 @@ export class FollowerService {
             .pipe(
                 map(response => response.data),
                 catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
+                    this.messageService.reportMessage(err);
                     throw err;
                 })
             );
@@ -29,7 +29,7 @@ export class FollowerService {
             .pipe(
                 map(response => response.data),
                 catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
+                    this.messageService.reportMessage(err);
                     throw err;
                 })
             );
@@ -39,7 +39,7 @@ export class FollowerService {
         return Axios.post<string>(`${this.baseUrl}/following/${username}`, {})
             .pipe(
                 catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
+                    this.messageService.reportMessage(err);
                     throw err;
                 })
             )
@@ -49,7 +49,7 @@ export class FollowerService {
         return Axios.delete<string>(`${this.baseUrl}/following/${username}`, {})
             .pipe(
                 catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
+                    this.messageService.reportMessage(err);
                     throw err;
                 })
             )

@@ -16,7 +16,7 @@ export class TweetService {
                 thenCallback(response);
             })
             .catch((error: AxiosError) => {
-                this.messageService.reportMessage(error.response);
+                this.messageService.reportMessage(error);
                 throw error;
             });
     }
@@ -33,7 +33,7 @@ export class TweetService {
                 thenCallback(response);
             })
             .catch((error: AxiosError) => {
-                this.messageService.reportMessage(error.response);
+                this.messageService.reportMessage(error);
                 throw error;
             });
     }
@@ -43,10 +43,7 @@ export class TweetService {
             const response = await axios.get(`${this.baseUrl}/timeline`);
             thenCallback(response);
         } catch (error) {
-            if (error instanceof AxiosError) {
-                this.messageService.reportMessage(error.response);
-            }
-
+            this.messageService.reportMessage(error);
             throw error;
         }
     }

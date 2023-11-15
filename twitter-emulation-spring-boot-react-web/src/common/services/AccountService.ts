@@ -18,7 +18,7 @@ export class AccountService {
         return Axios.post(`${this.baseUrl}/accounts`, account)
             .pipe(
                 catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
+                    this.messageService.reportMessage(err);
                     throw err;
                 })
             );
@@ -29,7 +29,7 @@ export class AccountService {
             .pipe(
                 map(response => response.data),
                 catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
+                    this.messageService.reportMessage(err);
                     throw err;
                 })
             );
@@ -39,7 +39,7 @@ export class AccountService {
         return Axios.put(`${this.baseUrl}/accounts/${username}`, account)
             .pipe(
                 catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
+                    this.messageService.reportMessage(err);
                     throw err;
                 })
             );
@@ -49,7 +49,7 @@ export class AccountService {
         return Axios.delete<Account>(`${this.baseUrl}/accounts/${username}`)
             .pipe(
                 catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
+                    this.messageService.reportMessage(err);
                     throw err;
                 })
             );
@@ -66,7 +66,7 @@ export class AccountService {
             .pipe(
                 map(response => response.data),
                 catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
+                    this.messageService.reportMessage(err);
                     throw err;
                 })
             );
@@ -77,7 +77,7 @@ export class AccountService {
             .pipe(
                 map(response => response.data),
                 catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
+                    this.messageService.reportMessage(err);
                     throw err;
                 })
             );
