@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { firstValueFrom } from 'rxjs';
 import { useInjection } from 'inversify-react';
 import { useAuth } from '../common/authentication/AuthProvider';
 import { Tweet } from '../common/models/Tweet';
@@ -20,13 +19,9 @@ function Main(props: MainProps) {
     const tweetDataSource = useInjection(TweetService);
 
     useEffect(() => {
-        const loadTweets = async () => {
-            const tweets = await firstValueFrom(tweetDataSource.getTimeline());
-
-            setTweets(tweets);
-        };
-
-        loadTweets();
+        tweetDataSource.getTimeline(response => {
+            setTweets(response.data);
+        });
     }, []);
 
     const {user} = props.params;

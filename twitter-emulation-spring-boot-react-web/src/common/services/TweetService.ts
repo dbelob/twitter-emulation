@@ -1,7 +1,4 @@
-import { AxiosError } from 'axios';
-import { Axios, AxiosObservable } from 'axios-observable';
-import { catchError, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { inject, injectable } from 'inversify';
 import { Tweet } from '../models/Tweet';
 import { MessageService } from '../../message/MessageService';
@@ -13,41 +10,42 @@ export class TweetService {
     @inject(MessageService)
     private readonly messageService!: MessageService;
 
-    getTweets(username: string): Observable<Tweet[]> {
-        return Axios.get(`${this.baseUrl}/tweets/${username}`)
-            .pipe(
-                map(response => response.data),
-                catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
-                    throw err;
-                })
-            );
+    getTweets(username: string, thenCallback: (response: AxiosResponse<Tweet[]>) => void) {
+        axios.get(`${this.baseUrl}/tweets/${username}`)
+            .then(response => {
+                thenCallback(response);
+            })
+            .catch((error: AxiosError) => {
+                this.messageService.reportMessage(error.response);
+                throw error;
+            });
     }
 
-    tweet(text: string): AxiosObservable<string> {
+    tweet(text: string, thenCallback: (response: AxiosResponse<string>) => void) {
         const config = {
             headers: {
                 'Content-Type': 'text/plain'
             }
         };
 
-        return Axios.post<string>(`${this.baseUrl}/tweets`, text, config)
-            .pipe(
-                catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
-                    throw err;
-                })
-            );
+        axios.post<string>(`${this.baseUrl}/tweets`, text, config)
+            .then(response => {
+                thenCallback(response);
+            })
+            .catch((error: AxiosError) => {
+                this.messageService.reportMessage(error.response);
+                throw error;
+            });
     }
 
-    getTimeline(): Observable<Tweet[]> {
-        return Axios.get(`${this.baseUrl}/timeline`)
-            .pipe(
-                map(response => response.data),
-                catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
-                    throw err;
-                })
-            );
+    getTimeline(thenCallback: (response: AxiosResponse<Tweet[]>) => void) {
+        axios.get(`${this.baseUrl}/timeline`)
+            .then(response => {
+                thenCallback(response);
+            })
+            .catch((error: AxiosError) => {
+                this.messageService.reportMessage(error.response);
+                throw error;
+            });
     }
 }
