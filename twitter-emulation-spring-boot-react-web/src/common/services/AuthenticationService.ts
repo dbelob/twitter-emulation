@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosRequestHeaders, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse, RawAxiosRequestHeaders } from 'axios';
 import { Buffer } from 'buffer';
 import { inject, injectable } from 'inversify';
 import { MessageService } from '../../message/MessageService';
@@ -13,7 +13,7 @@ export class AuthenticationService {
     private readonly messageService!: MessageService;
 
     authenticate(credentials: any, successCallback?: () => void, errorCallback?: () => void) {
-        const headers: AxiosRequestHeaders = credentials ? {
+        const headers: RawAxiosRequestHeaders = credentials ? {
             authorization: 'Basic ' + Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64')
         } : {};
 
