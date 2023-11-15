@@ -1,7 +1,4 @@
-import { AxiosError } from 'axios';
-import { Axios, AxiosObservable } from 'axios-observable';
-import { catchError, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { inject, injectable } from 'inversify';
 import { Account } from '../models/Account';
 import { MessageService } from '../../message/MessageService';
@@ -13,45 +10,47 @@ export class FollowerService {
     @inject(MessageService)
     private readonly messageService!: MessageService;
 
-    getFollowing(username: string): Observable<Account[]> {
-        return Axios.get(`${this.baseUrl}/following/${username}`)
-            .pipe(
-                map(response => response.data),
-                catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
-                    throw err;
-                })
-            );
+    getFollowing(username: string, thenCallback: (response: AxiosResponse<Account[]>) => void) {
+        axios.get(`${this.baseUrl}/following/${username}`)
+            .then(response => {
+                thenCallback(response);
+            })
+            .catch((error: AxiosError) => {
+                this.messageService.reportMessage(error);
+                throw error;
+            });
     }
 
-    getFollowers(username: string): Observable<Account[]> {
-        return Axios.get(`${this.baseUrl}/followers/${username}`)
-            .pipe(
-                map(response => response.data),
-                catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
-                    throw err;
-                })
-            );
+    getFollowers(username: string, thenCallback: (response: AxiosResponse<Account[]>) => void) {
+        axios.get(`${this.baseUrl}/followers/${username}`)
+            .then(response => {
+                thenCallback(response);
+            })
+            .catch((error: AxiosError) => {
+                this.messageService.reportMessage(error);
+                throw error;
+            });
     }
 
-    follow(username: string): AxiosObservable<string> {
-        return Axios.post<string>(`${this.baseUrl}/following/${username}`, {})
-            .pipe(
-                catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
-                    throw err;
-                })
-            )
+    follow(username: string, thenCallback: () => void) {
+        axios.post<string>(`${this.baseUrl}/following/${username}`, {})
+            .then(response => {
+                thenCallback();
+            })
+            .catch((error: AxiosError) => {
+                this.messageService.reportMessage(error);
+                throw error;
+            });
     }
 
-    unfollow(username: string): AxiosObservable<string> {
-        return Axios.delete<string>(`${this.baseUrl}/following/${username}`, {})
-            .pipe(
-                catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
-                    throw err;
-                })
-            )
+    unfollow(username: string, thenCallback: () => void) {
+        axios.delete<string>(`${this.baseUrl}/following/${username}`, {})
+            .then(response => {
+                thenCallback();
+            })
+            .catch((error: AxiosError) => {
+                this.messageService.reportMessage(error);
+                throw error;
+            });
     }
 }

@@ -39,16 +39,15 @@ export default class NewTweet extends Component<NewTweetProps, NewTweetState> {
             ...prevState,
             [event.target.name]: event.target.value
         }));
-    }
+    };
 
     submit = (data: any) => {
-        this.tweetService.tweet(this.state.text)
-            .subscribe(data => {
-                this.setState({
-                    isSubmit: true
-                });
+        this.tweetService.tweet(this.state.text, () => {
+            this.setState({
+                isSubmit: true
             });
-    }
+        });
+    };
 
     render() {
         return (

@@ -1,9 +1,6 @@
-import { AxiosError, AxiosRequestHeaders } from 'axios';
-import { Axios } from 'axios-observable';
+import axios, { AxiosError, AxiosResponse, RawAxiosRequestHeaders } from 'axios';
 import { Buffer } from 'buffer';
 import { inject, injectable } from 'inversify';
-import { finalize, Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
 import { MessageService } from '../../message/MessageService';
 import { User } from '../models/User';
 
@@ -15,59 +12,51 @@ export class AuthenticationService {
     @inject(MessageService)
     private readonly messageService!: MessageService;
 
-    authenticate(credentials: any, success?: () => void, error?: () => void): Observable<boolean> {
-        const headers: AxiosRequestHeaders = credentials ? {
+    authenticate(credentials: any, successCallback?: () => void, errorCallback?: () => void) {
+        const headers: RawAxiosRequestHeaders = credentials ? {
             authorization: 'Basic ' + Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64')
         } : {};
 
-        return Axios.get(`${this.baseUrl}/user`, {headers})
-            .pipe(
-                map(response => {
-                        if (response.data['name']) {
-                            this.authenticated = true;
-                            if (success) {
-                                success();
-                            }
-                            return true;
-                        } else {
-                            this.authenticated = false;
-                            if (error) {
-                                error();
-                            }
-                            return false;
-                        }
+        axios.get(`${this.baseUrl}/user`, {headers})
+            .then(response => {
+                if (response.data['name']) {
+                    this.authenticated = true;
+                    if (successCallback) {
+                        successCallback();
                     }
-                ),
-                catchError((err: AxiosError) => {
+                } else {
                     this.authenticated = false;
-                    if (error) {
-                        error();
+                    if (errorCallback) {
+                        errorCallback();
                     }
-                    return of(false)
-                })
-            );
+                }
+            })
+            .catch((error: AxiosError) => {
+                this.authenticated = false;
+                if (errorCallback) {
+                    errorCallback();
+                }
+            });
     }
 
-    logout(callback?: () => void) {
-        Axios.post(`${this.baseUrl}/logout`)
-            .pipe(
-                finalize(() => {
-                    this.authenticated = false;
-                    if (callback) {
-                        callback();
-                    }
-                })
-            ).subscribe();
+    logout(finallyCallback?: () => void) {
+        axios.post(`${this.baseUrl}/logout`)
+            .finally(() => {
+                this.authenticated = false;
+                if (finallyCallback) {
+                    finallyCallback();
+                }
+            });
     }
 
-    getUser(): Observable<User> {
-        return Axios.get(`${this.baseUrl}/user`)
-            .pipe(
-                map(response => response.data),
-                catchError((err: AxiosError) => {
-                    this.messageService.reportMessage(err.response);
-                    throw err;
-                })
-            );
+    getUser(thenCallback: (response: AxiosResponse<User>) => void) {
+        axios.get(`${this.baseUrl}/user`)
+            .then(response => {
+                thenCallback(response);
+            })
+            .catch((error: AxiosError) => {
+                this.messageService.reportMessage(error);
+                throw error;
+            });
     }
 }
