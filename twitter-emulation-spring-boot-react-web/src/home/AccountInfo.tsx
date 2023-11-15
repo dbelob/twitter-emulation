@@ -33,13 +33,11 @@ export default class AccountInfo extends Component<AccountInfoProps, AccountInfo
         const username = this.props.userState.getDataUserName();
 
         if (username) {
-            this.accountService.getAccountStatistics(username)
-                .subscribe(data => {
-                        this.setState({
-                            accountStatistics: data
-                        });
-                    }
-                );
+            this.accountService.getAccountStatistics(username, response => {
+                this.setState({
+                    accountStatistics: response.data
+                });
+            });
         }
     }
 
@@ -49,23 +47,19 @@ export default class AccountInfo extends Component<AccountInfoProps, AccountInfo
 
     follow = () => {
         if (this.props.userState.selectedUserName) {
-            this.followerService.follow(this.props.userState.selectedUserName)
-                .subscribe(data => {
-                        this.loadAccountStatistics();
-                    }
-                );
+            this.followerService.follow(this.props.userState.selectedUserName, () => {
+                this.loadAccountStatistics();
+            });
         }
-    }
+    };
 
     unfollow = () => {
         if (this.props.userState.selectedUserName) {
-            this.followerService.unfollow(this.props.userState.selectedUserName)
-                .subscribe(data => {
-                        this.loadAccountStatistics();
-                    }
-                );
+            this.followerService.unfollow(this.props.userState.selectedUserName, () => {
+                this.loadAccountStatistics();
+            });
         }
-    }
+    };
 
     isFollowVisible(): boolean {
         return this.props.userState.isAuthenticated() && (this.props.userState.authenticatedUserName !== this.props.userState.selectedUserName);
@@ -116,12 +110,14 @@ export default class AccountInfo extends Component<AccountInfoProps, AccountInfo
                         </Link>
                     </div>
                     <div className="col-4 small">
-                        <Link to={`/account/following/${this.state.accountStatistics.username}`} className="fw-bold" data-testid="following">
+                        <Link to={`/account/following/${this.state.accountStatistics.username}`} className="fw-bold"
+                              data-testid="following">
                             {this.state.accountStatistics.followingCount}
                         </Link>
                     </div>
                     <div className="col-4 small">
-                        <Link to={`/account/followers/${this.state.accountStatistics.username}`} className="fw-bold" data-testid="followers">
+                        <Link to={`/account/followers/${this.state.accountStatistics.username}`} className="fw-bold"
+                              data-testid="followers">
                             {this.state.accountStatistics.followersCount}
                         </Link>
                     </div>

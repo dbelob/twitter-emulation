@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { firstValueFrom } from 'rxjs';
 import { useInjection } from 'inversify-react';
 import { StringParam, useQueryParam } from 'use-query-params';
 import { useAuth } from '../common/authentication/AuthProvider';
@@ -19,8 +18,9 @@ export default function Search(props: SearchProps) {
 
     useEffect(() => {
         const loadAccounts = async () => {
-            const accounts = await firstValueFrom(accountService.getAccounts(searchText))
-            setAccounts(accounts);
+            accountService.getAccounts(searchText, response => {
+                setAccounts(response.data);
+            });
         };
 
         loadAccounts();

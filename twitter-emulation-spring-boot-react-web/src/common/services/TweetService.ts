@@ -21,7 +21,7 @@ export class TweetService {
             });
     }
 
-    tweet(text: string, thenCallback: (response: AxiosResponse<string>) => void) {
+    tweet(text: string, thenCallback: () => void) {
         const config = {
             headers: {
                 'Content-Type': 'text/plain'
@@ -30,7 +30,7 @@ export class TweetService {
 
         axios.post<string>(`${this.baseUrl}/tweets`, text, config)
             .then(response => {
-                thenCallback(response);
+                thenCallback();
             })
             .catch((error: AxiosError) => {
                 this.messageService.reportMessage(error);

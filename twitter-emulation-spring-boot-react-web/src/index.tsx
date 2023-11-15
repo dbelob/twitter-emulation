@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { Axios } from 'axios-observable';
+import axios from 'axios'
 import dateTransformer from 'axios-date-reviver';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';
@@ -15,7 +15,7 @@ import { FollowerService } from './common/services/FollowerService';
 import { MessageService } from './message/MessageService';
 import { TweetService } from './common/services/TweetService';
 
-Axios.defaults.transformResponse = [dateTransformer]
+axios.defaults.transformResponse = [dateTransformer]
 
 const iocContainer = new Container();
 iocContainer.bind(AccountService).toSelf().inSingletonScope();

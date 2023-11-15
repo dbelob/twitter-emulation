@@ -42,7 +42,7 @@ export default class NewTweet extends Component<NewTweetProps, NewTweetState> {
     };
 
     submit = (data: any) => {
-        this.tweetService.tweet(this.state.text, response => {
+        this.tweetService.tweet(this.state.text, () => {
             this.setState({
                 isSubmit: true
             });

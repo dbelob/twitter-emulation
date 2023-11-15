@@ -48,7 +48,7 @@ export default class Registration extends Component<RegistrationProps, Registrat
             ...prevState,
             [event.target.name]: event.target.value
         }));
-    }
+    };
 
     submit = (data: any) => {
         this.accountService.addAccount(
@@ -56,13 +56,13 @@ export default class Registration extends Component<RegistrationProps, Registrat
                 undefined,
                 this.state.username,
                 this.state.password,
-                this.state.description))
-            .subscribe(data => {
+                this.state.description),
+            () => {
                 this.setState({
                     isSubmit: true
                 });
             });
-    }
+    };
 
     render() {
         return (

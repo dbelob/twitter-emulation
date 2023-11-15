@@ -54,24 +54,26 @@ export default class Profile extends Component<ProfileProps, ProfileState> {
             ...prevState,
             [event.target.name]: event.target.value
         }));
-    }
+    };
 
     componentDidMount() {
-        this.authenticationService.getUser()
-            .subscribe(user => {
-                if (user.name) {
-                    this.accountService.getAccount(user.name)
-                        .subscribe(account => {
-                            this.setState({
-                                id: account.id,
-                                username: (account.username) ? account.username : '',
-                                password: (account.password) ? account.password : '',
-                                confirmation: (account.password) ? account.password : '',
-                                description: (account.description) ? account.description : ''
-                            });
-                        });
-                }
-            });
+        this.authenticationService.getUser(response => {
+            const user = response.data;
+
+            if (user.name) {
+                this.accountService.getAccount(user.name, response => {
+                    const account = response.data;
+
+                    this.setState({
+                        id: account.id,
+                        username: (account.username) ? account.username : '',
+                        password: (account.password) ? account.password : '',
+                        confirmation: (account.password) ? account.password : '',
+                        description: (account.description) ? account.description : ''
+                    });
+                });
+            }
+        });
     }
 
     submit = (data: any) => {
@@ -81,13 +83,13 @@ export default class Profile extends Component<ProfileProps, ProfileState> {
                 this.state.id,
                 this.state.username,
                 this.state.password,
-                this.state.description))
-            .subscribe(data => {
+                this.state.description),
+            () => {
                 this.setState({
                     isSubmit: true
                 });
             });
-    }
+    };
 
     render() {
         return (

@@ -29,12 +29,11 @@ class Following extends Component<FollowingProps, FollowingState> {
     componentDidMount() {
         const {user} = this.props.params;
 
-        this.followerService.getFollowing(user)
-            .subscribe(data => {
-                this.setState({
-                    accounts: data
-                });
+        this.followerService.getFollowing(user, response => {
+            this.setState({
+                accounts: response.data
             });
+        });
     }
 
     render() {

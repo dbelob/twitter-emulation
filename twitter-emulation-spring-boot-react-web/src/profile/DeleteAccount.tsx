@@ -13,21 +13,19 @@ export default function DeleteAccount() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        authenticationService.getUser()
-            .subscribe(data => {
-                setUser(data);
-            });
+        authenticationService.getUser(response => {
+            setUser(response.data);
+        });
     }, []);
 
     function deleteAccount() {
         if (user.name) {
-            accountService.deleteAccount(user.name)
-                .subscribe(() => {
-                    navigate({
-                        pathname: '/login',
-                        search: '?logout=1'
-                    });
+            accountService.deleteAccount(user.name, () => {
+                navigate({
+                    pathname: '/login',
+                    search: '?logout=1'
                 });
+            });
         }
     }
 
