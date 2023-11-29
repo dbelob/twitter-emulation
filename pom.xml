@@ -100,9 +100,7 @@
                     <source>${project.build.javaVersion}</source>
                     <target>${project.build.javaVersion}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
-                    <compilerArgs>
-                        <arg>-parameters</arg>
-                    </compilerArgs>
+                    <parameters>true</parameters>
                 </configuration>
             </plugin>
             <plugin>
