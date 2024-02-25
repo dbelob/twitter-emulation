@@ -34,7 +34,7 @@ export default function Login() {
 
     return (
         <div className="container-dialog p-2">
-            <h3 className="bg-info p-1 text-white text-center rounded">Log in</h3>
+            <h3 className="bg-info p-1 text-white text-center rounded">Login</h3>
 
             {error &&
                 <div className="alert alert-danger text-center">

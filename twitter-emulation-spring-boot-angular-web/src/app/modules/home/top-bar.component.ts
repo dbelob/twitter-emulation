@@ -19,7 +19,7 @@ export class TopBarComponent {
   search() {
     this.router.navigate(['/account/search'], {
       queryParams: {
-        "searchText": this.searchText
+        searchText: this.searchText
       }
     });
   }
@@ -32,7 +32,7 @@ export class TopBarComponent {
     this.authenticationService.logout(() => {
       this.router.navigate(['/login'], {
         queryParams: {
-          "logout": 1
+          logout: 1
         }
       });
     });

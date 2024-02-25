@@ -9,7 +9,7 @@
 </head>
 <body onload="document.loginForm.username.focus();">
 <div class="webPage">
-    <h1>Log in</h1>
+    <h1>Login</h1>
 
     <form name="loginForm" action="<c:url value="/login" />" method="POST">
         <!-- use param.error assuming FormLoginConfigurer#failureUrl contains the query parameter error -->

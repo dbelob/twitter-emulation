@@ -19,10 +19,10 @@ export class AuthenticationService {
       authorization: 'Basic ' + Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64')
     } : {});
 
-    return this.http.get(`${this.baseUrl}/user`, {headers: headers})
+    return this.http.get(`${this.baseUrl}/user`, {headers})
       .pipe(
-        map(response => {
-            if (response['name']) {
+        map((response: User) => {
+            if (response.name) {
               this.authenticated = true;
               if (success) {
                 success();
@@ -37,12 +37,12 @@ export class AuthenticationService {
             }
           }
         ),
-        catchError(err => {
+        catchError(() => {
           this.authenticated = false;
           if (error) {
             error();
           }
-          return of(false)
+          return of(false);
         })
       );
   }
