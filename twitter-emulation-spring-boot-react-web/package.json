@@ -16,7 +16,7 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.63",
-    "@types/react-dom": "^18.2.20",
+    "@types/react-dom": "^18.2.21",
     "@types/validator": "^13.11.9",
     "axios": "^1.6.7",
     "axios-date-reviver": "^1.0.0-beta.2",
