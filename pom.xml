@@ -34,7 +34,7 @@
         <ojdbc8.version>23.3.0.23.09</ojdbc8.version>
         <spring-boot.version>3.2.3</spring-boot.version>
         <spring-boot-admin.version>3.2.2</spring-boot-admin.version>
-        <springdoc-openapi.version>1.7.0</springdoc-openapi.version>
+        <springdoc-openapi.version>1.8.0</springdoc-openapi.version>
         <testcontainers.version>1.19.7</testcontainers.version>
 
         <node.version>v20.11.0</node.version>
