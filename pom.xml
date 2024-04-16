@@ -27,7 +27,7 @@
 
         <allure-junit5.version>2.27.0</allure-junit5.version>
         <jakarta.el.version>4.0.2</jakarta.el.version>
-        <jakarta.el-api.version>5.0.1</jakarta.el-api.version>
+        <jakarta.el-api.version>6.0.0</jakarta.el-api.version>
         <jakarta.servlet.jsp.jstl.version>3.0.1</jakarta.servlet.jsp.jstl.version>
         <jakarta.servlet.jsp-api>3.1.1</jakarta.servlet.jsp-api>
         <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
