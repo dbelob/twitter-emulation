@@ -371,6 +371,8 @@ in several ways:
   * [Spring Security](https://spring.io/projects/spring-security)
   * [Spring Test](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html)
   * [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin)
+* [React](https://react.dev)
+* [Angular](https://angular.dev)
 * [H2](http://www.h2database.com) or [Oracle Database](https://www.oracle.com/database/index.html) (data storage)
 * [Swagger](https://swagger.io) (*REST API* documentation)
 * [JUnit](https://junit.org) (*Java* unit testing)
@@ -396,4 +398,4 @@ in several ways:
 
 ## Article
 
-See [Habr](https://habr.com/ru/company/jugru/blog/453468/) (in Russian)
+[The evolution of creating web applications in Java](https://habr.com/ru/companies/jugru/articles/453468/) (Russian)
