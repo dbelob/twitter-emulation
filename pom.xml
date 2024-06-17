@@ -22,7 +22,7 @@
         <release.plugin.version>3.1.0</release.plugin.version>
         <resources.plugin.version>3.3.1</resources.plugin.version>
         <sonar.plugin.version>4.0.0.4121</sonar.plugin.version>
-        <surefire.plugin.version>3.2.5</surefire.plugin.version>
+        <surefire.plugin.version>3.3.0</surefire.plugin.version>
         <war.plugin.version>3.4.0</war.plugin.version>
 
         <allure-junit5.version>2.27.0</allure-junit5.version>
