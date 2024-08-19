@@ -48,7 +48,7 @@
     "cross-env": "^7.0.3",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "jest": "^29.7.0",
-    "jest-puppeteer": "^10.0.1",
+    "jest-puppeteer": "^10.1.0",
     "msw": "^2.3.5",
     "puppeteer": "^23.1.0",
     "start-server-and-test": "^2.0.5",
