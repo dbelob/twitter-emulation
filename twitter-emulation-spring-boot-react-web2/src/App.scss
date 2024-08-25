@@ -1,0 +1,69 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.container-dialog {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container-dialog {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-dialog {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container-dialog {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-dialog {
+    max-width: 540px;
+  }
+}
+
+input.rt-dirty.rt-invalid, textarea.rt-dirty.rt-invalid {
+  border: 2px solid #ff0000;
+}
+
+input.rt-dirty.rt-valid, textarea.rt-dirty.rt-valid {
+  border: 2px solid #6bc502;
+}
+
+.btn-link {
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+.btn-link.focus, .btn-link:focus {
+  text-decoration: underline;
+}
+
+.btn-link.disabled, .btn-link:disabled {
+  pointer-events: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+div.tweet {
+  white-space: pre-line;
+}
