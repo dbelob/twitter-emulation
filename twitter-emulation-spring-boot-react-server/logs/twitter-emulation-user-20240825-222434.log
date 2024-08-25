@@ -1,0 +1,532 @@
+2024-08-25 22:24:34,839 DEBUG logging.logProvider:164        - Logging Provider: org.jboss.logging.Slf4jLoggerProvider found via system property
+2024-08-25 22:24:34,841  INFO Version.<clinit>:21            - HV000001: Hibernate Validator 8.0.1.Final
+2024-08-25 22:24:34,846 DEBUG ValidationXmlParser.getValidationXmlInputStream:122 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2024-08-25 22:24:34,847 DEBUG ResourceLoaderHelper.getResettableInputStreamForPath:61 - Trying to load META-INF/validation.xml via TCCL
+2024-08-25 22:24:34,848 DEBUG ResourceLoaderHelper.getResettableInputStreamForPath:67 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2024-08-25 22:24:34,848 DEBUG ValidationXmlParser.getValidationXmlInputStream:129 - No META-INF/validation.xml found. Using annotation based configuration only.
+2024-08-25 22:24:34,851 DEBUG TraversableResolvers.getDefault:61 - Cannot find jakarta.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2024-08-25 22:24:34,870 DEBUG ResourceBundleMessageInterpolator.buildExpressionFactory:175 - Loaded expression factory via original TCCL
+2024-08-25 22:24:34,874  INFO App.logStarting:50             - Starting App using Java 21.0.4 with PID 6812 (C:\Users\user\.m2\repository\acme\twitter-emulation\twitter-emulation-spring-boot-common-server\2.0.768-SNAPSHOT\twitter-emulation-spring-boot-common-server-2.0.768-SNAPSHOT.jar started by user in C:\Projects\Java\twitter-emulation\twitter-emulation-spring-boot-react-server)
+2024-08-25 22:24:34,874 DEBUG App.logStarting:51             - Running with Spring Boot v3.3.3, Spring v6.1.12
+2024-08-25 22:24:34,875  INFO App.logStartupProfileInfo:660  - The following 1 profile is active: "development"
+2024-08-25 22:24:34,942 DEBUG ValidatorFactoryConfigurationHelper.determinePropertyNodeNameProvider:355 - HV000252: Using org.hibernate.validator.internal.engine.DefaultPropertyNodeNameProvider as property node name provider.
+2024-08-25 22:24:34,946 DEBUG ValidatorFactoryConfigurationHelper.logValidatorFactoryScopedConfiguration:447 - HV000234: Using org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator as ValidatorFactory-scoped message interpolator.
+2024-08-25 22:24:34,946 DEBUG ValidatorFactoryConfigurationHelper.logValidatorFactoryScopedConfiguration:448 - HV000234: Using org.hibernate.validator.internal.engine.resolver.TraverseAllTraversableResolver as ValidatorFactory-scoped traversable resolver.
+2024-08-25 22:24:34,947 DEBUG ValidatorFactoryConfigurationHelper.logValidatorFactoryScopedConfiguration:449 - HV000234: Using org.hibernate.validator.internal.util.ExecutableParameterNameProvider as ValidatorFactory-scoped parameter name provider.
+2024-08-25 22:24:34,947 DEBUG ValidatorFactoryConfigurationHelper.logValidatorFactoryScopedConfiguration:450 - HV000234: Using org.hibernate.validator.internal.engine.DefaultClockProvider as ValidatorFactory-scoped clock provider.
+2024-08-25 22:24:34,947 DEBUG ValidatorFactoryConfigurationHelper.logValidatorFactoryScopedConfiguration:451 - HV000234: Using org.hibernate.validator.internal.engine.scripting.DefaultScriptEvaluatorFactory as ValidatorFactory-scoped script evaluator factory.
+2024-08-25 22:24:36,185  INFO Http11NioProtocol.log:173      - Initializing ProtocolHandler ["http-nio-8080"]
+2024-08-25 22:24:36,189  INFO StandardService.log:173        - Starting service [Tomcat]
+2024-08-25 22:24:36,189  INFO StandardEngine.log:173         - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-08-25 22:24:36,252  INFO [/].log:173                    - Initializing Spring embedded WebApplicationContext
+2024-08-25 22:24:36,798 DEBUG Mappings.detectHandlerMethods:294 - 
+	a.t.c.AccountController:
+	{POST [/api/account/accounts]}: addAccount(AccountDto)
+	{GET [/api/account/accounts/{username}]}: getAccount(String,Principal)
+	{PUT [/api/account/accounts/{username}]}: replaceAccount(String,AccountDto,Principal)
+	{DELETE [/api/account/accounts/{username}]}: deleteAccount(String,Principal)
+	{GET [/api/account/accounts]}: getAccounts(String)
+	{GET [/api/account/statistics/{username}]}: getStatistics(String,Principal)
+2024-08-25 22:24:36,805 DEBUG Mappings.detectHandlerMethods:294 - 
+	a.t.c.AuthenticationController:
+	{GET [/api/authentication/user]}: getUser(Principal)
+2024-08-25 22:24:36,807 DEBUG Mappings.detectHandlerMethods:294 - 
+	a.t.c.FollowerController:
+	{GET [/api/follower/followers/{username}]}: getFollowers(String)
+	{DELETE [/api/follower/following/{username}]}: deleteFollowing(String,Principal)
+	{GET [/api/follower/following/{username}]}: getFollowing(String)
+	{POST [/api/follower/following/{username}]}: addFollowing(String,Principal)
+2024-08-25 22:24:36,809 DEBUG Mappings.detectHandlerMethods:294 - 
+	a.t.c.TweetController:
+	{GET [/api/tweet/timeline]}: getTimeline(Principal)
+	{POST [/api/tweet/tweets]}: addTweet(String,Principal)
+	{GET [/api/tweet/tweets/{username}]}: getTweets(String)
+2024-08-25 22:24:36,812 DEBUG Mappings.detectHandlerMethods:294 - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2024-08-25 22:24:36,820 DEBUG Mappings.detectHandlers:86     - 'beanNameHandlerMapping' {}
+2024-08-25 22:24:36,894 DEBUG Mappings.logMappings:176       - 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [static/]]}
+2024-08-25 22:24:37,072  WARN WebSecurity.performBuild:292   - You are asking Spring Security to ignore Deferred [Mvc [pattern='/*.js'], Ant [pattern='/*.js']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-08-25 22:24:37,072  WARN WebSecurity.performBuild:292   - You are asking Spring Security to ignore Deferred [Mvc [pattern='/*.js'], Ant [pattern='/*.js']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-08-25 22:24:39,144 DEBUG ResourceBundleMessageInterpolator.buildExpressionFactory:175 - Loaded expression factory via original TCCL
+2024-08-25 22:24:39,146 DEBUG AbstractConfigurationImpl.messageInterpolator:176 - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2024-08-25 22:24:39,147 DEBUG AbstractConfigurationImpl.constraintValidatorFactory:208 - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2024-08-25 22:24:39,148 DEBUG ValidationXmlParser.getValidationXmlInputStream:122 - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2024-08-25 22:24:39,149 DEBUG ResourceLoaderHelper.getResettableInputStreamForPath:54 - Trying to load META-INF/validation.xml via user class loader
+2024-08-25 22:24:39,149 DEBUG ResourceLoaderHelper.getResettableInputStreamForPath:61 - Trying to load META-INF/validation.xml via TCCL
+2024-08-25 22:24:39,149 DEBUG ResourceLoaderHelper.getResettableInputStreamForPath:67 - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2024-08-25 22:24:39,149 DEBUG ValidationXmlParser.getValidationXmlInputStream:129 - No META-INF/validation.xml found. Using annotation based configuration only.
+2024-08-25 22:24:39,150 DEBUG TraversableResolvers.getDefault:61 - Cannot find jakarta.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2024-08-25 22:24:39,151 DEBUG ValidatorFactoryConfigurationHelper.determinePropertyNodeNameProvider:355 - HV000252: Using org.hibernate.validator.internal.engine.DefaultPropertyNodeNameProvider as property node name provider.
+2024-08-25 22:24:39,152 DEBUG ValidatorFactoryConfigurationHelper.logValidatorFactoryScopedConfiguration:447 - HV000234: Using org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator as ValidatorFactory-scoped message interpolator.
+2024-08-25 22:24:39,152 DEBUG ValidatorFactoryConfigurationHelper.logValidatorFactoryScopedConfiguration:448 - HV000234: Using org.hibernate.validator.internal.engine.resolver.TraverseAllTraversableResolver as ValidatorFactory-scoped traversable resolver.
+2024-08-25 22:24:39,152 DEBUG ValidatorFactoryConfigurationHelper.logValidatorFactoryScopedConfiguration:449 - HV000234: Using org.hibernate.validator.internal.util.ExecutableParameterNameProvider as ValidatorFactory-scoped parameter name provider.
+2024-08-25 22:24:39,153 DEBUG ValidatorFactoryConfigurationHelper.logValidatorFactoryScopedConfiguration:450 - HV000234: Using org.hibernate.validator.internal.engine.DefaultClockProvider as ValidatorFactory-scoped clock provider.
+2024-08-25 22:24:39,153 DEBUG ValidatorFactoryConfigurationHelper.logValidatorFactoryScopedConfiguration:451 - HV000234: Using org.hibernate.validator.internal.engine.scripting.DefaultScriptEvaluatorFactory as ValidatorFactory-scoped script evaluator factory.
+2024-08-25 22:24:39,278 DEBUG InternalLoggerFactory.newDefaultFactory:59 - Using SLF4J as the default logging framework
+2024-08-25 22:24:39,363  INFO Http11NioProtocol.log:173      - Starting ProtocolHandler ["http-nio-8080"]
+2024-08-25 22:24:39,391  INFO App.logStarted:56              - Started App in 4.854 seconds (process running for 5.327)
+2024-08-25 22:24:39,457 DEBUG RegistrationApplicationListener.startRegisterTask:101 - Scheduled registration task for every 10000ms
+2024-08-25 22:24:40,020  WARN ApplicationRegistrator.register:91 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt. Further attempts are logged on DEBUG level
+2024-08-25 22:24:49,963 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:24:59,960 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:25:09,965 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:25:19,965 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:25:29,959 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:25:30,503  INFO [/].log:173                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-25 22:25:39,964 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:25:49,971 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:25:59,963 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:26:09,961 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:26:19,959 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:26:29,965 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:26:39,962 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:26:49,962 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:26:59,975 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:27:09,963 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:27:19,965 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:27:29,964 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:27:39,961 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:27:49,965 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:27:59,969 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:28:09,967 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:28:19,972 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:28:29,961 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:28:39,962 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:28:49,957 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:28:59,960 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:29:09,972 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:29:19,960 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:29:29,963 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:29:39,965 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:29:47,793 ERROR [dispatcherServlet].log:175    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.io.FileNotFoundException: class path resource [static/index.html] cannot be resolved to URL because it does not exist
+	at org.springframework.core.io.ClassPathResource.getURL(ClassPathResource.java:230)
+	at org.springframework.core.io.AbstractFileResolvingResource.lastModified(AbstractFileResolvingResource.java:268)
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:598)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:52)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340)
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at acme.twitter.config.CookieCsrfFilter.doFilterInternal(CookieCsrfFilter.java:27)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:213)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:113)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-08-25 22:29:48,126 ERROR [dispatcherServlet].log:175    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.io.FileNotFoundException: class path resource [static/index.html] cannot be resolved to URL because it does not exist
+	at org.springframework.core.io.ClassPathResource.getURL(ClassPathResource.java:230)
+	at org.springframework.core.io.AbstractFileResolvingResource.lastModified(AbstractFileResolvingResource.java:268)
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:598)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:52)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340)
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at acme.twitter.config.CookieCsrfFilter.doFilterInternal(CookieCsrfFilter.java:27)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:213)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:113)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-08-25 22:29:49,957 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:29:59,965 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:30:09,972 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:30:19,971 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:30:21,085 ERROR [dispatcherServlet].log:175    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.io.FileNotFoundException: class path resource [static/index.html] cannot be resolved to URL because it does not exist
+	at org.springframework.core.io.ClassPathResource.getURL(ClassPathResource.java:230)
+	at org.springframework.core.io.AbstractFileResolvingResource.lastModified(AbstractFileResolvingResource.java:268)
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:598)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:52)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340)
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at acme.twitter.config.CookieCsrfFilter.doFilterInternal(CookieCsrfFilter.java:27)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:213)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:113)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-08-25 22:30:29,974 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:30:39,966 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:30:49,964 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:30:59,956 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:31:09,972 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:31:19,971 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:31:29,975 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:31:39,959 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:31:49,957 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:31:59,964 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:32:09,964 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:32:19,957 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:32:29,963 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:32:39,960 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:32:49,977 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:32:59,964 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:33:09,965 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:33:19,964 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:33:29,974 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:33:39,964 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
+2024-08-25 22:33:49,964 DEBUG ApplicationRegistrator.register:96 - Failed to register application as Application(name=spring-boot-application, managementUrl=http://st-home:8080/actuator, healthUrl=http://st-home:8080/actuator/health, serviceUrl=http://st-home:8080/) at spring-boot-admin ([http://localhost:9000/instances]): I/O error on POST request for "http://localhost:9000/instances": Connection refused: getsockopt
