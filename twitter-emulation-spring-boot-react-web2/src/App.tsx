@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.scss'
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { QueryParamProvider } from 'use-query-params';
+import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
+import './App.scss';
+import AuthProvider from './common/authentication/AuthProvider';
+import RequireAuth from './common/authentication/RequireAuth';
+import AnonymousMain from './home/AnonymousMain';
+import Main from './home/Main';
+import Tweets from './home/Tweets';
+import Following from './home/Following';
+import Followers from './home/Followers';
+import Search from './home/Search';
+import Login from './login/Login';
+import DeleteAccount from './profile/DeleteAccount';
+import Profile from './profile/Profile';
+import Registration from './registration/Registration';
+import NewTweet from './tweet/NewTweet';
+import NotFoundComponent from './unknown/NotFoundComponent';
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <AuthProvider>
+            <QueryParamProvider adapter={ReactRouter6Adapter}>
+                <Routes>
+                    <Route path="login" element={<Login/>}/>
+                    <Route path="account/register" element={<Registration/>}/>
+                    <Route path="account/show/:user" element={<Main/>}/>
+                    <Route path="account/show" element={
+                        <RequireAuth><AnonymousMain/></RequireAuth>}/>
+                    <Route path="account/tweets/:user" element={<Tweets/>}/>
+                    <Route path="account/following/:user" element={<Following/>}/>
+                    <Route path="account/followers/:user" element={<Followers/>}/>
+                    <Route path="account/profile" element={
+                        <RequireAuth><Profile/></RequireAuth>}/>
+                    <Route path="account/delete" element={
+                        <RequireAuth><DeleteAccount/></RequireAuth>}/>
+                    <Route path="account/search" element={
+                        <RequireAuth><Search/></RequireAuth>}/>
+                    <Route path="tweet" element={
+                        <RequireAuth><NewTweet/></RequireAuth>}/>
+                    <Route path="/" element={<Navigate to="account/show" replace/>}/>
+                    <Route path="*" element={<NotFoundComponent/>}/>
+                </Routes>
+            </QueryParamProvider>
+        </AuthProvider>
+    );
 }
 
-export default App
+export default App;
