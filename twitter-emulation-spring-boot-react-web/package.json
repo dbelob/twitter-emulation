@@ -52,7 +52,7 @@
     "msw": "^2.3.5",
     "puppeteer": "^23.1.1",
     "start-server-and-test": "^2.0.5",
-    "ts-jest": "^29.2.4",
+    "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2"
   },
   "overrides": {
