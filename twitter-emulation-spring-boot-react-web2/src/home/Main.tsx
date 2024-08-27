@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useInjection } from 'inversify-react';
 import { useAuth } from '../common/authentication/AuthProvider';

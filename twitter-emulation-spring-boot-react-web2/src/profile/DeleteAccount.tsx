@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useInjection } from 'inversify-react';
 import { AccountService } from '../common/services/AccountService';

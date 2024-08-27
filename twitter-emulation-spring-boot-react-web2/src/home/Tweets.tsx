@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { resolve } from 'inversify-react';
 import { Tweet } from '../common/models/Tweet';
 import Home from './Home';

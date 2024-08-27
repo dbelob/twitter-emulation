@@ -5,7 +5,7 @@ import { useAuth } from '../common/authentication/AuthProvider';
 
 export default function Login() {
     const [error, setError] = useState(false);
-    const [logout, setLogout] = useQueryParam('logout', withDefault(BooleanParam, false));
+    const [logout] = useQueryParam('logout', withDefault(BooleanParam, false));
     const navigate = useNavigate();
     const location = useLocation();
     const auth = useAuth();

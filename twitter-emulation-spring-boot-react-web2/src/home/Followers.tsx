@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { resolve } from 'inversify-react';
 import ReactUtils from '../common/ReactUtils';
 import { Account } from '../common/models/Account';

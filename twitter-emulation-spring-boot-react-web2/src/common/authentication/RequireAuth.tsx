@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './AuthProvider';
 import Loading from '../../home/Loading';
 
-function RequireAuth({children}: { children: JSX.Element }) {
+function RequireAuth({children}: { children: React.JSX.Element }) {
     const auth = useAuth();
     const location = useLocation();
 

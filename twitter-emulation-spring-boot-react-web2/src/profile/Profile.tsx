@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Component } from 'react';
+import { ChangeEvent, Component } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { resolve } from 'inversify-react';
 import { FormValidator } from '../common/validation/FormValidator';
@@ -76,7 +76,7 @@ export default class Profile extends Component<ProfileProps, ProfileState> {
         });
     }
 
-    submit = (data: any) => {
+    submit = () => {
         this.accountService.saveAccount(
             this.state.username,
             new Account(
