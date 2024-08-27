@@ -57,23 +57,25 @@ export default class Profile extends Component<ProfileProps, ProfileState> {
     };
 
     componentDidMount() {
-        this.authenticationService.getUser(response => {
-            const user = response.data;
+        this.authenticationService.getUser()
+            .then(response => {
+                const user = response.data;
 
-            if (user.name) {
-                this.accountService.getAccount(user.name, response => {
-                    const account = response.data;
+                if (user.name) {
+                    this.accountService.getAccount(user.name)
+                        .then(response => {
+                            const account = response.data;
 
-                    this.setState({
-                        id: account.id,
-                        username: (account.username) ? account.username : '',
-                        password: (account.password) ? account.password : '',
-                        confirmation: (account.password) ? account.password : '',
-                        description: (account.description) ? account.description : ''
-                    });
-                });
-            }
-        });
+                            this.setState({
+                                id: account.id,
+                                username: (account.username) ? account.username : '',
+                                password: (account.password) ? account.password : '',
+                                confirmation: (account.password) ? account.password : '',
+                                description: (account.description) ? account.description : ''
+                            });
+                        });
+                }
+            });
     }
 
     submit = () => {
@@ -83,8 +85,8 @@ export default class Profile extends Component<ProfileProps, ProfileState> {
                 this.state.id,
                 this.state.username,
                 this.state.password,
-                this.state.description),
-            () => {
+                this.state.description))
+            .then(() => {
                 this.setState({
                     isSubmit: true
                 });

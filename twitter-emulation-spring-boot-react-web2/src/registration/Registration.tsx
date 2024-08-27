@@ -56,8 +56,8 @@ export default class Registration extends Component<RegistrationProps, Registrat
                 undefined,
                 this.state.username,
                 this.state.password,
-                this.state.description),
-            () => {
+                this.state.description))
+            .then(() => {
                 this.setState({
                     isSubmit: true
                 });

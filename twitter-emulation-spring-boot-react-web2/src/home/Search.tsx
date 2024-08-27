@@ -16,9 +16,8 @@ export default function Search() {
 
     useEffect(() => {
         const loadAccounts = async () => {
-            accountService.getAccounts(searchText, response => {
-                setAccounts(response.data);
-            });
+            accountService.getAccounts(searchText)
+                .then(response => setAccounts(response.data));
         };
 
         loadAccounts();

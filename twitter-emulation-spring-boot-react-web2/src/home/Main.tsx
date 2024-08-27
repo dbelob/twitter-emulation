@@ -19,9 +19,10 @@ function Main(props: MainProps) {
     const tweetDataSource = useInjection(TweetService);
 
     useEffect(() => {
-        tweetDataSource.getTimeline(response => {
-            setTweets(response.data);
-        });
+        tweetDataSource.getTimeline()
+            .then(response => {
+                setTweets(response.data);
+            });
     }, []);
 
     const {user} = props.params;

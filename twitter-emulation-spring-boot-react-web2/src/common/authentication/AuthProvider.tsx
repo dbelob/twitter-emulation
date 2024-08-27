@@ -18,9 +18,10 @@ function AuthProvider({children}: { children: React.ReactNode }) {
         const restoreUsername = async () => {
             setLoading(true);
 
-            await authenticationService.getUser(response => {
-                setUsername(response.data?.name);
-            });
+            await authenticationService.getUser()
+                .then(response => {
+                    setUsername(response.data?.name);
+                });
 
             setLoading(false);
         };

@@ -42,11 +42,12 @@ export default class NewTweet extends Component<NewTweetProps, NewTweetState> {
     };
 
     submit = () => {
-        this.tweetService.tweet(this.state.text, () => {
-            this.setState({
-                isSubmit: true
+        this.tweetService.tweet(this.state.text)
+            .then(() => {
+                this.setState({
+                    isSubmit: true
+                });
             });
-        });
     };
 
     render() {
