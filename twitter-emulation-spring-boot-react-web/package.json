@@ -11,7 +11,7 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^6.5.0",
-    "@testing-library/react": "^16.0.0",
+    "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.12",
     "@types/node": "^22.5.1",
@@ -49,8 +49,8 @@
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "jest": "^29.7.0",
     "jest-puppeteer": "^10.1.0",
-    "msw": "^2.3.5",
-    "puppeteer": "^23.2.0",
+    "msw": "^2.4.0",
+    "puppeteer": "^23.2.1",
     "start-server-and-test": "^2.0.5",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2"
