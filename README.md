@@ -129,7 +129,7 @@ in several ways:
 
 1. Access the deployed web application at:
 
-   http://localhost:3000
+   http://localhost:5173
 
 1. Log in with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
 
