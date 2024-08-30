@@ -313,7 +313,7 @@ in several ways:
 
 ### Frontend unit testing
 
-#### Jest, React Testing Library tests
+#### Jest, React Testing Library, Vitest tests
 
 1. Change directory:
 
@@ -383,6 +383,7 @@ in several ways:
 * [Jasmine](https://jasmine.github.io) (*JavaScript* unit testing)
 * [Puppeteer](https://pptr.dev) (*JavaScript* end-to-end testing)
 * [Protractor](https://www.protractortest.org) (end-to-end testing for *Angular*)
+* [Vitest](https://vitest.dev) (*JavaScript* testing by *Vite*)
 
 ## CI/CD
 
