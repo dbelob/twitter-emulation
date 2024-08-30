@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
-    "e2e": "cross-env BROWSER=none PORT=5173 start-server-and-test start http://127.0.0.1:5173 \\\"cd e2e && jest\\\""
+    "e2e": "cross-env BROWSER=none PORT=5173 start-server-and-test start http://localhost:5173 \\\"cd e2e && jest\\\""
   },
   "dependencies": {
     "axios": "^1.7.5",
