@@ -1,5 +1,4 @@
 import 'reflect-metadata';
-import React from 'react';
 import { Observable, Subject } from 'rxjs';
 import { act, render, screen, within } from '@testing-library/react';
 import { Container } from 'inversify';

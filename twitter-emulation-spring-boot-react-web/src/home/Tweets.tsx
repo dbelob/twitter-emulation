@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { resolve } from 'inversify-react';
 import { Tweet } from '../common/models/Tweet';
 import Home from './Home';
@@ -29,11 +29,12 @@ class Tweets extends Component<TweetsProps, TweetsState> {
     componentDidMount() {
         const {user} = this.props.params;
 
-        this.tweetService.getTweets(user, response => {
-            this.setState({
-                tweets: response.data
+        this.tweetService.getTweets(user)
+            .then(response => {
+                this.setState({
+                    tweets: response.data
+                });
             });
-        });
     }
 
     render() {

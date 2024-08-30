@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useInjection } from 'inversify-react';
 import { useAuth } from '../common/authentication/AuthProvider';
@@ -19,9 +19,10 @@ function Main(props: MainProps) {
     const tweetDataSource = useInjection(TweetService);
 
     useEffect(() => {
-        tweetDataSource.getTimeline(response => {
-            setTweets(response.data);
-        });
+        tweetDataSource.getTimeline()
+            .then(response => {
+                setTweets(response.data);
+            });
     }, []);
 
     const {user} = props.params;

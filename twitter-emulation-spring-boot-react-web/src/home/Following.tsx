@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { resolve } from 'inversify-react';
 import ReactUtils from '../common/ReactUtils';
 import { Account } from '../common/models/Account';
@@ -29,11 +29,12 @@ class Following extends Component<FollowingProps, FollowingState> {
     componentDidMount() {
         const {user} = this.props.params;
 
-        this.followerService.getFollowing(user, response => {
-            this.setState({
-                accounts: response.data
+        this.followerService.getFollowing(user)
+            .then(response => {
+                this.setState({
+                    accounts: response.data
+                });
             });
-        });
     }
 
     render() {
