@@ -13,7 +13,7 @@
     "e2e": "cross-env BROWSER=none PORT=5173 start-server-and-test start http://localhost:5173 \\\"cd e2e && jest\\\""
   },
   "dependencies": {
-    "axios": "^1.7.5",
+    "axios": "^1.7.7",
     "axios-date-reviver": "^1.0.0-beta.2",
     "bootstrap": "^5.3.3",
     "buffer": "^6.0.3",
@@ -38,7 +38,7 @@
     "@types/jest": "^29.5.12",
     "@types/jest-environment-puppeteer": "^5.0.6",
     "@types/puppeteer": "^5.4.7",
-    "@types/react": "^18.3.4",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@types/validator": "^13.12.1",
     "@vitejs/plugin-react": "^4.3.1",
