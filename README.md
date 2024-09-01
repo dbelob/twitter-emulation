@@ -24,7 +24,7 @@ in several ways:
 
 * [JDK 21+](https://www.oracle.com/java/technologies/downloads/)
 * [Apache Maven 3.9.0+](https://maven.apache.org/download.cgi)
-* [Node.js 20.16.0+](https://nodejs.org) (optional)
+* [Node.js 20.17.0+](https://nodejs.org) (optional)
 * [Docker](https://www.docker.com) (optional)
 
 ## Running
@@ -129,7 +129,7 @@ in several ways:
 
 1. Access the deployed web application at:
 
-   http://localhost:3000
+   http://localhost:5173
 
 1. Log in with existing accounts (`jsmith/password`, `jdoe/password`, `rroe/password`, `alone/password`) or create a new account
 
@@ -313,7 +313,7 @@ in several ways:
 
 ### Frontend unit testing
 
-#### Jest, React Testing Library tests
+#### Jest, React Testing Library, Vitest tests
 
 1. Change directory:
 
@@ -383,6 +383,7 @@ in several ways:
 * [Jasmine](https://jasmine.github.io) (*JavaScript* unit testing)
 * [Puppeteer](https://pptr.dev) (*JavaScript* end-to-end testing)
 * [Protractor](https://www.protractortest.org) (end-to-end testing for *Angular*)
+* [Vitest](https://vitest.dev) (*JavaScript* testing by *Vite*)
 
 ## CI/CD
 

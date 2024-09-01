@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useInjection } from 'inversify-react';
 import { StringParam, useQueryParam } from 'use-query-params';
 import { useAuth } from '../common/authentication/AuthProvider';
@@ -8,19 +8,16 @@ import Home from './Home';
 import AccountList from './AccountList';
 import Loading from './Loading';
 
-type SearchProps = {};
-
-export default function Search(props: SearchProps) {
+export default function Search() {
     const [accounts, setAccounts] = useState<Account[]>([]);
-    const [searchText, setSearchText] = useQueryParam('searchText', StringParam);
+    const [searchText] = useQueryParam('searchText', StringParam);
     const auth = useAuth();
     const accountService = useInjection(AccountService);
 
     useEffect(() => {
         const loadAccounts = async () => {
-            accountService.getAccounts(searchText, response => {
-                setAccounts(response.data);
-            });
+            accountService.getAccounts(searchText)
+                .then(response => setAccounts(response.data));
         };
 
         loadAccounts();

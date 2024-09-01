@@ -1,4 +1,4 @@
-import React, { Component, ContextType } from 'react';
+import { Component, ContextType } from 'react';
 import { ValidationContext } from './ValidationContext';
 
 type ValidationMessageProps = {
@@ -16,6 +16,6 @@ export class ValidationMessage extends Component<ValidationMessageProps, Validat
             <div className="small bg-danger text-white rounded mt-1 p-1" key={error}>
                 {error}
             </div>
-        )
+        );
     }
 }

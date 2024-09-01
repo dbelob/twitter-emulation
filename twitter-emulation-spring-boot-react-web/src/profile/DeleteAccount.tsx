@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useInjection } from 'inversify-react';
 import { AccountService } from '../common/services/AccountService';
@@ -13,19 +13,21 @@ export default function DeleteAccount() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        authenticationService.getUser(response => {
-            setUser(response.data);
-        });
+        authenticationService.getUser()
+            .then(response => {
+                setUser(response.data);
+            });
     }, []);
 
     function deleteAccount() {
         if (user.name) {
-            accountService.deleteAccount(user.name, () => {
-                navigate({
-                    pathname: '/login',
-                    search: '?logout=1'
+            accountService.deleteAccount(user.name)
+                .then(() => {
+                    navigate({
+                        pathname: '/login',
+                        search: '?logout=1'
+                    });
                 });
-            });
         }
     }
 

@@ -29,7 +29,7 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
         validateForm: () => [],
         rightButtons: null,
         submitUsingEnter: true
-    }
+    };
 
     constructor(props: FormValidatorProps) {
         super(props);
@@ -43,7 +43,7 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
             getFieldClasses: this.getFieldClasses,
             isFormSubmitted: this.isFormSubmitted,
             isFormValid: this.isFormValid
-        }
+        };
     }
 
     static getDerivedStateFromProps(props: FormValidatorProps, state: FormValidatorState) {
@@ -68,21 +68,21 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
         const name = event.target.name;
 
         this.setState(state => {
-            state.dirty[name] = true
+            state.dirty[name] = true;
         });
-    }
+    };
 
-    handleClick = (event: any) => {
+    handleClick = () => {
         this.setState({formSubmitted: true}, () => {
             if (this.formValid) {
                 const formErrors = this.props.validateForm(this.props.data);
 
                 if (formErrors.length === 0) {
-                    this.props.submit(this.props.data)
+                    this.props.submit(this.props.data);
                 }
             }
         });
-    }
+    };
 
     getButtonClasses() {
         return (this.state.formSubmitted && !this.formValid) ? 'btn-secondary' : 'btn-primary';
@@ -97,12 +97,12 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
         }
 
         return result;
-    }
+    };
 
     getMessagesForField = (field: string) => {
         return (this.state.formSubmitted || this.state.dirty[field]) ?
             this.state.errors[field] || [] : [];
-    }
+    };
 
     getMessagesForFields = () => {
         if (this.state.formSubmitted) {
@@ -123,22 +123,22 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
         } else {
             return [];
         }
-    }
+    };
 
     isFormSubmitted = () => {
         return this.state.formSubmitted;
-    }
+    };
 
     isFormValid = () => {
         return this.formValid;
-    }
+    };
 
     keyDownHandler = (event: KeyboardEvent) => {
         if (event.key === 'Enter') {
             event.preventDefault();
 
             // Call submit function
-            this.handleClick(event);
+            this.handleClick();
         }
     };
 
@@ -169,6 +169,6 @@ export class FormValidator extends Component<FormValidatorProps, FormValidatorSt
                 </button>
                 {this.props.rightButtons}
             </div>
-        </>
+        </>;
     }
 }

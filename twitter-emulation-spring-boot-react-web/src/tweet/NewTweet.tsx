@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Component } from 'react';
+import { ChangeEvent, Component } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { resolve } from 'inversify-react';
 import { FormValidator } from '../common/validation/FormValidator';
@@ -41,12 +41,13 @@ export default class NewTweet extends Component<NewTweetProps, NewTweetState> {
         }));
     };
 
-    submit = (data: any) => {
-        this.tweetService.tweet(this.state.text, () => {
-            this.setState({
-                isSubmit: true
+    submit = () => {
+        this.tweetService.tweet(this.state.text)
+            .then(() => {
+                this.setState({
+                    isSubmit: true
+                });
             });
-        });
     };
 
     render() {

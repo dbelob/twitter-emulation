@@ -33,11 +33,12 @@ export default class AccountInfo extends Component<AccountInfoProps, AccountInfo
         const username = this.props.userState.getDataUserName();
 
         if (username) {
-            this.accountService.getAccountStatistics(username, response => {
-                this.setState({
-                    accountStatistics: response.data
+            this.accountService.getAccountStatistics(username)
+                .then(response => {
+                    this.setState({
+                        accountStatistics: response.data
+                    });
                 });
-            });
         }
     }
 
@@ -47,17 +48,15 @@ export default class AccountInfo extends Component<AccountInfoProps, AccountInfo
 
     follow = () => {
         if (this.props.userState.selectedUserName) {
-            this.followerService.follow(this.props.userState.selectedUserName, () => {
-                this.loadAccountStatistics();
-            });
+            this.followerService.follow(this.props.userState.selectedUserName)
+                .then(() => this.loadAccountStatistics());
         }
     };
 
     unfollow = () => {
         if (this.props.userState.selectedUserName) {
-            this.followerService.unfollow(this.props.userState.selectedUserName, () => {
-                this.loadAccountStatistics();
-            });
+            this.followerService.unfollow(this.props.userState.selectedUserName)
+                .then(() => this.loadAccountStatistics());
         }
     };
 

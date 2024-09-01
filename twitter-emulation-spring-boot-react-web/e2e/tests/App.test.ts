@@ -2,7 +2,7 @@ import puppeteer, { Browser, Page } from 'puppeteer';
 import { getPageTitleText, navigateTo } from './app.po';
 
 describe('App', () => {
-    const baseUrl = 'http://127.0.0.1:3000';
+    const baseUrl = 'http://localhost:5173';
     let browser: Browser;
     let page: Page;
 

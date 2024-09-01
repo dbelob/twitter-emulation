@@ -1,11 +1,10 @@
 import 'reflect-metadata';
-import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { act, cleanup, render, screen, within } from '@testing-library/react';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';
-import { http, HttpResponse } from 'msw'
-import { setupServer } from 'msw/node'
+import { http, HttpResponse } from 'msw';
+import { setupServer } from 'msw/node';
 import AccountInfo from './AccountInfo';
 import { UserState } from '../common/models/UserState';
 import { AccountService } from '../common/services/AccountService';
@@ -19,19 +18,19 @@ describe('AccountInfoComponent', () => {
     iocContainer.bind(MessageService).toSelf().inSingletonScope();
 
     const server = setupServer(
-        http.get('/api/account/statistics/jsmith', ({ request, params, cookies }) => {
+        http.get('/api/account/statistics/jsmith', () => {
             return HttpResponse.json({
                 username: 'jsmith', description: 'John Smith', tweetsCount: 6, followingCount: 2,
                 followersCount: 1, follow: false
             });
         }),
-        http.get('/api/account/statistics/jdoe', ({ request, params, cookies }) => {
+        http.get('/api/account/statistics/jdoe', () => {
             return HttpResponse.json({
                 username: 'jdoe', description: 'John Doe', tweetsCount: 3, followingCount: 1,
                 followersCount: 1, follow: true
             });
         }),
-        http.get('/api/account/statistics/rroe', ({ request, params, cookies }) => {
+        http.get('/api/account/statistics/rroe', () => {
             return HttpResponse.json({
                 username: 'rroe', description: 'Richard Roe', tweetsCount: 0, followingCount: 0,
                 followersCount: 1, follow: false
