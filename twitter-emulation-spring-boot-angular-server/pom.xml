@@ -18,6 +18,12 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>acme.twitter-emulation</groupId>
+                            <artifactId>twitter-emulation-spring-boot-angular-web</artifactId>
+                        </exclude>
+                    </excludes>
                     <executable>true</executable>
                     <mainClass>acme.twitter.App</mainClass>
                     <profiles>
