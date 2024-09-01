@@ -12,7 +12,7 @@ export default defineConfig({
     },
   })],
   build: {
-    outDir: 'target'
+    outDir: 'target/classes/static'
   },
   server: {
     proxy: {

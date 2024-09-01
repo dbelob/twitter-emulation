@@ -47,7 +47,7 @@
                             <outputDirectory>${project.build.directory}/classes/static/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.parent.basedir}/twitter-emulation-spring-boot-react-web/target/
+                                    <directory>${project.parent.basedir}/twitter-emulation-spring-boot-react-web/target/classes/static/
                                     </directory>
                                 </resource>
                             </resources>
