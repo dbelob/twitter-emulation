@@ -27,8 +27,9 @@ public class SecurityConfig {
         http
                 .httpBasic(withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/index.html", "/", "/login", "/api/account/accounts/**",
-                                "/api/account/statistics/**", "/api/authentication/user", "/api/follower/following/**",
+                        .requestMatchers("/", "/index.html", "/*.js", "/*.css", "/*.ico", "/assets/**", "/media/**",
+                                "/login", "/api/account/accounts/**", "/api/account/statistics/**",
+                                "/api/authentication/user", "/api/follower/following/**",
                                 "/api/follower/followers/**", "/api/tweet/tweets/**").permitAll()
                         .anyRequest().authenticated()
                 )
