@@ -35,7 +35,7 @@
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@types/expect-puppeteer": "^5.0.6",
-    "@types/jest": "^29.5.12",
+    "@types/jest": "^29.5.13",
     "@types/jest-environment-puppeteer": "^5.0.6",
     "@types/puppeteer": "^7.0.4",
     "@types/react": "^18.3.5",
