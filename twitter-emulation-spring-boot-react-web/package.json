@@ -51,7 +51,7 @@
     "jest-puppeteer": "^10.1.1",
     "jsdom": "^25.0.0",
     "msw": "^2.4.7",
-    "puppeteer": "^23.3.0",
+    "puppeteer": "^23.3.1",
     "start-server-and-test": "^2.0.8",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
