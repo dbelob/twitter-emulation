@@ -5,7 +5,6 @@ import './index.css';
 import App from './App.tsx';
 import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
-import dateTransformer from 'axios-date-reviver';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';
 import { AccountService } from './common/services/AccountService';
@@ -13,6 +12,7 @@ import { AuthenticationService } from './common/services/AuthenticationService';
 import { FollowerService } from './common/services/FollowerService';
 import { MessageService } from './message/MessageService';
 import { TweetService } from './common/services/TweetService';
+import dateTransformer from './common/AxiosDateReviver.ts';
 
 axios.defaults.transformResponse = [dateTransformer];
 
