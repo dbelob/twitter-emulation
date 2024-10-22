@@ -16,7 +16,7 @@ export class AccountComponent extends HomeTweetsComponent {
     super(authenticationService, activatedRoute, router, observer);
   }
 
-  getData(username: string) {
+  getData() {
     this.tweetService.getTimeline()
       .subscribe(data => {
         this.tweets = data;

@@ -9,7 +9,7 @@ import { AccountService } from '../../shared/services/account.service';
   templateUrl: './registration.component.html'
 })
 export class RegistrationComponent {
-  public formSubmitted: boolean = false;
+  public formSubmitted = false;
   public credentials = {id: undefined, username: '', password: '', confirmation: '', description: ''};
 
   constructor(private accountService: AccountService, private router: Router) {
@@ -25,7 +25,7 @@ export class RegistrationComponent {
           this.credentials.username,
           this.credentials.password,
           this.credentials.description))
-        .subscribe(data => {
+        .subscribe(() => {
           this.router.navigateByUrl('/login');
         });
     }

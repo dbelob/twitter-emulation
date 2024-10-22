@@ -8,7 +8,7 @@ import { AuthenticationService } from '../../shared/services/authentication.serv
   templateUrl: './top-bar.component.html'
 })
 export class TopBarComponent {
-  @Input('userState')
+  @Input()
   userState: UserState;
 
   public searchText: string;

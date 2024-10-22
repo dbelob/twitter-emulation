@@ -32,6 +32,7 @@ import { homeResolve } from './modules/home/home.resolver';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const xhr = req.clone({
       headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')

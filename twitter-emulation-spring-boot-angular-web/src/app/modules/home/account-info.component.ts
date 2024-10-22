@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { UserState } from '../../shared/models/user-state.model';
 import { AccountStatistics } from '../../shared/models/account-statistics.model';
 import { AccountService } from '../../shared/services/account.service';
@@ -8,8 +8,8 @@ import { FollowerService } from '../../shared/services/follower.service';
   selector: 'app-account-info',
   templateUrl: './account-info.component.html'
 })
-export class AccountInfoComponent {
-  @Input('userState')
+export class AccountInfoComponent implements OnChanges {
+  @Input()
   userState: UserState;
 
   public accountStatistics: AccountStatistics = new AccountStatistics();
@@ -43,14 +43,14 @@ export class AccountInfoComponent {
 
   follow() {
     this.followerService.follow(this.userState.selectedUserName)
-      .subscribe(data => {
+      .subscribe(() => {
         this.loadAccountStatistics(this.userState);
       });
   }
 
   unfollow() {
     this.followerService.unfollow(this.userState.selectedUserName)
-      .subscribe(data => {
+      .subscribe(() => {
         this.loadAccountStatistics(this.userState);
       });
   }

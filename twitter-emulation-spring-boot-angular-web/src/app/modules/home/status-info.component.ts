@@ -6,13 +6,10 @@ import { UserState } from '../../shared/models/user-state.model';
   templateUrl: './status-info.component.html'
 })
 export class StatusInfoComponent {
-  @Input('userState')
+  @Input()
   userState: UserState;
 
   public copyrightDate = new Date();
-
-  constructor() {
-  }
 
   isStateVisible(): boolean {
     return this.userState.isAuthenticated();

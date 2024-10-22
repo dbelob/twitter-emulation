@@ -5,29 +5,27 @@ import { NgForm } from '@angular/forms';
   providedIn: 'root'
 })
 export class ValidationService {
-  constructor() {
-  }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static getValidationMessages(state: any, thingName?: string) {
-    let thing: string = state.path || thingName;
-    let messages: string[] = [];
+    const thing: string = state.path || thingName;
+    const messages: string[] = [];
 
     if (state.errors) {
-      for (let errorName in state.errors) {
+      for (const errorName in state.errors) {
         switch (errorName) {
-          case "required":
+          case 'required':
             messages.push(`You must enter a ${thing}`);
             break;
-          case "minlength":
+          case 'minlength':
             messages.push(`A ${thing} must be at least ${state.errors['minlength'].requiredLength} characters`);
             break;
-          case "maxlength":
+          case 'maxlength':
             messages.push(`A ${thing} must be no more than ${state.errors['maxlength'].requiredLength} characters`);
             break;
-          case "pattern":
+          case 'pattern':
             messages.push(`The ${thing} contains illegal characters`);
             break;
-          case "appValidateEqual":
+          case 'appValidateEqual':
             messages.push(`A ${state.errors['appValidateEqual'].validated} and ${thing} must be the same`);
             break;
         }
@@ -38,7 +36,7 @@ export class ValidationService {
   }
 
   getFormValidationMessages(form: NgForm): string[] {
-    let messages: string[] = [];
+    const messages: string[] = [];
 
     Object.keys(form.controls).forEach(k => {
       ValidationService.getValidationMessages(form.controls[k], k)

@@ -8,7 +8,7 @@ import { TweetService } from '../../shared/services/tweet.service';
   templateUrl: './new-tweet.component.html'
 })
 export class NewTweetComponent {
-  public formSubmitted: boolean = false;
+  public formSubmitted = false;
   public text: string;
 
   constructor(private tweetService: TweetService, private router: Router) {
@@ -19,7 +19,7 @@ export class NewTweetComponent {
 
     if (form.valid) {
       this.tweetService.tweet(this.text)
-        .subscribe(data => {
+        .subscribe(() => {
           this.router.navigateByUrl('/account/show');
         });
     }

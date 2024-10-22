@@ -10,7 +10,7 @@ import { AccountService } from '../../shared/services/account.service';
   templateUrl: './profile.component.html'
 })
 export class ProfileComponent {
-  public formSubmitted: boolean = false;
+  public formSubmitted = false;
   public credentials = {id: undefined, username: '', password: '', confirmation: '', description: ''};
 
   constructor(private authenticationService: AuthenticationService, private accountService: AccountService, private router: Router) {
@@ -38,7 +38,7 @@ export class ProfileComponent {
           this.credentials.username,
           this.credentials.password,
           this.credentials.description))
-        .subscribe(data => {
+        .subscribe(() => {
           this.router.navigate(['/account', 'show', this.credentials.username]);
         });
     }

@@ -7,7 +7,4 @@ import { Component, Input } from '@angular/core';
 export class NonValidationMessageComponent {
   @Input() public isFormSubmitted: boolean;
   @Input() public isFormValid: boolean;
-
-  constructor() {
-  }
 }

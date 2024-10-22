@@ -18,7 +18,7 @@ export class SearchComponent extends HomeAccountComponent {
     this.title = 'Search Result';
   }
 
-  getData(username: string) {
+  getData() {
     this.activatedRoute.queryParams.subscribe(params => {
       const searchText = params['searchText'];
 

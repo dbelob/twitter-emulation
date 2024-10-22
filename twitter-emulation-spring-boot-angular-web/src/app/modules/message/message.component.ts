@@ -19,7 +19,7 @@ export class MessageComponent {
     if (this.lastMessage) {
       if (this.autoHide) {
         if (this.lastMessage.date) {
-          let timeDifference = Date.now() - this.lastMessage.date.getTime();
+          const timeDifference = Date.now() - this.lastMessage.date.getTime();
 
           return timeDifference <= this.hidingTime * 1000;
         } else {

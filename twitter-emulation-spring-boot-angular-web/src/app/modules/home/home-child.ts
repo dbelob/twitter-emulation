@@ -40,6 +40,8 @@ export abstract class HomeChild {
     this.getData(userState.getDataUserName());
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getData(username: string) {
+    // Nothing
   }
 }
