@@ -33,7 +33,7 @@
         <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
         <ojdbc8.version>23.5.0.24.07</ojdbc8.version>
         <spring-boot.version>3.3.5</spring-boot.version>
-        <spring-boot-admin.version>3.3.4</spring-boot-admin.version>
+        <spring-boot-admin.version>3.3.5</spring-boot-admin.version>
         <springdoc-openapi.version>1.8.0</springdoc-openapi.version>
         <testcontainers.version>1.20.3</testcontainers.version>
 
