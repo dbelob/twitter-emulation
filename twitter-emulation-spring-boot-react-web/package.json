@@ -24,7 +24,7 @@
     "react-router-dom": "^6.28.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
-    "sass": "^1.80.7",
+    "sass": "^1.81.0",
     "use-query-params": "^2.2.1",
     "validator": "^13.12.0"
   },
