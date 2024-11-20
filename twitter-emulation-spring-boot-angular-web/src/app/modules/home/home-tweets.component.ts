@@ -7,8 +7,9 @@ import { HomeChild } from './home-child';
 import { USER_STATE, UserState } from '../../shared/models/user-state.model';
 
 @Component({
-  selector: 'app-home-tweets',
-  templateUrl: './home-tweets.component.html'
+    selector: 'app-home-tweets',
+    templateUrl: './home-tweets.component.html',
+    standalone: false
 })
 export class HomeTweetsComponent extends HomeChild {
   public tweets: Tweet[] = [];

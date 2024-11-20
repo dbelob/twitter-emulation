@@ -7,8 +7,9 @@ import { HomeTweetsComponent } from './home-tweets.component';
 import { USER_STATE, UserState } from '../../shared/models/user-state.model';
 
 @Component({
-  selector: 'app-account',
-  templateUrl: './home-tweets.component.html'
+    selector: 'app-account',
+    templateUrl: './home-tweets.component.html',
+    standalone: false
 })
 export class AccountComponent extends HomeTweetsComponent {
   constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,

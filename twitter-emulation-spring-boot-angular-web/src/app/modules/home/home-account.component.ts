@@ -7,8 +7,9 @@ import { HomeChild } from './home-child';
 import { USER_STATE, UserState } from '../../shared/models/user-state.model';
 
 @Component({
-  selector: 'app-home-account',
-  templateUrl: './home-account.component.html'
+    selector: 'app-home-account',
+    templateUrl: './home-account.component.html',
+    standalone: false
 })
 export class HomeAccountComponent extends HomeChild {
   public accounts: Account[] = [];

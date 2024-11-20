@@ -4,8 +4,9 @@ import { UserState } from '../../shared/models/user-state.model';
 import { AuthenticationService } from '../../shared/services/authentication.service';
 
 @Component({
-  selector: 'app-top-bar',
-  templateUrl: './top-bar.component.html'
+    selector: 'app-top-bar',
+    templateUrl: './top-bar.component.html',
+    standalone: false
 })
 export class TopBarComponent {
   @Input()
