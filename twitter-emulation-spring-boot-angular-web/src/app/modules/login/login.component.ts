@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../shared/services/authentication.service';
 
 @Component({
-  templateUrl: './login.component.html'
+    templateUrl: './login.component.html',
+    standalone: false
 })
 
 export class LoginComponent {

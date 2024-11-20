@@ -5,8 +5,9 @@ import { AccountService } from '../../shared/services/account.service';
 import { FollowerService } from '../../shared/services/follower.service';
 
 @Component({
-  selector: 'app-account-info',
-  templateUrl: './account-info.component.html'
+    selector: 'app-account-info',
+    templateUrl: './account-info.component.html',
+    standalone: false
 })
 export class AccountInfoComponent implements OnChanges {
   @Input()

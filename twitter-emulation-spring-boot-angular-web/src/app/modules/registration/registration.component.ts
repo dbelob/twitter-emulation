@@ -5,8 +5,9 @@ import { Account } from '../../shared/models/account.model';
 import { AccountService } from '../../shared/services/account.service';
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html'
+    selector: 'app-registration',
+    templateUrl: './registration.component.html',
+    standalone: false
 })
 export class RegistrationComponent {
   public formSubmitted = false;

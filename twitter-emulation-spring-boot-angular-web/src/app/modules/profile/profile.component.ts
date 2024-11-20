@@ -6,8 +6,9 @@ import { AuthenticationService } from '../../shared/services/authentication.serv
 import { AccountService } from '../../shared/services/account.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html'
+    selector: 'app-profile',
+    templateUrl: './profile.component.html',
+    standalone: false
 })
 export class ProfileComponent {
   public formSubmitted = false;

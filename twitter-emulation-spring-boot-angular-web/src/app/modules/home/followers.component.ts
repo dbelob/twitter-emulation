@@ -7,8 +7,9 @@ import { FollowerService } from '../../shared/services/follower.service';
 import { USER_STATE, UserState } from '../../shared/models/user-state.model';
 
 @Component({
-  selector: 'app-followers',
-  templateUrl: './home-account.component.html'
+    selector: 'app-followers',
+    templateUrl: './home-account.component.html',
+    standalone: false
 })
 export class FollowersComponent extends HomeAccountComponent {
   constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,

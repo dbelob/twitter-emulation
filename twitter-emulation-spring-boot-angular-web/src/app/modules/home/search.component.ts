@@ -7,8 +7,9 @@ import { AccountService } from '../../shared/services/account.service';
 import { USER_STATE, UserState } from '../../shared/models/user-state.model';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './home-account.component.html'
+    selector: 'app-search',
+    templateUrl: './home-account.component.html',
+    standalone: false
 })
 export class SearchComponent extends HomeAccountComponent {
   constructor(authenticationService: AuthenticationService, private activatedRoute: ActivatedRoute, router: Router,

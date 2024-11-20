@@ -5,8 +5,9 @@ import { AuthenticationService } from '../../shared/services/authentication.serv
 import { AccountService } from '../../shared/services/account.service';
 
 @Component({
-  selector: 'app-delete-account',
-  templateUrl: './delete-account.component.html'
+    selector: 'app-delete-account',
+    templateUrl: './delete-account.component.html',
+    standalone: false
 })
 export class DeleteAccountComponent {
   public user: User = new User();

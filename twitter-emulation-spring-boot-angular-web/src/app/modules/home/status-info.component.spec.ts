@@ -7,7 +7,8 @@ import { StatusInfoComponent } from './status-info.component';
 import { UserState } from '../../shared/models/user-state.model';
 
 @Component({
-  template: `<app-status-info [userState]="userState"></app-status-info>`
+    template: `<app-status-info [userState]="userState"></app-status-info>`,
+    standalone: false
 })
 class TestComponent {
   public userState: UserState = new UserState();

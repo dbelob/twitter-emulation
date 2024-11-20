@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { TweetService } from '../../shared/services/tweet.service';
 
 @Component({
-  selector: 'app-new-tweet',
-  templateUrl: './new-tweet.component.html'
+    selector: 'app-new-tweet',
+    templateUrl: './new-tweet.component.html',
+    standalone: false
 })
 export class NewTweetComponent {
   public formSubmitted = false;

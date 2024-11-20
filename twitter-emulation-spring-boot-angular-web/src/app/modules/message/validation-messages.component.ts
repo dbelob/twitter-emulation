@@ -3,8 +3,9 @@ import { NgForm } from '@angular/forms';
 import { ValidationService } from '../../shared/services/validation.service';
 
 @Component({
-  selector: 'app-validation-messages',
-  templateUrl: './validation-messages.component.html'
+    selector: 'app-validation-messages',
+    templateUrl: './validation-messages.component.html',
+    standalone: false
 })
 export class ValidationMessagesComponent {
   @Input() public isFormSubmitted: boolean;
