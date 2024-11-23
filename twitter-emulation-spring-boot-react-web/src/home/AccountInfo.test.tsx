@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 import { act, cleanup, render, screen, within } from '@testing-library/react';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router';
 import { useInjection } from 'inversify-react';
 import { useAuth } from '../common/authentication/AuthProvider';
 import { Tweet } from '../common/models/Tweet';
