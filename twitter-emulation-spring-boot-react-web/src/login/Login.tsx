@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { BooleanParam, useQueryParam, withDefault } from 'use-query-params';
 import { useAuth } from '../common/authentication/AuthProvider';
 

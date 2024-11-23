@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { resolve } from 'inversify-react';
 import { AccountStatistics } from '../common/models/AccountStatistics';
 import { UserState } from '../common/models/UserState';

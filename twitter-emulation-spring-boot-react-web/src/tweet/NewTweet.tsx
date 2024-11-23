@@ -1,5 +1,5 @@
 import { ChangeEvent, Component } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router';
 import { resolve } from 'inversify-react';
 import { FormValidator } from '../common/validation/FormValidator';
 import { ValidationMessages } from '../common/validation/ValidationMessages';

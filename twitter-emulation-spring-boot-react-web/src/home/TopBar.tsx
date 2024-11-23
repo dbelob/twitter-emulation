@@ -1,5 +1,5 @@
 import { FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 import { useInjection } from 'inversify-react';
 import { UserState } from '../common/models/UserState';
 import { AuthenticationService } from '../common/services/AuthenticationService';
