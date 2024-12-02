@@ -25,7 +25,7 @@
         <surefire.plugin.version>3.5.2</surefire.plugin.version>
         <war.plugin.version>3.4.0</war.plugin.version>
 
-        <allure-junit5.version>2.29.0</allure-junit5.version>
+        <allure-junit5.version>2.29.1</allure-junit5.version>
         <jakarta.el.version>4.0.2</jakarta.el.version>
         <jakarta.el-api.version>6.0.1</jakarta.el-api.version>
         <jakarta.servlet.jsp.jstl.version>3.0.1</jakarta.servlet.jsp.jstl.version>
