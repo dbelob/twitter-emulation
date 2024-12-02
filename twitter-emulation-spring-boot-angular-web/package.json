@@ -36,7 +36,7 @@
     "@types/jasminewd2": "^2.0.13",
     "@types/node": "^22.10.1",
     "ajv": "^8.17.1",
-    "angular-eslint": "18.4.2",
+    "angular-eslint": "19.0.0",
     "codelyzer": "^6.0.2",
     "eslint": "^9.16.0",
     "jasmine-core": "^5.4.0",
