@@ -3,7 +3,7 @@
 
     <groupId>acme.twitter-emulation</groupId>
     <artifactId>twitter-emulation-parent</artifactId>
-    <version>2.1.162-SNAPSHOT</version>
+    <version>2.1.162</version>
     <packaging>pom</packaging>
     <name>TwitterEmulation Parent</name>
 
@@ -296,6 +296,6 @@
     <scm>
         <connection>scm:git:https://github.com/dbelob/twitter-emulation</connection>
         <developerConnection>scm:git:https://github.com/dbelob/twitter-emulation</developerConnection>
-        <tag>v2.0.201</tag>
+        <tag>v2.1.162</tag>
     </scm>
 </project>
