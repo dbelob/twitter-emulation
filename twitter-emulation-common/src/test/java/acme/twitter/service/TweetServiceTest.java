@@ -3,6 +3,7 @@ package acme.twitter.service;
 import acme.twitter.dao.TweetDao;
 import acme.twitter.domain.Account;
 import acme.twitter.domain.Tweet;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,6 @@ import org.mockito.Mockito;
 import org.mockito.internal.verification.VerificationModeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -26,12 +26,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class TweetServiceTest {
     @TestConfiguration
     static class TweetServiceTestContextConfiguration {
-        @MockBean
-        private TweetDao tweetDao;
+        @Bean
+        public TweetDao tweetDao() {
+            return Mockito.mock(TweetDao.class);
+        }
 
         @Bean
         public TweetService tweetService() {
-            return new TweetServiceImpl(tweetDao);
+            return new TweetServiceImpl(tweetDao());
         }
     }
 
@@ -57,6 +59,11 @@ class TweetServiceTest {
         Mockito.when(tweetDao.findByAccount(jsmith)).thenReturn(Arrays.asList(jsmithTweet0, jsmithTweet1, jsmithTweet2, jsmithTweet3, jsmithTweet4, jsmithTweet5));
         Mockito.when(tweetDao.findTimelineByAccount(jsmith)).thenReturn(Arrays.asList(jdoeTweet0, jsmithTweet0, jsmithTweet1));
         Mockito.when(tweetDao.countByUsername("jsmith")).thenReturn(6);
+    }
+
+    @AfterEach
+    void tearDown() {
+        Mockito.reset(tweetDao);
     }
 
     @Test
@@ -113,7 +120,6 @@ class TweetServiceTest {
     void whenAdded_thenShouldBeRunAdd() {
         tweetService.add("rroe", "Tweet text");
         Mockito.verify(tweetDao, VerificationModeFactory.times(1)).add("rroe", "Tweet text");
-        Mockito.reset(tweetDao);
     }
 
     @Test
