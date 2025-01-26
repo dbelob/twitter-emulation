@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.CUSTOM, value = WebPackage.class)
         })
-
 public class RootConfig {
     public static class WebPackage extends RegexPatternTypeFilter {
         public WebPackage() {

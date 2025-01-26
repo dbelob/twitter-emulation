@@ -2,6 +2,7 @@ package acme.twitter.service;
 
 import acme.twitter.dao.FollowerDao;
 import acme.twitter.domain.Account;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,6 @@ import org.mockito.Mockito;
 import org.mockito.internal.verification.VerificationModeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -25,12 +25,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class FollowerServiceTest {
     @TestConfiguration
     static class FollowerServiceTestContextConfiguration {
-        @MockBean
-        private FollowerDao followerDao;
+        @Bean
+        public FollowerDao followerDao() {
+            return Mockito.mock(FollowerDao.class);
+        }
 
         @Bean
         public FollowerService followerService() {
-            return new FollowerServiceImpl(followerDao);
+            return new FollowerServiceImpl(followerDao());
         }
     }
 
@@ -53,6 +55,11 @@ class FollowerServiceTest {
         Mockito.when(followerDao.findFollowersByUsername("jsmith")).thenReturn(Collections.singletonList(jdoe));
     }
 
+    @AfterEach
+    void tearDown() {
+        Mockito.reset(followerDao);
+    }
+
     @Test
     void whenValidName_thenShouldBeReturnCountFollowing() {
         assertEquals(2, followerService.countFollowingByUsername("jsmith"));
@@ -73,14 +80,12 @@ class FollowerServiceTest {
     void whenAdded_thenShouldBeRunAdd() {
         followerService.add("jdoe", "rroe");
         Mockito.verify(followerDao, VerificationModeFactory.times(1)).add("jdoe", "rroe");
-        Mockito.reset(followerDao);
     }
 
     @Test
     void whenDeleted_thenShouldBeRunDelete() {
         followerService.delete("jsmith", "jdoe");
         Mockito.verify(followerDao, VerificationModeFactory.times(1)).delete("jsmith", "jdoe");
-        Mockito.reset(followerDao);
     }
 
     @Test

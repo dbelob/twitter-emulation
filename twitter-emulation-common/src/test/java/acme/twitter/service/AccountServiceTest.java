@@ -6,6 +6,7 @@ import acme.twitter.dao.TweetDao;
 import acme.twitter.dao.exception.AccountExistsException;
 import acme.twitter.dao.exception.AccountNotExistsException;
 import acme.twitter.domain.Account;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,6 @@ import org.mockito.Mockito;
 import org.mockito.internal.verification.VerificationModeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -30,18 +30,24 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class AccountServiceTest {
     @TestConfiguration
     static class AccountServiceTestContextConfiguration {
-        @MockBean
-        private AccountDao accountDao;
+        @Bean
+        public AccountDao accountDao() {
+            return Mockito.mock(AccountDao.class);
+        }
 
-        @MockBean
-        private TweetDao tweetDao;
+        @Bean
+        public TweetDao tweetDao() {
+            return Mockito.mock(TweetDao.class);
+        }
 
-        @MockBean
-        private FollowerDao followerDao;
+        @Bean
+        public FollowerDao followerDao() {
+            return Mockito.mock(FollowerDao.class);
+        }
 
         @Bean
         public AccountService accountService() {
-            return new AccountServiceImpl(accountDao, tweetDao, followerDao);
+            return new AccountServiceImpl(accountDao(), tweetDao(), followerDao());
         }
     }
 
@@ -68,18 +74,23 @@ class AccountServiceTest {
         Mockito.when(accountDao.findByUsernamePart("unknown")).thenReturn(Collections.emptyList());
     }
 
+    @AfterEach
+    void tearDown() {
+        Mockito.reset(tweetDao);
+        Mockito.reset(followerDao);
+        Mockito.reset(accountDao);
+    }
+
     @Test
     void whenAdded_thenShouldBeRunAdd() throws AccountExistsException {
         accountService.add("user", "qwerty", "Description");
         Mockito.verify(accountDao, VerificationModeFactory.times(1)).add("user", "qwerty", "Description");
-        Mockito.reset(accountDao);
     }
 
     @Test
     void whenUpdated_thenShouldBeRunUpdate() {
         accountService.update("jsmith", "12345", "Description");
         Mockito.verify(accountDao, VerificationModeFactory.times(1)).update("jsmith", "12345", "Description");
-        Mockito.reset(accountDao);
     }
 
     @Test
@@ -88,9 +99,6 @@ class AccountServiceTest {
         Mockito.verify(tweetDao, VerificationModeFactory.times(1)).deleteAll("alone");
         Mockito.verify(followerDao, VerificationModeFactory.times(1)).deleteAll("alone");
         Mockito.verify(accountDao, VerificationModeFactory.times(1)).delete("alone");
-        Mockito.reset(tweetDao);
-        Mockito.reset(followerDao);
-        Mockito.reset(accountDao);
     }
 
     @Test
