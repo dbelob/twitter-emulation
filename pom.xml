@@ -31,7 +31,7 @@
         <jakarta.servlet.jsp.jstl.version>3.0.1</jakarta.servlet.jsp.jstl.version>
         <jakarta.servlet.jsp-api>4.0.0</jakarta.servlet.jsp-api>
         <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
-        <ojdbc8.version>23.6.0.24.10</ojdbc8.version>
+        <ojdbc8.version>23.7.0.25.01</ojdbc8.version>
         <spring-boot.version>3.4.2</spring-boot.version>
         <spring-boot-admin.version>3.4.1</spring-boot-admin.version>
         <springdoc-openapi.version>1.8.0</springdoc-openapi.version>
