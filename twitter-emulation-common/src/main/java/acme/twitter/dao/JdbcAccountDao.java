@@ -46,7 +46,7 @@ public class JdbcAccountDao implements AccountDao {
     @Override
     public void delete(String username) {
         jdbcTemplate.update(
-                "delete account where username = ?",
+                "delete from account where username = ?",
                 username);
     }
 

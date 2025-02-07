@@ -1,26 +1,26 @@
 import { Navigate, Route, Routes } from 'react-router';
 import { QueryParamProvider } from 'use-query-params';
-import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
 import './App.scss';
-import AuthProvider from './common/authentication/AuthProvider';
-import RequireAuth from './common/authentication/RequireAuth';
 import AnonymousMain from './home/AnonymousMain';
-import Main from './home/Main';
-import Tweets from './home/Tweets';
-import Following from './home/Following';
-import Followers from './home/Followers';
-import Search from './home/Search';
-import Login from './login/Login';
+import AuthProvider from './common/authentication/AuthProvider';
 import DeleteAccount from './profile/DeleteAccount';
-import Profile from './profile/Profile';
-import Registration from './registration/Registration';
+import Followers from './home/Followers';
+import Following from './home/Following';
+import Login from './login/Login';
+import Main from './home/Main';
 import NewTweet from './tweet/NewTweet';
 import NotFoundComponent from './unknown/NotFoundComponent';
+import Profile from './profile/Profile';
+import ReactRouterAdapter from './common/ReactRouterAdapter.ts';
+import Registration from './registration/Registration';
+import RequireAuth from './common/authentication/RequireAuth';
+import Search from './home/Search';
+import Tweets from './home/Tweets';
 
 function App() {
     return (
         <AuthProvider>
-            <QueryParamProvider adapter={ReactRouter6Adapter}>
+            <QueryParamProvider adapter={ReactRouterAdapter}>
                 <Routes>
                     <Route path="login" element={<Login/>}/>
                     <Route path="account/register" element={<Registration/>}/>

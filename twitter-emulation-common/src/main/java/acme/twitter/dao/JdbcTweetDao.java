@@ -67,7 +67,7 @@ public class JdbcTweetDao implements TweetDao {
     @Override
     public void deleteAll(String username) {
         jdbcTemplate.update(
-                "delete tweet where account_id = (select account_id from account where username = ?)",
+                "delete from tweet where account_id = (select account_id from account where username = ?)",
                 username);
     }
 
