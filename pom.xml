@@ -14,7 +14,7 @@
         <project.build.javaVersion>21</project.build.javaVersion>
 
         <assembly.plugin.version>3.7.1</assembly.plugin.version>
-        <clean.plugin.version>3.4.0</clean.plugin.version>
+        <clean.plugin.version>3.4.1</clean.plugin.version>
         <compiler.plugin.version>3.13.0</compiler.plugin.version>
         <frontend.plugin.version>1.15.1</frontend.plugin.version>
         <jacoco.plugin.version>0.8.12</jacoco.plugin.version>
