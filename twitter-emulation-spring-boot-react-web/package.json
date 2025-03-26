@@ -39,7 +39,7 @@
     "@types/puppeteer": "^7.0.4",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
-    "@types/validator": "^13.12.2",
+    "@types/validator": "^13.12.3",
     "@vitejs/plugin-react": "^4.3.4",
     "cross-env": "^7.0.3",
     "eslint": "^9.23.0",
