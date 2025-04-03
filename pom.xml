@@ -17,7 +17,7 @@
         <clean.plugin.version>3.4.1</clean.plugin.version>
         <compiler.plugin.version>3.14.0</compiler.plugin.version>
         <frontend.plugin.version>1.15.1</frontend.plugin.version>
-        <jacoco.plugin.version>0.8.12</jacoco.plugin.version>
+        <jacoco.plugin.version>0.8.13</jacoco.plugin.version>
         <jetty.plugin.version>11.0.12</jetty.plugin.version>
         <release.plugin.version>3.1.1</release.plugin.version>
         <resources.plugin.version>3.3.1</resources.plugin.version>
