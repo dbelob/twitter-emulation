@@ -49,7 +49,7 @@
     "mockttp": "^3.17.0",
     "protractor": "~7.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "~5.8.2",
+    "typescript": "~5.8.3",
     "typescript-eslint": "^8.29.0"
   }
 }
