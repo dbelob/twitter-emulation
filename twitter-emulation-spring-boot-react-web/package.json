@@ -38,7 +38,7 @@
     "@types/jest-environment-puppeteer": "^5.0.6",
     "@types/puppeteer": "^7.0.4",
     "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.1",
+    "@types/react-dom": "^19.1.2",
     "@types/validator": "^13.12.3",
     "@vitejs/plugin-react": "^4.3.4",
     "cross-env": "^7.0.3",
