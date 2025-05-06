@@ -19,7 +19,7 @@
     "@angular/platform-browser": "^19.2.9",
     "@angular/platform-browser-dynamic": "^19.2.9",
     "@angular/router": "^19.2.9",
-    "bootstrap": "^5.3.5",
+    "bootstrap": "^5.3.6",
     "core-js": "^3.42.0",
     "jquery": "^3.7.1",
     "popper.js": "^1.16.1",
