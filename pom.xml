@@ -37,7 +37,7 @@
         <springdoc-openapi.version>1.8.0</springdoc-openapi.version>
         <testcontainers.version>1.21.3</testcontainers.version>
 
-        <node.version>v22.16.0</node.version>
+        <node.version>v22.17.0</node.version>
 
         <sonar.coverage.exclusions>
             **/acme/twitter/config/**/*,
