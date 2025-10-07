@@ -11,7 +11,7 @@
         <app.finalName>twitter-emulation</app.finalName>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.build.javaVersion>21</project.build.javaVersion>
+        <project.build.javaVersion>25</project.build.javaVersion>
 
         <assembly.plugin.version>3.7.1</assembly.plugin.version>
         <clean.plugin.version>3.5.0</clean.plugin.version>
