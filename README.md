@@ -24,7 +24,7 @@ in several ways:
 
 * [JDK 25+](https://www.oracle.com/java/technologies/downloads/)
 * [Apache Maven 3.9.0+](https://maven.apache.org/download.cgi)
-* [Node.js 22.20.0+](https://nodejs.org) (optional)
+* [Node.js 24.11.0+](https://nodejs.org) (optional)
 * [Docker](https://www.docker.com) (optional)
 
 ## Running
