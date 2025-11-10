@@ -19,7 +19,7 @@
         <frontend.plugin.version>1.15.4</frontend.plugin.version>
         <jacoco.plugin.version>0.8.14</jacoco.plugin.version>
         <jetty.plugin.version>11.0.12</jetty.plugin.version>
-        <release.plugin.version>3.1.1</release.plugin.version>
+        <release.plugin.version>3.2.0</release.plugin.version>
         <resources.plugin.version>3.3.1</resources.plugin.version>
         <sonar.plugin.version>5.2.0.4988</sonar.plugin.version>
         <surefire.plugin.version>3.5.4</surefire.plugin.version>
