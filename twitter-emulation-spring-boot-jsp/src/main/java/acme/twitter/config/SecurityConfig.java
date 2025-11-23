@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -20,13 +20,13 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class SecurityConfig {
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) {
         http
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                 )
                 .logout(logout -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Support GET for logout with CSRF
+                        .logoutRequestMatcher(PathPatternRequestMatcher.withDefaults().matcher("/logout")) // Support GET for logout with CSRF
                 )
                 .httpBasic(withDefaults())
                 .authorizeHttpRequests(authorize -> authorize

@@ -24,7 +24,6 @@
                             <artifactId>twitter-emulation-spring-boot-react-web</artifactId>
                         </exclude>
                     </excludes>
-                    <executable>true</executable>
                     <mainClass>acme.twitter.App</mainClass>
                     <profiles>
                         <profile>${spring.profiles.active}</profile>
