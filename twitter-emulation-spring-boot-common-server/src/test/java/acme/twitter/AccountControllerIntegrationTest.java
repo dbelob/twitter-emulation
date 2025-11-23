@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         classes = App.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("development")
-@Disabled
+@Disabled("Fix it after Spring Boot Admin 4 release")
 class AccountControllerIntegrationTest {
     @Autowired
     private MockMvc mvc;

@@ -39,7 +39,7 @@ class AuthenticationControllerTest {
     private FollowerService followerService;
 
     @Test
-    @Disabled
+    @Disabled("Fix it")
     void getUser() throws Exception {
         mvc.perform(get("/api/authentication/user")
                         .with(user("jsmith"))
