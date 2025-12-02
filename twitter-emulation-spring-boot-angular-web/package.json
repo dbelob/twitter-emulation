@@ -40,7 +40,7 @@
     "angular-eslint": "^21.0.1",
     "codelyzer": "^6.0.2",
     "eslint": "^9.39.1",
-    "jasmine-core": "^5.12.1",
+    "jasmine-core": "^5.13.0",
     "jasmine-spec-reporter": "~7.0.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
