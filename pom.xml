@@ -21,7 +21,7 @@
         <jetty.plugin.version>11.0.12</jetty.plugin.version>
         <release.plugin.version>3.3.0</release.plugin.version>
         <resources.plugin.version>3.4.0</resources.plugin.version>
-        <sonar.plugin.version>5.4.0.6343</sonar.plugin.version>
+        <sonar.plugin.version>5.5.0.6356</sonar.plugin.version>
         <surefire.plugin.version>3.5.4</surefire.plugin.version>
         <war.plugin.version>3.5.1</war.plugin.version>
 
