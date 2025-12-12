@@ -17,7 +17,7 @@
     "bootstrap": "^5.3.8",
     "buffer": "^6.0.3",
     "date-fns": "^4.1.0",
-    "inversify": "^6.2.2",
+    "inversify": "^7.10.6",
     "inversify-react": "^1.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.3",
