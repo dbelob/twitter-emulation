@@ -1,3 +1,5 @@
-<div *ngIf="isVisible()" class="alert alert-info text-center" [class.alert-danger]="lastMessage.error">
-  {{lastMessage.text}}
-</div>
+@if (isVisible()) {
+  <div class="alert alert-info text-center" [class.alert-danger]="lastMessage.error">
+    {{lastMessage.text}}
+  </div>
+}

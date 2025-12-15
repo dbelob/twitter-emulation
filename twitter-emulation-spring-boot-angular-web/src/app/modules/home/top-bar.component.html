@@ -1,30 +1,34 @@
-<div *ngIf="userState.isAuthenticated()" class="row m-0">
-  <div class="col-3 p-1">
-    <button class="btn btn-link m-0" routerLink="/account/show">Main</button>
-  </div>
-  <div class="col-6 p-1">
-    <form role="form" novalidate (ngSubmit)="search()">
-      <div class="input-group mt-1">
-        <input type="search" class="form-control" id="searchText" name="searchText" [(ngModel)]="searchText" placeholder="Search accounts..."/>
-        <div class="input-group-append">
-          <button class="btn btn-primary">Search</button>
+@if (userState.isAuthenticated()) {
+  <div class="row m-0">
+    <div class="col-3 p-1">
+      <button class="btn btn-link m-0" routerLink="/account/show">Main</button>
+    </div>
+    <div class="col-6 p-1">
+      <form role="form" novalidate (ngSubmit)="search()">
+        <div class="input-group mt-1">
+          <input type="search" class="form-control" id="searchText" name="searchText" [(ngModel)]="searchText" placeholder="Search accounts..."/>
+          <div class="input-group-append">
+            <button class="btn btn-primary">Search</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
+    <div class="col-3 p-1">
+      <button class="btn btn-primary m-1" routerLink="/tweet">Tweet</button>
+      <button class="btn btn-link m-1" routerLink="/account/profile" id="profile">Profile</button>
+      <button class="btn btn-link m-1" (click)="logout()">Logout</button>
+    </div>
   </div>
-  <div class="col-3 p-1">
-    <button class="btn btn-primary m-1" routerLink="/tweet">Tweet</button>
-    <button class="btn btn-link m-1" routerLink="/account/profile" id="profile">Profile</button>
-    <button class="btn btn-link m-1" (click)="logout()">Logout</button>
-  </div>
-</div>
+}
 
-<div *ngIf="!userState.isAuthenticated()" class="row m-0">
-  <div class="col-3 p-1">
+@if (!userState.isAuthenticated()) {
+  <div class="row m-0">
+    <div class="col-3 p-1">
+    </div>
+    <div class="col-6 p-1">
+    </div>
+    <div class="col-3 p-1">
+      <button class="btn btn-link m-1" (click)="login()">Login</button>
+    </div>
   </div>
-  <div class="col-6 p-1">
-  </div>
-  <div class="col-3 p-1">
-    <button class="btn btn-link m-1" (click)="login()">Login</button>
-  </div>
-</div>
+}

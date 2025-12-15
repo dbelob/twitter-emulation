@@ -8,10 +8,16 @@
         <div class="col-12" id="username">&#64;{{accountStatistics.username}}</div>
       </div>
     </div>
-    <div *ngIf="isFollowVisible()" class="col-auto" id="buttons">
-      <button *ngIf="!accountStatistics.follow" class="btn btn-primary m-0" (click)="follow()" id="follow">Follow</button>
-      <button *ngIf="accountStatistics.follow" class="btn btn-primary m-0" (click)="unfollow()" id="unfollow">Unfollow</button>
-    </div>
+    @if (isFollowVisible()) {
+      <div class="col-auto" id="buttons">
+        @if (!accountStatistics.follow) {
+          <button class="btn btn-primary m-0" (click)="follow()" id="follow">Follow</button>
+        }
+        @if (accountStatistics.follow) {
+          <button class="btn btn-primary m-0" (click)="unfollow()" id="unfollow">Unfollow</button>
+        }
+      </div>
+    }
   </div>
   <div class="row mt-1">
     <div class="col-4 small">

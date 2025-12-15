@@ -1,8 +1,12 @@
-<div class="alert alert-danger" *ngIf="isFormSubmitted && form.invalid">
-  There are problems with the form
-  <ul>
-    <li *ngFor="let error of getFormValidationMessages(form)">
-      {{error}}
-    </li>
-  </ul>
-</div>
+@if (isFormSubmitted && form.invalid) {
+  <div class="alert alert-danger">
+    There are problems with the form
+    <ul>
+      @for (error of getFormValidationMessages(form); track error) {
+        <li>
+          {{error}}
+        </li>
+      }
+    </ul>
+  </div>
+}

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { Injectable, NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpHandler, HttpInterceptor, HttpRequest, provideHttpClient } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -42,19 +42,19 @@ export class XhrInterceptor implements HttpInterceptor {
 }
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'account/register', component: RegistrationComponent},
-  {path: 'account/show/:user', component: AccountComponent, resolve: {home: homeResolve}},
-  {path: 'account/show', component: AccountComponent, canActivate: [authenticationCanActivate]},
-  {path: 'account/tweets/:user', component: TweetsComponent, resolve: {home: homeResolve}},
-  {path: 'account/following/:user', component: FollowingComponent, resolve: {home: homeResolve}},
-  {path: 'account/followers/:user', component: FollowersComponent, resolve: {home: homeResolve}},
-  {path: 'account/profile', component: ProfileComponent, canActivate: [authenticationCanActivate]},
-  {path: 'account/delete', component: DeleteAccountComponent, canActivate: [authenticationCanActivate]},
-  {path: 'account/search', component: SearchComponent, canActivate: [authenticationCanActivate]},
-  {path: 'tweet', component: NewTweetComponent, canActivate: [authenticationCanActivate]},
-  {path: '', pathMatch: 'full', redirectTo: 'account/show'},
-  {path: '**', component: NotFoundComponent}
+  { path: 'login', component: LoginComponent },
+  { path: 'account/register', component: RegistrationComponent },
+  { path: 'account/show/:user', component: AccountComponent, resolve: { home: homeResolve } },
+  { path: 'account/show', component: AccountComponent, canActivate: [authenticationCanActivate] },
+  { path: 'account/tweets/:user', component: TweetsComponent, resolve: { home: homeResolve } },
+  { path: 'account/following/:user', component: FollowingComponent, resolve: { home: homeResolve } },
+  { path: 'account/followers/:user', component: FollowersComponent, resolve: { home: homeResolve } },
+  { path: 'account/profile', component: ProfileComponent, canActivate: [authenticationCanActivate] },
+  { path: 'account/delete', component: DeleteAccountComponent, canActivate: [authenticationCanActivate] },
+  { path: 'account/search', component: SearchComponent, canActivate: [authenticationCanActivate] },
+  { path: 'tweet', component: NewTweetComponent, canActivate: [authenticationCanActivate] },
+  { path: '', pathMatch: 'full', redirectTo: 'account/show' },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
@@ -64,7 +64,6 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {}),
     BrowserModule,
-    HttpClientModule,
     HomeModule,
     LoginModule,
     MessageModule,
@@ -77,7 +76,8 @@ const routes: Routes = [
     provide: HTTP_INTERCEPTORS,
     useClass: XhrInterceptor,
     multi: true
-  }],
+  },
+    provideHttpClient(),],
   bootstrap: [AppComponent]
 })
 

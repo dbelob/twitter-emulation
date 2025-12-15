@@ -1,12 +1,16 @@
 <app-home>
-  <h5 *ngIf="title" class="fw-bold">{{title}}</h5>
-  <div *ngFor="let tweet of tweets" class="card m-0 p-1 bg-light">
-    <h6>
-      <a class="fw-bold" [routerLink]="['/account', 'show', tweet.username]">{{tweet.description}}</a> &#64;{{tweet.username}}
-      <span class="badge rounded-pill bg-primary float-end">
-            {{tweet.date | date:"dd.MM.yyyy HH:mm:ss"}}
-      </span>
-    </h6>
-    <div class="card-text bg-white p-1 tweet">{{tweet.text}}</div>
-  </div>
+  @if (title) {
+    <h5 class="fw-bold">{{title}}</h5>
+  }
+  @for (tweet of tweets; track tweet) {
+    <div class="card m-0 p-1 bg-light">
+      <h6>
+        <a class="fw-bold" [routerLink]="['/account', 'show', tweet.username]">{{tweet.description}}</a> &#64;{{tweet.username}}
+        <span class="badge rounded-pill bg-primary float-end">
+          {{tweet.date | date:"dd.MM.yyyy HH:mm:ss"}}
+        </span>
+      </h6>
+      <div class="card-text bg-white p-1 tweet">{{tweet.text}}</div>
+    </div>
+  }
 </app-home>
