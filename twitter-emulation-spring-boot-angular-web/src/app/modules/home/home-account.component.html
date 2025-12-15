@@ -1,12 +1,14 @@
 <app-home>
   <h5 class="fw-bold">{{title}}</h5>
   <table>
-    <tr *ngFor="let account of accounts">
-      <tbody>
-        <td>
-          <a class="fw-bold" [routerLink]="['/account', 'show', account.username]">{{account.description}}</a> &#64;{{account.username}}
-        </td>
-      </tbody>
-    </tr>
+    @for (account of accounts; track account) {
+      <tr>
+        <tbody>
+          <td>
+            <a class="fw-bold" [routerLink]="['/account', 'show', account.username]">{{account.description}}</a> &#64;{{account.username}}
+          </td>
+        </tbody>
+      </tr>
+    }
   </table>
 </app-home>

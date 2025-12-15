@@ -1,9 +1,11 @@
 <div class="card p-3 bg-light">
-  <div *ngIf="isStateVisible()" class="row m-1" id="logged">
-    <div class="col">
-      Logged in as <span id="username" class="fw-bold">{{userState.authenticatedUserName}}</span>
+  @if (isStateVisible()) {
+    <div class="row m-1" id="logged">
+      <div class="col">
+        Logged in as <span id="username" class="fw-bold">{{userState.authenticatedUserName}}</span>
+      </div>
     </div>
-  </div>
+  }
   <div class="row m-1">
     <div class="col">
       &copy; Acme, {{copyrightDate | date:"yyyy"}}

@@ -1,3 +1,5 @@
-<div *ngIf="!(isFormSubmitted && isFormValid)">
-  <app-message></app-message>
-</div>
+@if (!(isFormSubmitted && isFormValid)) {
+  <div>
+    <app-message></app-message>
+  </div>
+}
