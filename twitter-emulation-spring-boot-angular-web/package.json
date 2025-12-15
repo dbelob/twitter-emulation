@@ -26,7 +26,7 @@
     "popper.js": "^1.16.1",
     "rxjs": "^7.8.2",
     "tslib": "^2.8.1",
-    "zone.js": "~0.15.1"
+    "zone.js": "^0.16.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~21.0.3",
@@ -35,11 +35,11 @@
     "@angular/language-service": "^21.0.5",
     "@types/jasmine": "^5.1.13",
     "@types/jasminewd2": "^2.0.13",
-    "@types/node": "^24.10.1",
+    "@types/node": "^25.0.2",
     "ajv": "^8.17.1",
     "angular-eslint": "^21.1.0",
     "codelyzer": "^6.0.2",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.2",
     "jasmine-core": "^5.13.0",
     "jasmine-spec-reporter": "~7.0.0",
     "karma": "~6.4.4",
@@ -51,6 +51,6 @@
     "protractor": "~7.0.0",
     "ts-node": "^10.9.2",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.48.1"
+    "typescript-eslint": "^8.49.0"
   }
 }
