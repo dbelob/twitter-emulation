@@ -30,7 +30,7 @@ public class JdbcAccountDao implements AccountDao {
                     "insert into account (username, password, description) " +
                             "values (?, ?, ?)",
                     username, password, description);
-        } catch (DataIntegrityViolationException e) {
+        } catch (DataIntegrityViolationException _) {
             throw new AccountExistsException();
         }
     }
@@ -57,7 +57,7 @@ public class JdbcAccountDao implements AccountDao {
                     "select account_id, username, password, description from account where username = ?",
                     new AccountRowMapper(),
                     username);
-        } catch (EmptyResultDataAccessException e) {
+        } catch (EmptyResultDataAccessException _) {
             throw new AccountNotExistsException();
         }
     }

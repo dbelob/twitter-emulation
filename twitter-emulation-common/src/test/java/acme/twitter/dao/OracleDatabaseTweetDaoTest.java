@@ -10,7 +10,7 @@ import java.sql.SQLException;
  */
 public class OracleDatabaseTweetDaoTest extends TweetDaoTest {
     @BeforeAll
-    public static void start() throws SQLException {
+    static void start() throws SQLException {
         TweetDaoTest.start(new OracleDatabaseTestSupport());
     }
 }

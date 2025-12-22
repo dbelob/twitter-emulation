@@ -43,7 +43,7 @@ class FollowerServiceTest {
     private FollowerService followerService;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         Account jdoe = new Account(1, "jdoe", "password", "John Doe");
         Account rroe = new Account(2, "rroe", "password", "Richard Roe");
 

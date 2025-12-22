@@ -64,7 +64,7 @@ class AccountServiceTest {
     private AccountService accountService;
 
     @BeforeEach
-    public void setUp() throws AccountNotExistsException {
+    void setUp() throws AccountNotExistsException {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         Account jdoe = new Account(2, "jdoe", "password", "John Doe");
 

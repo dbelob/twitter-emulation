@@ -44,7 +44,7 @@ class TweetServiceTest {
     private TweetService tweetService;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         Account jsmith = new Account(1, "jsmith", "password", "John Smith");
         Account jdoe = new Account(2, "jdoe", "password", "John Doe");
 
