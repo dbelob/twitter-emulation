@@ -39,7 +39,7 @@ class AccountControllerIntegrationTest {
     private DataSource dataSource;
 
     @AfterEach
-    public void tearDown() throws SQLException {
+    void tearDown() throws SQLException {
         TestUtils.executeSqlScript(dataSource.getConnection(), "/clean-h2.sql");
         TestUtils.executeSqlScript(dataSource.getConnection(), "/data-h2.sql");
     }

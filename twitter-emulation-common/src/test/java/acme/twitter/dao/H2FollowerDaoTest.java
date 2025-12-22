@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
  */
 public class H2FollowerDaoTest extends FollowerDaoTest {
     @BeforeAll
-    public static void start() {
+    static void start() {
         FollowerDaoTest.start(new H2TestSupport());
     }
 }

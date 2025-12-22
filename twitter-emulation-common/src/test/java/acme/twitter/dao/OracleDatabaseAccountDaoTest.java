@@ -10,7 +10,7 @@ import java.sql.SQLException;
  */
 public class OracleDatabaseAccountDaoTest extends AccountDaoTest {
     @BeforeAll
-    public static void start() throws SQLException {
+    static void start() throws SQLException {
         AccountDaoTest.start(new OracleDatabaseTestSupport());
     }
 }

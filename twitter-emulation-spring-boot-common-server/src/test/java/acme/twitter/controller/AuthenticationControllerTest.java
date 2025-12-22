@@ -1,13 +1,14 @@
 package acme.twitter.controller;
 
+import acme.twitter.config.SecurityConfig;
 import acme.twitter.service.AccountService;
 import acme.twitter.service.FollowerService;
 import acme.twitter.service.TweetService;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -22,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("AuthenticationController class tests")
 @WebMvcTest(AuthenticationController.class)
+@Import(SecurityConfig.class)
 class AuthenticationControllerTest {
     @Autowired
     private MockMvc mvc;
@@ -39,7 +41,6 @@ class AuthenticationControllerTest {
     private FollowerService followerService;
 
     @Test
-    @Disabled("Fix it")
     void getUser() throws Exception {
         mvc.perform(get("/api/authentication/user")
                         .with(user("jsmith"))

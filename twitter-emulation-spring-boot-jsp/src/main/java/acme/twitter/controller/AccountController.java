@@ -95,7 +95,7 @@ public class AccountController {
             accountService.add(accountForm.getUsername(), accountForm.getPassword(), accountForm.getDescription());
 
             return REDIRECT_LOGIN;
-        } catch (AccountExistsException e) {
+        } catch (AccountExistsException _) {
             errors.reject("account.exists", messageSourceAccessor.getMessage("account.exists"));
 
             return REGISTRATION_FORM;
