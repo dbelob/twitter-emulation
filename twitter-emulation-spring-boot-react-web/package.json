@@ -32,7 +32,7 @@
     "@eslint/js": "^9.39.2",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.1",
+    "@testing-library/react": "^16.3.2",
     "@types/expect-puppeteer": "^5.0.6",
     "@types/jest": "^30.0.0",
     "@types/jest-environment-puppeteer": "^5.0.6",
