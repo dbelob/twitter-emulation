@@ -21,7 +21,7 @@
     "@angular/router": "^21.1.1",
     "bootstrap": "^5.3.8",
     "buffer": "^6.0.3",
-    "core-js": "^3.47.0",
+    "core-js": "^3.48.0",
     "jquery": "^4.0.0",
     "popper.js": "^1.16.1",
     "rxjs": "^7.8.2",
