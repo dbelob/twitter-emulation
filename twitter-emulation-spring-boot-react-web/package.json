@@ -13,7 +13,7 @@
     "e2e": "cross-env BROWSER=none PORT=5173 start-server-and-test start http://localhost:5173 \\\"cd e2e && jest\\\""
   },
   "dependencies": {
-    "axios": "^1.13.3",
+    "axios": "^1.13.4",
     "bootstrap": "^5.3.8",
     "buffer": "^6.0.3",
     "date-fns": "^4.1.0",
