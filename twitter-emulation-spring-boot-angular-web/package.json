@@ -29,8 +29,8 @@
     "zone.js": "^0.16.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~21.1.1",
-    "@angular/cli": "^21.1.1",
+    "@angular-devkit/build-angular": "~21.1.2",
+    "@angular/cli": "^21.1.2",
     "@angular/compiler-cli": "^21.1.1",
     "@angular/language-service": "^21.1.1",
     "@types/jasmine": "^6.0.0",
@@ -40,7 +40,7 @@
     "angular-eslint": "^21.1.0",
     "codelyzer": "^6.0.2",
     "eslint": "^9.39.2",
-    "jasmine-core": "^5.13.0",
+    "jasmine-core": "^6.0.1",
     "jasmine-spec-reporter": "~7.0.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
