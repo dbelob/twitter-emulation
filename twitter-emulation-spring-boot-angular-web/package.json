@@ -39,7 +39,7 @@
     "ajv": "^8.18.0",
     "angular-eslint": "^21.2.0",
     "codelyzer": "^6.0.2",
-    "eslint": "^9.39.2",
+    "eslint": "^10.0.0",
     "jasmine-core": "^6.0.1",
     "jasmine-spec-reporter": "~7.0.0",
     "karma": "~6.4.4",
