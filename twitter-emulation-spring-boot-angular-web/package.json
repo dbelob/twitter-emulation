@@ -35,7 +35,7 @@
     "@angular/language-service": "^21.1.4",
     "@types/jasmine": "^6.0.0",
     "@types/jasminewd2": "^2.0.13",
-    "@types/node": "^25.2.3",
+    "@types/node": "^25.3.0",
     "ajv": "^8.18.0",
     "angular-eslint": "^21.2.0",
     "codelyzer": "^6.0.2",
