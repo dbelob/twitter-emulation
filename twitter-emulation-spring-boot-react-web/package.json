@@ -48,7 +48,7 @@
     "globals": "^17.4.0",
     "jest": "^30.3.0",
     "jest-puppeteer": "^11.0.0",
-    "jsdom": "^28.1.0",
+    "jsdom": "^29.0.0",
     "msw": "^2.12.10",
     "puppeteer": "^24.39.1",
     "start-server-and-test": "^2.1.5",
