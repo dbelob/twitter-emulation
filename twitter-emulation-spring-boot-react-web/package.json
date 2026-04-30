@@ -49,7 +49,7 @@
     "jest": "^30.3.0",
     "jest-puppeteer": "^11.0.0",
     "jsdom": "^29.1.0",
-    "msw": "^2.13.6",
+    "msw": "^2.14.2",
     "puppeteer": "^24.42.0",
     "start-server-and-test": "^3.0.2",
     "ts-jest": "^29.4.9",
