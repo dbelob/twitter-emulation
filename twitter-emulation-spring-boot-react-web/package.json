@@ -16,7 +16,7 @@
     "axios": "^1.16.1",
     "bootstrap": "^5.3.8",
     "buffer": "^6.0.3",
-    "date-fns": "^4.2.1",
+    "date-fns": "^4.3.0",
     "inversify": "^6.2.2",
     "inversify-react": "^1.2.0",
     "react": "^19.2.6",
