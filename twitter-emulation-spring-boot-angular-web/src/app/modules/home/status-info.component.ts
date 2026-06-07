@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { UserState } from '../../shared/models/user-state.model';
 
 @Component({
     selector: 'app-status-info',
     templateUrl: './status-info.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class StatusInfoComponent {

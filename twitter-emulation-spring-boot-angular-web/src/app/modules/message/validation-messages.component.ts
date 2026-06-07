@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ValidationService } from '../../shared/services/validation.service';
 
 @Component({
     selector: 'app-validation-messages',
     templateUrl: './validation-messages.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ValidationMessagesComponent {

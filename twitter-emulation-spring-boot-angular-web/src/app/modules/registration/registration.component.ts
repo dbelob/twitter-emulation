@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Account } from '../../shared/models/account.model';
@@ -7,6 +7,7 @@ import { AccountService } from '../../shared/services/account.service';
 @Component({
     selector: 'app-registration',
     templateUrl: './registration.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class RegistrationComponent {

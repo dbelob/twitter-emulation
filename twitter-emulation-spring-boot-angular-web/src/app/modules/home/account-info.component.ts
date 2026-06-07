@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChange, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { UserState } from '../../shared/models/user-state.model';
 import { AccountStatistics } from '../../shared/models/account-statistics.model';
 import { AccountService } from '../../shared/services/account.service';
@@ -7,6 +7,7 @@ import { FollowerService } from '../../shared/services/follower.service';
 @Component({
     selector: 'app-account-info',
     templateUrl: './account-info.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AccountInfoComponent implements OnChanges {

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { Injectable, NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpHandler, HttpInterceptor, HttpRequest, provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpHandler, HttpInterceptor, HttpRequest, provideHttpClient, withXhr } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -77,7 +77,7 @@ const routes: Routes = [
     useClass: XhrInterceptor,
     multi: true
   },
-    provideHttpClient(),],
+    provideHttpClient(withXhr()),],
   bootstrap: [AppComponent]
 })
 

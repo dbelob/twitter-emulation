@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserState } from '../../shared/models/user-state.model';
 import { AuthenticationService } from '../../shared/services/authentication.service';
@@ -6,6 +6,7 @@ import { AuthenticationService } from '../../shared/services/authentication.serv
 @Component({
     selector: 'app-top-bar',
     templateUrl: './top-bar.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TopBarComponent {

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observer } from 'rxjs';
 import { AuthenticationService } from '../../shared/services/authentication.service';
@@ -9,6 +9,7 @@ import { USER_STATE, UserState } from '../../shared/models/user-state.model';
 @Component({
     selector: 'app-account',
     templateUrl: './home-tweets.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AccountComponent extends HomeTweetsComponent {
