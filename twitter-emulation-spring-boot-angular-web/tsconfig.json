@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "esModuleInterop": true,
     "sourceMap": true,
@@ -14,6 +13,7 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "strictPropertyInitialization": false
   }
 }
