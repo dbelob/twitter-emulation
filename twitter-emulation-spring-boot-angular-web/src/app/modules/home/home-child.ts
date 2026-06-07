@@ -19,7 +19,7 @@ export abstract class HomeChild {
     });
   }
 
-  apply(url: UrlSegment[], authenticatedUserName: string, selectedUserName: string) {
+  apply(url: UrlSegment[], authenticatedUserName: string | undefined, selectedUserName: string) {
     if ((url[0].path === 'account') && (url[1].path === 'show')) {
       if (!selectedUserName) {
         if (authenticatedUserName) {
@@ -41,7 +41,7 @@ export abstract class HomeChild {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getData(username: string) {
+  getData(username: string | undefined) {
     // Nothing
   }
 }

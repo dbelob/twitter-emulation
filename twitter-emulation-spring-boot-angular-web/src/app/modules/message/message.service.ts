@@ -19,6 +19,7 @@ export class MessageService {
   }
 
   private static getMessageText(response: Response): string {
+    // @ts-ignore
     const error = response['error'];
 
     if (error) {

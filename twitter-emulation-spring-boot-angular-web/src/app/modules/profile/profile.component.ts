@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Account } from '../../shared/models/account.model';
@@ -8,6 +8,7 @@ import { AccountService } from '../../shared/services/account.service';
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ProfileComponent {
@@ -17,13 +18,13 @@ export class ProfileComponent {
   constructor(private authenticationService: AuthenticationService, private accountService: AccountService, private router: Router) {
     authenticationService.getUser()
       .subscribe(user => {
-        accountService.getAccount(user.name)
+        accountService.getAccount(user.name!)
           .subscribe(account => {
-            this.credentials.id = account.id;
-            this.credentials.username = account.username;
-            this.credentials.password = account.password;
-            this.credentials.confirmation = account.password;
-            this.credentials.description = account.description;
+            this.credentials.id = account.id as undefined;
+            this.credentials.username = account.username as string;
+            this.credentials.password = account.password as string;
+            this.credentials.confirmation = account.password as string;
+            this.credentials.description = account.description as string;
           });
       });
   }

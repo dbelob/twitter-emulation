@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../shared/models/user.model';
 import { AuthenticationService } from '../../shared/services/authentication.service';
@@ -7,6 +7,7 @@ import { AccountService } from '../../shared/services/account.service';
 @Component({
     selector: 'app-delete-account',
     templateUrl: './delete-account.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DeleteAccountComponent {
@@ -19,7 +20,7 @@ export class DeleteAccountComponent {
   }
 
   delete() {
-    this.accountService.deleteAccount(this.user.name)
+    this.accountService.deleteAccount(this.user.name!)
       .subscribe(() => {
         this.router.navigate(['/login'], {
           queryParams: {

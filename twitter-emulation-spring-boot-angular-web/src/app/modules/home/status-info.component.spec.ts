@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { Component, DebugElement, ViewChild } from '@angular/core';
+import { Component, DebugElement, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MessageService } from '../message/message.service';
 import { StatusInfoComponent } from './status-info.component';
@@ -8,6 +8,7 @@ import { UserState } from '../../shared/models/user-state.model';
 
 @Component({
     template: `<app-status-info [userState]="userState"></app-status-info>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestComponent {

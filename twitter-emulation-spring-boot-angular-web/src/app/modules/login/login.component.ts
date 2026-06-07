@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../shared/services/authentication.service';
 
 @Component({
     templateUrl: './login.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 

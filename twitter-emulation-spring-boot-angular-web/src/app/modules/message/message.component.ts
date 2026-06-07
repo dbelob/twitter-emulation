@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { MessageService } from './message.service';
 import { Message } from './message.model';
 
 @Component({
     selector: "app-message",
     templateUrl: "message.component.html",
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MessageComponent {
