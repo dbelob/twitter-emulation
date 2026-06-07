@@ -44,14 +44,14 @@ export class AccountInfoComponent implements OnChanges {
   }
 
   follow() {
-    this.followerService.follow(this.userState.selectedUserName)
+    this.followerService.follow(this.userState.selectedUserName!)
       .subscribe(() => {
         this.loadAccountStatistics(this.userState);
       });
   }
 
   unfollow() {
-    this.followerService.unfollow(this.userState.selectedUserName)
+    this.followerService.unfollow(this.userState.selectedUserName!)
       .subscribe(() => {
         this.loadAccountStatistics(this.userState);
       });

@@ -20,7 +20,7 @@ export class DeleteAccountComponent {
   }
 
   delete() {
-    this.accountService.deleteAccount(this.user.name)
+    this.accountService.deleteAccount(this.user.name!)
       .subscribe(() => {
         this.router.navigate(['/login'], {
           queryParams: {

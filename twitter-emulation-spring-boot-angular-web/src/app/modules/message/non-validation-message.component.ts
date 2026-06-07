@@ -8,5 +8,5 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 })
 export class NonValidationMessageComponent {
   @Input() public isFormSubmitted: boolean;
-  @Input() public isFormValid: boolean;
+  @Input() public isFormValid: boolean | null;
 }

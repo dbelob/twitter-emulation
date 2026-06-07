@@ -7,7 +7,7 @@ export class UserState {
   ) {
   }
 
-  getDataUserName(): string {
+  getDataUserName(): string | undefined {
     return (this.selectedUserName) ? this.selectedUserName : this.authenticatedUserName;
   }
 

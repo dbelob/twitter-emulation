@@ -14,7 +14,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient, private messageService: MessageService) {
   }
 
-  authenticate(credentials, success?: () => void, error?: () => void): Observable<boolean> {
+  authenticate(credentials?: { username: any; password: any; }, success?: () => void, error?: () => void): Observable<boolean> {
     const headers = new HttpHeaders(credentials ? {
       authorization: 'Basic ' + Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64')
     } : {});
