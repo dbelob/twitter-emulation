@@ -4,17 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RegistrationComponent } from './registration.component';
 import { MessageModule } from '../message/message.module';
-import { GeneralModule } from '../general/general.module';
+
 
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule,
-        RouterModule,
-        GeneralModule,
-        MessageModule,
-        RegistrationComponent
-    ]
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    MessageModule,
+    RegistrationComponent
+]
 })
 export class RegistrationModule {
 }
