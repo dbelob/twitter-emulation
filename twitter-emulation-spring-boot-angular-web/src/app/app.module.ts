@@ -57,27 +57,4 @@ const routes: Routes = [
   { path: '**', component: NotFoundComponent }
 ];
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    RouterModule.forRoot(routes, {}),
-    BrowserModule,
-    HomeModule,
-    MessageModule,
-    ProfileModule,
-    RegistrationModule,
-    TweetModule
-],
-  providers: [AccountService, AuthenticationService, TweetService, ValidationService, FollowerService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: XhrInterceptor,
-    multi: true
-  },
-    provideHttpClient(withXhr()),],
-  bootstrap: [AppComponent]
-})
 
-export class AppModule {
-}
