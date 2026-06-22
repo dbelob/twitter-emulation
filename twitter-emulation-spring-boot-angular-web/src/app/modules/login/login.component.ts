@@ -1,11 +1,13 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthenticationService } from '../../shared/services/authentication.service';
+import { FormsModule } from '@angular/forms';
+import { AutofocusDirective } from '../general/autofocus.directive';
 
 @Component({
     templateUrl: './login.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [FormsModule, AutofocusDirective, RouterLink]
 })
 
 export class LoginComponent {

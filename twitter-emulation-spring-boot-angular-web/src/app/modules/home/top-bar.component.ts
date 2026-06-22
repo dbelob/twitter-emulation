@@ -1,13 +1,14 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserState } from '../../shared/models/user-state.model';
 import { AuthenticationService } from '../../shared/services/authentication.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-top-bar',
     templateUrl: './top-bar.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [RouterLink, FormsModule]
 })
 export class TopBarComponent {
   @Input()

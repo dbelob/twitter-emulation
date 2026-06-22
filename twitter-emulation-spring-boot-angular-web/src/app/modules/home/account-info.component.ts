@@ -3,12 +3,13 @@ import { UserState } from '../../shared/models/user-state.model';
 import { AccountStatistics } from '../../shared/models/account-statistics.model';
 import { AccountService } from '../../shared/services/account.service';
 import { FollowerService } from '../../shared/services/follower.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-account-info',
     templateUrl: './account-info.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [RouterLink]
 })
 export class AccountInfoComponent implements OnChanges {
   @Input()

@@ -11,7 +11,7 @@ import { UserState } from '../../shared/models/user-state.model';
 @Component({
     template: `<app-account-info [userState]="userState" [accountStatistics]="accountStatistics"></app-account-info>`,
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [HttpClientModule]
 })
 class TestComponent {
   public userState: UserState = new UserState();
@@ -28,10 +28,9 @@ describe('AccountInfoComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [AccountInfoComponent, TestComponent],
-      imports: [HttpClientModule],
-      providers: [MessageService]
-    }).compileComponents();
+    imports: [HttpClientModule, AccountInfoComponent, TestComponent],
+    providers: [MessageService]
+}).compileComponents();
   }));
 
   beforeEach(() => {

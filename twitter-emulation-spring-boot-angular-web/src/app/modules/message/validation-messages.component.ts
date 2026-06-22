@@ -5,8 +5,7 @@ import { ValidationService } from '../../shared/services/validation.service';
 @Component({
     selector: 'app-validation-messages',
     templateUrl: './validation-messages.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 export class ValidationMessagesComponent {
   @Input() public isFormSubmitted: boolean;

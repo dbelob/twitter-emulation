@@ -5,8 +5,7 @@ import { Message } from './message.model';
 @Component({
     selector: "app-message",
     templateUrl: "message.component.html",
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 export class MessageComponent {
   public lastMessage: Message;
