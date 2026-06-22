@@ -1,16 +1,17 @@
 import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observer } from 'rxjs';
 import { HomeAccountComponent } from './home-account.component';
 import { AuthenticationService } from '../../shared/services/authentication.service';
 import { FollowerService } from '../../shared/services/follower.service';
 import { USER_STATE, UserState } from '../../shared/models/user-state.model';
+import { HomeComponent } from './home.component';
 
 @Component({
     selector: 'app-followers',
     templateUrl: './home-account.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [HomeComponent, RouterLink]
 })
 export class FollowersComponent extends HomeAccountComponent {
   constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,

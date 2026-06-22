@@ -4,13 +4,11 @@ import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found.component';
 
 @NgModule({
-  declarations: [
-    NotFoundComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        NotFoundComponent
+    ]
 })
 export class UnknownModule {
 }

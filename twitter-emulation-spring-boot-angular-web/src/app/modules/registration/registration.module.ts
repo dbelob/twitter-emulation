@@ -7,16 +7,14 @@ import { MessageModule } from '../message/message.module';
 import { GeneralModule } from '../general/general.module';
 
 @NgModule({
-  declarations: [
-    RegistrationComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    GeneralModule,
-    MessageModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule,
+        GeneralModule,
+        MessageModule,
+        RegistrationComponent
+    ]
 })
 export class RegistrationModule {
 }

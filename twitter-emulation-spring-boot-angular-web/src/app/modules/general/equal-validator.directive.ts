@@ -3,8 +3,7 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
 
 @Directive({
     selector: '[appValidateEqual]',
-    providers: [{ provide: NG_VALIDATORS, useExisting: EqualValidatorDirective, multi: true }],
-    standalone: false
+    providers: [{ provide: NG_VALIDATORS, useExisting: EqualValidatorDirective, multi: true }]
 })
 export class EqualValidatorDirective implements Validator {
   @Input('appValidateEqual') validated: string;

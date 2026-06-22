@@ -4,16 +4,15 @@ import { EqualValidatorDirective } from './equal-validator.directive';
 import { AutofocusDirective } from './autofocus.directive';
 
 @NgModule({
-  declarations: [
-    EqualValidatorDirective,
-    AutofocusDirective
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    EqualValidatorDirective,
-    AutofocusDirective]
+    imports: [
+        CommonModule,
+        EqualValidatorDirective,
+        AutofocusDirective
+    ],
+    exports: [
+        EqualValidatorDirective,
+        AutofocusDirective
+    ]
 })
 export class GeneralModule {
 }

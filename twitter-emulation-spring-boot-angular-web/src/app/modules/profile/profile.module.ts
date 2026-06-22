@@ -8,17 +8,15 @@ import { MessageModule } from '../message/message.module';
 import { GeneralModule } from '../general/general.module';
 
 @NgModule({
-  declarations: [
-    DeleteAccountComponent,
-    ProfileComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    GeneralModule,
-    MessageModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule,
+        GeneralModule,
+        MessageModule,
+        DeleteAccountComponent,
+        ProfileComponent
+    ]
 })
 export class ProfileModule {
 }

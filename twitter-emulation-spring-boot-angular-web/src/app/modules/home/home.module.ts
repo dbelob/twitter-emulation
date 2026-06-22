@@ -18,26 +18,24 @@ import { FollowingComponent } from './following.component';
 import { USER_STATE, UserState } from '../../shared/models/user-state.model';
 
 @NgModule({
-  declarations: [
-    AccountComponent,
-    AccountInfoComponent,
-    HomeComponent,
-    HomeAccountComponent,
-    HomeTweetsComponent,
-    TweetsComponent,
-    FollowingComponent,
-    FollowersComponent,
-    SearchComponent,
-    StatusInfoComponent,
-    TopBarComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    FormsModule,
-    MessageModule
-  ],
-  providers: [{provide: USER_STATE, useValue: new Subject<UserState>()}]
+    imports: [
+        CommonModule,
+        RouterModule,
+        FormsModule,
+        MessageModule,
+        AccountComponent,
+        AccountInfoComponent,
+        HomeComponent,
+        HomeAccountComponent,
+        HomeTweetsComponent,
+        TweetsComponent,
+        FollowingComponent,
+        FollowersComponent,
+        SearchComponent,
+        StatusInfoComponent,
+        TopBarComponent
+    ],
+    providers: [{ provide: USER_STATE, useValue: new Subject<UserState>() }]
 })
 export class HomeModule {
 }

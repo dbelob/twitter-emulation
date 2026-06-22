@@ -8,8 +8,7 @@ import { UserState } from '../../shared/models/user-state.model';
 
 @Component({
     template: `<app-status-info [userState]="userState"></app-status-info>`,
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 class TestComponent {
   public userState: UserState = new UserState();
@@ -25,9 +24,9 @@ describe('StatusInfoComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [StatusInfoComponent, TestComponent],
-      providers: [MessageService]
-    }).compileComponents();
+    imports: [StatusInfoComponent, TestComponent],
+    providers: [MessageService]
+}).compileComponents();
   }));
 
   beforeEach(() => {

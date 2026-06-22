@@ -1,11 +1,12 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { UserState } from '../../shared/models/user-state.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-status-info',
     templateUrl: './status-info.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [DatePipe]
 })
 export class StatusInfoComponent {
   @Input()

@@ -6,15 +6,13 @@ import { LoginComponent } from './login.component';
 import { GeneralModule } from '../general/general.module';
 
 @NgModule({
-  declarations: [
-    LoginComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    GeneralModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule,
+        GeneralModule,
+        LoginComponent
+    ]
 })
 export class LoginModule {
 }

@@ -6,18 +6,15 @@ import { NonValidationMessageComponent } from './non-validation-message.componen
 import { ValidationMessagesComponent } from './validation-messages.component';
 
 @NgModule({
-  declarations: [
-    MessageComponent,
-    NonValidationMessageComponent,
-    ValidationMessagesComponent
-  ],
-  imports: [CommonModule],
-  providers: [MessageService],
-  exports: [
-    MessageComponent,
-    NonValidationMessageComponent,
-    ValidationMessagesComponent
-  ]
+    imports: [CommonModule, MessageComponent,
+        NonValidationMessageComponent,
+        ValidationMessagesComponent],
+    providers: [MessageService],
+    exports: [
+        MessageComponent,
+        NonValidationMessageComponent,
+        ValidationMessagesComponent
+    ]
 })
 export class MessageModule {
 }

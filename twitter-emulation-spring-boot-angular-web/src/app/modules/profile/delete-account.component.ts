@@ -1,14 +1,15 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { User } from '../../shared/models/user.model';
 import { AuthenticationService } from '../../shared/services/authentication.service';
 import { AccountService } from '../../shared/services/account.service';
+import { MessageComponent } from '../message/message.component';
 
 @Component({
     selector: 'app-delete-account',
     templateUrl: './delete-account.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [MessageComponent, RouterLink]
 })
 export class DeleteAccountComponent {
   public user: User = new User();

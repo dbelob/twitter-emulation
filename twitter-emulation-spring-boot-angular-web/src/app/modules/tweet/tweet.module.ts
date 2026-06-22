@@ -7,16 +7,14 @@ import { MessageModule } from '../message/message.module';
 import { GeneralModule } from '../general/general.module';
 
 @NgModule({
-  declarations: [
-    NewTweetComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    GeneralModule,
-    MessageModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule,
+        GeneralModule,
+        MessageModule,
+        NewTweetComponent
+    ]
 })
 export class TweetModule {
 }

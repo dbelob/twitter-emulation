@@ -29,10 +29,11 @@ describe('MessagesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [MessageComponent],
-      providers: [
-        {provide: MessageService, useValue: mockMessageService}]
-    }).compileComponents();
+    imports: [MessageComponent],
+    providers: [
+        { provide: MessageService, useValue: mockMessageService }
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

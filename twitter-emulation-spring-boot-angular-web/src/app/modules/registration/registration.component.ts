@@ -1,14 +1,18 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NgForm, FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { Account } from '../../shared/models/account.model';
 import { AccountService } from '../../shared/services/account.service';
+import { NonValidationMessageComponent } from '../message/non-validation-message.component';
+import { ValidationMessagesComponent } from '../message/validation-messages.component';
+import { AutofocusDirective } from '../general/autofocus.directive';
+import { EqualValidatorDirective } from '../general/equal-validator.directive';
 
 @Component({
     selector: 'app-registration',
     templateUrl: './registration.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [FormsModule, NonValidationMessageComponent, ValidationMessagesComponent, AutofocusDirective, EqualValidatorDirective, RouterLink]
 })
 export class RegistrationComponent {
   public formSubmitted = false;
