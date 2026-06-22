@@ -4,15 +4,7 @@ import {
   Injectable,
   importProvidersFrom,
 } from "@angular/core";
-import { BrowserModule, bootstrapApplication } from "@angular/platform-browser";
-
-// import { XhrInterceptor } from "./app/app.module";
-import { environment } from "./environments/environment";
-import { AccountService } from "./app/shared/services/account.service";
-import { AuthenticationService } from "./app/shared/services/authentication.service";
-import { TweetService } from "./app/shared/services/tweet.service";
-import { ValidationService } from "./app/shared/services/validation.service";
-import { FollowerService } from "./app/shared/services/follower.service";
+import { bootstrapApplication } from "@angular/platform-browser";
 import {
   HTTP_INTERCEPTORS,
   HttpInterceptor,
@@ -22,12 +14,19 @@ import {
   withXhr,
 } from "@angular/common/http";
 import { provideRouter } from "@angular/router";
+
+import { environment } from "./environments/environment";
+import { AccountService } from "./app/shared/services/account.service";
+import { AppComponent } from "./app/app.component";
+import { AuthenticationService } from "./app/shared/services/authentication.service";
+import { FollowerService } from "./app/shared/services/follower.service";
 import { HomeModule } from "./app/modules/home/home.module";
 import { MessageModule } from "./app/modules/message/message.module";
 import { ProfileModule } from "./app/modules/profile/profile.module";
 import { RegistrationModule } from "./app/modules/registration/registration.module";
 import { TweetModule } from "./app/modules/tweet/tweet.module";
-import { AppComponent } from "./app/app.component";
+import { TweetService } from "./app/shared/services/tweet.service";
+import { ValidationService } from "./app/shared/services/validation.service";
 import { routes } from "./app/app.routes";
 
 if (environment.production) {
@@ -48,7 +47,6 @@ export class XhrInterceptor implements HttpInterceptor {
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(
-      BrowserModule,
       HomeModule,
       MessageModule,
       ProfileModule,
