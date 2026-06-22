@@ -1,8 +1,7 @@
 import {
   enableProdMode,
   provideZoneChangeDetection,
-  Injectable,
-  importProvidersFrom,
+  Injectable
 } from "@angular/core";
 import { bootstrapApplication } from "@angular/platform-browser";
 import {
@@ -20,11 +19,7 @@ import { AccountService } from "./app/shared/services/account.service";
 import { AppComponent } from "./app/app.component";
 import { AuthenticationService } from "./app/shared/services/authentication.service";
 import { FollowerService } from "./app/shared/services/follower.service";
-import { HomeModule } from "./app/modules/home/home.module";
-import { MessageModule } from "./app/modules/message/message.module";
-import { ProfileModule } from "./app/modules/profile/profile.module";
-import { RegistrationModule } from "./app/modules/registration/registration.module";
-import { TweetModule } from "./app/modules/tweet/tweet.module";
+import { MessageService } from "./app/modules/message/message.service";
 import { TweetService } from "./app/shared/services/tweet.service";
 import { ValidationService } from "./app/shared/services/validation.service";
 import { routes } from "./app/app.routes";
@@ -46,18 +41,12 @@ export class XhrInterceptor implements HttpInterceptor {
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(
-      HomeModule,
-      MessageModule,
-      ProfileModule,
-      RegistrationModule,
-      TweetModule,
-    ),
     AccountService,
     AuthenticationService,
+    FollowerService,
+    MessageService,
     TweetService,
     ValidationService,
-    FollowerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: XhrInterceptor,

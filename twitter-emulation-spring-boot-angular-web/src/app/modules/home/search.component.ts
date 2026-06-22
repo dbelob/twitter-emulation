@@ -2,7 +2,7 @@ import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthenticationService } from '../../shared/services/authentication.service';
 import { HomeAccountComponent } from './home-account.component';
-import { Observer } from 'rxjs';
+import { Observer, Subject } from 'rxjs';
 import { AccountService } from '../../shared/services/account.service';
 import { USER_STATE, UserState } from '../../shared/models/user-state.model';
 import { HomeComponent } from './home.component';
@@ -11,7 +11,8 @@ import { HomeComponent } from './home.component';
     selector: 'app-search',
     templateUrl: './home-account.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [HomeComponent, RouterLink]
+    imports: [HomeComponent, RouterLink],
+    providers: [{ provide: USER_STATE, useValue: new Subject<UserState>() }]
 })
 export class SearchComponent extends HomeAccountComponent {
   constructor(authenticationService: AuthenticationService, private activatedRoute: ActivatedRoute, router: Router,

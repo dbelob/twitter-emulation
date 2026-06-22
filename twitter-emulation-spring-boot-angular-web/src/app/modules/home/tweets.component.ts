@@ -1,6 +1,6 @@
 import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Observer } from 'rxjs';
+import { Observer, Subject } from 'rxjs';
 import { HomeTweetsComponent } from './home-tweets.component';
 import { AuthenticationService } from '../../shared/services/authentication.service';
 import { TweetService } from '../../shared/services/tweet.service';
@@ -12,7 +12,8 @@ import { DatePipe } from '@angular/common';
     selector: 'app-tweets',
     templateUrl: './home-tweets.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [HomeComponent, RouterLink, DatePipe]
+    imports: [HomeComponent, RouterLink, DatePipe],
+    providers: [{ provide: USER_STATE, useValue: new Subject<UserState>() }]
 })
 export class TweetsComponent extends HomeTweetsComponent {
   constructor(authenticationService: AuthenticationService, activatedRoute: ActivatedRoute, router: Router,
