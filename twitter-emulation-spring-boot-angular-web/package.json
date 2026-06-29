@@ -39,7 +39,7 @@
     "ajv": "^8.20.0",
     "angular-eslint": "^22.0.0",
     "codelyzer": "^6.0.2",
-    "eslint": "^10.5.0",
+    "eslint": "^10.6.0",
     "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "^6.3.0",
     "jasmine-spec-reporter": "~7.0.0",
