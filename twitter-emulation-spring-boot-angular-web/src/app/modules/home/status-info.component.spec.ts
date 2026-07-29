@@ -1,14 +1,14 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
-import { Component, DebugElement, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { Component, DebugElement, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MessageService } from '../message/message.service';
 import { StatusInfoComponent } from './status-info.component';
 import { UserState } from '../../shared/models/user-state.model';
 
 @Component({
     template: `<app-status-info [userState]="userState"></app-status-info>`,
-    changeDetection: ChangeDetectionStrategy.Eager
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [StatusInfoComponent]
 })
 class TestComponent {
   public userState: UserState = new UserState();
@@ -22,18 +22,18 @@ describe('StatusInfoComponent', () => {
   let component: StatusInfoComponent;
   let debugElement: DebugElement;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-    imports: [StatusInfoComponent, TestComponent],
-    providers: [MessageService]
-}).compileComponents();
-  }));
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [StatusInfoComponent, TestComponent],
+      providers: [MessageService]
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance.statusInfoComponent;
     debugElement = fixture.debugElement.query(By.directive(StatusInfoComponent));
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
   });
 
   it('should create', () => {
@@ -48,7 +48,7 @@ describe('StatusInfoComponent', () => {
     expect(debugElement.query(By.css("span[id=username]"))).toBeNull();
 
     component.userState = new UserState('jsmith', 'jsmith');
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(component.userState.authenticatedUserName).toBe('jsmith');
     expect(component.userState.selectedUserName).toBe('jsmith');
     expect(component.isStateVisible()).toBe(true);
@@ -56,7 +56,7 @@ describe('StatusInfoComponent', () => {
     expect(debugElement.query(By.css("span[id=username]")).nativeElement.textContent).toEqual('jsmith');
 
     component.userState = new UserState('jsmith', 'jdoe');
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(component.userState.authenticatedUserName).toBe('jsmith');
     expect(component.userState.selectedUserName).toBe('jdoe');
     expect(component.isStateVisible()).toBe(true);
@@ -64,7 +64,7 @@ describe('StatusInfoComponent', () => {
     expect(debugElement.query(By.css("span[id=username]")).nativeElement.textContent).toEqual('jsmith');
 
     component.userState = new UserState('jdoe', 'jdoe');
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(component.userState.authenticatedUserName).toBe('jdoe');
     expect(component.userState.selectedUserName).toBe('jdoe');
     expect(component.isStateVisible()).toBe(true);
@@ -72,7 +72,7 @@ describe('StatusInfoComponent', () => {
     expect(debugElement.query(By.css("span[id=username]")).nativeElement.textContent).toEqual('jdoe');
 
     component.userState = new UserState('jdoe', 'jsmith');
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(component.userState.authenticatedUserName).toBe('jdoe');
     expect(component.userState.selectedUserName).toBe('jsmith');
     expect(component.isStateVisible()).toBe(true);

@@ -15,6 +15,7 @@ export class AccountInfoComponent implements OnChanges {
   @Input()
   userState: UserState;
 
+  @Input()
   public accountStatistics: AccountStatistics = new AccountStatistics();
 
   constructor(private accountService: AccountService, private followerService: FollowerService) {
