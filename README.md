@@ -345,16 +345,6 @@ in several ways:
 
    `npm run e2e`
 
-#### Protractor tests
-
-1. Change directory:
-
-    `cd twitter-emulation-spring-boot-angular-web`
-
-1. From the command line with *npm*:
-
-    `npm run e2e`
-
 ## Development
 
 * [H2 Database Console](http://localhost:8082)
@@ -382,7 +372,6 @@ in several ways:
 * [React Testing Library](https://testing-library.com/react) (*JavaScript* unit testing for *React*)
 * [Jasmine](https://jasmine.github.io) (*JavaScript* unit testing)
 * [Puppeteer](https://pptr.dev) (*JavaScript* end-to-end testing)
-* [Protractor](https://www.protractortest.org) (end-to-end testing for *Angular*)
 * [Vitest](https://vitest.dev) (*JavaScript* testing by *Vite*)
 
 ## CI/CD

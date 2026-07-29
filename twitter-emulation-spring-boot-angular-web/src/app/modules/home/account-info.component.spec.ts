@@ -1,17 +1,16 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
-import { Component, DebugElement, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
-import { MessageService } from '../message/message.service';
+import { Component, DebugElement, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { AccountInfoComponent } from './account-info.component';
 import { AccountStatistics } from '../../shared/models/account-statistics.model';
+import { MessageService } from '../message/message.service';
 import { UserState } from '../../shared/models/user-state.model';
 
 @Component({
     template: `<app-account-info [userState]="userState" [accountStatistics]="accountStatistics"></app-account-info>`,
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [HttpClientModule]
+    imports: [AccountInfoComponent]
 })
 class TestComponent {
   public userState: UserState = new UserState();
@@ -26,18 +25,16 @@ describe('AccountInfoComponent', () => {
   let component: AccountInfoComponent;
   let debugElement: DebugElement;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-    imports: [HttpClientModule, AccountInfoComponent, TestComponent],
-    providers: [MessageService]
-}).compileComponents();
-  }));
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AccountInfoComponent, TestComponent],
+      providers: [MessageService, provideRouter([])]
+    }).compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance.accountInfoComponent;
     debugElement = fixture.debugElement.query(By.directive(AccountInfoComponent));
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
   });
 
   it('should create', () => {
@@ -51,14 +48,14 @@ describe('AccountInfoComponent', () => {
     expect(debugElement.query(By.css("div[id=buttons]"))).toBeNull();
 
     component.userState = new UserState('jsmith', 'jsmith');
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(component.userState.authenticatedUserName).toBe('jsmith');
     expect(component.userState.selectedUserName).toBe('jsmith');
     expect(component.isFollowVisible()).toBe(false);
     expect(debugElement.query(By.css("div[id=buttons]"))).toBeNull();
 
     component.userState = new UserState('jsmith', 'jdoe');
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(component.userState.authenticatedUserName).toBe('jsmith');
     expect(component.userState.selectedUserName).toBe('jdoe');
     expect(component.isFollowVisible()).toBe(true);
@@ -72,7 +69,7 @@ describe('AccountInfoComponent', () => {
     expect(debugElement.query(By.css("div[id=description]")).nativeElement.textContent.trim()).toBe('');
 
     component.accountStatistics = new AccountStatistics('jsmith', 'John Smith', 6, 2, 1);
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(component.accountStatistics.description).toBe('John Smith');
     expect(component.accountStatistics.username).toBe('jsmith');
     expect(debugElement.query(By.css("div[id=username]")).nativeElement.textContent).toEqual('@jsmith');
@@ -82,7 +79,7 @@ describe('AccountInfoComponent', () => {
     expect(debugElement.query(By.css("a[id=followers]")).nativeElement.textContent).toEqual('1');
 
     component.accountStatistics = new AccountStatistics('jdoe', 'John Doe', 3, 1, 1);
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(component.accountStatistics.username).toBe('jdoe');
     expect(component.accountStatistics.description).toBe('John Doe');
     expect(debugElement.query(By.css("div[id=username]")).nativeElement.textContent).toEqual('@jdoe');
@@ -100,20 +97,20 @@ describe('AccountInfoComponent', () => {
     expect(debugElement.query(By.css("button[id=unfollow]"))).toBeNull();
 
     component.accountStatistics = new AccountStatistics(undefined, undefined, undefined, undefined, undefined, true);
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(component.accountStatistics.follow).toBe(true);
     expect(debugElement.query(By.css("button[id=follow]"))).toBeNull();
     expect(debugElement.query(By.css("button[id=unfollow]"))).toBeNull();
 
     component.userState = new UserState('jsmith', 'jdoe');
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(component.userState.authenticatedUserName).toBe('jsmith');
     expect(component.userState.selectedUserName).toBe('jdoe');
     expect(debugElement.query(By.css("button[id=follow]"))).toBeNull();
     expect(debugElement.query(By.css("button[id=unfollow]"))).not.toBeNull();
 
     component.accountStatistics = new AccountStatistics(undefined, undefined, undefined, undefined, undefined, false);
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     expect(component.accountStatistics.follow).toBe(false);
     expect(debugElement.query(By.css("button[id=follow]"))).not.toBeNull();
     expect(debugElement.query(By.css("button[id=unfollow]"))).toBeNull();

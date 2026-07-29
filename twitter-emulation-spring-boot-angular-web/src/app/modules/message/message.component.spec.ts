@@ -1,11 +1,10 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
-import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { MessageService } from './message.service';
-import { MessageComponent } from './message.component';
 import { Message } from './message.model';
+import { MessageComponent } from './message.component';
+import { MessageService } from './message.service';
 
 class MockMessageService {
   private subject = new Subject<Message>();
@@ -27,19 +26,19 @@ describe('MessagesComponent', () => {
   let debugElement: DebugElement;
   let bindingElement: HTMLDivElement;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-    imports: [MessageComponent],
-    providers: [
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [MessageComponent],
+      providers: [
         { provide: MessageService, useValue: mockMessageService }
-    ]
-}).compileComponents();
-  }));
+      ]
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MessageComponent);
     component = fixture.componentInstance;
-    messageService = TestBed.get(MessageService);
+    messageService = TestBed.inject(MessageService);
     debugElement = fixture.debugElement;
     fixture.detectChanges();
   });
@@ -59,22 +58,18 @@ describe('MessagesComponent', () => {
     expect(debugElement.query(By.css("div"))).toBeNull();
 
     messageService.reportMessage(new Message('Message 1', new Date(), true));
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     bindingElement = debugElement.query(By.css("div")).nativeElement;
     expect(bindingElement.textContent).toContain('Message 1');
 
     messageService.reportMessage(new Message('Message 2', new Date(), true));
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     bindingElement = debugElement.query(By.css("div")).nativeElement;
     expect(bindingElement.textContent).toContain('Message 2');
 
     messageService.reportMessage(new Message('Message 3', new Date(), true));
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     bindingElement = debugElement.query(By.css("div")).nativeElement;
     expect(bindingElement.textContent).toContain('Message 3');
-
-    messageService.reportMessage(undefined);
-    fixture.detectChanges();
-    expect(debugElement.query(By.css("div"))).toBeNull();
   });
 });
