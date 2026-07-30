@@ -9,9 +9,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest",
-    "test:integration": "vitest run --config vitest.integration.config.ts",
-    "e2e": "cross-env BROWSER=none PORT=5173 start-server-and-test start http://localhost:5173 \\\"cd e2e && vitest --config vitest.integration.config.ts\\\""
+    "test": "vitest --config vitest.config.ts",
+    "test:integration": "vitest --config vitest.integration.config.ts",
+    "e2e": "cross-env BROWSER=none PORT=5173 start-server-and-test start http://localhost:5173 test:integration"
   },
   "dependencies": {
     "axios": "^1.19.0",
