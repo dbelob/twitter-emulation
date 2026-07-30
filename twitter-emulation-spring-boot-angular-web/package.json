@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +31,7 @@
     "@angular/cli": "^22.1.0",
     "@angular/compiler-cli": "^22.1.0",
     "@angular/language-service": "^22.1.0",
+    "@puppeteer/ng-schematics": "^0.8.0",
     "@types/jasmine": "^6.0.0",
     "@types/jasminewd2": "^2.0.13",
     "@types/node": "^26.1.2",
@@ -48,6 +50,8 @@
     "karma-jasmine-html-reporter": "^2.2.0",
     "mockttp": "^4.6.0",
     "typescript": "~6.0.3",
-    "typescript-eslint": "^8.65.0"
+    "typescript-eslint": "^8.65.0",
+    "puppeteer": "25.4.0",
+    "jasmine": "6.3.0"
   }
 }

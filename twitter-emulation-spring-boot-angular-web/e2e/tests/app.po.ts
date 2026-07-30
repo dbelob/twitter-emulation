@@ -1,6 +1,6 @@
 import { Page } from 'puppeteer';
 
-const rootSelector = '#root';
+const rootSelector = 'app-root';
 const pageHeaderSelector = 'h3';
 
 export const navigateTo = async (page: Page, baseUrl: string) => {

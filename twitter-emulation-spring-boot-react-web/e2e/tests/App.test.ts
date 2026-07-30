@@ -17,7 +17,7 @@ describe('App', () => {
         await browser.close();
     });
 
-    test('should open application', async () => {
+    it('should open application', async () => {
         await navigateTo(page, baseUrl);
         expect(await getPageTitleText(page)).toBe('Twitter (React)');
     });
