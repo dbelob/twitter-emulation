@@ -18,5 +18,7 @@ export const getPageHeaderText = async (page: Page) => {
         throw new Error('Can\'t root node');
     }
 
+    await page.waitForSelector(pageHeaderSelector);
+
     return await app.$eval(pageHeaderSelector, (el: any) => el.innerText);
 };

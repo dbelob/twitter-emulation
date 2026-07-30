@@ -1,7 +1,7 @@
 import { Page } from 'puppeteer';
 
 const rootSelector = '#root';
-const titleSelector = 'h3';
+const pageHeaderSelector = 'h3';
 
 export const navigateTo = async (page: Page, baseUrl: string) => {
     await page.goto(baseUrl);
@@ -18,5 +18,7 @@ export const getPageHeaderText = async (page: Page) => {
         throw new Error('Can\'t root node');
     }
 
-    return await app.$eval(titleSelector, (el: any) => el.innerText);
+    await page.waitForSelector(pageHeaderSelector);
+
+    return await app.$eval(pageHeaderSelector, (el: any) => el.innerText);
 };
