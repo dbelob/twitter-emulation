@@ -1,13 +1,12 @@
-
 import {setupBrowserHooks, getBrowserState} from './utils';
 
 describe('App test', function () {
   setupBrowserHooks();
+
   it('is running', async function () {
     const {page} = getBrowserState();
-    const element = await page.locator('::-p-text(client)').wait();
+    const element = await page.locator('::-p-text(Log in)').wait();
 
     expect(element).not.toBeNull();
-
   });
 });
