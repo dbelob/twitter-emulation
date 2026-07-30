@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
-    "e2e": "cross-env BROWSER=none PORT=5173 start-server-and-test start http://localhost:5173 \\\"cd e2e && jest\\\""
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "e2e": "cross-env BROWSER=none PORT=5173 start-server-and-test start http://localhost:5173 \\\"cd e2e && vitest --config vitest.integration.config.ts\\\""
   },
   "dependencies": {
     "axios": "^1.19.0",
@@ -34,9 +35,7 @@
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.2",
     "@types/expect-puppeteer": "^5.0.6",
-    "@types/jest": "^30.0.0",
     "@types/jest-environment-puppeteer": "^5.0.6",
-    "@types/puppeteer": "^7.0.4",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@types/validator": "^13.15.10",
@@ -46,13 +45,11 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.3",
     "globals": "^17.8.0",
-    "jest": "^30.4.2",
     "jest-puppeteer": "^11.0.0",
     "jsdom": "^30.0.1",
     "msw": "^2.15.0",
     "puppeteer": "^25.4.0",
     "start-server-and-test": "^3.0.11",
-    "ts-jest": "^29.4.12",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.65.0",
