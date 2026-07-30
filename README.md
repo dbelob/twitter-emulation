@@ -335,11 +335,21 @@ in several ways:
 
 ### Frontend end-to-end testing
 
-#### Puppeteer tests
+#### Puppeteer tests (React)
 
 1. Change directory:
 
    `cd twitter-emulation-spring-boot-react-web`
+
+1. From the command line with *npm*:
+
+   `npm run e2e`
+
+#### Puppeteer tests (Angular)
+
+1. Change directory:
+
+   `cd twitter-emulation-spring-boot-angular-web`
 
 1. From the command line with *npm*:
 
