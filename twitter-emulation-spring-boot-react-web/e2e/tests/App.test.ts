@@ -1,4 +1,5 @@
 import puppeteer, { Browser, Page } from 'puppeteer';
+import { afterAll, beforeAll, describe, it, expect } from 'vitest';
 import { getPageTitleText, navigateTo } from './app.po';
 
 describe('App', () => {
