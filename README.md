@@ -313,7 +313,7 @@ in several ways:
 
 ### Frontend unit testing
 
-#### Jest, React Testing Library, Vitest tests
+#### Vitest, React Testing Library tests
 
 1. Change directory:
 
