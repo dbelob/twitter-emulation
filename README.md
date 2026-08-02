@@ -323,7 +323,7 @@ in several ways:
 
    `npm run test`
 
-#### Jasmine tests
+#### Jasmine, Karma tests
 
 1. Change directory:
 
@@ -378,11 +378,11 @@ in several ways:
 * [JUnit](https://junit.org) (*Java* unit testing)
 * [Mockito](https://site.mockito.org) (mocking for unit tests in *Java*)
 * [TestContainers](https://www.testcontainers.org) (testing with [Docker](https://www.docker.com) containers)
-* [Jest](https://jestjs.io) (*JavaScript* unit testing)
+* [Vitest](https://vitest.dev) (*JavaScript* testing by *Vite*)
 * [React Testing Library](https://testing-library.com/react) (*JavaScript* unit testing for *React*)
 * [Jasmine](https://jasmine.github.io) (*JavaScript* unit testing)
+* [Karma](https://karma-runner.github.io) (test runner for *JavaScript*)
 * [Puppeteer](https://pptr.dev) (*JavaScript* end-to-end testing)
-* [Vitest](https://vitest.dev) (*JavaScript* testing by *Vite*)
 
 ## CI/CD
 
