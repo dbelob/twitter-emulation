@@ -46,7 +46,7 @@
     "globals": "^17.9.0",
     "jsdom": "^30.0.1",
     "msw": "^2.15.0",
-    "puppeteer": "^25.4.0",
+    "puppeteer": "^25.5.0",
     "start-server-and-test": "^3.0.12",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
