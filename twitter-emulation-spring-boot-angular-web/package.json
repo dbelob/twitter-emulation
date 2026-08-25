@@ -48,7 +48,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^2.3.0",
-    "mockttp": "^4.6.0",
+    "mockttp": "^4.6.1",
     "puppeteer": "^25.8.0",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.67.0"
