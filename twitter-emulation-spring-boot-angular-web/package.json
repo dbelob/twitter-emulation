@@ -49,7 +49,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^2.3.0",
     "mockttp": "^4.6.2",
-    "puppeteer": "^25.9.0",
+    "puppeteer": "^25.10.0",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.69.0"
   }
