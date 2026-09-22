@@ -44,7 +44,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
     "globals": "^17.12.0",
-    "jsdom": "^30.0.1",
+    "jsdom": "^30.1.0",
     "msw": "^2.15.0",
     "puppeteer": "^25.11.0",
     "start-server-and-test": "^3.0.12",
