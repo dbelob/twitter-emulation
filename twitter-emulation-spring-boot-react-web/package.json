@@ -50,7 +50,7 @@
     "start-server-and-test": "^3.0.12",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.70.0",
+    "typescript-eslint": "^8.70.1",
     "vite": "^8.3.0",
     "vitest": "^5.0.1",
     "vitest-puppeteer": "^11.0.3"
