@@ -47,7 +47,7 @@
     "jsdom": "^30.1.2",
     "msw": "^3.0.3",
     "puppeteer": "^25.13.0",
-    "start-server-and-test": "^3.0.12",
+    "start-server-and-test": "^3.0.13",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.1",
