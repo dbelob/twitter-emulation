@@ -1,8 +1,6 @@
-import 'reflect-metadata';
 import { BrowserRouter } from 'react-router';
 import { act, cleanup, render, screen, within } from '@testing-library/react';
-import { Container } from 'inversify';
-import { Provider } from 'inversify-react';
+import { container } from 'inversify-hooks';
 import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import AccountInfo from './AccountInfo';
@@ -12,10 +10,9 @@ import { FollowerService } from '../common/services/FollowerService';
 import { MessageService } from '../message/MessageService';
 
 describe('AccountInfoComponent', () => {
-    const iocContainer = new Container();
-    iocContainer.bind(AccountService).toSelf().inSingletonScope();
-    iocContainer.bind(FollowerService).toSelf().inSingletonScope();
-    iocContainer.bind(MessageService).toSelf().inSingletonScope();
+    container.addSingleton<AccountService>(AccountService);
+    container.addSingleton<FollowerService>(FollowerService);
+    container.addSingleton<MessageService>(MessageService);
 
     const server = setupServer(
         http.get('/api/account/statistics/jsmith', () => {
@@ -48,11 +45,10 @@ describe('AccountInfoComponent', () => {
         // eslint-disable-next-line testing-library/no-unnecessary-act
         await act(() => {
             render(
-                <Provider container={iocContainer}>
-                    <BrowserRouter>
-                        <AccountInfo userState={userState}/>
-                    </BrowserRouter>
-                </Provider>);
+                <BrowserRouter>
+                    <AccountInfo userState={userState}/>
+                </BrowserRouter>
+            );
         });
         expect(screen.getByText(/^@/)).toBeTruthy();
     });
@@ -62,11 +58,10 @@ describe('AccountInfoComponent', () => {
         // eslint-disable-next-line testing-library/no-unnecessary-act
         await act(async () => {
             render(
-                <Provider container={iocContainer}>
-                    <BrowserRouter>
-                        <AccountInfo userState={userState}/>
-                    </BrowserRouter>
-                </Provider>);
+                <BrowserRouter>
+                    <AccountInfo userState={userState}/>
+                </BrowserRouter>
+            );
         });
         expect(within(screen.getByTestId('description')).getByText('John Smith')).toBeInTheDocument();
         expect(within(screen.getByTestId('username')).getByText('@jsmith')).toBeInTheDocument();
@@ -83,11 +78,10 @@ describe('AccountInfoComponent', () => {
         // eslint-disable-next-line testing-library/no-unnecessary-act
         await act(async () => {
             render(
-                <Provider container={iocContainer}>
-                    <BrowserRouter>
-                        <AccountInfo userState={userState}/>
-                    </BrowserRouter>
-                </Provider>);
+                <BrowserRouter>
+                    <AccountInfo userState={userState}/>
+                </BrowserRouter>
+            );
         });
         expect(within(screen.getByTestId('description')).getByText('John Doe')).toBeInTheDocument();
         expect(within(screen.getByTestId('username')).getByText('@jdoe')).toBeInTheDocument();
@@ -104,11 +98,10 @@ describe('AccountInfoComponent', () => {
         // eslint-disable-next-line testing-library/no-unnecessary-act
         await act(async () => {
             render(
-                <Provider container={iocContainer}>
-                    <BrowserRouter>
-                        <AccountInfo userState={userState}/>
-                    </BrowserRouter>
-                </Provider>);
+                <BrowserRouter>
+                    <AccountInfo userState={userState}/>
+                </BrowserRouter>
+            );
         });
         expect(within(screen.getByTestId('description')).getByText('Richard Roe')).toBeInTheDocument();
         expect(within(screen.getByTestId('username')).getByText('@rroe')).toBeInTheDocument();
