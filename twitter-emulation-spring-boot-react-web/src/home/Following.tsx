@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { resolve } from 'inversify-react';
+import { inject } from 'inversify-hooks';
 import ReactUtils from '../common/ReactUtils';
 import { Account } from '../common/models/Account';
 import { FollowerService } from '../common/services/FollowerService';
@@ -15,8 +15,7 @@ type FollowingState = {
 };
 
 class Following extends Component<FollowingProps, FollowingState> {
-    @resolve(FollowerService)
-    private readonly followerService!: FollowerService;
+    @inject() private readonly followerService!: FollowerService;
 
     constructor(props: FollowingProps) {
         super(props);

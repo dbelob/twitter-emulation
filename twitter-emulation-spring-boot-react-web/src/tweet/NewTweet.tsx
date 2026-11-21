@@ -1,6 +1,6 @@
 import { ChangeEvent, Component } from 'react';
+import { inject } from 'inversify-hooks';
 import { Link, Navigate } from 'react-router';
-import { resolve } from 'inversify-react';
 import { FormValidator } from '../common/validation/FormValidator';
 import { ValidationMessages } from '../common/validation/ValidationMessages';
 import { ValidatableTextarea } from '../common/validation/ValidatableTextarea';
@@ -16,8 +16,7 @@ type NewTweetState = {
 }
 
 export default class NewTweet extends Component<NewTweetProps, NewTweetState> {
-    @resolve(TweetService)
-    private readonly tweetService!: TweetService;
+    @inject() private readonly tweetService!: TweetService;
 
     private readonly rules: any;
 

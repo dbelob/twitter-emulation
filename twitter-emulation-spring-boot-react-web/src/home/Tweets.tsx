@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { resolve } from 'inversify-react';
+import { inject } from 'inversify-hooks';
 import { Tweet } from '../common/models/Tweet';
 import Home from './Home';
 import TweetList from './TweetList';
@@ -15,8 +15,7 @@ type TweetsState = {
 };
 
 class Tweets extends Component<TweetsProps, TweetsState> {
-    @resolve(TweetService)
-    private readonly tweetService!: TweetService;
+    @inject() private readonly tweetService!: TweetService;
 
     constructor(props: TweetsProps) {
         super(props);

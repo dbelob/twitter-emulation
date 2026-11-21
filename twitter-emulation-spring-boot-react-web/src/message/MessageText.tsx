@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { resolve } from 'inversify-react';
+import { inject } from 'inversify-hooks';
 import { MessageService } from './MessageService';
 import { Message } from '../common/models/Message';
 
@@ -18,8 +18,7 @@ export default class MessageText extends Component<MessageTextProps, MessageText
         hidingTime: 10
     };
 
-    @resolve(MessageService)
-    private readonly messageService!: MessageService;
+    @inject() private readonly messageService!: MessageService;
 
 
     constructor(props: MessageTextProps) {
@@ -38,7 +37,7 @@ export default class MessageText extends Component<MessageTextProps, MessageText
         if (this.state.lastMessage) {
             if (this.props.autoHide) {
                 if (this.state.lastMessage.date) {
-                    let timeDifference = Date.now() - this.state.lastMessage.date.getTime();
+                    const timeDifference = Date.now() - this.state.lastMessage.date.getTime();
 
                     return timeDifference <= this.props.hidingTime * 1000;
                 } else {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { cid, useInject } from 'inversify-hooks';
 import { Navigate } from 'react-router';
-import { useInjection } from 'inversify-react';
 import { useAuth } from '../common/authentication/AuthProvider';
 import { Tweet } from '../common/models/Tweet';
 import ReactUtils from '../common/ReactUtils';
@@ -16,7 +16,7 @@ type MainProps = {
 function Main(props: MainProps) {
     const [tweets, setTweets] = useState<Tweet[]>([]);
     const auth = useAuth();
-    const tweetDataSource = useInjection(TweetService);
+    const [tweetDataSource] = useInject<TweetService>(cid.TweetService);
 
     useEffect(() => {
         tweetDataSource.getTimeline()

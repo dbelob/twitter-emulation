@@ -1,6 +1,6 @@
 import { FormEvent } from 'react';
+import { cid, useInject } from 'inversify-hooks';
 import { Link, useNavigate } from 'react-router';
-import { useInjection } from 'inversify-react';
 import { UserState } from '../common/models/UserState';
 import { AuthenticationService } from '../common/services/AuthenticationService';
 
@@ -9,7 +9,7 @@ type TopBarProps = {
 }
 
 export default function TopBar(props: TopBarProps) {
-    const authenticationService = useInjection(AuthenticationService);
+    const [authenticationService] = useInject<AuthenticationService>(cid.AuthenticationService);
     const navigate = useNavigate();
 
     function search(event: FormEvent<HTMLFormElement>) {

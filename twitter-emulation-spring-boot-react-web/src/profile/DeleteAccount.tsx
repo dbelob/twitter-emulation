@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { cid, useInject } from 'inversify-hooks';
 import { Link, useNavigate } from 'react-router';
-import { useInjection } from 'inversify-react';
 import { AccountService } from '../common/services/AccountService';
 import { AuthenticationService } from '../common/services/AuthenticationService';
 import { User } from '../common/models/User';
@@ -8,8 +8,8 @@ import MessageText from '../message/MessageText';
 
 export default function DeleteAccount() {
     const [user, setUser] = useState<User>(new User());
-    const authenticationService = useInjection(AuthenticationService);
-    const accountService = useInjection(AccountService);
+    const [authenticationService] = useInject<AuthenticationService>(cid.AuthenticationService);
+    const [accountService] = useInject<AccountService>(cid.AccountService);
     const navigate = useNavigate();
 
     useEffect(() => {
