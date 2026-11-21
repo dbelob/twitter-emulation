@@ -1,12 +1,10 @@
-import 'reflect-metadata';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
 import { BrowserRouter } from 'react-router';
 import axios from 'axios';
-import { Container } from 'inversify';
-import { Provider } from 'inversify-react';
+import { container } from 'inversify-hooks';
 import { AccountService } from './common/services/AccountService';
 import { AuthenticationService } from './common/services/AuthenticationService';
 import { FollowerService } from './common/services/FollowerService';
@@ -16,19 +14,16 @@ import dateTransformer from './common/AxiosDateReviver.ts';
 
 axios.defaults.transformResponse = [dateTransformer];
 
-const iocContainer = new Container();
-iocContainer.bind(AccountService).toSelf().inSingletonScope();
-iocContainer.bind(AuthenticationService).toSelf().inSingletonScope();
-iocContainer.bind(FollowerService).toSelf().inSingletonScope();
-iocContainer.bind(MessageService).toSelf().inSingletonScope();
-iocContainer.bind(TweetService).toSelf().inSingletonScope();
+container.addSingleton<AccountService>(AccountService);
+container.addSingleton<AuthenticationService>(AuthenticationService);
+container.addSingleton<FollowerService>(FollowerService);
+container.addSingleton<MessageService>(MessageService);
+container.addSingleton<TweetService>(TweetService);
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <Provider container={iocContainer}>
-            <BrowserRouter>
-                <App/>
-            </BrowserRouter>
-        </Provider>
+        <BrowserRouter>
+            <App/>
+        </BrowserRouter>
     </StrictMode>,
 );
