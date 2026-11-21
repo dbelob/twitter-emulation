@@ -1,6 +1,6 @@
 import { ChangeEvent, Component } from 'react';
+import { inject } from 'inversify-hooks';
 import { Link, Navigate } from 'react-router';
-import { resolve } from 'inversify-react';
 import { FormValidator } from '../common/validation/FormValidator';
 import { ValidatableInput } from '../common/validation/ValidatableInput';
 import { ValidationMessages } from '../common/validation/ValidationMessages';
@@ -21,11 +21,9 @@ type ProfileState = {
 };
 
 export default class Profile extends Component<ProfileProps, ProfileState> {
-    @resolve(AuthenticationService)
-    private readonly authenticationService!: AuthenticationService;
+    @inject() private readonly authenticationService!: AuthenticationService;
 
-    @resolve(AccountService)
-    private readonly accountService!: AccountService;
+    @inject() private readonly accountService!: AccountService;
 
     private readonly rules: any;
 

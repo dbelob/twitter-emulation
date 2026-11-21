@@ -1,6 +1,6 @@
 import { ChangeEvent, Component } from 'react';
+import { inject } from 'inversify-hooks';
 import { Link, Navigate } from 'react-router';
-import { resolve } from 'inversify-react';
 import { FormValidator } from '../common/validation/FormValidator';
 import { ValidatableInput } from '../common/validation/ValidatableInput';
 import { ValidationMessages } from '../common/validation/ValidationMessages';
@@ -19,8 +19,7 @@ type RegistrationState = {
 };
 
 export default class Registration extends Component<RegistrationProps, RegistrationState> {
-    @resolve(AccountService)
-    private readonly accountService!: AccountService;
+    @inject() private readonly accountService!: AccountService;
 
     private readonly rules: any;
 

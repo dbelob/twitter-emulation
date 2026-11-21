@@ -1,5 +1,8 @@
 Twitter Emulation
 
+Version 2.3.0 - November 22, 2026
+* Migration from inversify-react to inversify-hooks (DI for React).
+
 Version 2.2.0 - June 22, 2026
 * Migration to standalone components in Angular.
 

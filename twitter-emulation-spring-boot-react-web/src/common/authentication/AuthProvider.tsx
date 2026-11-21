@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useInjection } from 'inversify-react';
+import { cid, useInject } from 'inversify-hooks';
 import { AuthContextType } from './AuthContextType';
 import { AuthenticationService } from '../services/AuthenticationService';
 
@@ -12,7 +12,7 @@ function useAuth() {
 function AuthProvider({children}: { children: React.ReactNode }) {
     const [username, setUsername] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-    const authenticationService = useInjection(AuthenticationService);
+    const [authenticationService] = useInject<AuthenticationService>(cid.AuthenticationService);
 
     useEffect(() => {
         const restoreUsername = async () => {

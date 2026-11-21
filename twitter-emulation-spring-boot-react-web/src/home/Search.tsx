@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useInjection } from 'inversify-react';
+import { cid, useInject } from 'inversify-hooks';
 import { StringParam, useQueryParam } from 'use-query-params';
 import { useAuth } from '../common/authentication/AuthProvider';
 import { Account } from '../common/models/Account';
@@ -12,7 +12,7 @@ export default function Search() {
     const [accounts, setAccounts] = useState<Account[]>([]);
     const [searchText] = useQueryParam('searchText', StringParam);
     const auth = useAuth();
-    const accountService = useInjection(AccountService);
+    const [accountService] = useInject<AccountService>(cid.AccountService);
 
     useEffect(() => {
         const loadAccounts = async () => {

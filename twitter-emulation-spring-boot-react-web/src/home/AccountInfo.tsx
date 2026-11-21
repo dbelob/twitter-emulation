@@ -1,6 +1,6 @@
 import { Component } from 'react';
+import { inject } from 'inversify-hooks';
 import { Link } from 'react-router';
-import { resolve } from 'inversify-react';
 import { AccountStatistics } from '../common/models/AccountStatistics';
 import { UserState } from '../common/models/UserState';
 import { AccountService } from '../common/services/AccountService';
@@ -15,11 +15,9 @@ type AccountInfoState = {
 };
 
 export default class AccountInfo extends Component<AccountInfoProps, AccountInfoState> {
-    @resolve(AccountService)
-    private readonly accountService!: AccountService;
+    @inject() private readonly accountService!: AccountService;
 
-    @resolve(FollowerService)
-    private readonly followerService!: FollowerService;
+    @inject() private readonly followerService!: FollowerService;
 
     constructor(props: AccountInfoProps) {
         super(props);

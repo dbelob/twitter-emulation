@@ -1,8 +1,6 @@
-import 'reflect-metadata';
 import { Observable, Subject } from 'rxjs';
 import { act, render, screen, within } from '@testing-library/react';
-import { Container } from 'inversify';
-import { Provider } from 'inversify-react';
+import { cid, getContainer, mockSingleton, resetContainer } from 'inversify-hooks';
 import { MessageService } from './MessageService';
 import MessageText from './MessageText';
 import { Message } from '../common/models/Message';
@@ -20,25 +18,24 @@ class MockMessageService extends MessageService {
 }
 
 describe('MessageTextComponent', () => {
-    const iocContainer = new Container();
-    iocContainer.bind(MessageService).to(MockMessageService).inSingletonScope();
+    afterEach(() => resetContainer());
 
     test('should create', () => {
+        mockSingleton<MessageService>(cid.MessageService, MockMessageService);
+
         render(
-            <Provider container={iocContainer}>
-                <MessageText/>
-            </Provider>
+            <MessageText/>
         );
         expect(screen.queryByTestId('message')).not.toBeInTheDocument();
     });
 
     test('checks visibility', async () => {
-        const messageService = iocContainer.get(MessageService)
+        mockSingleton<MessageService>(cid.MessageService, MockMessageService);
+
+        const messageService = getContainer().get<MessageService>(cid.MessageService);
 
         render(
-            <Provider container={iocContainer}>
-                <MessageText/>
-            </Provider>
+            <MessageText/>
         );
         expect(screen.queryByTestId('message')).not.toBeInTheDocument();
 
@@ -49,12 +46,12 @@ describe('MessageTextComponent', () => {
     });
 
     test('displays message text', async () => {
-        const messageService = iocContainer.get(MessageService)
+        mockSingleton<MessageService>(cid.MessageService, MockMessageService);
+
+        const messageService = getContainer().get<MessageService>(cid.MessageService);
 
         render(
-            <Provider container={iocContainer}>
-                <MessageText/>
-            </Provider>
+            <MessageText/>
         );
         expect(screen.queryByTestId('message')).not.toBeInTheDocument();
 
