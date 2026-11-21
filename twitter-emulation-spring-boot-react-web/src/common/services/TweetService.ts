@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { inject, injectable } from 'inversify';
+import { injectable, inject } from 'inversify-hooks';
 import { Tweet } from '../models/Tweet';
 import { MessageService } from '../../message/MessageService';
 
@@ -7,8 +7,7 @@ import { MessageService } from '../../message/MessageService';
 export class TweetService {
     private readonly baseUrl = '/api/tweet';
 
-    @inject(MessageService)
-    private readonly messageService!: MessageService;
+    @inject() private readonly messageService!: MessageService;
 
     getTweets(username: string) {
         return axios.get<Tweet[]>(`${this.baseUrl}/tweets/${username}`)

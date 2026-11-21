@@ -1,6 +1,6 @@
 import { Observable, Subject } from 'rxjs';
 import { AxiosError } from 'axios';
-import { injectable } from 'inversify';
+import { injectable } from 'inversify-hooks';
 import { Message } from '../common/models/Message';
 
 @injectable()

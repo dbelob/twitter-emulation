@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { inject, injectable } from 'inversify';
+import { injectable, inject } from 'inversify-hooks';
 import { Account } from '../models/Account';
 import { AccountStatistics } from '../models/AccountStatistics';
 import { MessageService } from '../../message/MessageService';
@@ -8,8 +8,7 @@ import { MessageService } from '../../message/MessageService';
 export class AccountService {
     private readonly baseUrl = '/api/account';
 
-    @inject(MessageService)
-    private readonly messageService!: MessageService;
+    @inject() private readonly messageService!: MessageService;
 
     addAccount(account: Account) {
         return axios.post(`${this.baseUrl}/accounts`, account)

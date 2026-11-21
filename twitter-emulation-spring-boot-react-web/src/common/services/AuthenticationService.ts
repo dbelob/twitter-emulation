@@ -1,6 +1,6 @@
 import axios, { AxiosError, RawAxiosRequestHeaders } from 'axios';
 import { Buffer } from 'buffer';
-import { inject, injectable } from 'inversify';
+import { injectable, inject } from 'inversify-hooks';
 import { MessageService } from '../../message/MessageService';
 import { User } from '../models/User';
 
@@ -8,8 +8,7 @@ import { User } from '../models/User';
 export class AuthenticationService {
     private readonly baseUrl = '/api/authentication';
 
-    @inject(MessageService)
-    private readonly messageService!: MessageService;
+    @inject() private readonly messageService!: MessageService;
 
     authenticate(credentials: any, successCallback?: () => void, errorCallback?: () => void) {
         const headers: RawAxiosRequestHeaders = credentials ? {
